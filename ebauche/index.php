@@ -30,7 +30,9 @@
     	</header>
 		
     	<div class="content">
-			<div class="onglet gestion">
+			<div class="onglet <?php if (isset($_GET['onglet']) && $_GET['onglet'] == 'gestion') {
+	        	echo 'onglet-actif';
+	        } ?>" id="gestion">
 	        	<div class="onglet-title">
 	        		Gestion
 	        	</div>
@@ -88,9 +90,9 @@
 					
 	        	</div>
 	        </div>
-	        <div class="onglet <?php if (isset($_GET['expo'])) {
+	        <div class="onglet <?php if (isset($_GET['onglet']) && $_GET['onglet'] == 'expo') {
 	        	echo 'onglet-actif';
-	        } ?> expo">
+	        } ?>" id="expo">
 	        	<div class="onglet-title">
 	        		Expo
 	        	</div>
@@ -100,14 +102,16 @@
 	        			<input type="text" name="nom" id="nom"><br>
 	        			<label for="date">Date expo</label>
 	        			<input type="text" name="dateExpo" id="dateExpo"><br>
-	        			<input type="hidden" name="expo" id="expo" value="expo">
+	        			<input type="hidden" name="onglet" value="expo">
 	        			<input type="submit" value="enregistrer">
 	        			<input type="submit" value="Modifier">
 	        			<input type="submit" value="Supprimer">
 	        		</form>
 	        	</div>
 	        </div>
-	        <div class="onglet">
+	        <div class="onglet <?php if (isset($_GET['onglet']) && $_GET['onglet'] == 'stat') {
+	        	echo 'onglet-actif';
+	        } ?>" id="stat">
 	        	<div class="onglet-title">
 	        		Stats
 	        	</div>
@@ -132,9 +136,9 @@
 		        	</div>
 	        	</div>
 	        </div>
-	        <div class="onglet <?php if (isset($_GET['admin'])) {
+	        <div class="onglet <?php if (isset($_GET['onglet']) && $_GET['onglet'] == 'admin') {
 	        	echo 'onglet-actif';
-	        } ?> admin">
+	        } ?>" id="admin">
 	        	<div class="onglet-title">
 	        		Admin	
 	        	</div>
@@ -144,7 +148,7 @@
 	        			<input type="text" name="nom" id="nom"><br>
 	        			<label for="date">Date Naissance</label>
 	        			<input type="text" name="dateExpo" id="dateExpo">
-	        			<input type="hidden" name="admin" id="admin" value="admin">
+	        			<input type="hidden" name="onglet" value="admin">
 	        			<input type="submit" value="Enregistrer">
 	        			<input type="submit" value="Modifier">
 	        			<input type="submit" value="Supprimer">
