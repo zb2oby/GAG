@@ -1,11 +1,20 @@
 jQuery(document).ready(function($) {
 
-	$('.onglet-title').click(function(event) {
-		// $(this).addClass('tabs-active');
-		$('.onglet-actif').removeClass('onglet-actif');
-		$(event.currentTarget).parent().addClass('onglet-actif');
-		if (event.currentTarget.hasClass('gestion') != true) {
-			$('.down-target').css('visibility', 'hidden');
-		}
-	});
+	var nbOngletActif = $('.onglet-actif').length;
+	if (nbOngletActif < 1) {
+		$('.gestion').addClass('onglet-actif');
+	}
+
+
+	function onglet() {
+		$('.onglet-title').click(function(event) {
+			$('.onglet-actif').removeClass('onglet-actif');
+			var elt = $(event.currentTarget).parent();
+			elt.addClass('onglet-actif');
+		});		
+	}
+
+
+	onglet();
+			
 });
