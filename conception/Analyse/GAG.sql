@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Ven 29 Décembre 2017 à 19:31
+-- Généré le :  Ven 29 Décembre 2017 à 20:05
 -- Version du serveur :  5.5.57-0+deb8u1
 -- Version de PHP :  7.0.23-1~dotdeb+8.1
 
@@ -33,7 +33,14 @@ CREATE TABLE IF NOT EXISTS `Artiste` (
   `tel` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL,
   `descriptifFR` varchar(2000) COLLATE utf8_unicode_ci DEFAULT NULL,
   `email` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Contenu de la table `Artiste`
+--
+
+INSERT INTO `Artiste` (`idArtiste`, `nom`, `prenom`, `tel`, `descriptifFR`, `email`) VALUES
+(1, 'Durand', 'Charlotte', '0612231214', 'Plasticienne de genie', 'f.boubee@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -47,7 +54,14 @@ CREATE TABLE IF NOT EXISTS `Collectif` (
   `descriptifFR` varchar(2000) COLLATE utf8_unicode_ci DEFAULT NULL,
   `email` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `tel` varchar(10) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Contenu de la table `Collectif`
+--
+
+INSERT INTO `Collectif` (`idCollectif`, `libelleCollectif`, `descriptifFR`, `email`, `tel`) VALUES
+(1, 'Plasticouf', 'collectif de plasticiens déjantés', 'f.boubee@gmail.com', '0512131415');
 
 -- --------------------------------------------------------
 
@@ -60,6 +74,13 @@ CREATE TABLE IF NOT EXISTS `Communaute` (
   `idArtiste` int(11) NOT NULL,
   `idCollectif` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Contenu de la table `Communaute`
+--
+
+INSERT INTO `Communaute` (`styleCollectif`, `idArtiste`, `idCollectif`) VALUES
+('plasticiens', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -92,7 +113,14 @@ CREATE TABLE IF NOT EXISTS `Exposition` (
   `dateFin` date DEFAULT NULL,
   `teaser` varchar(25) COLLATE utf8_unicode_ci DEFAULT NULL,
   `affiche` varchar(25) COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Contenu de la table `Exposition`
+--
+
+INSERT INTO `Exposition` (`id_expo`, `horairesO`, `horaireF`, `theme`, `descriptifFR`, `frequentation`, `dateDeb`, `dateFin`, `teaser`, `affiche`) VALUES
+(1, '08h00', '17h00', 'La plastique c''est magique', 'présentation d''un collectif de plasticien un peu décalés', NULL, '2018-01-01', '2018-01-15', 'plastifou.teaser.html', 'plastifou.affiche.jpg');
 
 -- --------------------------------------------------------
 
@@ -103,7 +131,17 @@ CREATE TABLE IF NOT EXISTS `Exposition` (
 CREATE TABLE IF NOT EXISTS `Langue` (
 `idLangue` int(11) NOT NULL,
   `nomLangue` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Contenu de la table `Langue`
+--
+
+INSERT INTO `Langue` (`idLangue`, `nomLangue`) VALUES
+(1, 'Anglais'),
+(2, 'Russe'),
+(3, 'Chinois'),
+(4, 'Espagnol');
 
 -- --------------------------------------------------------
 
@@ -115,6 +153,14 @@ CREATE TABLE IF NOT EXISTS `Langue_expo` (
   `id_expo` int(11) NOT NULL,
   `idLangue` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Contenu de la table `Langue_expo`
+--
+
+INSERT INTO `Langue_expo` (`id_expo`, `idLangue`) VALUES
+(1, 1),
+(1, 2);
 
 -- --------------------------------------------------------
 
@@ -147,11 +193,18 @@ CREATE TABLE IF NOT EXISTS `Oeuvre` (
   `image` varchar(25) COLLATE utf8_unicode_ci DEFAULT NULL,
   `qrcode` varchar(25) COLLATE utf8_unicode_ci DEFAULT NULL,
   `descriptifFR` varchar(2000) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `nbClic` int(11) DEFAULT NULL,
   `idTypeOeuvre` int(11) DEFAULT NULL,
   `idArtiste` int(11) DEFAULT NULL,
   `idCollectif` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Contenu de la table `Oeuvre`
+--
+
+INSERT INTO `Oeuvre` (`idOeuvre`, `longueur`, `hauteur`, `etat`, `image`, `qrcode`, `descriptifFR`, `idTypeOeuvre`, `idArtiste`, `idCollectif`) VALUES
+(1, '100.00', '50.00', 'bon', 'lambeaux.jpg', NULL, 'des pti trou', 1, 1, 1),
+(2, '200.00', '50.20', 'tb', 'bubulle.jpg', NULL, 'bullage au soleil', 2, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -160,12 +213,22 @@ CREATE TABLE IF NOT EXISTS `Oeuvre` (
 --
 
 CREATE TABLE IF NOT EXISTS `Oeuvre_prevue` (
-  `dateEntreeRelle` varchar(25) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `dateSortie` varchar(25) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `n_emplacement` varchar(4) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `dateEntreeRelle` date DEFAULT NULL,
+  `dateSortie` date DEFAULT NULL,
+  `n_emplacement` int(4) DEFAULT NULL,
   `id_expo` int(11) NOT NULL,
-  `idOeuvre` int(11) NOT NULL
+  `idOeuvre` int(11) NOT NULL,
+  `nbClic` int(25) NOT NULL,
+  `nbFlash` int(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Contenu de la table `Oeuvre_prevue`
+--
+
+INSERT INTO `Oeuvre_prevue` (`dateEntreeRelle`, `dateSortie`, `n_emplacement`, `id_expo`, `idOeuvre`, `nbClic`, `nbFlash`) VALUES
+(NULL, '2018-01-15', 22, 1, 1, 0, 0),
+(NULL, '2018-01-15', 19, 1, 2, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -203,7 +266,15 @@ CREATE TABLE IF NOT EXISTS `Type_donnee_enrichie` (
 CREATE TABLE IF NOT EXISTS `Type_oeuvre` (
 `idTypeOeuvre` int(11) NOT NULL,
   `libelleTypeOeuvre` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Contenu de la table `Type_oeuvre`
+--
+
+INSERT INTO `Type_oeuvre` (`idTypeOeuvre`, `libelleTypeOeuvre`) VALUES
+(1, 'Papier Peint'),
+(2, 'Toile');
 
 -- --------------------------------------------------------
 
@@ -214,7 +285,15 @@ CREATE TABLE IF NOT EXISTS `Type_oeuvre` (
 CREATE TABLE IF NOT EXISTS `Type_utilisateur` (
 `idTypeUtilisateur` int(11) NOT NULL,
   `libelleTypeUtilisateur` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Contenu de la table `Type_utilisateur`
+--
+
+INSERT INTO `Type_utilisateur` (`idTypeUtilisateur`, `libelleTypeUtilisateur`) VALUES
+(1, 'collaborateur'),
+(2, 'admin');
 
 -- --------------------------------------------------------
 
@@ -229,7 +308,14 @@ CREATE TABLE IF NOT EXISTS `Utilisateur` (
   `identifiant` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `prenom` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `idTypeUtilisateur` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Contenu de la table `Utilisateur`
+--
+
+INSERT INTO `Utilisateur` (`idUtilisateur`, `nom`, `mot_de_passe`, `identifiant`, `prenom`, `idTypeUtilisateur`) VALUES
+(1, 'boubee', 'toto', 'toto', 'francois', 2);
 
 -- --------------------------------------------------------
 
@@ -351,12 +437,12 @@ ALTER TABLE `Visiteur`
 -- AUTO_INCREMENT pour la table `Artiste`
 --
 ALTER TABLE `Artiste`
-MODIFY `idArtiste` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `idArtiste` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT pour la table `Collectif`
 --
 ALTER TABLE `Collectif`
-MODIFY `idCollectif` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `idCollectif` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT pour la table `Donnee_enrichie`
 --
@@ -366,12 +452,12 @@ MODIFY `idDonneeEnrichie` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT pour la table `Exposition`
 --
 ALTER TABLE `Exposition`
-MODIFY `id_expo` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `id_expo` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT pour la table `Langue`
 --
 ALTER TABLE `Langue`
-MODIFY `idLangue` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `idLangue` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT pour la table `Message_interne`
 --
@@ -381,7 +467,7 @@ MODIFY `idMessage` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT pour la table `Oeuvre`
 --
 ALTER TABLE `Oeuvre`
-MODIFY `idOeuvre` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `idOeuvre` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT pour la table `Traduction`
 --
@@ -396,17 +482,17 @@ MODIFY `idTypeDonneEnrichie` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT pour la table `Type_oeuvre`
 --
 ALTER TABLE `Type_oeuvre`
-MODIFY `idTypeOeuvre` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `idTypeOeuvre` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT pour la table `Type_utilisateur`
 --
 ALTER TABLE `Type_utilisateur`
-MODIFY `idTypeUtilisateur` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `idTypeUtilisateur` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT pour la table `Utilisateur`
 --
 ALTER TABLE `Utilisateur`
-MODIFY `idUtilisateur` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `idUtilisateur` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT pour la table `Visiteur`
 --
@@ -451,8 +537,8 @@ ADD CONSTRAINT `FK_Message_interne_id_expo` FOREIGN KEY (`id_expo`) REFERENCES `
 -- Contraintes pour la table `Oeuvre`
 --
 ALTER TABLE `Oeuvre`
-ADD CONSTRAINT `FK_Oeuvre_idCollectif` FOREIGN KEY (`idCollectif`) REFERENCES `Collectif` (`idCollectif`),
 ADD CONSTRAINT `FK_Oeuvre_idArtiste` FOREIGN KEY (`idArtiste`) REFERENCES `Artiste` (`idArtiste`),
+ADD CONSTRAINT `FK_Oeuvre_idCollectif` FOREIGN KEY (`idCollectif`) REFERENCES `Collectif` (`idCollectif`),
 ADD CONSTRAINT `FK_Oeuvre_idTypeOeuvre` FOREIGN KEY (`idTypeOeuvre`) REFERENCES `Type_oeuvre` (`idTypeOeuvre`);
 
 --
