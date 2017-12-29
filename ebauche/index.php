@@ -85,7 +85,7 @@
 	        		</section>
 	        		
 					<div class="plan">
-						<img src="http://via.placeholder.com/1500X520" alt="plan">
+						<img src="img/plan.png" alt="plan">
 					</div>
 					
 	        	</div>
