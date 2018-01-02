@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Ven 29 Décembre 2017 à 23:19
+-- Généré le :  Mar 02 Janvier 2018 à 18:07
 -- Version du serveur :  5.5.57-0+deb8u1
 -- Version de PHP :  7.0.23-1~dotdeb+8.1
 
@@ -33,7 +33,14 @@ CREATE TABLE IF NOT EXISTS `Artiste` (
   `tel` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL,
   `descriptifFR` varchar(2000) COLLATE utf8_unicode_ci DEFAULT NULL,
   `email` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Contenu de la table `Artiste`
+--
+
+INSERT INTO `Artiste` (`idArtiste`, `nom`, `prenom`, `tel`, `descriptifFR`, `email`) VALUES
+(1, 'test', 'test', '0512151515', 'test', 'test@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -47,7 +54,14 @@ CREATE TABLE IF NOT EXISTS `Collectif` (
   `descriptifFR` varchar(2000) COLLATE utf8_unicode_ci DEFAULT NULL,
   `email` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `tel` varchar(10) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Contenu de la table `Collectif`
+--
+
+INSERT INTO `Collectif` (`idCollectif`, `libelleCollectif`, `descriptifFR`, `email`, `tel`) VALUES
+(1, 'test', 'test', 'test', '0515151515');
 
 -- --------------------------------------------------------
 
@@ -90,8 +104,23 @@ CREATE TABLE IF NOT EXISTS `Emplacement` (
   `dateSortie` date DEFAULT NULL,
   `nbClic` int(11) DEFAULT NULL,
   `nbFlash` int(11) DEFAULT NULL,
-  `idOeuvre` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `idOeuvreExposee` int(11) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Contenu de la table `Emplacement`
+--
+
+INSERT INTO `Emplacement` (`idEmplacement`, `coordLeft`, `coordTop`, `idExpo`, `dateEntree`, `dateSortie`, `nbClic`, `nbFlash`, `idOeuvreExposee`) VALUES
+(1, 32.6934, 53.1974, 1, NULL, NULL, NULL, NULL, NULL),
+(2, 3.03382, 38.6803, 1, NULL, NULL, NULL, NULL, NULL),
+(3, 14.209, 42.7676, 1, NULL, NULL, NULL, NULL, NULL),
+(4, 78.6189, 34.2026, 1, NULL, NULL, NULL, NULL, NULL),
+(6, 24.219, 49.1382, 1, NULL, NULL, NULL, NULL, NULL),
+(7, 85.4671, 46.2569, 1, NULL, NULL, NULL, NULL, NULL),
+(8, 12.5805, 56.1873, 1, NULL, NULL, NULL, NULL, NULL),
+(10, 74.5964, 70.8672, 1, NULL, NULL, NULL, NULL, NULL),
+(13, 47.3958, 21.1443, 1, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -110,7 +139,15 @@ CREATE TABLE IF NOT EXISTS `Exposition` (
   `dateFin` date DEFAULT NULL,
   `teaser` varchar(25) COLLATE utf8_unicode_ci DEFAULT NULL,
   `affiche` varchar(25) COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Contenu de la table `Exposition`
+--
+
+INSERT INTO `Exposition` (`idExpo`, `horaireO`, `horaireF`, `theme`, `descriptifFR`, `frequentation`, `dateDeb`, `dateFin`, `teaser`, `affiche`) VALUES
+(1, '10h00', '17h00', 't''est', 'test', NULL, '2017-12-15', '2017-12-28', 'test', 'test'),
+(2, '11h00', '20h00', 'badaboum', 'badabimboum bimbadaboum help', NULL, '2017-12-29', '2018-01-26', 'crackboum', 'bim');
 
 -- --------------------------------------------------------
 
@@ -168,6 +205,30 @@ CREATE TABLE IF NOT EXISTS `Oeuvre` (
   `idTypeOeuvre` int(11) DEFAULT NULL,
   `idArtiste` int(11) DEFAULT NULL,
   `idCollectif` int(11) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Contenu de la table `Oeuvre`
+--
+
+INSERT INTO `Oeuvre` (`idOeuvre`, `longueur`, `hauteur`, `etat`, `image`, `qrcode`, `descriptifFR`, `idTypeOeuvre`, `idArtiste`, `idCollectif`) VALUES
+(1, '100.00', '5.00', 'bon etat', 'tb.jpeg', 'tb.qr', 'test', 1, 1, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `OeuvreExposee`
+--
+
+CREATE TABLE IF NOT EXISTS `OeuvreExposee` (
+`idOeuvreExposee` int(11) NOT NULL,
+  `dateEntree` date NOT NULL,
+  `dateSortie` date NOT NULL,
+  `nbClic` int(11) NOT NULL,
+  `nbFlash` int(11) NOT NULL,
+  `idEmplacement` int(11) NOT NULL,
+  `idOeuvre` int(11) NOT NULL,
+  `idExpo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -206,7 +267,14 @@ CREATE TABLE IF NOT EXISTS `Type_donnee_enrichie` (
 CREATE TABLE IF NOT EXISTS `Type_oeuvre` (
 `idTypeOeuvre` int(11) NOT NULL,
   `libelleTypeOeuvre` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Contenu de la table `Type_oeuvre`
+--
+
+INSERT INTO `Type_oeuvre` (`idTypeOeuvre`, `libelleTypeOeuvre`) VALUES
+(1, 'test');
 
 -- --------------------------------------------------------
 
@@ -278,7 +346,7 @@ ALTER TABLE `Donnee_enrichie`
 -- Index pour la table `Emplacement`
 --
 ALTER TABLE `Emplacement`
- ADD PRIMARY KEY (`idEmplacement`), ADD KEY `FK_Emplacement_idExpo` (`idExpo`), ADD KEY `FK_Emplacement_idOeuvre` (`idOeuvre`);
+ ADD PRIMARY KEY (`idEmplacement`), ADD KEY `FK_Emplacement_idExpo` (`idExpo`), ADD KEY `idOeuvreExposee` (`idOeuvreExposee`);
 
 --
 -- Index pour la table `Exposition`
@@ -309,6 +377,12 @@ ALTER TABLE `Message_interne`
 --
 ALTER TABLE `Oeuvre`
  ADD PRIMARY KEY (`idOeuvre`), ADD KEY `FK_Oeuvre_idTypeOeuvre` (`idTypeOeuvre`), ADD KEY `FK_Oeuvre_idArtiste` (`idArtiste`), ADD KEY `FK_Oeuvre_idCollectif` (`idCollectif`);
+
+--
+-- Index pour la table `OeuvreExposee`
+--
+ALTER TABLE `OeuvreExposee`
+ ADD PRIMARY KEY (`idOeuvreExposee`), ADD KEY `idEmplacement` (`idEmplacement`,`idOeuvre`,`idExpo`), ADD KEY `idOeuvre` (`idOeuvre`), ADD KEY `idExpo` (`idExpo`);
 
 --
 -- Index pour la table `Traduction`
@@ -354,12 +428,12 @@ ALTER TABLE `Visiteur`
 -- AUTO_INCREMENT pour la table `Artiste`
 --
 ALTER TABLE `Artiste`
-MODIFY `idArtiste` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `idArtiste` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT pour la table `Collectif`
 --
 ALTER TABLE `Collectif`
-MODIFY `idCollectif` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `idCollectif` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT pour la table `Donnee_enrichie`
 --
@@ -369,12 +443,12 @@ MODIFY `idDonneeEnrichie` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT pour la table `Emplacement`
 --
 ALTER TABLE `Emplacement`
-MODIFY `idEmplacement` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `idEmplacement` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT pour la table `Exposition`
 --
 ALTER TABLE `Exposition`
-MODIFY `idExpo` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `idExpo` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT pour la table `Langue`
 --
@@ -389,7 +463,12 @@ MODIFY `idMessage` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT pour la table `Oeuvre`
 --
 ALTER TABLE `Oeuvre`
-MODIFY `idOeuvre` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `idOeuvre` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT pour la table `OeuvreExposee`
+--
+ALTER TABLE `OeuvreExposee`
+MODIFY `idOeuvreExposee` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `Traduction`
 --
@@ -404,7 +483,7 @@ MODIFY `idTypeDonneEnrichie` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT pour la table `Type_oeuvre`
 --
 ALTER TABLE `Type_oeuvre`
-MODIFY `idTypeOeuvre` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `idTypeOeuvre` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT pour la table `Type_utilisateur`
 --
@@ -428,8 +507,8 @@ MODIFY `idVisiteur` int(11) NOT NULL AUTO_INCREMENT;
 -- Contraintes pour la table `Communaute`
 --
 ALTER TABLE `Communaute`
-ADD CONSTRAINT `FK_appartenir_idCollectif` FOREIGN KEY (`idCollectif`) REFERENCES `Collectif` (`idCollectif`),
-ADD CONSTRAINT `FK_appartenir_idArtiste` FOREIGN KEY (`idArtiste`) REFERENCES `Artiste` (`idArtiste`);
+ADD CONSTRAINT `FK_appartenir_idArtiste` FOREIGN KEY (`idArtiste`) REFERENCES `Artiste` (`idArtiste`),
+ADD CONSTRAINT `FK_appartenir_idCollectif` FOREIGN KEY (`idCollectif`) REFERENCES `Collectif` (`idCollectif`);
 
 --
 -- Contraintes pour la table `Donnee_enrichie`
@@ -442,22 +521,22 @@ ADD CONSTRAINT `FK_Donnee_enrichie_idTypeDonneEnrichie` FOREIGN KEY (`idTypeDonn
 -- Contraintes pour la table `Emplacement`
 --
 ALTER TABLE `Emplacement`
-ADD CONSTRAINT `FK_Emplacement_idOeuvre` FOREIGN KEY (`idOeuvre`) REFERENCES `Oeuvre` (`idOeuvre`),
+ADD CONSTRAINT `Emplacement_ibfk_1` FOREIGN KEY (`idOeuvreExposee`) REFERENCES `OeuvreExposee` (`idOeuvreExposee`),
 ADD CONSTRAINT `FK_Emplacement_idExpo` FOREIGN KEY (`idExpo`) REFERENCES `Exposition` (`idExpo`);
 
 --
 -- Contraintes pour la table `Langue_expo`
 --
 ALTER TABLE `Langue_expo`
-ADD CONSTRAINT `FK_affecter_idLangue` FOREIGN KEY (`idLangue`) REFERENCES `Langue` (`idLangue`),
-ADD CONSTRAINT `FK_affecter_idExpo` FOREIGN KEY (`idExpo`) REFERENCES `Exposition` (`idExpo`);
+ADD CONSTRAINT `FK_affecter_idExpo` FOREIGN KEY (`idExpo`) REFERENCES `Exposition` (`idExpo`),
+ADD CONSTRAINT `FK_affecter_idLangue` FOREIGN KEY (`idLangue`) REFERENCES `Langue` (`idLangue`);
 
 --
 -- Contraintes pour la table `Message_interne`
 --
 ALTER TABLE `Message_interne`
-ADD CONSTRAINT `FK_Message_interne_idCollectif` FOREIGN KEY (`idCollectif`) REFERENCES `Collectif` (`idCollectif`),
 ADD CONSTRAINT `FK_Message_interne_idArtiste` FOREIGN KEY (`idArtiste`) REFERENCES `Artiste` (`idArtiste`),
+ADD CONSTRAINT `FK_Message_interne_idCollectif` FOREIGN KEY (`idCollectif`) REFERENCES `Collectif` (`idCollectif`),
 ADD CONSTRAINT `FK_Message_interne_idExpo` FOREIGN KEY (`idExpo`) REFERENCES `Exposition` (`idExpo`),
 ADD CONSTRAINT `FK_Message_interne_idOeuvre` FOREIGN KEY (`idOeuvre`) REFERENCES `Oeuvre` (`idOeuvre`),
 ADD CONSTRAINT `FK_Message_interne_idUtilisateur` FOREIGN KEY (`idUtilisateur`) REFERENCES `Utilisateur` (`idUtilisateur`);
@@ -466,18 +545,26 @@ ADD CONSTRAINT `FK_Message_interne_idUtilisateur` FOREIGN KEY (`idUtilisateur`) 
 -- Contraintes pour la table `Oeuvre`
 --
 ALTER TABLE `Oeuvre`
-ADD CONSTRAINT `FK_Oeuvre_idCollectif` FOREIGN KEY (`idCollectif`) REFERENCES `Collectif` (`idCollectif`),
 ADD CONSTRAINT `FK_Oeuvre_idArtiste` FOREIGN KEY (`idArtiste`) REFERENCES `Artiste` (`idArtiste`),
+ADD CONSTRAINT `FK_Oeuvre_idCollectif` FOREIGN KEY (`idCollectif`) REFERENCES `Collectif` (`idCollectif`),
 ADD CONSTRAINT `FK_Oeuvre_idTypeOeuvre` FOREIGN KEY (`idTypeOeuvre`) REFERENCES `Type_oeuvre` (`idTypeOeuvre`);
+
+--
+-- Contraintes pour la table `OeuvreExposee`
+--
+ALTER TABLE `OeuvreExposee`
+ADD CONSTRAINT `OeuvreExposee_ibfk_3` FOREIGN KEY (`idExpo`) REFERENCES `Exposition` (`idExpo`),
+ADD CONSTRAINT `OeuvreExposee_ibfk_1` FOREIGN KEY (`idEmplacement`) REFERENCES `Emplacement` (`idEmplacement`),
+ADD CONSTRAINT `OeuvreExposee_ibfk_2` FOREIGN KEY (`idOeuvre`) REFERENCES `Oeuvre` (`idOeuvre`);
 
 --
 -- Contraintes pour la table `Traduction`
 --
 ALTER TABLE `Traduction`
-ADD CONSTRAINT `FK_Traduction_idLangue` FOREIGN KEY (`idLangue`) REFERENCES `Langue` (`idLangue`),
 ADD CONSTRAINT `FK_Traduction_idArtiste` FOREIGN KEY (`idArtiste`) REFERENCES `Artiste` (`idArtiste`),
 ADD CONSTRAINT `FK_Traduction_idCollectif` FOREIGN KEY (`idCollectif`) REFERENCES `Collectif` (`idCollectif`),
 ADD CONSTRAINT `FK_Traduction_idExpo` FOREIGN KEY (`idExpo`) REFERENCES `Exposition` (`idExpo`),
+ADD CONSTRAINT `FK_Traduction_idLangue` FOREIGN KEY (`idLangue`) REFERENCES `Langue` (`idLangue`),
 ADD CONSTRAINT `FK_Traduction_idOeuvre` FOREIGN KEY (`idOeuvre`) REFERENCES `Oeuvre` (`idOeuvre`);
 
 --
