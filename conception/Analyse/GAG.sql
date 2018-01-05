@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Mar 02 Janvier 2018 à 18:07
+-- Généré le :  Ven 05 Janvier 2018 à 23:49
 -- Version du serveur :  5.5.57-0+deb8u1
 -- Version de PHP :  7.0.23-1~dotdeb+8.1
 
@@ -31,16 +31,40 @@ CREATE TABLE IF NOT EXISTS `Artiste` (
   `nom` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `prenom` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `tel` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `image` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `descriptifFR` varchar(2000) COLLATE utf8_unicode_ci DEFAULT NULL,
   `email` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Contenu de la table `Artiste`
 --
 
-INSERT INTO `Artiste` (`idArtiste`, `nom`, `prenom`, `tel`, `descriptifFR`, `email`) VALUES
-(1, 'test', 'test', '0512151515', 'test', 'test@gmail.com');
+INSERT INTO `Artiste` (`idArtiste`, `nom`, `prenom`, `tel`, `image`, `descriptifFR`, `email`) VALUES
+(1, 'samantha', 'fox', '0512151515', 'artiste1.jpg', 'test', 'test@gmail.com'),
+(2, 'mbala', 'mbala', NULL, 'artiste2.jpg', 'mbala', NULL),
+(3, 'durand', 'charlotte', NULL, 'artiste3.jpg', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `ArtisteExpose`
+--
+
+CREATE TABLE IF NOT EXISTS `ArtisteExpose` (
+  `idArtiste` int(11) NOT NULL,
+  `idExpo` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Contenu de la table `ArtisteExpose`
+--
+
+INSERT INTO `ArtisteExpose` (`idArtiste`, `idExpo`) VALUES
+(1, 1),
+(2, 1),
+(3, 1),
+(3, 2);
 
 -- --------------------------------------------------------
 
@@ -100,27 +124,23 @@ CREATE TABLE IF NOT EXISTS `Emplacement` (
   `coordLeft` float DEFAULT NULL,
   `coordTop` float DEFAULT NULL,
   `idExpo` int(11) DEFAULT NULL,
-  `dateEntree` date DEFAULT NULL,
-  `dateSortie` date DEFAULT NULL,
-  `nbClic` int(11) DEFAULT NULL,
-  `nbFlash` int(11) DEFAULT NULL,
   `idOeuvreExposee` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Contenu de la table `Emplacement`
 --
 
-INSERT INTO `Emplacement` (`idEmplacement`, `coordLeft`, `coordTop`, `idExpo`, `dateEntree`, `dateSortie`, `nbClic`, `nbFlash`, `idOeuvreExposee`) VALUES
-(1, 32.6934, 53.1974, 1, NULL, NULL, NULL, NULL, NULL),
-(2, 3.03382, 38.6803, 1, NULL, NULL, NULL, NULL, NULL),
-(3, 14.209, 42.7676, 1, NULL, NULL, NULL, NULL, NULL),
-(4, 78.6189, 34.2026, 1, NULL, NULL, NULL, NULL, NULL),
-(6, 24.219, 49.1382, 1, NULL, NULL, NULL, NULL, NULL),
-(7, 85.4671, 46.2569, 1, NULL, NULL, NULL, NULL, NULL),
-(8, 12.5805, 56.1873, 1, NULL, NULL, NULL, NULL, NULL),
-(10, 74.5964, 70.8672, 1, NULL, NULL, NULL, NULL, NULL),
-(13, 47.3958, 21.1443, 1, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `Emplacement` (`idEmplacement`, `coordLeft`, `coordTop`, `idExpo`, `idOeuvreExposee`) VALUES
+(1, 33.9184, 68.0577, 1, NULL),
+(2, 3.03382, 38.6803, 1, NULL),
+(3, 46.3251, 34.7228, 1, 38),
+(4, 71.0586, 11.7484, 1, 31),
+(7, 85.4671, 46.2569, 1, NULL),
+(8, 12.5805, 56.1873, 1, NULL),
+(10, 74.5964, 70.8672, 1, NULL),
+(15, 39.4292, 20.4026, 2, NULL),
+(16, 36.5703, 17.8284, 1, 22);
 
 -- --------------------------------------------------------
 
@@ -196,6 +216,7 @@ CREATE TABLE IF NOT EXISTS `Message_interne` (
 
 CREATE TABLE IF NOT EXISTS `Oeuvre` (
 `idOeuvre` int(11) NOT NULL,
+  `titre` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `longueur` decimal(7,2) DEFAULT NULL,
   `hauteur` decimal(7,2) DEFAULT NULL,
   `etat` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -205,14 +226,17 @@ CREATE TABLE IF NOT EXISTS `Oeuvre` (
   `idTypeOeuvre` int(11) DEFAULT NULL,
   `idArtiste` int(11) DEFAULT NULL,
   `idCollectif` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Contenu de la table `Oeuvre`
 --
 
-INSERT INTO `Oeuvre` (`idOeuvre`, `longueur`, `hauteur`, `etat`, `image`, `qrcode`, `descriptifFR`, `idTypeOeuvre`, `idArtiste`, `idCollectif`) VALUES
-(1, '100.00', '5.00', 'bon etat', 'tb.jpeg', 'tb.qr', 'test', 1, 1, NULL);
+INSERT INTO `Oeuvre` (`idOeuvre`, `titre`, `longueur`, `hauteur`, `etat`, `image`, `qrcode`, `descriptifFR`, `idTypeOeuvre`, `idArtiste`, `idCollectif`) VALUES
+(1, 'bamako en feu', '100.00', '5.00', 'bon etat', 'oeuvre2.jpg', 'tb.qr', 'test', 1, 1, NULL),
+(2, 'cocotte', '150.00', '100.00', 'bon', 'oeuvre1.jpg', 'cocote.qr', 'cocotte genial cocotte genialcocotte genialcocotte genialcocotte genialcocotte genialcocotte genialcocotte genialcocotte genialcocotte genialcocotte genialcocotte genial', 1, 2, NULL),
+(3, 'vision deformée', NULL, NULL, NULL, 'oeuvre3.jpg', NULL, 'vision deformée', 1, 2, NULL),
+(4, 'tete de noeud', NULL, NULL, NULL, 'oeuvre4.jpg', NULL, 'tete de noeud', 1, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -222,14 +246,24 @@ INSERT INTO `Oeuvre` (`idOeuvre`, `longueur`, `hauteur`, `etat`, `image`, `qrcod
 
 CREATE TABLE IF NOT EXISTS `OeuvreExposee` (
 `idOeuvreExposee` int(11) NOT NULL,
-  `dateEntree` date NOT NULL,
-  `dateSortie` date NOT NULL,
-  `nbClic` int(11) NOT NULL,
-  `nbFlash` int(11) NOT NULL,
-  `idEmplacement` int(11) NOT NULL,
+  `dateEntree` date DEFAULT '0000-00-00',
+  `dateSortie` date DEFAULT '0000-00-00',
+  `nbClic` int(11) DEFAULT '0',
+  `nbFlash` int(11) DEFAULT '0',
   `idOeuvre` int(11) NOT NULL,
   `idExpo` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Contenu de la table `OeuvreExposee`
+--
+
+INSERT INTO `OeuvreExposee` (`idOeuvreExposee`, `dateEntree`, `dateSortie`, `nbClic`, `nbFlash`, `idOeuvre`, `idExpo`) VALUES
+(18, '0000-00-00', '0000-00-00', 0, 0, 1, 2),
+(22, '2018-01-04', '0000-00-00', 0, 0, 2, 1),
+(31, '2018-01-18', '0000-00-00', 0, 0, 3, 1),
+(32, '0000-00-00', '0000-00-00', 0, 0, 4, 1),
+(38, '2018-01-05', '0000-00-00', 0, 0, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -325,6 +359,12 @@ ALTER TABLE `Artiste`
  ADD PRIMARY KEY (`idArtiste`);
 
 --
+-- Index pour la table `ArtisteExpose`
+--
+ALTER TABLE `ArtisteExpose`
+ ADD PRIMARY KEY (`idArtiste`,`idExpo`), ADD UNIQUE KEY `cpl_unik1` (`idArtiste`,`idExpo`), ADD KEY `idExpo` (`idExpo`);
+
+--
 -- Index pour la table `Collectif`
 --
 ALTER TABLE `Collectif`
@@ -382,7 +422,7 @@ ALTER TABLE `Oeuvre`
 -- Index pour la table `OeuvreExposee`
 --
 ALTER TABLE `OeuvreExposee`
- ADD PRIMARY KEY (`idOeuvreExposee`), ADD KEY `idEmplacement` (`idEmplacement`,`idOeuvre`,`idExpo`), ADD KEY `idOeuvre` (`idOeuvre`), ADD KEY `idExpo` (`idExpo`);
+ ADD PRIMARY KEY (`idOeuvreExposee`), ADD UNIQUE KEY `cpl_unik2` (`idOeuvre`,`idExpo`), ADD KEY `idEmplacement` (`idOeuvre`,`idExpo`), ADD KEY `idOeuvre` (`idOeuvre`), ADD KEY `idExpo` (`idExpo`);
 
 --
 -- Index pour la table `Traduction`
@@ -428,7 +468,7 @@ ALTER TABLE `Visiteur`
 -- AUTO_INCREMENT pour la table `Artiste`
 --
 ALTER TABLE `Artiste`
-MODIFY `idArtiste` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+MODIFY `idArtiste` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT pour la table `Collectif`
 --
@@ -443,7 +483,7 @@ MODIFY `idDonneeEnrichie` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT pour la table `Emplacement`
 --
 ALTER TABLE `Emplacement`
-MODIFY `idEmplacement` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
+MODIFY `idEmplacement` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT pour la table `Exposition`
 --
@@ -463,12 +503,12 @@ MODIFY `idMessage` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT pour la table `Oeuvre`
 --
 ALTER TABLE `Oeuvre`
-MODIFY `idOeuvre` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+MODIFY `idOeuvre` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT pour la table `OeuvreExposee`
 --
 ALTER TABLE `OeuvreExposee`
-MODIFY `idOeuvreExposee` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `idOeuvreExposee` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=39;
 --
 -- AUTO_INCREMENT pour la table `Traduction`
 --
@@ -504,6 +544,13 @@ MODIFY `idVisiteur` int(11) NOT NULL AUTO_INCREMENT;
 --
 
 --
+-- Contraintes pour la table `ArtisteExpose`
+--
+ALTER TABLE `ArtisteExpose`
+ADD CONSTRAINT `ArtisteExpose_ibfk_2` FOREIGN KEY (`idExpo`) REFERENCES `Exposition` (`idExpo`),
+ADD CONSTRAINT `ArtisteExpose_ibfk_1` FOREIGN KEY (`idArtiste`) REFERENCES `Artiste` (`idArtiste`);
+
+--
 -- Contraintes pour la table `Communaute`
 --
 ALTER TABLE `Communaute`
@@ -521,7 +568,6 @@ ADD CONSTRAINT `FK_Donnee_enrichie_idTypeDonneEnrichie` FOREIGN KEY (`idTypeDonn
 -- Contraintes pour la table `Emplacement`
 --
 ALTER TABLE `Emplacement`
-ADD CONSTRAINT `Emplacement_ibfk_1` FOREIGN KEY (`idOeuvreExposee`) REFERENCES `OeuvreExposee` (`idOeuvreExposee`),
 ADD CONSTRAINT `FK_Emplacement_idExpo` FOREIGN KEY (`idExpo`) REFERENCES `Exposition` (`idExpo`);
 
 --
@@ -553,9 +599,8 @@ ADD CONSTRAINT `FK_Oeuvre_idTypeOeuvre` FOREIGN KEY (`idTypeOeuvre`) REFERENCES 
 -- Contraintes pour la table `OeuvreExposee`
 --
 ALTER TABLE `OeuvreExposee`
-ADD CONSTRAINT `OeuvreExposee_ibfk_3` FOREIGN KEY (`idExpo`) REFERENCES `Exposition` (`idExpo`),
-ADD CONSTRAINT `OeuvreExposee_ibfk_1` FOREIGN KEY (`idEmplacement`) REFERENCES `Emplacement` (`idEmplacement`),
-ADD CONSTRAINT `OeuvreExposee_ibfk_2` FOREIGN KEY (`idOeuvre`) REFERENCES `Oeuvre` (`idOeuvre`);
+ADD CONSTRAINT `OeuvreExposee_ibfk_2` FOREIGN KEY (`idOeuvre`) REFERENCES `Oeuvre` (`idOeuvre`),
+ADD CONSTRAINT `OeuvreExposee_ibfk_3` FOREIGN KEY (`idExpo`) REFERENCES `Exposition` (`idExpo`);
 
 --
 -- Contraintes pour la table `Traduction`
