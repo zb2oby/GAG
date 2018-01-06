@@ -1,0 +1,762 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+a {
+	text-decoration: none;
+	color: #fff;
+}
+
+ul {
+	list-style: none;
+}
+
+
+a.button {
+	background-color: #0A2675;
+	height: 40px;
+	padding: 5px 20px;
+	border-radius: 40px;
+
+}
+
+body {
+	font-size: 0;
+	font-family: sans-serif;
+}
+
+/*button {
+	background-color: #0A2675;
+	color: #fff;
+	padding: 5px 15px;
+	border: none;
+	outline: none;
+}
+
+button:hover {
+	cursor: pointer;
+
+}*/
+
+.container {
+	position: absolute;
+	bottom: 0;
+	top: 0px;
+	left: 15%;
+	right: 0;
+	display: inline-block;
+	width: 85%;
+	font-size: 16px;
+	/*margin-left: 15%;*/
+	overflow-x: hidden;
+	overflow-y: auto;
+
+}
+
+.layout {
+	display: none;
+	position: absolute;
+	z-index: 2;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	background-color: #333;
+	opacity: 0.7;
+}
+
+/*<<<<<<<<<<<<<<<<  HEADER >>>>>>>>>>>>>>*/
+header {
+	/*margin-left: 15%;*/
+	font-size: 16px;
+	height: 130px;
+	background-color: #eee;
+	/*overflow: auto;*/
+}
+	.avatar	{
+		position: relative;
+		float: left;
+		width: 80px;
+		height: 80px;
+		background-color: #0A2675;
+		color: #fff;
+		font-size: 24px;
+		text-align: center;
+		line-height: 80px;
+	}
+
+		.deco i {
+			/*display: inline-block;*/
+			position: absolute;
+			font-size: 1.2em;
+			top: 25px;
+			bottom: 0;
+			right: 3px;
+			/*line-height: 30px;
+			margin-top: 90px;*/
+		}
+
+	.timeLine {
+		float: right;
+		display: inline-block;
+		vertical-align: top;
+		/*width: 250px;*/
+	}
+
+		.timeLine ul li {
+			padding: 10px;
+		}
+		.timeLine ul li span {
+			width: 250px;
+		}
+
+	.expoInfo {
+		display: inline-block;
+	}
+		.expoInfo h2 {
+			margin-left: 50px;
+			/*text-align: center;*/
+			padding-top: 5px;
+			padding-bottom: 5px;
+		}
+		.expoInfo span {
+			display: block;
+			margin-left: 50px;
+		}
+/*<<<<<<<<<<<<<<<<  MENUEXPO >>>>>>>>>>>>>>*/
+	.sideBar {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		vertical-align: top;
+		font-size: 16px;
+		width: 15%;
+		background-color: #444;
+		color: #fff;
+		text-align: center;
+	}
+		.searchLogo {
+			display: block;
+			font-size: 4em;
+			padding-bottom: 40px;
+		}
+
+		.sideMenu {
+			
+		}
+
+			.flecheHor {
+				display: none;
+			}
+			.flecheVert {
+				width: 40px;
+				height: 40px;
+				font-size: 4em;
+			}
+
+			.sideMenu li {
+				padding: 30px 0 ;
+			}
+			a.active-expo {
+				display: block;
+				padding: 20px 0;
+				background-color: #fff;
+				color: #444;
+			}
+
+			
+			.addLogo  {
+				display: block;
+				font-size: 4em;
+				padding-top: 40px;
+
+			}
+
+/*<<<<<<<<<<<<<<<<  ONGLETS >>>>>>>>>>>>>>*/
+.content {
+	position: relative;
+	top: 0;
+	bottom: 100px;
+	/*position: relative;
+	left: 0;
+	right: 0;
+	top: -30px;
+	bottom: 0;*/
+}
+.onglet	{
+	position: relative;
+	top: -30px;
+	/*float: left;*/
+	/*text-align: center;*/
+}
+
+	.onglet-title {
+		float: left;
+		width: 100px;
+		height: 30px;
+		line-height: 30px;
+		color: #fff;
+		background-color: #0A2675;
+		text-align: center;
+		border-left: 1px solid #fff;
+
+	}
+	.onglet-title:hover {
+		cursor: pointer;
+		background-color: #fff;
+		color: #0A2675;
+		border-left: 1px solid #0A2675;
+	}
+	.onglet:first-child {
+		border: none;
+	}
+	.onglet-actif .onglet-title {
+		background-color: #fff;
+		color: #0A2675;
+
+	}
+
+	.onglet-content {
+		position: absolute;
+		top: 30px;
+		width: 100%;
+		/*height: 800px;*/
+		display: none;
+		
+		font-size: 0;
+
+
+	}
+
+
+	.onglet-actif .onglet-content {
+		display: block;
+		/*overflow-y: scroll;*/
+		/*overflow-x: hidden;*/
+	}
+		
+		
+
+/*<<<<<<<<<<<<<<<<  STATISTIQUES >>>>>>>>>>>>>>*/
+.stat {
+	font-size: 0px;
+	padding: 20px;
+}
+	.stat-content {
+		padding-top: 30px;
+	}
+		.imgStat {
+			display: inline-block;
+			width: 25%;
+			font-size: 16px;
+		}
+			.imgStat img {
+				width: 100%;
+				height: auto;
+			}
+		.explain {
+			font-size: 16px;
+			display: inline-block;
+			vertical-align: top;
+			width: 75%;
+			text-align: left;
+			padding: 15px;
+
+		}
+/*<<<<<<<<<<<<<<<<  EXPO / ADMIN >>>>>>>>>>>>>>*/
+
+form.adminForm, form.expoForm {
+	width: 600px;
+	height: 400px;
+	margin: 50px auto;
+	padding: 50px;
+	text-align: center;
+	background-color: #ddd;
+}
+
+		.adminForm label, .expoForm label {
+			display: inline-block;
+			text-align: left;
+			width: 200px;
+			font-size: 16px;
+			color: black;
+		}
+		.adminForm input, .expoForm input {
+			padding: 5px;
+			margin: 20px;
+		}
+
+
+
+/*<<<<<<<<<<<<<<<<  PLAN >>>>>>>>>>>>>>*/
+
+.plan {
+	position: relative;
+	width: 90%;
+	/*height: auto;*/
+	margin: 0px auto;
+	font-size: 16px;
+}
+
+	.plan img {
+		width: 100%;
+		height: auto;
+	}
+
+	.emplacement {
+		position: absolute;
+		/*width:1.76%; 
+		height:5%;*/ 
+		width: 2.3232%;
+		height: 6.6%;
+		border: 1px solid black;
+		background-color: #0A2675;
+		
+	}
+
+	.emplacement:hover {
+		cursor: move;
+	}
+
+	.oeuvre-place {
+		width: 100%;
+		height: 100%; 			
+	}
+
+
+	.emplacement-handle {
+		/*content: '';*/
+		visibility: hidden;
+		position: absolute;
+		top:-18px;
+		right:-18px;
+		width: 20px;
+		height: 20px;
+		border-radius: 20px;
+		line-height: 20px;
+		background-color: #09E32F;
+		color: #fff;
+		text-align: center;
+		font-size: 0.8em;
+	}
+
+
+	.emplacement-handle:hover {
+		cursor: move;
+	}
+
+	
+	.deletePlace {
+		visibility: hidden;
+		position: absolute;
+		top:-18px;
+		right:-38px;
+		width: 20px;
+		height: 20px;
+		border-radius: 20px;
+		line-height: 20px;
+		background-color: #09E32F;
+		color: #fff;
+		text-align: center;
+		font-size: 0.8em;
+		cursor: pointer;
+	}
+
+	
+
+	
+
+	
+	.addPlace {
+		position: absolute;
+		left: 60px;
+		top: 10px;
+		width: 6%;
+		height: 15%;
+		line-height: 15%;
+		border-radius: 100%;
+		text-align: center;
+		
+	}
+
+
+	.addPlace button {
+		outline: none;
+		text-align: center;
+		border: none;
+		background-color: transparent;
+		font-size: 2em;
+		color: #0A2675;
+	}
+	.addPlace button:hover {
+		color: #1246D9;
+		cursor: pointer;
+	}
+
+	.trash {
+		position: absolute;
+		line-height: 15%;
+		font-size: 2em;
+		top: 10px;
+		left: 10px;
+		width: 6%;
+		height: 15%;
+		border-radius: 100%;
+		text-align: center;
+		color: #0A2675;
+	}
+		.dropArea { 
+			background-color: #fff 
+		}
+		.dropAreaHover { 
+			background-color: #0A2675; 
+			color:#fff; 
+		}
+
+
+/*>>>>>>>>>>>>>>>>  POPUP >>>>>>>>>>>>>>>>*/	
+.popAddCard, .popAddRecue, .popAddArtiste {
+	position: absolute;
+	z-index: 2;
+	top: 10%;
+	left: 35%;
+	width: 400px;
+	height: 300px;
+	padding: 20px;
+	background-color: #333;
+	opacity: 0.8;
+	color #fff;
+	display: none;
+	font-size: 16px;
+	text-align: center;
+}
+	.popAddArtiste span, .popAddArtiste label, .popAddArtiste i, .popAddArtiste span, .popAddCard label, .popAddCard i, .popAddRecue span, .popAddRecue label,.popAddRecue i {
+		color: #fff;
+	}
+	.closeButton {
+		display: block;
+		text-align: right;
+		font-size: 2em;
+		margin-top: -20px;
+		margin-right: -10px;
+	}
+	.closeButton:hover {
+		cursor: pointer;
+	}
+	.popAddCard i:hover {
+		cursor: pointer;
+	}
+
+.context-menu {
+	display: none;
+	position: absolute;
+	left: 50%;
+	top: -40px;
+	margin-left: -250px;
+	z-index: 3;
+	min-width: 500px;
+	min-height: 550px;
+	background-color: #ddd;
+	color: #fff;
+	font-size: 16px;
+}
+	.deleteCard {
+		position: absolute;
+		font-size: 2em;
+		color: #333;
+		bottom: 20px;
+		right: 20px;
+	}
+	.deleteCard:hover {
+		cursor: pointer;
+	}
+
+.confirmPopup {
+	display: none;
+	position: absolute;
+	z-index: 4;
+	top: 40%;
+	left: 40%;
+	padding: 20px;
+	background-color: #333;
+	opacity: 0.8;
+	color: #fff;
+	text-align: center;
+	font-size: 16px;
+}
+	.confirmPopup span {
+		margin-bottom: 15px;
+		display: block;
+	}
+/*>>>>>>>>>>>>>>>>  LISTES >>>>>>>>>>>>>>>>*/	
+
+
+.list {
+	display: inline-block;
+	vertical-align: top;
+	width: 33.333%;
+	font-size: 16px;
+}
+	
+	
+	.cards {
+		padding: 20px;
+		text-align: center;
+	}
+		.contain-cards {
+			background-color: #ddd;
+			padding-bottom: 10px;
+		}
+			.cards ul {
+				list-style: none;
+				background-color: #ddd;
+				min-height: 250px;
+				max-height: 250px;
+				overflow: auto;
+			}
+
+		.iconCard {
+			display: flex;
+			justify-content: space-around;
+			margin-top: 5px;
+			padding-top: 5px;
+			text-align: center;
+			background-color: #ddd;
+			height: 20px;
+			color: #000;
+		}
+			
+			.iconCard i {
+				display: inline-block;
+				color: #333;
+				padding: 0 10px;
+
+			}
+			.iconCard i:hover {
+				cursor: pointer;
+			}
+
+			.cards li {
+				height: 70px;
+				margin: 10px;
+				background-color: #fff;
+				padding: 5px;
+			}
+				.portlet {
+					
+				}
+				.portlet-content {
+					display: flex;
+					flex-direction: row-reverse;
+					align-items: flex-start;
+					justify-content: space-between;
+					height: 60px;
+					padding: 5px;
+					/*padding: 10px;*/
+				}
+				.portlet-content:hover {
+					background-color: #ddd;
+				}
+					
+
+				.cards li span {
+					display: block;
+				}
+				.cards li img {
+					float: left;
+					position: relative;
+					z-index: 1;
+				}
+
+				.recue img:hover {
+					border: 2px solid red;
+				}
+
+			.cards li:hover {
+				cursor: pointer;
+			}
+
+
+/*<<<<<<<<<<<<<<<<< MEDIA QUERIES >>>>>>>>>>>>*/
+
+@media all and (max-width: 800px) {
+	header {
+		margin-top: 80px;
+		font-size: 16px;
+		margin-left: 0;
+	}
+
+	.container {
+		width: 100%;
+		left: 0;
+		
+	}
+	
+	.sideBar * {
+		margin: 0;
+		padding: 0;
+
+	}
+	.sideBar {
+		flex-direction: row;
+		position: absolute;
+		z-index: 3;
+		width: 100%;
+		height: 80px;
+		font-size: 0;
+	}
+
+		.searchLogo {
+			display: none;
+		}
+
+		.flecheVert {
+			display: none;
+		}
+		.flecheHor {
+			display: inline-block;
+			font-size: 42px;
+			line-height: 80px;
+			padding: 0 20px;
+		}
+
+		.sideMenu {
+			display: inline-block;
+			height: 80px;
+			
+			
+		}
+
+			.sideMenu ul {
+				height: 80px;
+			}
+			.sideMenu li {
+				display: inline-block;
+				padding: 0;
+				vertical-align: middle;
+
+			}
+
+			.sideMenu li a {
+				display: inline-block;
+				padding: 32px 15px;
+				vertical-align: middle;
+				/*height: 100px;*/
+				font-size: 16px;
+				
+			}
+
+			a.active-expo {
+				display: block;
+				background-color: #fff;
+				color: #444;
+			}
+		
+			.addLogo a.add {
+				display: none;
+			}
+
+	.menu-portrait {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		font-size: 0;
+	}
+
+		.searchMenu {
+			display: inline-block;
+			width: 50%;
+			height: 80px;
+			background-color: #444;
+			color: #fff;
+			line-height: 80px;
+			text-align: center;
+			font-size: 42px;
+			border-right: 1px solid #fff;
+		}
+
+		.addMenu {
+			display: inline-block;
+			width: 50%;
+			height: 80px;
+			line-height: 80px;
+			text-align: center;
+			background-color: #444;
+			color: #fff;
+			font-size: 42px;
+		}
+	
+	.cards ul {
+		min-height: 300px;
+		max-height: 300px;
+	}
+	.down-content {
+		/*margin-top: 20px;*/
+	}
+}
+
+
+@media all and (min-width: 1450px) {
+	
+	.container {
+		width: 90%;
+		left: 10%;
+		
+	}
+		header {
+		height: 200px;
+		font-size: 16px;
+		margin-left: 0;
+		}
+		.avatar {
+			width: 120px;
+			height: 120px;
+			font-size: 2.5em;
+			line-height: 120px;
+		}
+		.onglet {
+			top: -50px;
+		}
+			.onglet-content {
+				text-align: center;
+				top: 50px;
+				padding-left: 7%;
+				padding-right: 7%;
+			}
+				.onglet-title {
+					width: 250px;
+					height: 50px;
+					line-height: 50px;
+				}
+				.iconCard {
+					height: 50px;
+					line-height: 50px;
+					font-size: 2em;
+				}
+
+		.sideBar {
+			width: 10%;
+			font-size: 0;
+		}
+			.sideMenu {
+				display: inline-block;
+				font-size: 16px;
+			}
+				.sideMenu li a {
+					padding: 40px 15px;
+					/*vertical-align: middle;*/
+					text-align: center;
+					/*font-size: 16px;*/
+				}
+		.plan {
+			width: 97%;
+		}
+	
+}

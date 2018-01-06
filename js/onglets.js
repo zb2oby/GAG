@@ -1,5 +1,4 @@
 jQuery(document).ready(function($) {
-
 	var nbOngletActif = $('.onglet-actif').length;
 	if (nbOngletActif < 1) {
 		$('#gestion').addClass('onglet-actif');
@@ -43,9 +42,4 @@ jQuery(document).ready(function($) {
 	// 	$('.onglet-actif').removeClass('onglet-actif');
 	// 	elt.addClass('onglet-actif');	
 	// });		
-	
-
-
-	
-			
 });
