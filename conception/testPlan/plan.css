@@ -1,0 +1,154 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+.ul {
+	border: 1px solid black;
+	list-style: none;
+	/*width: 50%;*/
+	min-width: 150px;
+	min-height: 400px;
+	max-height: 400px;
+	overflow-y: scroll;
+	display: inline-block;
+	vertical-align: top;
+	background-color: #ddd;
+	/*padding: 5px;*/
+}
+.li {
+	margin: 0 5px 5px 5px; padding: 5px; font-size: 1.2em; width: 120px;
+	text-align: center;
+
+}
+
+h4 {
+	margin-bottom: 50px;
+}
+.trash {
+	position: absolute;
+	line-height: 80px;
+	font-size: 3em;
+	top: 5px;
+	right: 0;
+	width: 80px;
+	height: 80px;
+	border-radius: 80px;
+	/*border: 1px solid black;*/
+	/*background-color: #333;*/
+}
+
+.trash { cursor: move; }
+.dropArea { background-color: #fee }
+.dropAreaHover { background-color: #4C3939; color:#fff; }
+
+.titre {
+	display: inline-block;
+}
+
+.plan .img {
+		position: relative;
+		z-index: 0;
+}
+
+.img {
+	position: relative;
+	z-index: 1;
+	display: inline-block;
+	width: 50px;
+	height: 50px;
+}
+
+#items {
+	display: inline-block;
+}
+
+.emplacement {
+	display: inline-block;
+	vertical-align: top;
+	margin: 15px;
+	/*background-color: #333;*/
+}
+
+.sortable1, .sortable2 , .container{
+	display: inline-block; 
+	list-style-type: none; 
+	/*margin: 0; padding: 0; */
+	/*float: left; */
+	/*margin-right: 10px; */
+}
+.sortable2 {
+	width: 50px;
+	height: 50px;
+	border: 1px solid black;
+}
+
+.container {
+	width: 50px;
+	height: 50px;
+	border: 1px solid black;
+}	
+
+.column{
+	/*display: flex;*/
+	display: inline-block;
+	/*width: 170px;*/
+	/*padding-bottom: 200px;*/
+}
+.portlet {
+	margin: 10px auto;
+	padding: 0.3em;
+	background-color: #bbb;
+	border: 1px solid black;
+
+}
+
+.portlet-content:hover {
+	/*cursor: move;*/
+}
+.portlet-header {
+	padding: 0.2em 0.3em;
+	margin-bottom: 0.5em;
+	position: relative;
+}
+.portlet-toggle {
+	position: absolute;
+	top: 50%;
+	right: 0;
+	margin-top: -8px;
+}
+.portlet-content {
+	padding: 0.4em;
+}
+.portlet-placeholder {
+	border: 1px dotted black;
+	margin: 0 1em 1em 0;
+	height: 50px;
+}
+
+
+.listes {
+	width: 95%;
+	padding-bottom: 10px;
+	/*height: 600px;*/
+	border: 2px solid black;
+	margin: 0 auto;
+	margin-top: 20px;
+	text-align: center;
+}
+
+
+
+.plan {
+	position: relative;
+	/*z-index: -1;*/
+	text-align: center;
+	width: 95%;
+	height: 520px;
+	border: 2px solid black;
+	margin: 0 auto;
+	margin-top: 20px;
+}
+
+
