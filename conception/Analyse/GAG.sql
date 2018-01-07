@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Ven 05 Janvier 2018 à 23:49
+-- Généré le :  Dim 07 Janvier 2018 à 07:06
 -- Version du serveur :  5.5.57-0+deb8u1
 -- Version de PHP :  7.0.23-1~dotdeb+8.1
 
@@ -150,6 +150,7 @@ INSERT INTO `Emplacement` (`idEmplacement`, `coordLeft`, `coordTop`, `idExpo`, `
 
 CREATE TABLE IF NOT EXISTS `Exposition` (
 `idExpo` int(11) NOT NULL,
+  `titre` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `horaireO` varchar(25) COLLATE utf8_unicode_ci DEFAULT NULL,
   `horaireF` varchar(25) COLLATE utf8_unicode_ci DEFAULT NULL,
   `theme` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -165,9 +166,9 @@ CREATE TABLE IF NOT EXISTS `Exposition` (
 -- Contenu de la table `Exposition`
 --
 
-INSERT INTO `Exposition` (`idExpo`, `horaireO`, `horaireF`, `theme`, `descriptifFR`, `frequentation`, `dateDeb`, `dateFin`, `teaser`, `affiche`) VALUES
-(1, '10h00', '17h00', 't''est', 'test', NULL, '2017-12-15', '2017-12-28', 'test', 'test'),
-(2, '11h00', '20h00', 'badaboum', 'badabimboum bimbadaboum help', NULL, '2017-12-29', '2018-01-26', 'crackboum', 'bim');
+INSERT INTO `Exposition` (`idExpo`, `titre`, `horaireO`, `horaireF`, `theme`, `descriptifFR`, `frequentation`, `dateDeb`, `dateFin`, `teaser`, `affiche`) VALUES
+(1, 'test', '10h00', '17h00', 't''est', 'test', NULL, '2017-12-15', '2017-12-28', 'test', 'test'),
+(2, 'bada boum', '11h00', '20h00', 'badaboum', 'badabimboum bimbadaboum help', NULL, '2017-12-29', '2018-01-26', 'crackboum', 'bim');
 
 -- --------------------------------------------------------
 
@@ -263,7 +264,7 @@ INSERT INTO `OeuvreExposee` (`idOeuvreExposee`, `dateEntree`, `dateSortie`, `nbC
 (22, '2018-01-04', '0000-00-00', 0, 0, 2, 1),
 (31, '2018-01-18', '0000-00-00', 0, 0, 3, 1),
 (32, '0000-00-00', '0000-00-00', 0, 0, 4, 1),
-(38, '2018-01-05', '0000-00-00', 0, 0, 1, 1);
+(38, '2018-01-06', '0000-00-00', 0, 0, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -547,8 +548,8 @@ MODIFY `idVisiteur` int(11) NOT NULL AUTO_INCREMENT;
 -- Contraintes pour la table `ArtisteExpose`
 --
 ALTER TABLE `ArtisteExpose`
-ADD CONSTRAINT `ArtisteExpose_ibfk_2` FOREIGN KEY (`idExpo`) REFERENCES `Exposition` (`idExpo`),
-ADD CONSTRAINT `ArtisteExpose_ibfk_1` FOREIGN KEY (`idArtiste`) REFERENCES `Artiste` (`idArtiste`);
+ADD CONSTRAINT `ArtisteExpose_ibfk_1` FOREIGN KEY (`idArtiste`) REFERENCES `Artiste` (`idArtiste`),
+ADD CONSTRAINT `ArtisteExpose_ibfk_2` FOREIGN KEY (`idExpo`) REFERENCES `Exposition` (`idExpo`);
 
 --
 -- Contraintes pour la table `Communaute`
