@@ -1,3 +1,11 @@
+<?php 
+
+/*=====>POUR LES TESTS */ $_SESSION['idExpo'] = 1; 
+
+require('../class/exposition.class.php');
+require('../class/exposition.manager.php');
+include('bdd/connectbdd.php');
+?>
 <!doctype html>
 <html>
     <head>
@@ -17,7 +25,15 @@
 	    	<a class="avatar deco" href="">F<i class="ion-log-out"></i></a>
 
 	    	<div class="expoInfo">
-	    		<h2>Exposition : Blanc de Blanc</h2>
+	    		<?php 
+	    			if (isset($_SESSION['idExpo'])) {
+	    				$idExpo = htmlentities($_SESSION['idExpo']);
+	    				$manager = new ExpositionManager($bdd);
+	    				$expo = $manager->infoExpo($idExpo);
+	    				echo '<h2>Exposition : '.$expo->getTitre().'</h2>';
+	    			}
+	    			
+	    		?>
 	    		<span>Collectif : Bamako</span>
 	    	</div>
 	    	<div class="timeLine">

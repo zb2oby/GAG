@@ -1,5 +1,13 @@
 jQuery(document).ready(function($) {
-	
+
+    //s'il n'y a pas de carte de présente (portlet) sur l'expo n'afficher que la liste artiste
+    if ($('.portlet').length == 0) {
+        $('.oeuvres').hide();
+        $('.recues').hide();
+    }
+
+
+
 	doSort();
 
 	//par defaut si un element a la classe item on lui permet d'être draggable sur un emplacement du plan

@@ -60,6 +60,15 @@ class ExpositionManager {
         return $list;
     }
 
+    //renvoie les info expo d'un expo 
+    public function infoExpo($idExpo) {
+        $q = $this->_db->query("SELECT * FROM Exposition WHERE idExpo ='".$idExpo."'");
+       $data = $q->fetch();
+        $expo = new Exposition($data);
+        return $expo;
+    }
+
+
    
     
 

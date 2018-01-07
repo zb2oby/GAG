@@ -7,30 +7,6 @@ require '../class/artisteExpose.class.php';
 require '../class/artisteExpose.manager.php';
 require '../class/artiste.class.php';
 require '../class/artiste.manager.php';
-
-function affichageOeuvre ($tabOeuvres, $class) {
-	global $bdd;
-	foreach ($tabOeuvres as $oeuvre) {
-		$q = $bdd->query("SELECT idOeuvreExposee FROM OeuvreExposee WHERE idExpo='".$_SESSION['idExpo']."' AND idOeuvre='".$oeuvre->getIdOeuvre()."'");
-		$idOeuvreExposee = $q->fetch();
-		echo '<li class="portlet" data-id="'.$idOeuvreExposee['idOeuvreExposee'].'">'
-				.'<div class="portlet-content">'
-    				.'<div class="titre">'.$oeuvre->getTitre().'</div>'
-    				.'<div data-idoeuvreexposee="'.$idOeuvreExposee['idOeuvreExposee'].'" data-id="'.$oeuvre->getIdOeuvre().'" class="img '.$class.'" data-src="'.$oeuvre->getImage().'">'	
-    					.'<img src="../img/oeuvres/'.$oeuvre->getImage().'" alt="'.$oeuvre->getImage().'">'
-					.'</div>'
-				.'</div>';
-				?>
-				<div class="context-menu">
-					<i class="closeButton ion-android-close"></i>
-					<i class="deleteCard ion-ios-trash-outline"></i>
-					<input type="text"></input>
-				</div>
-<?php
-		echo '</li>';
-
-	}
-}
 ?>
 
 <div class="confirmPopup">
@@ -149,7 +125,8 @@ function affichageOeuvre ($tabOeuvres, $class) {
 						$manager = new OeuvreExposeeManager($bdd);
 
 						$oeuvresPrevues = $manager->ListOeuvresPrevues($idExpo);
-						affichageOeuvre($oeuvresPrevues, '');
+						$classe_item = '';
+						$manager->affichageOeuvre($oeuvresPrevues, $classe_item);
 					}
 				?>	
 			</ul>
@@ -170,7 +147,8 @@ function affichageOeuvre ($tabOeuvres, $class) {
 						$manager = new OeuvreExposeeManager($bdd);
 
 						$oeuvresRecues = $manager->ListOeuvresRecues($idExpo);
-						affichageOeuvre($oeuvresRecues, 'item');
+						$classe_item = 'item';
+						$manager->affichageOeuvre($oeuvresRecues, $classe_item);
 					}
 				?>
 			</ul>

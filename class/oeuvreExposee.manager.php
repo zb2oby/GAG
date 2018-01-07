@@ -81,4 +81,26 @@ class OeuvreExposeeManager {
         return $oeuvre;
     }
 
+    public function affichageOeuvre ($tabOeuvres, $class) {
+        foreach ($tabOeuvres as $oeuvre) {
+            $q = $this->_db->query("SELECT idOeuvreExposee FROM OeuvreExposee WHERE idExpo='".$_SESSION['idExpo']."' AND idOeuvre='".$oeuvre->getIdOeuvre()."'");
+            $idOeuvreExposee = $q->fetch();
+            echo '<li class="portlet" data-id="'.$idOeuvreExposee['idOeuvreExposee'].'">'
+                    .'<div class="portlet-content">'
+                        .'<div class="titre">'.$oeuvre->getTitre().'</div>'
+                        .'<div data-idoeuvreexposee="'.$idOeuvreExposee['idOeuvreExposee'].'" data-id="'.$oeuvre->getIdOeuvre().'" class="img '.$class.'" data-src="'.$oeuvre->getImage().'">'  
+                            .'<img src="../img/oeuvres/'.$oeuvre->getImage().'" alt="'.$oeuvre->getImage().'">'
+                        .'</div>'
+                    .'</div>'
+                    .'<div class="context-menu">'
+                        .'<i class="closeButton ion-android-close"></i>'
+                        .'<i class="deleteCard ion-ios-trash-outline"></i>'
+                        .'<input type="text"></input>'
+                    .'</div>'
+                .'</li>';
+
+        }
+    }
+
 }
+

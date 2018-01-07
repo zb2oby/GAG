@@ -1,6 +1,4 @@
-<?php
-/*=====>POUR LES TESTS */ $_SESSION['idExpo'] = 1; 
-?>
+
 
 <?php require('../includes/bdd/connectbdd.php'); ?>
 

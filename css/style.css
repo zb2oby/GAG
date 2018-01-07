@@ -228,7 +228,7 @@ header {
 		width: 100%;
 		/*height: 800px;*/
 		display: none;
-		
+		text-align: center;
 		font-size: 0;
 
 
@@ -597,6 +597,10 @@ form.adminForm, form.expoForm {
 		left: 0;
 		
 	}
+
+		.onglet-content {
+			text-align: center;
+		}
 	
 	.sideBar * {
 		margin: 0;
