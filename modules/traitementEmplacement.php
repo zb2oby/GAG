@@ -1,8 +1,8 @@
 <?php 
 //SCRIPT D'AJOUT OU DE MISE A JOUR D'EMPLACEMENT SUR LE PLAN
-require '../includes/bdd/connectbdd.php';
-require '../class/emplacement.class.php';
-require '../class/emplacement.manager.php';
+// require '../includes/bdd/connectbdd.php';
+// require '../class/emplacement.class.php';
+// require '../class/emplacement.manager.php';
 
 
 $manager = new EmplacementManager($bdd);

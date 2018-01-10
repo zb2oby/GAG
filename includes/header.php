@@ -2,13 +2,12 @@
 
 /*=====>POUR LES TESTS */ $_SESSION['idExpo'] = 2; 
 
-require('../class/exposition.class.php');
-require('../class/exposition.manager.php');
-require('../class/collectif.class.php');
-require('../class/collectif.manager.php');
-require('../class/collectifExpose.class.php');
-require('../class/collectifExpose.manager.php');
+include('functions.php');
+
+spl_autoload_register('loader');
+
 include('bdd/connectbdd.php');
+
 ?>
 <!doctype html>
 <html>
@@ -49,9 +48,28 @@ include('bdd/connectbdd.php');
 	    	</div>
 	    	<div class="timeLine">
 	    		<ul>
-	    			<li><span>Aujourd'hui : </span><a href="" class="button date">25/12/2017</a></li>
-	    			<li><span>Date Expo : </span>21/08/2018</li>
-	    			<li><span>Inauguration dans : </span> 10 Jours</li>
+	    			<li><span>Aujourd'hui : </span><a href="" class="button date"><?php 
+	    				// date du jour
+						echo $date = date("d/m/Y");
+						// tableau des jours de la semaine
+						$joursem = array('dim', 'lun', 'mar', 'mer', 'jeu', 'ven', 'sam');
+						// extraction des jour, mois, an de la date
+						list($jour, $mois, $annee) = explode('/', $date);
+						// calcul du timestamp
+						$timestamp = mktime (0, 0, 0, $mois, $jour, $annee);
+						?></a></li>
+	    			<li>
+	    				<span>Date Expo : </span><?php echo $dateExpo = $expo->getDateDeb(); ?>
+	    			</li>
+	    			<li>
+	    				<span>Inauguration dans : </span> 
+	    				<?php
+			    			$now = time(); 
+			    			$dateExpo = strtotime($dateExpo); 
+			    			$time = $dateExpo - strtotime(date('Y-m-d'));
+			    			echo date( 'd', $time).' Jours';
+			    		?> 
+			    	</li>
 	    		</ul>
 	    	</div>
 	    </header>

@@ -1,12 +1,14 @@
 <?php 
-require '../class/oeuvreExposee.class.php';
-require '../class/oeuvreExposee.manager.php';
-require '../class/oeuvre.class.php';
-require '../class/oeuvre.manager.php';
-require '../class/artisteExpose.class.php';
-require '../class/artisteExpose.manager.php';
-require '../class/artiste.class.php';
-require '../class/artiste.manager.php';
+
+
+// require '../class/oeuvreExposee.class.php';
+// require '../class/oeuvreExposee.manager.php';
+// require '../class/oeuvre.class.php';
+// require '../class/oeuvre.manager.php';
+// require '../class/artisteExpose.class.php';
+// require '../class/artisteExpose.manager.php';
+// require '../class/artiste.class.php';
+// require '../class/artiste.manager.php';
 
 //test emplacement
 include('../modules/traitementEmplacement.php');

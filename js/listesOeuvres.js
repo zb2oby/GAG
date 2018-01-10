@@ -91,10 +91,10 @@ $('.recue').find('.item').mouseup(function(event) {
         
         $('.item').draggable({
 	        cancel: "a.ui-icon",
-	        // revert: true, 
+	        revert: true, 
 	        helper: "clone", 
 	        cursor: "move", 
-	        // revertDuration: 0,
+	        revertDuration: 0,
             
             // drag: function (event, ui) {
             //     $('#default-place').css('visibility', 'visible');
