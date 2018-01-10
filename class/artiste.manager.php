@@ -49,4 +49,20 @@ class ArtisteManager {
         return $list;
     }
 
+    public function listArtisteCollectif($idExpo) {
+        $list = [];
+        $q = $this->_db->query("SELECT A.idArtiste, nom, prenom, A.tel, image, A.descriptifFR, A.email FROM Artiste A, Communaute C, Collectif CO, CollectifExpose E WHERE C.idArtiste = A.idArtiste AND C.idCollectif = CO.idCollectif AND CO.idCollectif = E.idCollectif AND E.idExpo = '".$idExpo."'");
+        $count = $q->rowCount();
+        if ($count != 0) {
+            while ($data = $q->fetch()) {
+            $list[] = new Artiste($data);
+            }
+            
+            return $list;
+        }else {
+            return false;
+        }
+        
+    }
+
 }

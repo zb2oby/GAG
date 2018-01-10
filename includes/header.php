@@ -1,9 +1,13 @@
 <?php 
 
-/*=====>POUR LES TESTS */ $_SESSION['idExpo'] = 1; 
+/*=====>POUR LES TESTS */ $_SESSION['idExpo'] = 2; 
 
 require('../class/exposition.class.php');
 require('../class/exposition.manager.php');
+require('../class/collectif.class.php');
+require('../class/collectif.manager.php');
+require('../class/collectifExpose.class.php');
+require('../class/collectifExpose.manager.php');
 include('bdd/connectbdd.php');
 ?>
 <!doctype html>
@@ -31,10 +35,17 @@ include('bdd/connectbdd.php');
 	    				$manager = new ExpositionManager($bdd);
 	    				$expo = $manager->infoExpo($idExpo);
 	    				echo '<h2>Exposition : '.$expo->getTitre().'</h2>';
+
+	    				$manager = new CollectifExposeManager($bdd);
+	    				$idCollectifExpose = $manager->collectifExpose_exist($idExpo);
+	    				if ($idCollectifExpose != false ) {
+	    					$manager = new CollectifManager($bdd);
+	    					$dataCollectif = $manager->infoCollectif($idCollectifExpose);
+	    					echo '<span>Collectif : '.$dataCollectif->getLibelleCollectif().'</span>';
+	    				}
 	    			}
 	    			
 	    		?>
-	    		<span>Collectif : Bamako</span>
 	    	</div>
 	    	<div class="timeLine">
 	    		<ul>

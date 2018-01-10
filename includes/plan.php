@@ -21,8 +21,8 @@ function affichage($oeuvre) {
 		$idExpo = htmlentities($_SESSION['idExpo']);
 
 		//AFFICHAGE DES EMPLACEMENTS CREES SUR LE PLAN EN FONCTION DE LEXPO OUVERTE
-		require '../class/emplacement.class.php';
-		require '../class/emplacement.manager.php';
+		// require '../class/emplacement.class.php';
+		// require '../class/emplacement.manager.php';
 
 		$manager = new EmplacementManager($bdd);
 
@@ -41,8 +41,11 @@ function affichage($oeuvre) {
 			}
 			
 			// $image = $oeuvre->getImage();
-
-			echo '<div class="emplacement" data-id="'.$data->getIdEmplacement().'" style="top:'.$data->getCoordTop().'%; left:'.$data->getCoordLeft().'%;"><div class="emplacement-handle ion-arrow-move" title="Déplacer"></div><div class="deletePlace ion-android-close" title="Supprimer"></div><div title="Cliquez pour plus d\'options" class="oeuvre-place" data-idemplacement="'.$data->getIdEmplacement().'">'.$content.'</div></div>';
+			$id = '';
+			if (($data->getCoordTop() == 50 || $data->getCoordLeft() == 50) && $data->getIdOeuvreExposee() == 0 ) {
+				$id = 'default-place';
+			}
+			echo '<div id="'.$id.'" class="emplacement" data-id="'.$data->getIdEmplacement().'" style="top:'.$data->getCoordTop().'%; left:'.$data->getCoordLeft().'%;"><div class="emplacement-handle ion-arrow-move" title="Déplacer"></div><div class="deletePlace ion-android-close" title="Supprimer"></div><div title="Cliquez pour plus d\'options" class="oeuvre-place" data-idemplacement="'.$data->getIdEmplacement().'">'.$content.'</div></div>';
 		}
 	}
  ?>

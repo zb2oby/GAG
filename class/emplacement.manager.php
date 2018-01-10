@@ -60,7 +60,7 @@ class EmplacementManager {
     //retourne la liste des objets emplacement disponibles pour une exposition
     public function getListEmplacement($idExpo) {
     	$list = [];
-        $q = $this->_db->query("SELECT * FROM Emplacement WHERE idExpo ='".$idExpo."'");
+        $q = $this->_db->query('SELECT * FROM Emplacement WHERE idExpo ='.$idExpo);
         while ($data = $q->fetch()) {
             $list[] = new Emplacement($data);
         }
@@ -74,5 +74,28 @@ class EmplacementManager {
     	$emplacement = new Emplacement($data);
     	return $emplacement;
     }
+    //verification de l'existence d'un emplacement vide
+    public function getEmptyPlace($idExpo) {
+        $list = [];
+        $q = $this->_db->query('SELECT * FROM Emplacement WHERE idOeuvreExposee = 0 AND idExpo ='.$idExpo);
+        $count = $q->rowCount();
+        if ($count == 0 ) {
+            return false;
+        }else {
+            return true;
+        }
+    }
+    //verification si existence d'un emplacement par defaut 
+    public function getdefaultPlace($idExpo) {
+        $list = [];
+        $q = $this->_db->query('SELECT * FROM Emplacement WHERE coordTop = 50 AND coordLeft = 50 AND idExpo ='.$idExpo);
+        $count = $q->rowCount();
+        if ($count == 0 ) {
+            return false;
+        }else {
+            return true;
+        }
+    }
+
 
 }

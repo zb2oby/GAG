@@ -68,27 +68,72 @@ jQuery(document).ready(function($) {
         
 	};
 
+
+//affichage de la place par defaut au clic sur l'image draggable
+//$('#default-place').css('visibility', 'visible');
+$('.recue').find('.item').mousedown(function(event) {
+   $('#default-place').css({
+       visibility: 'visible',
+       border: '1px solid red'
+   });
+});
+$('.recue').find('.item').mouseup(function(event) {
+   $('#default-place').css({
+       visibility: 'hidden',
+       border: 'none'
+   });
+});
+
+
+
 //CLONAGE DE LIMAGE SUR LE PLAN
 	function doClone(){
         
         $('.item').draggable({
 	        cancel: "a.ui-icon",
-	        revert: true, 
+	        // revert: true, 
 	        helper: "clone", 
 	        cursor: "move", 
-	        revertDuration: 0
+	        // revertDuration: 0,
+            
+            // drag: function (event, ui) {
+            //     $('#default-place').css('visibility', 'visible');
+            //     var planPosLeft = $('.plan').offset().left;
+            //     var eltPosLeft = ui.offset.left - planPosLeft;
+            //     var planPosTop = $('.plan').offset().top;
+            //     var eltPosTop = ui.offset.top - planPosTop;
+            //     $('#default-place').css( {
+            //         left: eltPosLeft,
+            //         top: eltPosTop
+            //     })    
+            // },
+
+            stop: function (e, ui) {
+                $('#default-place').css({
+                   visibility: 'hidden',
+                   border: 'none'
+               });
+            }
+
         });
 
-        
+                
+     
+
         $('.oeuvre-place').droppable({
             accept: "#items .item",
             activeClass: "ui-state-highlight",
             drop: function( event, ui ) {
+
+               //on affiche desormais l'emplacement
+               $(event.target).parent().attr('id', '');
+                $(event.target).parent().css('visibility', 'visible');
                 // clone item to retain in original "list"
                 var $item = ui.draggable.clone();
                 //preparation des variable à envoyer en base.
                 var idOeuvreExposee = $item.data('idoeuvreexposee');
                 var idEmplacement = $(event.target).data('idemplacement');
+                var idExpo = 2;
                 //ajout du clone de l'element au DOM
                 $(this).addClass('has-drop').html($item);
                 //mise a jour de l'emplacement avec l'oeuvre droppée
@@ -107,9 +152,7 @@ jQuery(document).ready(function($) {
                 })
                 .always(function() {
                     console.log("complete");
-                });
-                
-                
+                });     
             }
         });
 
@@ -238,7 +281,7 @@ function deleteElt(target) {
 	});
 
 
-
+//ancien code avec e drop dans un e poubelle
     // $('.deleteCard').droppable({
     //     accept: '.column > .portlet',
     //     activeClass: 'dropArea',

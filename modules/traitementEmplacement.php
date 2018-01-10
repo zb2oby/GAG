@@ -8,6 +8,56 @@ require '../class/emplacement.manager.php';
 $manager = new EmplacementManager($bdd);
 
 
+//CREATION DUN NOUVEL EMPLACEMENT A LOUVERTURE DE PAGE EXPO (inclus dans listeGEstion.php)
+if (isset($_SESSION['idExpo'])) {
+	$idExpo = $_SESSION['idExpo'];
+
+	//verification si existence d'un emplacement par defaut (coordonnées 50/50)
+	$defaultPlace = $manager->getdefaultPlace($idExpo);
+	//pas d'emplacement vide
+	if (!$defaultPlace) {
+		//on creer donc un nouvel objet emplacement
+		$emplacement = new Emplacement(['idExpo'=>$idExpo, 'idOeuvreExposee'=>0]);
+		//on l'ajoute en base : il a desormais un id
+		$manager->addEmplacement($emplacement);
+		//on recupere l'id du dernier enregistrement
+		$idEmplacement = $manager->getLast($emplacement);
+		
+		//on recupere le tableau des coordonnées de cet emplacement
+		$coord = $manager->getCoord($idEmplacement);
+		//on affiche maintenan la div aux coordonnées presente en base:
+		foreach ($coord as $axe) {
+			echo '<div class="emplacement" data-id="place'.$idEmplacement.'" style="top:'.$axe->getCoordTop().'%; left:'.$axe->getCoordLeft().'%;"></div>';
+		}
+	header("Refresh:0");
+	}
+	//dans les autres cas on ne fait rien
+
+	
+}
+
+
+//CREATION DUN NOUVEL EMPLACEMENT SUR DEMANDE (clic sur +)
+if (isset($_GET['idExpo'])) { 
+//=>creation d'une div avec data-id= idEmplacement de la base lié a l'expo ouverte
+	$idExpo = $_GET['idExpo'];
+	//on creer donc un nouvel objet emplacement a des coordonnée differente de 50/50 pour eviter l'ajout de l'id default-place caché par defaut
+	$emplacement = new Emplacement(['idExpo'=>$idExpo, 'idOeuvreExposee'=>0, 'coordTop'=>51, 'coordLeft'=>51]);
+
+	//on l'ajoute en base : il a desormais un id
+	$manager->addEmplacement($emplacement);
+	//on recupere l'id du dernier enregistrement
+	$idEmplacement = $manager->getLast($emplacement);
+	
+	//on recupere le tableau des coordonnées de cet emplacement
+	$coord = $manager->getCoord($idEmplacement);
+	//on affiche maintenan la div aux coordonnées presente en base:
+	foreach ($coord as $axe) {
+		echo '<div class="emplacement" data-id="place'.$idEmplacement.'" style="top:'.$axe->getCoordTop().'%; left:'.$axe->getCoordLeft().'%;"></div>';
+	}
+
+header('location: ../content/gestionPanel.php');
+}
 
 
 
@@ -45,30 +95,7 @@ if (isset($_GET['delete'])) {
 
 }
 
-//CREATION DUN NOUVEL EMPLACEMENT
-if (isset($_GET['idExpo'])) {
-//au clic sur + on envoie la variable idExpo : 
-//=>creation d'une div avec data-id= idEmplacement de la base lié a l'expo ouverte
-	$idExpo = $_GET['idExpo'];
-	//on creer donc un nouvel objet emplacement
-	$emplacement = new Emplacement(['idExpo'=>$idExpo]);
 
-	
-
-	//on l'ajoute en base : il a desormais un id
-	$manager->addEmplacement($emplacement);
-	//on recupere l'id du dernier enregistrement
-	$idEmplacement = $manager->getLast($emplacement);
-	
-	//on recupere le tableau des coordonnées de cet emplacement
-	$coord = $manager->getCoord($idEmplacement);
-	//on affiche maintenan la div aux coordonnées presente en base:
-	foreach ($coord as $axe) {
-		echo '<div class="emplacement" data-id="place'.$idEmplacement.'" style="top:'.$axe->getCoordTop().'%; left:'.$axe->getCoordLeft().'%;"></div>';
-	}
-
-header('location: ../content/gestionPanel.php');
-}
 
 
 

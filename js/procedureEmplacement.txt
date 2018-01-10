@@ -1,0 +1,7 @@
+1/ ouverture de page => 1 oeuvre-place invisible est creer immediatement si et seulement s'il n'en existe pas deja un VIDE(invisible ou non)(on le rentre en base)
+
+2/ au drop d'un element sur le plan on rend l'emplacement visible, on enregistre le drop et on cree un second emplacement invisible si et seulement s'il n'en existe pas deja un VIDE(invisible ou non)(on le rentre aussi en base)
+
+3/ a la suppression d'une image l'emplacement reste visible mais VIDE
+
+

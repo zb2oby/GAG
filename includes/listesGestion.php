@@ -7,6 +7,9 @@ require '../class/artisteExpose.class.php';
 require '../class/artisteExpose.manager.php';
 require '../class/artiste.class.php';
 require '../class/artiste.manager.php';
+
+//test emplacement
+include('../modules/traitementEmplacement.php');
 ?>
 
 <div class="confirmPopup">
@@ -67,7 +70,16 @@ require '../class/artiste.manager.php';
 		<select name="idArtiste" id="artiste">
 			<?php 
 				$manager = new ArtisteManager($bdd);
-				$listArtiste = $manager->listArtiste();
+				//on prend la liste des artiste qui compose le collectif enregistre
+				if (isset($_SESSION['idExpo'])) {
+					$idExpo = htmlentities($_SESSION['idExpo']);
+					$listArtiste = $manager->listArtisteCollectif($idExpo);
+				}
+				//s'il ny en a pas ou qu'aucun collectif n'est renseigné on prend la liste de tout les artistes
+				if ($listArtiste == false ) {
+					$listArtiste = $manager->listArtiste();
+				}
+				//on boucle dans la liste pour l'affichage des donnée dans le select
 				foreach ($listArtiste as $artiste) {
 					echo '<option value="'.$artiste->getIdArtiste().'">'.$artiste->getNom().'-'.$artiste->getPrenom().'</option>';
 				}

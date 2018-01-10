@@ -309,6 +309,10 @@ form.adminForm, form.expoForm {
 		height: auto;
 	}
 
+	#default-place {
+		visibility: hidden;
+	}
+
 	.emplacement {
 		position: absolute;
 		/*width:1.76%; 
