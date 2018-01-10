@@ -23,19 +23,19 @@ class Collectif {
 
 	//SETTERS
 
-	private function setIdCollectif ($idCollectif) {
+	public function setIdCollectif ($idCollectif) {
 		$this->_idCollectif = $idCollectif;
 	}
-	private function setLibelleCollectif ($libelleCollectif) {
+	public function setLibelleCollectif ($libelleCollectif) {
 		$this->_libelleCollectif = $libelleCollectif;
 	}
-	private function setDescriptifFR ($descriptifFR) {
+	public function setDescriptifFR ($descriptifFR) {
 		$this->_descriptifFR = $descriptifFR;
 	}
-	private function setEmail ($email) {
+	public function setEmail ($email) {
 		$this->_email = $email;
 	}
-	private function setTel ($tel) {
+	public function setTel ($tel) {
 		$this->_tel = $tel;
 	}
 

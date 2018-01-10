@@ -1,16 +1,5 @@
 <?php 
-
-
-// require '../class/oeuvreExposee.class.php';
-// require '../class/oeuvreExposee.manager.php';
-// require '../class/oeuvre.class.php';
-// require '../class/oeuvre.manager.php';
-// require '../class/artisteExpose.class.php';
-// require '../class/artisteExpose.manager.php';
-// require '../class/artiste.class.php';
-// require '../class/artiste.manager.php';
-
-//test emplacement
+//inclus pour la creation d'un emplacement vide au chargement de page (a voir en ajax si possible ?)
 include('../modules/traitementEmplacement.php');
 ?>
 

@@ -19,10 +19,10 @@ class ArtisteExpose {
 
 	//SETTERS
 
-	private function setIdArtiste($idArtiste) {
+	public function setIdArtiste($idArtiste) {
 		$this->_idArtiste = $idArtiste;
 	}
-	private function setIdExpo($idExpo) {
+	public function setIdExpo($idExpo) {
 		$this->_idExpo = $idExpo;
 	}
 

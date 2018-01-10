@@ -29,37 +29,37 @@ class Oeuvre {
 
 	//SETTERS
 
-	private function setTitre($titre) {
+	public function setTitre($titre) {
 		$this->_titre = $titre;
 	}
-	private function setLongueur($longueur) {
+	public function setLongueur($longueur) {
 		$this->_longueur = $longueur;
 	}
-	private function setHauteur($hauteur) {
+	public function setHauteur($hauteur) {
 		$this->_hauteur = $hauteur;
 	}
-	private function setEtat($etat) {
+	public function setEtat($etat) {
 		$this->_etat = $etat;
 	}
-	private function setImage($image) {
+	public function setImage($image) {
 		$this->_image = $image;
 	}
-	private function setQrcode($qrcode) {
+	public function setQrcode($qrcode) {
 		$this->_qrcode = $qrcode;
 	}
-	private function setDescriptifFR($descriptifFR) {
+	public function setDescriptifFR($descriptifFR) {
 		$this->_descriptifFR = $descriptifFR;
 	}
-	private function setIdOeuvre($idOeuvre) {
+	public function setIdOeuvre($idOeuvre) {
 		$this->_idOeuvre = $idOeuvre;
 	}
-	private function setIdTypeOeuvre($idTypeOeuvre) {
+	public function setIdTypeOeuvre($idTypeOeuvre) {
 		$this->_idTypeOeuvre = $idTypeOeuvre;
 	}
-	private function setIdArtiste($idArtiste) {
+	public function setIdArtiste($idArtiste) {
 		$this->_idArtiste = $idArtiste;
 	}
-	private function setIdCollectif($idCollectif) {
+	public function setIdCollectif($idCollectif) {
 		$this->_idCollectif = $idCollectif;
 	}
 

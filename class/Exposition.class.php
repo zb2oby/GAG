@@ -29,37 +29,37 @@ class Exposition {
 
 	//SETTERS
 
-	private function setIdExpo ($idExpo) {
+	public function setIdExpo ($idExpo) {
 		$this->_idExpo = $idExpo;
 	}
-	private function setTitre ($titre) {
+	public function setTitre ($titre) {
 		$this->_titre = $titre;
 	}
-	private function setHoraireO ($horaireO) {
+	public function setHoraireO ($horaireO) {
 		$this->_horaireO = $horaireO;
 	}
-	private function setHoraireF ($horaireF) {
+	public function setHoraireF ($horaireF) {
 		$this->_horaireF = $horaireF;
 	}
-	private function setTheme ($theme) {
+	public function setTheme ($theme) {
 		$this->_theme = $theme;
 	}
-	private function setDescriptifFR ($descriptifFR) {
+	public function setDescriptifFR ($descriptifFR) {
 		$this->_descriptifFR = $descriptifFR;
 	}
-	private function setFrequentation ($frequentation) {
+	public function setFrequentation ($frequentation) {
 		$this->_frequentation = $frequentation;
 	}
-	private function setDateDeb ($dateDeb) {
+	public function setDateDeb ($dateDeb) {
 		$this->_dateDeb = $dateDeb;
 	}
-	private function setDateFin ($dateFin) {
+	public function setDateFin ($dateFin) {
 		$this->_dateFin = $dateFin;
 	}
-	private function setTeaser ($teaser) {
+	public function setTeaser ($teaser) {
 		$this->_teaser = $teaser;
 	}
-	private function setAffiche ($affiche) {
+	public function setAffiche ($affiche) {
 		$this->_affiche = $affiche;
 	}
 

@@ -1,14 +1,17 @@
 <?php 
 //SCRIPT D'AJOUT OU DE MISE A JOUR D'EMPLACEMENT SUR LE PLAN
-// require '../includes/bdd/connectbdd.php';
-// require '../class/emplacement.class.php';
-// require '../class/emplacement.manager.php';
+require '../includes/bdd/connectbdd.php';
+require '../class/Emplacement.class.php';
+require '../class/EmplacementManager.class.php';
+// include('../includes/functions.php');
 
+// spl_autoload_register('loader');
 
 $manager = new EmplacementManager($bdd);
 
 
 //CREATION DUN NOUVEL EMPLACEMENT A LOUVERTURE DE PAGE EXPO (inclus dans listeGEstion.php)
+
 if (isset($_SESSION['idExpo'])) {
 	$idExpo = $_SESSION['idExpo'];
 
@@ -35,6 +38,8 @@ if (isset($_SESSION['idExpo'])) {
 
 	
 }
+
+
 
 
 //CREATION DUN NOUVEL EMPLACEMENT SUR DEMANDE (clic sur +)
@@ -69,22 +74,23 @@ if (isset($_GET['idEmplacement'])) {
 
 	if (isset($_GET['coordTop'])) {
 		$coordTop = htmlentities($_GET['coordTop']);
-		$emplacement->modifCoordTop($coordTop);
+		$emplacement->setCoordTop($coordTop);
 		
 	}
 	if (isset($_GET['coordLeft'])) {
 		$coordLeft = htmlentities($_GET['coordLeft']);
-		$emplacement->modifCoordLeft($coordLeft);
+		$emplacement->setCoordLeft($coordLeft);
 		
 	}
 
 	if (isset($_GET['idOeuvreExposee'])) {
 		$idOeuvreExposee = htmlentities($_GET['idOeuvreExposee']);
-		$emplacement->modifIdOeuvreExposee($idOeuvreExposee);
+		$emplacement->setIdOeuvreExposee($idOeuvreExposee);
 		
 	}
 
 	$manager->updateEmplacement($emplacement);
+
 }
 
 //SUPPRESSION EMPLACEMENT

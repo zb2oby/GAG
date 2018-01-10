@@ -24,7 +24,7 @@ a.button {
 
 body {
 	font-size: 0;
-	font-family: sans-serif;
+	font-family: 'Roboto', sans-serif;
 }
 
 /*button {
@@ -424,80 +424,7 @@ form.adminForm, form.expoForm {
 		}
 
 
-/*>>>>>>>>>>>>>>>>  POPUP >>>>>>>>>>>>>>>>*/	
-.popAddCard, .popAddRecue, .popAddArtiste {
-	position: absolute;
-	z-index: 2;
-	top: 10%;
-	left: 35%;
-	width: 400px;
-	height: 300px;
-	padding: 20px;
-	background-color: #333;
-	opacity: 0.8;
-	color #fff;
-	display: none;
-	font-size: 16px;
-	text-align: center;
-}
-	.popAddArtiste span, .popAddArtiste label, .popAddArtiste i, .popAddArtiste span, .popAddCard label, .popAddCard i, .popAddRecue span, .popAddRecue label,.popAddRecue i {
-		color: #fff;
-	}
-	.closeButton {
-		display: block;
-		text-align: right;
-		font-size: 2em;
-		margin-top: -20px;
-		margin-right: -10px;
-	}
-	.closeButton:hover {
-		cursor: pointer;
-	}
-	.popAddCard i:hover {
-		cursor: pointer;
-	}
 
-.context-menu {
-	display: none;
-	position: absolute;
-	left: 50%;
-	top: -40px;
-	margin-left: -250px;
-	z-index: 3;
-	min-width: 500px;
-	min-height: 550px;
-	background-color: #ddd;
-	color: #fff;
-	font-size: 16px;
-}
-	.deleteCard {
-		position: absolute;
-		font-size: 2em;
-		color: #333;
-		bottom: 20px;
-		right: 20px;
-	}
-	.deleteCard:hover {
-		cursor: pointer;
-	}
-
-.confirmPopup {
-	display: none;
-	position: absolute;
-	z-index: 4;
-	top: 40%;
-	left: 40%;
-	padding: 20px;
-	background-color: #333;
-	opacity: 0.8;
-	color: #fff;
-	text-align: center;
-	font-size: 16px;
-}
-	.confirmPopup span {
-		margin-bottom: 15px;
-		display: block;
-	}
 /*>>>>>>>>>>>>>>>>  LISTES >>>>>>>>>>>>>>>>*/	
 
 
@@ -586,7 +513,152 @@ form.adminForm, form.expoForm {
 				cursor: pointer;
 			}
 
+/*>>>>>>>>>>>>>>>>  POPUP >>>>>>>>>>>>>>>>*/	
+.popAddCard, .popAddRecue, .popAddArtiste {
+	position: absolute;
+	z-index: 2;
+	top: 10%;
+	left: 35%;
+	width: 400px;
+	height: 300px;
+	padding: 20px;
+	background-color: #333;
+	opacity: 0.8;
+	color #fff;
+	display: none;
+	font-size: 16px;
+	text-align: center;
+}
+	.popAddArtiste span, .popAddArtiste label, .popAddArtiste i, .popAddArtiste span, .popAddCard label, .popAddCard i, .popAddRecue span, .popAddRecue label,.popAddRecue i {
+		color: #fff;
+	}
+	.closeButton {
+		display: block;
+		text-align: right;
+		font-size: 2em;
+		margin-top: -20px;
+		margin-right: -10px;
+	}
+	.closeButton:hover {
+		cursor: pointer;
+	}
+	.popAddCard i:hover {
+		cursor: pointer;
+	}
+	/*>>>>>>>>>>>>>>>>  INFO CARTES >>>>>>>>>>>>>>>>*/	
+.context-menu {
+	display: none;
+	position: absolute;
+	left: 50%;
+	top: -100px;
+	margin-left: -400px;
+	z-index: 3;
+	min-width: 500px;
+	min-height: 550px;
+	background-color: #ddd;
+	color: #333;
+	font-size: 16px;
+	text-align: left;
+}
+.context-menu:hover {
+	cursor: default;
+}
+	.context-menu li {
+		background-color: transparent;
+		height: auto;
+		list-style: none;
+	}
+	.context-menu li:hover {
+		cursor:default;
+	}
+	.context-menu img {
+		width: 100px;
+		height: 100px;
+	}
+	.context-menu img:hover {
+		border: none;
+	}
+	.card-header {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-around;
+		padding: 20px;
+		border-bottom: 4px solid #ccc;
+		text-align: center;
+	}
+	.card-content {
+		display: flex;
+		flex-direction: row;
+		padding: 20px;
 
+	}
+
+		.card-col {
+			display: flex;
+			flex-direction: column;
+			/*justify-content: space-around;*/
+			padding: 20px;
+		}
+		.card-col.card-form {
+			flex-grow: 1;
+		}
+		.card-col.card-info {
+			justify-content: flex-start;
+		}
+			.col-item {
+				border: 1px solid black;
+			}
+			.col-item.list-info h4 {
+				text-align: center;
+
+			}
+	.card-footer {
+		padding: 20px;
+		border-top: 4px solid #ccc;
+	}
+		.message {
+			width: 70%;
+			margin: 20px;
+			border-radius: 7px;	
+			background-color: #fff;
+		}
+			.message-header {
+				padding: 5px 0;
+				font-weight: bold;
+				background-color: #ddd;
+			}
+			.message-content {
+				padding: 20px;
+			}
+
+	.deleteCard {
+		position: absolute;
+		font-size: 2em;
+		color: #333;
+		bottom: 20px;
+		right: 20px;
+	}
+	.deleteCard:hover {
+		cursor: pointer;
+	}
+
+.confirmPopup {
+	display: none;
+	position: absolute;
+	z-index: 4;
+	top: 40%;
+	left: 40%;
+	padding: 20px;
+	background-color: #333;
+	opacity: 0.8;
+	color: #fff;
+	text-align: center;
+	font-size: 16px;
+}
+	.confirmPopup span {
+		margin-bottom: 15px;
+		display: block;
+	}
 /*<<<<<<<<<<<<<<<<< MEDIA QUERIES >>>>>>>>>>>>*/
 
 @media all and (max-width: 800px) {

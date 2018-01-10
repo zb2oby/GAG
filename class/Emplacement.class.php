@@ -24,19 +24,19 @@ class Emplacement {
 
 	//SETTERS
 
-	private function setCoordLeft ($coordLeft) {
+	public function setCoordLeft ($coordLeft) {
 		$this->_coordLeft = $coordLeft;
 	}
-	private function setCoordTop ($coordTop) {
+	public function setCoordTop ($coordTop) {
 		$this->_coordTop = $coordTop;
 	}
-	private function setIdExpo ($idExpo) {
+	public function setIdExpo ($idExpo) {
 		$this->_idExpo = $idExpo;
 	}
-	private function setIdOeuvreExposee ($idOeuvreExposee) {
+	public function setIdOeuvreExposee ($idOeuvreExposee) {
 		$this->_idOeuvreExposee = $idOeuvreExposee;
 	}
-	private function setIdEmplacement ($idEmplacement) {
+	public function setIdEmplacement ($idEmplacement) {
 		$this->_idEmplacement = $idEmplacement;
 	}
 
@@ -60,15 +60,15 @@ class Emplacement {
 
 	//METHODES
 
-	public function modifCoordLeft($coordLeft) {
-		$this->setCoordLeft($coordLeft);
-	}
-	public function modifCoordTop($coordTop) {
-		$this->setCoordTop($coordTop);
-	}
-	public function modifIdOeuvreExposee($idOeuvreExposee) {
-		$this->setIdOeuvreExposee($idOeuvreExposee);
-	}
+	// public function modifCoordLeft($coordLeft) {
+	// 	$this->setCoordLeft($coordLeft);
+	// }
+	// public function modifCoordTop($coordTop) {
+	// 	$this->setCoordTop($coordTop);
+	// }
+	// public function modifIdOeuvreExposee($idOeuvreExposee) {
+	// 	$this->setIdOeuvreExposee($idOeuvreExposee);
+	// }
 	
 
 }

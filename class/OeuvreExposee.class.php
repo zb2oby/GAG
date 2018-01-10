@@ -26,28 +26,28 @@ class OeuvreExposee {
 
 	//SETTERS
 
-	private function setIdOeuvreExposee ($idOeuvreExposee) {
+	public function setIdOeuvreExposee ($idOeuvreExposee) {
 		$this->_idOeuvreExposee = $idOeuvreExposee;
 	}
-	private function setDateEntree ($dateEntree) {
+	public function setDateEntree ($dateEntree) {
 		$this->_dateEntree = $dateEntree;
 	}
-	private function setDateSortie ($dateSortie) {
+	public function setDateSortie ($dateSortie) {
 		$this->_dateSortie = $dateSortie;
 	}
-	private function setNbClic ($nbClic) {
+	public function setNbClic ($nbClic) {
 		$this->_nbClic = $nbClic;
 	}
-	private function setNbFlash ($nbFlash) {
+	public function setNbFlash ($nbFlash) {
 		$this->_nbFlash = $nbFlash;
 	}
-	// private function setIdEmplacement ($idEmplacement) {
+	// public function setIdEmplacement ($idEmplacement) {
 	// 	$this->_idEmplacement = $idEmplacement;
 	// }
-	private function setIdExpo ($idExpo) {
+	public function setIdExpo ($idExpo) {
 		$this->_idExpo = $idExpo;
 	}
-	private function setIdOeuvre ($idOeuvre) {
+	public function setIdOeuvre ($idOeuvre) {
 		$this->_idOeuvre = $idOeuvre;
 	}
 

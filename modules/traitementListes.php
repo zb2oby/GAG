@@ -1,10 +1,10 @@
 <?php 
 
 require '../includes/bdd/connectbdd.php';
-require '../class/oeuvreExposee.class.php';
-require '../class/oeuvreExposee.manager.php';
-require '../class/artisteExpose.class.php';
-require '../class/artisteExpose.manager.php';
+require '../class/OeuvreExposee.class.php';
+require '../class/OeuvreExposeeManager.class.php';
+require '../class/ArtisteExpose.class.php';
+require '../class/ArtisteExposeManager.class.php';
 
 
 $manager = new OeuvreExposeeManager($bdd);

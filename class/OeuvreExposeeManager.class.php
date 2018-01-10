@@ -50,6 +50,16 @@ class OeuvreExposeeManager {
         return $oeuvreExposee;
     }
 
+    //renvoi une liste d'objet exposition en fonction de l'idoeuvre recuperer d'une oeuvreexposee
+    public function listExpoOeuvreExposee($idOeuvre) {
+        $list = [];
+        $q = $this->_db->query("SELECT E.idExpo, titre, horaireO, horaireF, theme, descriptifFR, frequentation, dateDeb, dateFin, teaser, affiche FROM Exposition E, OeuvreExposee O WHERE E.idExpo = O.idExpo AND idOeuvre ='".$idOeuvre."' ORDER BY dateDeb ASC");
+        while ($data = $q->fetch()) {
+            $list[] = new Exposition($data);
+        }
+        
+        return $list;
+    }
     //retourne la liste des objets Oeuvre prevue et NON RECUE pour une exposition
 
     public function ListOeuvresPrevues($idExpo) {
@@ -80,27 +90,31 @@ class OeuvreExposeeManager {
         $oeuvre = new Oeuvre($data);
         return $oeuvre;
     }
-
+    //affichage des info d'une oeuvre a partir du tableau d'oeuvre generé en fonction des oeuvreExposee presente
     public function affichageOeuvre ($tabOeuvres, $class) {
         foreach ($tabOeuvres as $oeuvre) {
             $q = $this->_db->query("SELECT idOeuvreExposee FROM OeuvreExposee WHERE idExpo='".$_SESSION['idExpo']."' AND idOeuvre='".$oeuvre->getIdOeuvre()."'");
             $idOeuvreExposee = $q->fetch();
-            echo '<li class="portlet" data-id="'.$idOeuvreExposee['idOeuvreExposee'].'">'
+            $idOeuvreExposee = $idOeuvreExposee['idOeuvreExposee'];
+            $idOeuvre = $oeuvre->getIdOeuvre();
+            echo '<li class="portlet" data-id="'.$idOeuvreExposee.'">'
                     .'<div class="portlet-content">'
                         .'<div class="titre">'.$oeuvre->getTitre().'</div>'
-                        .'<div data-idoeuvreexposee="'.$idOeuvreExposee['idOeuvreExposee'].'" data-id="'.$oeuvre->getIdOeuvre().'" class="img '.$class.'" data-src="'.$oeuvre->getImage().'">'  
+                        .'<div data-idoeuvreexposee="'.$idOeuvreExposee.'" data-id="'.$idOeuvre.'" class="img '.$class.'" data-src="'.$oeuvre->getImage().'">'  
                             .'<img src="../img/oeuvres/'.$oeuvre->getImage().'" alt="'.$oeuvre->getImage().'">'
                         .'</div>'
-                    .'</div>'
-                    .'<div class="context-menu">'
-                        .'<i class="closeButton ion-android-close"></i>'
-                        .'<i class="deleteCard ion-ios-trash-outline"></i>'
-                        .'<input type="text"></input>'
-                    .'</div>'
-                .'</li>';
+                    .'</div>';
+                    include('../includes/carteOeuvre.php');
+                    // .'<div class="context-menu">'
+                    //     .'<i class="closeButton ion-android-close"></i>'
+                    //     .'<i class="deleteCard ion-ios-trash-outline"></i>'
+                    //     .'<input type="text"></input>'
+                    // .'</div>'
+            echo '</li>';
 
         }
     }
+
 
 }
 

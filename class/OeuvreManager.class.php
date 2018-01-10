@@ -59,6 +59,14 @@ class OeuvreManager {
         return $list;
     }
 
+    //renvoi un objet oeuvre en fonction de l'idoeuvre fournit
+    public function infoOeuvre($idOeuvre) {
+        $q = $this->_db->query("SELECT idOeuvre, titre, longueur, hauteur, etat, image, qrcode, descriptifFR, idTypeOeuvre, idArtiste, idCollectif FROM Oeuvre WHERE idOeuvre ='".$idOeuvre."'");
+        $data = $q->fetch();
+            $oeuvre = new Oeuvre($data);
+            return $oeuvre;
+    }
+
    
     
 

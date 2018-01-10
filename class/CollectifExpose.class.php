@@ -20,10 +20,10 @@ class CollectifExpose {
 
 
 
-	private function setIdExpo($idExpo) {
+	public function setIdExpo($idExpo) {
 		$this->_idExpo = $idExpo;
 	}
-	private function setIdCollectif($idCollectif) {
+	public function setIdCollectif($idCollectif) {
 		$this->_idCollectif = $idCollectif;
 	}
 

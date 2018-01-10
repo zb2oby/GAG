@@ -25,25 +25,25 @@ class Artiste {
 
 	//SETTERS 
 
-	private function setIdArtiste($idArtiste) {
+	public function setIdArtiste($idArtiste) {
 		$this->_idArtiste = $idArtiste;
 	}
-	private function setNom($nom) {
+	public function setNom($nom) {
 		$this->_nom = $nom;
 	}
-	private function setPrenom($prenom) {
+	public function setPrenom($prenom) {
 		$this->_prenom = $prenom;
 	}
-	private function setTel($tel) {
+	public function setTel($tel) {
 		$this->_tel = $tel;
 	}
-	private function setImage($image) {
+	public function setImage($image) {
 		$this->_image = $image;
 	}
-	private function setDescriptifFR($descriptifFR) {
+	public function setDescriptifFR($descriptifFR) {
 		$this->_descriptifFR = $descriptifFR;
 	}
-	private function setEmail($email) {
+	public function setEmail($email) {
 		$this->_email = $email;
 	}
 
