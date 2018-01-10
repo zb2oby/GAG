@@ -49,25 +49,21 @@ include('bdd/connectbdd.php');
 	    	<div class="timeLine">
 	    		<ul>
 	    			<li><span>Aujourd'hui : </span><a href="" class="button date"><?php 
-	    				// date du jour
 						echo $date = date("d/m/Y");
-						// tableau des jours de la semaine
-						$joursem = array('dim', 'lun', 'mar', 'mer', 'jeu', 'ven', 'sam');
-						// extraction des jour, mois, an de la date
-						list($jour, $mois, $annee) = explode('/', $date);
-						// calcul du timestamp
-						$timestamp = mktime (0, 0, 0, $mois, $jour, $annee);
 						?></a></li>
 	    			<li>
-	    				<span>Date Expo : </span><?php echo $dateExpo = $expo->getDateDeb(); ?>
+	    				<span>Date Expo : </span>
+	    				<?php 
+	    					$dateExpo = strtotime($expo->getDateDeb());
+	    					echo date('d/m/Y', $dateExpo);
+	    				?>
 	    			</li>
 	    			<li>
 	    				<span>Inauguration dans : </span> 
 	    				<?php
 			    			$now = time(); 
-			    			$dateExpo = strtotime($dateExpo); 
-			    			$time = $dateExpo - strtotime(date('Y-m-d'));
-			    			echo date( 'd', $time).' Jours';
+			    			$time = $dateExpo - $now;
+			    			echo (floor(($dateExpo - $now)/86400)+1).' Jours';
 			    		?> 
 			    	</li>
 	    		</ul>
