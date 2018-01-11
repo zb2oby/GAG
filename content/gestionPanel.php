@@ -3,7 +3,7 @@
 <?php require('../includes/bdd/connectbdd.php'); ?>
 
 <?php include('../includes/header.php') ?>
-<div class="layout"></div>
+<div class="overlay"></div>
 	<div class="content">
 
 		<div class="onglet <?php if (isset($_GET['onglet']) && $_GET['onglet'] == 'gestion') {

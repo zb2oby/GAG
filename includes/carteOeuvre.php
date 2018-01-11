@@ -23,9 +23,11 @@ $oeuvre = $managerOeuvre->infoOeuvre($idOeuvre);
 // $managerExpo = new ExpositionManager($bdd);
 // $exposition = $managerExpo->infoExpo($idExpo);
  ?>
+
 <div class="context-menu">
+<div class="context-overlay"></div>
 	<i class="closeButton ion-android-close"></i>
-	<i class="deleteCard ion-ios-trash-outline"></i>
+	<div class="deleteCard"><i class="ion-ios-trash-outline" title="Enlever l'oeuvre de l'exposition"></i><span>Retirer de l'expo</span></div>
 
 	
 		
@@ -36,6 +38,13 @@ $oeuvre = $managerOeuvre->infoOeuvre($idOeuvre);
 			<div class="col-item card-title">
 				<h3>OEUVRE</h3>
 				<h4><?php echo '" '.ucfirst($oeuvre->getTitre()).' "' ?></h4>
+				<span>
+					<?php 
+						$idTypeOeuvre = $oeuvre->getIdTypeOeuvre();
+						$typeOeuvre = $managerOeuvre->typeOeuvre($idTypeOeuvre);
+						echo 'Type : '.$typeOeuvre;
+					?>
+				</span>
 				<span> 
 					<?php 
 						$dateEntree = $oeuvreExposee->getDateEntree();
@@ -50,12 +59,43 @@ $oeuvre = $managerOeuvre->infoOeuvre($idOeuvre);
 			<div class="col-item qr-zone">
 				<img src="../img/oeuvres/qrCode/<?php echo $oeuvre->getQrcode(); ?>" alt="">
 			</div>
+			<div class="cardHeader-bottom">
+				
+					<?php 
+						$idArtiste = $oeuvre->getIdArtiste();
+						$managerArtiste = new ArtisteManager($bdd);
+						$artiste = $managerArtiste->infoArtiste($idArtiste);
+
+						$nomArtiste = $artiste->getNom();
+						$prenomArtiste = $artiste->getPrenom();
+						echo 'Artiste : '.ucfirst($nomArtiste).' '.ucfirst($prenomArtiste);
+						
+						 
+					?>
+					
+				
+				 
+					<?php 
+						$idCollectif = $oeuvre->getIdCollectif();
+						$managerCollectif = new CollectifManager($bdd);
+						$collectif = $managerCollectif->infoCollectif($idCollectif);
+						if ($collectif != false) {
+							$nomCollectif = $collectif->getLibelleCollectif();
+							echo ' / Collectif : '.$nomCollectif;
+						}
+						
+						 
+					?>
+					
+				
+			</div>
 		</div>
 		<div class="card-content">
 
 			<div class="card-col card-form">
 				<div class="col-item card-form">
 					<form class="form-oeuvre" id="form-oeuvre<?php echo $oeuvre->getIdOeuvre() ?>" data-idOeuvre="<?php echo $oeuvre->getIdOeuvre() ?>" action="../modules/traitementOeuvre.php" method="GET">
+						
 						<div>
 							<label for="titre">Titre</label>
 							<input type="text" name="titre" id="titre<?php echo $oeuvre->getIdOeuvre() ?>" value="<?php echo $oeuvre->getTitre() ?>">
@@ -102,7 +142,8 @@ $oeuvre = $managerOeuvre->infoOeuvre($idOeuvre);
 					</ul>
 					
 				</div>
-				<div class="card-footer">
+				<div class="pop-messagerieOeuvre popGestionCard">
+					<i class="closeButton-context ion-android-close"></i>
 					<div class="card-msg">
 						<?php 
 		//POUR LES TEST
@@ -118,39 +159,90 @@ $oeuvre = $managerOeuvre->infoOeuvre($idOeuvre);
 						$listMessage = $manager->infoMessage($champ, $id);
 						$nbMsg = count($listMessage);
 						foreach ($listMessage as $message) {
-							echo '<div class="message"><div class="message-header"> Message de '.$message->getIdUtilisateur().' Le '.$message->getDateMessage().'</div>';
+							$idUser = $message->getIdUtilisateur();
+							$managerUser = new UtilisateurManager($bdd);
+							$user = $managerUser->infoUtilisateur($idUser);
+							echo '<div class="message"><div class="message-header"> Message de '.$user->getNom().' Le '.$message->getDateMessage().'</div>';
 							echo '<div class="message-content">'.$message->getMessage().'</div></div>';
 						}
 						 ?>
-						 <div class="newMsg">
-							 <form action="#" method="GET">
-							 	<div>
-							 		<label for="newMsg">Nouveau message</label><br>
-							 		<textarea name="newMsg" id="newMsg" cols="50" rows="4" placeholder="Ici votre message"></textarea>
-							 	</div>
-							 	
-							 	<input type="hidden" name="idOeuvre" value="<?php echo $oeuvre->getIdOeuvre(); ?>">
-								
-								<div>
-									<input type="submit" value="Envoyer">
-								</div>
-							 	
-							 </form>
-						</div>
 					</div>
+					 <div class="newMsg">
+						 <form action="#" method="GET">
+						 	<div>
+						 		<label for="newMsg">Nouveau message</label><br>
+						 		<textarea name="newMsg" id="newMsg" cols="40" rows="4" placeholder="Ici votre message"></textarea>
+						 	</div>
+						 	
+						 	<input type="hidden" name="idOeuvre" value="<?php echo $oeuvre->getIdOeuvre(); ?>">
+							
+							<div>
+								<button type="submit">Envoyer</button>
+							</div>
+						 	
+						 </form>
+					</div>
+					
 				</div>
 				<div class="col-item">
 					<h4>ACTIONS</h4>
 					<ul id="list-button">
-						<li><button>Visualiser Contenu +</button></li>
-						<li><button>Ajouter Contenu +</button></li>
-						<li><button>Modifier date d'entrée</button></li>
-						<li><button class="button-msg">Messagerie<div class="nbMsg"><?php echo $nbMsg; ?></div></button></li>
+						<li><button class="action-button">Gérer le Contenu +</button></li>
+						<li><button class="action-button" id="modifDateEntree">Modifier date d'entrée</button></li>
+						<li><button class="action-button" id="modifImageOeuvre">Modifier l'image</button></li>
+						<li><button class="action-button" id="modifTypeOeuvre">Modifier le type</button></li>
+						<li><button class="action-button" id="modifArtColl">Modifier Artiste/Collectif</button></li>
+						<li><button class="action-button" id="delOeuvre">Supprimer l'oeuvre</button></li>
+						<li><button class="action-button button-msg" id="messagerieOeuvre">Messagerie<div class="nbMsg"><?php echo $nbMsg; ?></div></button></li>
 					</ul>
 				</div>
 			</div>
 			
 		</div>
 		
-	
+	<div class="card-form pop-modifDateEntree popGestionCard">
+		<i class="closeButton-context ion-android-close"></i>
+		<form action="../modules/traitementOeuvre.php" method="GET">
+			<label for="dateEntree">Date d'entrée dans l'expo</label>
+			<input type="date" id="dateEntree" name="dateEntree" value="<?php echo $dateEntree; ?>">
+			<button type="submit">Modifier</button>
+		</form>
+	</div>
+	<div class="card-form pop-modifImageOeuvre popGestionCard">
+		<i class="closeButton-context ion-android-close"></i>
+		<form action="../modules/traitementOeuvre.php" method="GET">
+			<label for="type">Choisir image</label>
+			<input type="file" id="type" name="type" value="<?php echo $oeuvre->getImage(); ?>">
+			<button type="submit">Enregistrer</button>
+		</form>
+	</div>
+	<div class="card-form pop-modifTypeOeuvre popGestionCard">
+		<i class="closeButton-context ion-android-close"></i>
+		<form action="../modules/traitementOeuvre.php" method="GET">
+			<label for="type">Type d'oeuvre</label>
+			<input type="text" id="type" name="type" value="<?php echo $typeOeuvre; ?>">
+			<button type="submit">Modifier</button>
+		</form>
+	</div>
+	<div class="card-form pop-modifArtColl popGestionCard">
+		<i class="closeButton-context ion-android-close"></i>
+		<form action="../modules/traitementOeuvre.php" method="GET">
+			<label for="nom">nom</label>
+			<input type="text" id="nom" name="nom" value="<?php echo $nomArtiste; ?>">
+			<label for="prenom">Prenom</label>
+			<input type="text" id="prenom" name="prenom" value="<?php echo $prenomArtiste; ?>">
+			<label for="collectif">Nom Collectif</label>
+			<input type="text" id="collectif" name="collectif" value="<?php if(isset($nomCollectif)){echo $nomCollectif;} ?>">
+			<button type="submit">Modifier</button>
+		</form>
+	</div>
+	<div class="card-form pop-delOeuvre popGestionCard">
+		<i class="closeButton-context ion-android-close"></i>
+		<form action="../modules/traitementOeuvre.php" method="GET">
+			<label for="idOeuvre">Voulez vous supprimer definitvement cette oeuvre ?</label>
+			<input type="hidden" id="idOeuvre" name="idOeuvre" value="<?php echo $idOeuvre; ?>">
+			<button type="submit">Supprimer</button>
+			<button>Annuler</button>
+		</form>
+	</div>
 </div>

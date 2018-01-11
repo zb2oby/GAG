@@ -43,8 +43,13 @@ class CollectifManager {
         $q = $this->_db->prepare("SELECT * FROM Collectif WHERE idCollectif = :idCollectif");
         $q->bindValue(':idCollectif', $idCollectif);
         $q->execute();
-        $data = $q->fetch();
-        $expo = new Collectif($data);
+        $count = $q->rowCount();
+        $expo = false;
+        if ($count != 0) {
+            $data = $q->fetch();
+            $expo = new Collectif($data);
+            
+        }
         return $expo;
     }
 

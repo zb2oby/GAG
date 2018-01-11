@@ -33,7 +33,7 @@ class MessageManager {
     
     public function infoMessage($champ, $id) {
     	$list = [];
-        $q = $this->_db->query("SELECT dateMessage, message, idUtilisateur FROM Message_interne WHERE ".$champ." ='".$id."' LIMIT 5");
+        $q = $this->_db->query("SELECT dateMessage, message, idUtilisateur FROM Message_interne WHERE ".$champ." ='".$id."'ORDER BY dateMessage DESC LIMIT 10");
         while ($data = $q->fetch()) {
             $list[] = new Message($data);
         }

@@ -1,4 +1,22 @@
 jQuery(document).ready(function($) {
+
+	$('.action-button').click(function(event) {
+		var classe = $(this).attr('id');
+		$(event.target).closest('.context-menu').find('.context-overlay').show();
+		$(event.target).closest('.context-menu').find('.pop-'+classe+'.popGestionCard').show();
+
+	});
+
+	$('.context-overlay').click(function(event) {
+		$(this).hide();
+		$('.popGestionCard').hide();
+	});
+
+	$('.closeButton-context').click(function(event) {
+		$(this).parent().hide();
+		$('.context-overlay').hide()
+	});
+//A REECRIRE AVEC DES EVENT TARGET AU LIEU D'ID DEGEULASSE
 	var formId;
 	$('.submit-oeuvre').click(function(event) {
 		var idData = $(this).closest('.form-oeuvre').data('idoeuvre');

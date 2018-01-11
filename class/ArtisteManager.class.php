@@ -65,4 +65,11 @@ class ArtisteManager {
         
     }
 
+    public function infoArtiste($idArtiste) {
+        $q = $this->_db->query("SELECT idArtiste, nom, prenom, tel, image, descriptifFR, email FROM Artiste WHERE idArtiste = '".$idArtiste."'");
+        $data = $q->fetch();
+        $artiste = new Artiste($data);
+        return $artiste;
+    }
+
 }

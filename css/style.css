@@ -36,8 +36,8 @@ body {
 button {
 	background-color: #0A2675;
 	color: #fff;
-	min-width: 180px;
-	padding: 15px 15px;
+	/*min-width: 180px;
+	padding: 15px 15px;*/
 	border: none;
 	outline: none;
 	border-radius: 30px;
@@ -67,16 +67,17 @@ button:hover {
 
 }
 
-.layout {
+.overlay {
 	display: none;
-	position: absolute;
+	position: fixed;
 	z-index: 2;
 	left: 0;
 	right: 0;
 	top: 0;
-	bottom: 0;
+	height: 100%;
 	background-color: #333;
 	opacity: 0.7;
+	overflow: auto;
 }
 
 /*<<<<<<<<<<<<<<<<  HEADER >>>>>>>>>>>>>>*/
@@ -557,6 +558,19 @@ form.adminForm, form.expoForm {
 	.popAddCard i:hover {
 		cursor: pointer;
 	}
+.popGestionCard {
+	position: absolute;
+	z-index: 5;
+	top: 50%;
+	margin-top: -150px;
+	left: 50%;
+	margin-left: -200px;
+	width: 400px;
+	height: 300px;
+	overflow: auto;
+	background-color: #ddd;
+	display: none;
+}
 .confirmPopup {
 	display: none;
 	position: absolute;
@@ -575,6 +589,17 @@ form.adminForm, form.expoForm {
 		display: block;
 	}
 	/*>>>>>>>>>>>>>>>>  INFO CARTES >>>>>>>>>>>>>>>>*/	
+.context-overlay {
+	display: none;
+	position: absolute;
+	background-color: #000;
+	opacity: 0.7;
+	z-index: 4;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
 .context-menu {
 	display: none;
 	position: absolute;
@@ -595,12 +620,14 @@ form.adminForm, form.expoForm {
 }
 	.context-menu ul {
 		min-height: auto;
-		max-height: 300px;
-		margin: 20px 0;
+		max-height: 310px;
+		margin: 10px 0 20px 0;
+		padding: 10px 0;
 	}
 	.context-menu li {
 		background-color: transparent;
 		height: auto;
+		margin: 0;
 		/*list-style: none;*/
 	}
 	.context-menu li:hover {
@@ -614,9 +641,11 @@ form.adminForm, form.expoForm {
 		border: none;
 	}
 	.context-menu button {
-
+		min-width: 180px;
+		padding: 8px 15px;
 	}
 	.card-header {
+		position: relative;
 		display: flex;
 		flex-direction: row;
 		justify-content: space-around;
@@ -624,6 +653,19 @@ form.adminForm, form.expoForm {
 		border-bottom: 4px solid #ccc;
 		text-align: center;
 	}
+		.card-header span {
+			display: inline-block;
+			padding: 10px 0 ;
+			font-size: 14px;
+		}
+		.cardHeader-bottom {
+			position: absolute;
+			bottom: 0;
+			font-size: 14px;
+		}
+		.cardHeader-bottom span {
+			display: inline;
+		}
 	.card-content {
 		display: flex;
 		align-items: flex-start;
@@ -709,29 +751,37 @@ form.adminForm, form.expoForm {
 					text-align: center;
 				}
 
-	.card-footer {
-		display: none;
-		padding: 20px;
-		border-top: 4px solid #ccc;
+	.pop-messagerieOeuvre {
+		margin-top: -250px;
+		height: auto;
+		width: 400px;
 	}
-		.message {
-			width: 70%;
-			margin: 20px;
-			border-radius: 7px;	
-			background-color: #fff;
+
+		.card-msg {
+			overflow: auto;
+			max-height: 300px;
 		}
-			.message-header {
-				padding: 5px 0;
-				font-weight: bold;
-				background-color: #ddd;
+			.message {
+				width: 90%;
+				margin: 20px;
+				border-radius: 7px;	
+				background-color: #fff;
+
 			}
-			.message-content {
-				padding: 20px;
-			}
-			.newMsg {
-				display: block;
-				width: 100%;
-			}
+				.message-header {
+					padding: 5px 0;
+					font-weight: bold;
+					background-color: #ddd;
+				}
+				.message-content {
+					padding: 20px;
+				}
+				.newMsg {
+					border-top: 4px solid #ccc;
+					display: block;
+					padding: 20px;
+					width: 100%;
+				}
 			
 
 	.deleteCard {
@@ -740,7 +790,13 @@ form.adminForm, form.expoForm {
 		color: #333;
 		bottom: 20px;
 		right: 20px;
+		text-align: center;
 	}
+		.deleteCard span {
+			font-size: 12px;
+			display: block;
+			padding-left: 5px;
+		}
 	.deleteCard:hover {
 		cursor: pointer;
 	}

@@ -68,6 +68,11 @@ class OeuvreManager {
     }
 
    
-    
+    //recupere le libelle du type d'oeuvre demandé
+    public function typeOeuvre($idTypeOeuvre) {
+        $q = $this->_db->query("SELECT libelleTypeOeuvre FROM Type_oeuvre WHERE idTypeOeuvre = '".$idTypeOeuvre."'");
+        $data = $q->fetch();
+        return $data['libelleTypeOeuvre'];
+    }
 
 }

@@ -227,14 +227,14 @@ function deleteCard(target, idExpo) {
         target.parent().parent().remove();
         $('.confirmPopup').css('display', 'none');
         $('.context-menu').css('display', 'none');
-        $('.layout').hide();
+        $('.overlay').hide();
 }
 function deletePlace(target) {
 	var emplacement = target.parent();
     var idEmplacement = emplacement.data('id');
     emplacement.remove();
     $('.confirmPopup').css('display', 'none');
-    $('.layout').hide();
+    $('.overlay').hide();
     var deletePlace = 'delete=' + idEmplacement;
     //traitement ajax
     $.ajax({
@@ -257,10 +257,10 @@ function deletePlace(target) {
 
 function deleteElt(target) {
 	$('.confirmPopup').css('display', 'block');
-    $('.layout').show();
+    $('.overlay').show();
     $('.cancelButton').click(function(e) {
         $('.confirmPopup').css('display', 'none');
-        $('.layout').hide();
+        $('.overlay').hide();
     });
     $('.deleteButton').click(function(e) {
 		if (target.parent().hasClass('emplacement')) {
@@ -317,7 +317,7 @@ function deleteElt(target) {
 
     $(document).click(function(event) {
         if ($(event.target).parent().hasClass('img')) {
-            $('.layout').hide();
+            $('.overlay').hide();
         }
         
     });
@@ -325,15 +325,15 @@ function deleteElt(target) {
 	//AFFICHAGE POPUP AJOUT DE CARTE
 	$('.addCard').click(function(event) {
 		$('.popAddCard').css('display', 'block');
-		$('.layout').show();
+		$('.overlay').show();
 	});
 	$('.addCardRecue').click(function(event) {
 		$('.popAddRecue').css('display', 'block');
-		$('.layout').show();
+		$('.overlay').show();
 	});
     $('.addCardArtiste').click(function(event) {
         $('.popAddArtiste').css('display', 'block');
-        $('.layout').show();
+        $('.overlay').show();
     });
 
 		//CLIC SUR LIEN CREATION OEUVRE DANS POPUP addCard
@@ -347,11 +347,11 @@ function deleteElt(target) {
 	//AFFICHAGE CONTEXT MENU DUNE CARTE OEUVRE
 	$('.portlet-content').click(function(event) {
         $(event.target).parent().find('.context-menu').css('display', 'block');
-        $('.layout').show();
+        $('.overlay').show();
         
         // $('.cancelButton').click(function(e) {
         //     $('.context-menu').css('display', 'none');
-        //     $('.layout').hide();
+        //     $('.overlay').hide();
         // });
     });
 
@@ -359,15 +359,15 @@ function deleteElt(target) {
 	$('.closeButton').click(function(event) {
 		$(event.target).parent().css('display', 'none');
 		$('.confirmPopup').css('display', 'none');
-		$('.layout').hide();
+		$('.overlay').hide();
 	});
 
-	$('.layout').click(function(event) {
+	$('.overlay').click(function(event) {
     	$('.context-menu').css('display', 'none');
     	$('.popAddCard').css('display', 'none');
     	$('.popAddRecue').css('display', 'none');
         $('.popAddArtiste').css('display', 'none');
-        $('.layout').hide();
+        $('.overlay').hide();
     });
     
     
