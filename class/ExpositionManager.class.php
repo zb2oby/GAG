@@ -60,14 +60,26 @@ class ExpositionManager {
         return $list;
     }
 
-    //renvoie les info expo d'un expo 
+    //renvoie les info expo d'une expo 
     public function infoExpo($idExpo) {
         $q = $this->_db->query("SELECT * FROM Exposition WHERE idExpo ='".$idExpo."'");
-       $data = $q->fetch();
+        $data = $q->fetch();
         $expo = new Exposition($data);
         return $expo;
     }
 
+    //renvoie les dates d'expo passer
+    public function prevExpo(){
+        $list = [];
+        $q = $this->_db->query("SELECT idExpo, titre, horaireO, horaireF, theme, descriptifFR, frequentation, dateDeb, dateFin, teaser, affiche FROM Exposition where dateDeb < now() ORDER BY datedeb desc LIMIT 3");
+        while ( $data = $q->fetch()) {
+            $expo = new Exposition($data);
+            $list[] = $expo;
+        }
+        return $list;
+
+
+    }
 
    
     
