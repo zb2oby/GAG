@@ -32,7 +32,7 @@ class OeuvreManager {
     	$q = $this->_db->exec('DELETE FROM Oeuvre WHERE idOeuvre ='.$oeuvre->getIdOeuvre());
     }
 
-    public function updateEmplacement(Oeuvre $oeuvre) {
+    public function updateOeuvre(Oeuvre $oeuvre) {
         $q = $this->_db->prepare('UPDATE Oeuvre SET titre = :titre, longueur = :longueur, hauteur = :hauteur, etat = :etat, image = :image, qrcode = :qrcode, descriptifFR = :descriptifFR, idTypeOeuvre = :idTypeOeuvre, idArtiste = :idArtiste, idCollectif = :idCollectif WHERE idOeuvre = :idOeuvre');
         $q->bindValue(':titre', $oeuvre->getTitre());
         $q->bindValue(':idOeuvre', $oeuvre->getIdOeuvre());

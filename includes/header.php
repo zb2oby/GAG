@@ -20,7 +20,6 @@ include('bdd/connectbdd.php');
 		<link rel="stylesheet" type="text/css" href="../css/lib/slick/slick.css"/>
 		<link rel="stylesheet" type="text/css" href="../css/lib/slick/slick-theme.css"/>
         <link rel="stylesheet" href="../css/style.css">
-        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
         <link rel="author" href="humans.txt">
     </head>
 

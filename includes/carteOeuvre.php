@@ -35,7 +35,7 @@ $oeuvre = $managerOeuvre->infoOeuvre($idOeuvre);
 			</div>
 			<div class="col-item card-title">
 				<h3>OEUVRE</h3>
-				<h4><?php echo $oeuvre->getTitre() ?></h4>
+				<h4><?php echo '" '.ucfirst($oeuvre->getTitre()).' "' ?></h4>
 				<span> 
 					<?php 
 						$dateEntree = $oeuvreExposee->getDateEntree();
@@ -53,48 +53,33 @@ $oeuvre = $managerOeuvre->infoOeuvre($idOeuvre);
 		</div>
 		<div class="card-content">
 
-			<div class="card-col card-info">
-				
-				<div class="col-item list-info">
-					<h4>APPARITIONS</h4>
-					<ul>
-
-						<?php 
-							$listExpo = $manager->listExpoOeuvreExposee($idOeuvre);
-							foreach ($listExpo as $exposition) {
-								echo '<li>'.$exposition->getDateDeb().'<br>Exposition '.$exposition->getTitre().'</li>';
-							}
-						 ?>
-					</ul>
-				</div>
-				
-			</div>
-
 			<div class="card-col card-form">
 				<div class="col-item card-form">
-					<form action="#" method="GET">
+					<form class="form-oeuvre" id="form-oeuvre<?php echo $oeuvre->getIdOeuvre() ?>" data-idOeuvre="<?php echo $oeuvre->getIdOeuvre() ?>" action="../modules/traitementOeuvre.php" method="GET">
 						<div>
 							<label for="titre">Titre</label>
-							<input type="text" name="titre" id="titre" value="<?php echo $oeuvre->getTitre() ?>">
+							<input type="text" name="titre" id="titre<?php echo $oeuvre->getIdOeuvre() ?>" value="<?php echo $oeuvre->getTitre() ?>">
 						</div>
 						<div>
 							<label for="longueur">Longueur</label>
-							<input type="text" name="longueur" id="longueur" value="<?php echo $oeuvre->getLongueur() ?>">
+							<input type="text" name="longueur" id="longueur<?php echo $oeuvre->getIdOeuvre() ?>" value="<?php echo $oeuvre->getLongueur() ?>">
 						</div>
 						<div>
 							<label for="hauteur">Hauteur</label>
-							<input type="text" name="hauteur" id="hauteur" value="<?php echo $oeuvre->getHauteur() ?>">
+							<input type="text" name="hauteur" id="hauteur<?php echo $oeuvre->getIdOeuvre() ?>" value="<?php echo $oeuvre->getHauteur() ?>">
 						</div>
 						<div>
 							<label for="etat">Etat</label>
-							<input type="text" name="etat" id="etat" value="<?php echo $oeuvre->getEtat() ?>">
+							<input type="text" name="etat" id="etat<?php echo $oeuvre->getIdOeuvre() ?>" value="<?php echo $oeuvre->getEtat() ?>">
 						</div>
 						<div>
 							<label for="descriptif">Descriptif</label><br>
-							<textarea name="descriptif" id="descriptif" cols="40" rows="10" value="<?php echo $oeuvre->getDescriptifFR() ?>"><?php echo $oeuvre->getDescriptifFR() ?></textarea>
+							<textarea name="descriptif" id="descriptif<?php echo $oeuvre->getIdOeuvre() ?>" cols="40" rows="10" value="<?php echo $oeuvre->getDescriptifFR() ?>"><?php echo $oeuvre->getDescriptifFR() ?></textarea>
 						</div>
-						<div>
-							<input type="submit" value="Enregistrer les modifications">
+						
+						<div class="submit">
+							<button class="submit-oeuvre" type="submit">Enregistrer les modifications</button>
+							
 						</div>
 						
 					</form>
@@ -103,52 +88,69 @@ $oeuvre = $managerOeuvre->infoOeuvre($idOeuvre);
 			</div>
 
 			<div class="card-col card-action">
-				<div class="col-item list-button">
-					<ul>
+				
+				<div class="col-item">
+					<h4>APPARITIONS</h4>
+					<ul id="list-info">
+
+						<?php 
+							$listExpo = $manager->listExpoOeuvreExposee($idOeuvre);
+							foreach ($listExpo as $exposition) {
+								echo '<li>'.$exposition->getDateDeb().'<br>Exposition '.$exposition->getTitre().'</li>';
+							}
+						 ?>
+					</ul>
+					
+				</div>
+				<div class="card-footer">
+					<div class="card-msg">
+						<?php 
+		//POUR LES TEST
+		$champ = 'idOeuvre';
+		//dans le cas d'une oeuvre : dans les autres cas $artiste->getIdArtiste etc...
+		$id = $oeuvre->getIdOeuvre();
+
+						//recuperation d'un objet exposition avec l'idExpo de l'oeuvre exposée ici ouverte si on est dans le cas d'une carte "oeuvre exposée"
+						$managerExpo = new ExpositionManager($bdd);
+						$expo = $managerExpo->infoExpo($oeuvreExposee->getIdExpo());
+						//recuperation de la liste des messages pour cette oeuvre
+						$manager = new MessageManager($bdd);
+						$listMessage = $manager->infoMessage($champ, $id);
+						$nbMsg = count($listMessage);
+						foreach ($listMessage as $message) {
+							echo '<div class="message"><div class="message-header"> Message de '.$message->getIdUtilisateur().' Le '.$message->getDateMessage().'</div>';
+							echo '<div class="message-content">'.$message->getMessage().'</div></div>';
+						}
+						 ?>
+						 <div class="newMsg">
+							 <form action="#" method="GET">
+							 	<div>
+							 		<label for="newMsg">Nouveau message</label><br>
+							 		<textarea name="newMsg" id="newMsg" cols="50" rows="4" placeholder="Ici votre message"></textarea>
+							 	</div>
+							 	
+							 	<input type="hidden" name="idOeuvre" value="<?php echo $oeuvre->getIdOeuvre(); ?>">
+								
+								<div>
+									<input type="submit" value="Envoyer">
+								</div>
+							 	
+							 </form>
+						</div>
+					</div>
+				</div>
+				<div class="col-item">
+					<h4>ACTIONS</h4>
+					<ul id="list-button">
 						<li><button>Visualiser Contenu +</button></li>
 						<li><button>Ajouter Contenu +</button></li>
 						<li><button>Modifier date d'entrée</button></li>
+						<li><button class="button-msg">Messagerie<div class="nbMsg"><?php echo $nbMsg; ?></div></button></li>
 					</ul>
-					
-					
 				</div>
 			</div>
+			
 		</div>
-		<div class="card-footer">
-				<div class="card-msg">
-					<?php 
-	//POUR LES TEST
-	$champ = 'idOeuvre';
-	//dans le cas d'une oeuvre : dans les autres cas $artiste->getIdArtiste etc...
-	$id = $oeuvre->getIdOeuvre();
-
-					//recuperation d'un objet exposition avec l'idExpo de l'oeuvre exposée ici ouverte si on est dans le cas d'une carte "oeuvre exposée"
-					$managerExpo = new ExpositionManager($bdd);
-					$expo = $managerExpo->infoExpo($oeuvreExposee->getIdExpo());
-					//recuperation de la liste des messages pour cette oeuvre
-					$manager = new MessageManager($bdd);
-					$listMessage = $manager->infoMessage($champ, $id);
-					foreach ($listMessage as $message) {
-						echo '<div class="message"><div class="message-header"> Message de '.$message->getIdUtilisateur().' Le '.$message->getDateMessage().'</div>';
-						echo '<div class="message-content">'.$message->getMessage().'</div></div>';
-					}
-					 ?>
-					 <div class="newMsg">
-						 <form action="#" method="GET">
-						 	<div>
-						 		<label for="newMsg">Nouveau message</label><br>
-						 		<textarea name="newMsg" id="newMsg" cols="80" rows="4" placeholder="Ici votre message"></textarea>
-						 	</div>
-						 	
-						 	<input type="hidden" name="idOeuvre" value="<?php echo $oeuvre->getIdOeuvre(); ?>">
-							
-							<div>
-								<input type="submit" value="Envoyer">
-							</div>
-						 	
-						 </form>
-					</div>
-				</div>
-		</div>
+		
 	
 </div>
