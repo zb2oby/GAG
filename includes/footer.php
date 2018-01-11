@@ -10,6 +10,6 @@
 <script src="../js/onglets.js"></script>
 <script src="../js/listesOeuvres.js"></script>
 <script src="../js/emplacement.js"></script>
-
+<script src="../js/oeuvreCard.js"></script>
 </body>
 </html>

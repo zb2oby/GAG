@@ -18,7 +18,6 @@ include('bdd/connectbdd.php');
         <title>Grand Angle Gestion</title>
         <link rel="stylesheet" href="../css/ionicons.min.css">
         <link rel="stylesheet" href="../css/style.css">
-        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
         <link rel="author" href="humans.txt">
     </head>
 
