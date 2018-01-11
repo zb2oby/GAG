@@ -17,6 +17,8 @@ include('bdd/connectbdd.php');
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Grand Angle Gestion</title>
         <link rel="stylesheet" href="../css/ionicons.min.css">
+		<link rel="stylesheet" type="text/css" href="../css/lib/slick/slick.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/lib/slick/slick-theme.css"/>
         <link rel="stylesheet" href="../css/style.css">
         <link rel="author" href="humans.txt">
     </head>
