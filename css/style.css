@@ -792,6 +792,10 @@ form.adminForm, form.expoForm {
 					padding: 20px;
 					width: 100%;
 				}
+					.newMsg #newMsg {
+						border: none;
+						border-radius : 0 0 7px 7px;
+					}
 			
 
 	.deleteCard {

@@ -169,7 +169,7 @@ $oeuvre = $managerOeuvre->infoOeuvre($idOeuvre);
 						 ?>
 					</div>
 					 <div class="newMsg">
-						 <form action="#" method="GET">
+						 <form action="action="../modules/traitementOeuvre.php" data-idOeuvre="<?php echo $oeuvre->getIdOeuvre() ?>" method="GET">
 						 	<div>
 						 		<label for="newMsg">Nouveau message</label><br>
 						 		<textarea name="newMsg" id="newMsg" cols="40" rows="4" placeholder="Ici votre message"></textarea>

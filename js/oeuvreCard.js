@@ -28,6 +28,9 @@ jQuery(document).ready(function($) {
 		var idCollectif = $(event.target).find('#idCollectif').val();
 		var nomArtiste = $(event.target).find('#idArtiste option:selected').text();
 		var nomCollectif = $(event.target).find('#idCollectif option:selected').text();
+		var message = $(event.target).find('#newMsg').val();
+
+		if (true) {}
 
 		if (typeof idArtiste != 'undefined' || typeof idCollectif != 'undefined') {
 			$(event.target).closest('.context-menu').find('#afficheArtiste').html('Artiste : '+nomArtiste);
@@ -38,6 +41,7 @@ jQuery(document).ready(function($) {
 
 		if (typeof idTypeOeuvre != "undefined") {
 			var data = 'idTypeOeuvre=' + idTypeOeuvre + '&idOeuvre=' + idOeuvre;
+			$(event.target).closest('.context-menu').find('#afficheType').html('Type : '+typeOeuvre);
 			
 		}
 
