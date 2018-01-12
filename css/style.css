@@ -1,7 +1,13 @@
+@font-face{
+    font-family : "Roboto";
+    src : url('../fonts/Roboto/Roboto-Regular.ttf');
+}
+
 * {
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
+	font-family: 'Roboto', sans-serif;
 }
 
 a {
@@ -9,7 +15,7 @@ a {
 	color: #fff;
 }
 
-li,ul {
+ul {
 	list-style: none;
 }
 
@@ -19,6 +25,7 @@ a.button {
 	height: 40px;
 	padding: 5px 20px;
 	border-radius: 40px;
+
 }
 
 body {
@@ -26,18 +33,24 @@ body {
 	font-family: 'Roboto', sans-serif;
 }
 
-/*button {
+button {
 	background-color: #0A2675;
 	color: #fff;
-	padding: 5px 15px;
+	/*min-width: 180px;
+	padding: 15px 15px;*/
 	border: none;
 	outline: none;
+	border-radius: 30px;
+	text-align: center;
+
 }
 
 button:hover {
 	cursor: pointer;
+	background-color: #fff;
+	color: #0A2675;
 
-}*/
+}
 
 .container {
 	position: absolute;
@@ -54,16 +67,17 @@ button:hover {
 
 }
 
-.layout {
+.overlay {
 	display: none;
-	position: absolute;
+	position: fixed;
 	z-index: 2;
 	left: 0;
 	right: 0;
 	top: 0;
-	bottom: 0;
+	height: 100%;
 	background-color: #333;
 	opacity: 0.7;
+	overflow: auto;
 }
 
 /*<<<<<<<<<<<<<<<<  HEADER >>>>>>>>>>>>>>*/
@@ -152,13 +166,11 @@ header {
 
 			.flecheHor {
 				display: none;
-				cursor: pointer;
 			}
 			.flecheVert {
 				width: 40px;
 				height: 40px;
 				font-size: 4em;
-				cursor: pointer;
 			}
 
 			.sideMenu li {
@@ -496,6 +508,7 @@ form.adminForm, form.expoForm {
 					background-color: #ddd;
 				}
 					
+
 				.cards li span {
 					display: block;
 				}
@@ -533,11 +546,21 @@ form.adminForm, form.expoForm {
 		color: #fff;
 	}
 	.closeButton {
-		display: block;
-		text-align: right;
-		font-size: 2em;
-		margin-top: -20px;
-		margin-right: -10px;
+		position: absolute;
+		z-index: 6;
+		top: -15px;
+		right: -15px;
+		width: 30px;
+		height: 30px;
+		text-align: center;
+		line-height: 30px;
+		font-size: 1.5em;
+		/*margin-top: -20px;
+		margin-right: -10px;*/
+		
+		border-radius: 2em;
+		color: #fff;
+		background-color:#0A2675; 
 	}
 	.closeButton:hover {
 		cursor: pointer;
@@ -545,123 +568,19 @@ form.adminForm, form.expoForm {
 	.popAddCard i:hover {
 		cursor: pointer;
 	}
-	/*>>>>>>>>>>>>>>>>  INFO CARTES >>>>>>>>>>>>>>>>*/	
-.context-menu {
-	display: none;
+.popGestionCard {
 	position: absolute;
+	z-index: 5;
+	top: 50%;
+	margin-top: -150px;
 	left: 50%;
-	top: -100px;
-	margin-left: -400px;
-	z-index: 3;
-	min-width: 500px;
-	min-height: 550px;
+	margin-left: -200px;
+	width: 400px;
+	height: 300px;
+	overflow: auto;
 	background-color: #ddd;
-	color: #333;
-	font-size: 16px;
-	text-align: left;
+	display: none;
 }
-.context-menu:hover {
-	cursor: default;
-}
-	.context-menu li {
-		background-color: transparent;
-		height: auto;
-		list-style: none;
-	}
-	.context-menu li:hover {
-		cursor:default;
-	}
-	.context-menu img {
-		width: 100px;
-		height: 100px;
-	}
-	.context-menu img:hover {
-		border: none;
-	}
-	.card-header {
-		display: flex;
-		flex-direction: row;
-		justify-content: space-around;
-		padding: 20px;
-		border-bottom: 4px solid #ccc;
-		text-align: center;
-	}
-	.card-content {
-		display: flex;
-		flex-direction: row;
-		padding: 20px;
-
-	}
-
-		.card-col {
-			display: flex;
-			flex-direction: column;
-			/*justify-content: space-around;*/
-			padding: 20px;
-		}
-		.card-col.card-form {
-			flex-grow: 1;
-		}
-		.card-col.card-info {
-			justify-content: flex-start;
-		}
-			.col-item {
-				border: 1px solid black;
-			}
-			.col-item.list-info h4 {
-				text-align: center;
-
-			}
-	.card-footer {
-		padding: 20px;
-		border-top: 4px solid #ccc;
-	}
-		.message {
-			width: 70%;
-			margin: 20px;
-			border-radius: 7px;	
-			background-color: #fff;
-		}
-			.message-header {
-				padding: 5px 0;
-				font-weight: bold;
-				background-color: #ddd;
-			}
-			.message-content {
-				padding: 20px;
-			}
-
-				.message-header {
-					padding: 5px 0;
-					font-weight: bold;
-					background-color: #ddd;
-				}
-				.message-content {
-					padding: 20px;
-				}
-				.newMsg {
-					border-top: 4px solid #ccc;
-					display: block;
-					padding: 20px;
-					width: 100%;
-				}
-					.newMsg #newMsg {
-						border: none;
-						border-radius : 0 0 7px 7px;
-					}
-			
-
-	.deleteCard {
-		position: absolute;
-		font-size: 2em;
-		color: #333;
-		bottom: 20px;
-		right: 20px;
-	}
-	.deleteCard:hover {
-		cursor: pointer;
-	}
-
 .confirmPopup {
 	display: none;
 	position: absolute;
@@ -679,6 +598,220 @@ form.adminForm, form.expoForm {
 		margin-bottom: 15px;
 		display: block;
 	}
+	/*>>>>>>>>>>>>>>>>  INFO CARTES >>>>>>>>>>>>>>>>*/	
+.context-overlay {
+	display: none;
+	position: absolute;
+	background-color: #000;
+	opacity: 0.7;
+	z-index: 4;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+.context-menu {
+	display: none;
+	position: absolute;
+	left: 50%;
+	top: -120px;
+	margin-left: -300px;
+	z-index: 3;
+	width: 600px;
+	/*min-width: 500px;*/
+	/*min-height: 550px;*/
+	background-color: #ddd;
+	color: #333;
+	font-size: 16px;
+	text-align: left;
+}
+.context-menu:hover {
+	cursor: default;
+}
+	.context-menu ul {
+		min-height: auto;
+		max-height: 310px;
+		margin: 10px 0 20px 0;
+		padding: 10px 0;
+	}
+	.context-menu li {
+		background-color: transparent;
+		height: auto;
+		margin: 0;
+		/*list-style: none;*/
+	}
+	.context-menu li:hover {
+		cursor:default;
+	}
+	.context-menu img {
+		width: 100px;
+		height: 100px;
+	}
+	.context-menu img:hover {
+		border: none;
+	}
+	.context-menu button {
+		min-width: 180px;
+		padding: 8px 15px;
+	}
+	.card-header {
+		position: relative;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-around;
+		padding: 20px;
+		border-bottom: 4px solid #ccc;
+		text-align: center;
+	}
+		.card-header .card-title span {
+			display: block;
+			padding: 10px 0 ;
+			font-size: 14px;
+		}
+		.cardHeader-bottom {
+			position: absolute;
+			bottom: 0;
+			font-size: 14px;
+		}
+		.cardHeader-bottom span {
+		 
+		}
+	.card-content {
+		display: flex;
+		align-items: flex-start;
+		max-height: 600px;
+		/*padding: 20px;*/
+
+	}
+
+		.card-col {
+			display: flex;
+			flex-direction: column-reverse;
+			/*justify-content: space-around;*/
+			align-items: space-around;
+			padding: 20px;
+		}
+		
+			.card-col.card-info {
+				/*justify-content: flex-start;*/
+			}
+			.col-item {
+				/*border: 1px solid black;*/
+			}
+			.card-action #list-button {
+				
+			}
+				.button-msg {
+					position: relative;
+				}
+					.nbMsg {
+						position: absolute;
+						right: -5px;
+						top: -5px;
+						width: 20px;
+						height: 20px;
+						line-height: 20px;
+						border-radius: 20px;
+						background-color: red;
+					}
+			#list-info {
+				font-size: 14px;
+			}
+			ul#list-info {
+				min-height: auto;
+				max-height: 130px;
+				overflow: auto;
+			}
+			#list-info > li {
+				
+			}
+				.col-item h4 {
+					text-align: center;
+
+				}
+			
+
+				
+			.card-col.card-form {
+			flex-grow: 1;
+			}
+				.card-form div {
+					padding: 10px 0;
+				}
+
+				.card-form label {
+					display: inline-block;
+					width: 80px;
+				}
+				.card-form input {
+					height: 40px;
+					min-width: 230px;
+					border: none;
+					border-radius: 5px;
+					padding: 10px;
+				}
+				.card-form textarea {
+					border: none;
+					width: 320px;
+					margin-top: 10px;
+					border-radius: 5px;
+					padding: 10px;
+				}
+				.card-form .submit { 
+					text-align: center;
+				}
+
+	.pop-messagerieOeuvre {
+		margin-top: -250px;
+		height: auto;
+		width: 400px;
+	}
+
+		.card-msg {
+			overflow: auto;
+			max-height: 300px;
+		}
+			.message {
+				width: 90%;
+				margin: 20px;
+				border-radius: 7px;	
+				background-color: #fff;
+
+			}
+				.message-header {
+					padding: 5px 0;
+					font-weight: bold;
+					background-color: #ddd;
+				}
+				.message-content {
+					padding: 20px;
+				}
+				.newMsg {
+					border-top: 4px solid #ccc;
+					display: block;
+					padding: 20px;
+					width: 100%;
+				}
+			
+
+	.deleteCard {
+		position: absolute;
+		font-size: 2em;
+		color: #333;
+		bottom: 20px;
+		right: 20px;
+		text-align: center;
+	}
+		.deleteCard span {
+			font-size: 12px;
+			display: block;
+			padding-left: 5px;
+		}
+	.deleteCard:hover {
+		cursor: pointer;
+	}
+
+
 /*<<<<<<<<<<<<<<<<< MEDIA QUERIES >>>>>>>>>>>>*/
 
 @media all and (max-width: 800px) {
@@ -800,10 +933,13 @@ form.adminForm, form.expoForm {
 	.down-content {
 		/*margin-top: 20px;*/
 	}
+	.context-menu {
+		top: -70px;
+	}
 }
 
 
-@media all and (min-width: 1450px) {
+@media all and (min-width: 1200px) {
 	
 	.container {
 		width: 90%;
@@ -858,5 +994,10 @@ form.adminForm, form.expoForm {
 		.plan {
 			width: 97%;
 		}
+
+		.context-menu {
+			top: -120px;
+		}
 	
 }
+

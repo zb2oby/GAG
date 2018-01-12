@@ -168,6 +168,15 @@ $oeuvre = $managerOeuvre->infoOeuvre($idOeuvre);
 						}
 						 ?>
 					</div>
+					<?php 
+							if (isset($_GET['idUser'])) {
+								$idUser = $_SESSION['idUser'];
+								$managerUser = new UtilisateurManager($bdd);
+								$user = $managerUser->infoUtilisateur($idUser);
+								$nomUser = $user->getNom();
+							}
+							
+					 ?>
 					 <div class="newMsg">
 						 <form action="action="../modules/traitementOeuvre.php" data-idOeuvre="<?php echo $oeuvre->getIdOeuvre() ?>" method="GET">
 						 	<div>
@@ -175,8 +184,9 @@ $oeuvre = $managerOeuvre->infoOeuvre($idOeuvre);
 						 		<textarea name="newMsg" id="newMsg" cols="40" rows="4" placeholder="Ici votre message"></textarea>
 						 	</div>
 						 	
-						 	<input type="hidden" name="idOeuvre" value="<?php echo $oeuvre->getIdOeuvre(); ?>">
-							
+						 	<input type="hidden" name="idUser" id="idUser" value="<?php if(isset($_SESSION['idUser'])){echo $_SESSION['idUser'];} ?>">
+							<input type="hidden" name="dateMsg" id="dateMsg" value="<?php date('d/m/Y'); ?>">
+							<input type="hidden" name="nomUser" id="nomUser" value="<?php $nomUser; ?>">
 							<div>
 								<button type="submit">Envoyer</button>
 							</div>

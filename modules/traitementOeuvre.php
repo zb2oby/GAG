@@ -32,6 +32,15 @@ if (isset($_GET['idOeuvre'])) {
 		$oeuvre->setIdArtiste($idArtiste);
 		$oeuvre->setIdCollectif($idCollectif);
 	}
+
+	if (isset($_GET['message'], $_GET['dateMsg'], $_GET['idUser'])) {
+		$message = htmlentities($_GET['message']);
+		$dateMsg = htmlentities($_GET['dateMsg']);
+		$idUser = htmlentities($_GET['isUser']);
+		$manager = new MessageManager($bdd);
+		$message = new Message(['dateMessage'=>$dateMsg, 'message'=>$message, 'idUtilisateur'=>$idUser]);
+		$manager->addMessage($message);
+	}
 	
 	$managerOeuvre->updateOeuvre($oeuvre);
 }

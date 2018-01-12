@@ -29,8 +29,15 @@ jQuery(document).ready(function($) {
 		var nomArtiste = $(event.target).find('#idArtiste option:selected').text();
 		var nomCollectif = $(event.target).find('#idCollectif option:selected').text();
 		var message = $(event.target).find('#newMsg').val();
+		var dateMsg = $(event.target).find('#dateMsg').val();
+		var idUser = $(event.target).find('#idUser').val();
+		var nomUser = $(event.target).find('#nomUser').val();
 
-		if (true) {}
+
+		if (typeof message != 'undefined' || typeof dateMsg != 'undefined' || typeof idUser != 'undefined' ) {
+			var data = 'idOeuvre=' + idOeuvre + '&message=' + message + '&dateMsg=' + dateMsg + '&idUser=' + idUser;
+			$(event.target).closest('.context-menu').find('.card-msg').append('<div class="message"><div class="message-header"> Message de '+nomUser+' Le '+dateMsg+'</div><div class="message-content">'+message+'</div></div>');
+		}
 
 		if (typeof idArtiste != 'undefined' || typeof idCollectif != 'undefined') {
 			$(event.target).closest('.context-menu').find('#afficheArtiste').html('Artiste : '+nomArtiste);
