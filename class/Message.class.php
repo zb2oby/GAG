@@ -64,16 +64,16 @@ class Message {
 	public function getIdUtilisateur () {
 		return $this->_idUtilisateur;
 	}
-	public function getIdOeuvre($idOeuvre) {
+	public function getIdOeuvre() {
 		return $this->_idOeuvre;
 	}
-	public function getIdArtiste($idArtiste) {
+	public function getIdArtiste() {
 		return $this->_idArtiste;
 	}
-	public function getIdExpo($idExpo) {
+	public function getIdExpo() {
 		return $this->_idExpo;
 	}
-	public function getIdCollectif($idCollectif) {
+	public function getIdCollectif() {
 		return $this->_idCollectif;
 	}
 }

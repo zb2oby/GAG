@@ -28,15 +28,22 @@ jQuery(document).ready(function($) {
 		var idCollectif = $(event.target).find('#idCollectif').val();
 		var nomArtiste = $(event.target).find('#idArtiste option:selected').text();
 		var nomCollectif = $(event.target).find('#idCollectif option:selected').text();
+		
 		var message = $(event.target).find('#newMsg').val();
 		var dateMsg = $(event.target).find('#dateMsg').val();
 		var idUser = $(event.target).find('#idUser').val();
 		var nomUser = $(event.target).find('#nomUser').val();
-
+		var nbMsg = parseInt($(event.target).closest('.card-action').find('.nbMsg').text());
+		
 
 		if (typeof message != 'undefined' || typeof dateMsg != 'undefined' || typeof idUser != 'undefined' ) {
+			var dateFormat = dateMsg.split('-');
+			var newDate = dateFormat[2]+'/'+dateFormat[1]+'/'+dateFormat[0];
 			var data = 'idOeuvre=' + idOeuvre + '&message=' + message + '&dateMsg=' + dateMsg + '&idUser=' + idUser;
-			$(event.target).closest('.context-menu').find('.card-msg').append('<div class="message"><div class="message-header"> Message de '+nomUser+' Le '+dateMsg+'</div><div class="message-content">'+message+'</div></div>');
+			$(event.target).closest('.context-menu').find('.card-msg').prepend('<div class="message"><div class="message-header"> Message de '+nomUser+' Le '+newDate+'</div><div class="message-content">'+message+'</div></div>');
+			nbMsg++;
+			$(event.target).closest('.card-action').find('.nbMsg').text(nbMsg);
+			$(event.target).find('#newMsg').val('');
 		}
 
 		if (typeof idArtiste != 'undefined' || typeof idCollectif != 'undefined') {

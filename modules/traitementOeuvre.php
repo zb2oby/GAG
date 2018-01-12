@@ -3,6 +3,8 @@ include('../class/OeuvreManager.class.php');
 include('../class/Oeuvre.class.php');
 include('../class/OeuvreExposeeManager.class.php');
 include('../class/OeuvreExposee.class.php');
+include('../class/MessageManager.class.php');
+include('../class/Message.class.php');
 include('../includes/bdd/connectbdd.php');
 if (isset($_GET['idOeuvre'])) {
 	$idOeuvre = $_GET['idOeuvre'];
@@ -34,12 +36,12 @@ if (isset($_GET['idOeuvre'])) {
 	}
 
 	if (isset($_GET['message'], $_GET['dateMsg'], $_GET['idUser'])) {
-		$message = htmlentities($_GET['message']);
+		$contenu = htmlentities($_GET['message']);
 		$dateMsg = htmlentities($_GET['dateMsg']);
-		$idUser = htmlentities($_GET['isUser']);
+		$idUser = htmlentities($_GET['idUser']);
 		$manager = new MessageManager($bdd);
-		$message = new Message(['dateMessage'=>$dateMsg, 'message'=>$message, 'idUtilisateur'=>$idUser]);
-		$manager->addMessage($message);
+		$message = new Message(['dateMessage'=>$dateMsg, 'message'=>$contenu, 'idUtilisateur'=>$idUser, 'idOeuvre'=>$idOeuvre]);
+		$manager->addMessageOeuvre($message);
 	}
 	
 	$managerOeuvre->updateOeuvre($oeuvre);

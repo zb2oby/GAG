@@ -163,13 +163,13 @@ $oeuvre = $managerOeuvre->infoOeuvre($idOeuvre);
 							$idUser = $message->getIdUtilisateur();
 							$managerUser = new UtilisateurManager($bdd);
 							$user = $managerUser->infoUtilisateur($idUser);
-							echo '<div class="message"><div class="message-header"> Message de '.$user->getNom().' Le '.$message->getDateMessage().'</div>';
+							echo '<div class="message"><div class="message-header"> Message de '.$user->getNom().' Le '.date('d/m/Y', strtotime($message->getDateMessage())).'</div>';
 							echo '<div class="message-content">'.$message->getMessage().'</div></div>';
 						}
 						 ?>
 					</div>
 					<?php 
-							if (isset($_GET['idUser'])) {
+							if (isset($_SESSION['idUser'])) {
 								$idUser = $_SESSION['idUser'];
 								$managerUser = new UtilisateurManager($bdd);
 								$user = $managerUser->infoUtilisateur($idUser);
@@ -185,8 +185,8 @@ $oeuvre = $managerOeuvre->infoOeuvre($idOeuvre);
 						 	</div>
 						 	
 						 	<input type="hidden" name="idUser" id="idUser" value="<?php if(isset($_SESSION['idUser'])){echo $_SESSION['idUser'];} ?>">
-							<input type="hidden" name="dateMsg" id="dateMsg" value="<?php date('d/m/Y'); ?>">
-							<input type="hidden" name="nomUser" id="nomUser" value="<?php $nomUser; ?>">
+							<input type="hidden" name="dateMsg" id="dateMsg" value="<?php echo date('Y-m-d'); ?>">
+							<input type="hidden" name="nomUser" id="nomUser" value="<?php echo $nomUser; ?>">
 							<div>
 								<button type="submit">Envoyer</button>
 							</div>
