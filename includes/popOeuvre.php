@@ -25,8 +25,9 @@ $oeuvre = $managerOeuvre->infoOeuvre($idOeuvre);
  ?>
 
 <div class="context-menu">
+<div class="closeButton"><i class="ion-android-close"></i></div>
 <div class="context-overlay"></div>
-	<i class="closeButton ion-android-close"></i>
+	
 	<div class="deleteCard"><i class="ion-ios-trash-outline" title="Enlever l'oeuvre de l'exposition"></i><span>Retirer de l'expo</span></div>
 
 	
@@ -38,18 +39,18 @@ $oeuvre = $managerOeuvre->infoOeuvre($idOeuvre);
 			<div class="col-item card-title">
 				<h3>OEUVRE</h3>
 				<h4><?php echo '" '.ucfirst($oeuvre->getTitre()).' "' ?></h4>
-				<span>
+				<span id="afficheType">
 					<?php 
 						$idTypeOeuvre = $oeuvre->getIdTypeOeuvre();
 						$typeOeuvre = $managerOeuvre->typeOeuvre($idTypeOeuvre);
 						echo 'Type : '.$typeOeuvre;
 					?>
 				</span>
-				<span> 
+				<span id="afficheDateEntree"> 
 					<?php 
 						$dateEntree = $oeuvreExposee->getDateEntree();
 						if ($dateEntree != '0000-00-00') {
-							echo 'Date d\'entrée : '.$dateEntree;
+							echo 'Date d\'entrée : '.date('d/m/Y', strtotime($dateEntree));
 						}
 						 
 					?>
@@ -60,7 +61,7 @@ $oeuvre = $managerOeuvre->infoOeuvre($idOeuvre);
 				<img src="../img/oeuvres/qrCode/<?php echo $oeuvre->getQrcode(); ?>" alt="">
 			</div>
 			<div class="cardHeader-bottom">
-				
+				<span id="afficheArtiste">
 					<?php 
 						$idArtiste = $oeuvre->getIdArtiste();
 						$managerArtiste = new ArtisteManager($bdd);
@@ -72,9 +73,9 @@ $oeuvre = $managerOeuvre->infoOeuvre($idOeuvre);
 						
 						 
 					?>
-					
+				</span>	
 				
-				 
+				<span id="afficheCollectif">
 					<?php 
 						$idCollectif = $oeuvre->getIdCollectif();
 						$managerCollectif = new CollectifManager($bdd);
@@ -86,7 +87,7 @@ $oeuvre = $managerOeuvre->infoOeuvre($idOeuvre);
 						
 						 
 					?>
-					
+				</span>	
 				
 			</div>
 		</div>
@@ -201,48 +202,109 @@ $oeuvre = $managerOeuvre->infoOeuvre($idOeuvre);
 		</div>
 		
 	<div class="card-form pop-modifDateEntree popGestionCard">
-		<i class="closeButton-context ion-android-close"></i>
-		<form action="../modules/traitementOeuvre.php" method="GET">
-			<label for="dateEntree">Date d'entrée dans l'expo</label>
-			<input type="date" id="dateEntree" name="dateEntree" value="<?php echo $dateEntree; ?>">
-			<button type="submit">Modifier</button>
+		<div class="closeButton"><i class="ion-android-close"></i></div>
+		<form id="dateEntree-form" action="../modules/traitementOeuvre.php" data-idOeuvreExposee="<?php echo $idOeuvreExposee ?>" method="GET">
+			<div>
+				<label for="dateEntree">Date d'entrée dans l'expo</label>
+				<input type="date" id="dateEntree" name="dateEntree" value="<?php echo $dateEntree; ?>">
+			</div>
+			<div class="submit">
+				<button type="submit">Modifier</button>
+			</div>
+			
 		</form>
 	</div>
 	<div class="card-form pop-modifImageOeuvre popGestionCard">
-		<i class="closeButton-context ion-android-close"></i>
-		<form action="../modules/traitementOeuvre.php" method="GET">
-			<label for="type">Choisir image</label>
-			<input type="file" id="type" name="type" value="<?php echo $oeuvre->getImage(); ?>">
-			<button type="submit">Enregistrer</button>
+		<div class="closeButton"><i class="ion-android-close"></i></div>
+		<form action="../modules/traitementOeuvre.php" data-idOeuvre="<?php echo $oeuvre->getIdOeuvre() ?>" method="GET">
+			<div>
+				<label for="type">Choisir image</label>
+				<input type="file" id="type" name="type" value="<?php echo $oeuvre->getImage(); ?>">
+			</div>
+			<div class="submit">
+				<button type="submit">Enregistrer</button>
+			</div>
 		</form>
 	</div>
 	<div class="card-form pop-modifTypeOeuvre popGestionCard">
-		<i class="closeButton-context ion-android-close"></i>
-		<form action="../modules/traitementOeuvre.php" method="GET">
-			<label for="type">Type d'oeuvre</label>
-			<input type="text" id="type" name="type" value="<?php echo $typeOeuvre; ?>">
-			<button type="submit">Modifier</button>
+		<div class="closeButton"><i class="ion-android-close"></i></div>
+		<form action="../modules/traitementOeuvre.php" data-idOeuvre="<?php echo $oeuvre->getIdOeuvre() ?>" method="GET">
+			<div>
+				<label for="idType">Type d'oeuvre</label>
+				<select name="idType" id="idType">
+					<?php 
+						$listType = $managerOeuvre->listTypeOeuvre();
+						foreach ($listType as $id => $libelle) {
+							if ($libelle == $typeOeuvre) {
+								$selected = 'selected';
+							}else{
+								$selected = "";
+							}
+							echo '<option '.$selected.' value="'.$id.'"><span data-libelleType="'.$libelle.'">'.$libelle.'</span></option>';
+						}
+
+					 ?>
+				</select>
+			</div>
+			<div class="submit">
+				<button type="submit">Modifier</button>
+			</div>
 		</form>
 	</div>
 	<div class="card-form pop-modifArtColl popGestionCard">
-		<i class="closeButton-context ion-android-close"></i>
-		<form action="../modules/traitementOeuvre.php" method="GET">
-			<label for="nom">nom</label>
-			<input type="text" id="nom" name="nom" value="<?php echo $nomArtiste; ?>">
-			<label for="prenom">Prenom</label>
-			<input type="text" id="prenom" name="prenom" value="<?php echo $prenomArtiste; ?>">
-			<label for="collectif">Nom Collectif</label>
-			<input type="text" id="collectif" name="collectif" value="<?php if(isset($nomCollectif)){echo $nomCollectif;} ?>">
-			<button type="submit">Modifier</button>
+		<div class="closeButton"><i class="ion-android-close"></i></div>
+		<form action="../modules/traitementOeuvre.php" data-idOeuvre="<?php echo $oeuvre->getIdOeuvre() ?>" method="GET">
+			<div>
+				<label for="idArtiste">Artiste</label>
+				<select name="idArtiste" id="idArtiste">
+					<?php 
+						$listArtiste = $managerArtiste->listArtiste();
+						foreach ($listArtiste as $artiste) {
+							if ($artiste->getIdArtiste() == $idArtiste) {
+								$selected = 'selected';
+							}else{
+								$selected = "";
+							}
+							echo '<option '.$selected.' value="'.$artiste->getIdArtiste().'"><span data-nomArtiste="'.$artiste->getNom().'" data-prenomArtiste="'.$artiste->getPrenom().'">'.$artiste->getPrenom().' '.$artiste->getNom().'</span></option>';
+						}
+
+					 ?>
+				</select>
+			</div>
+			<div>
+				<label for="idCollectif">Collectif</label>
+				<select name="idCollectif" id="idCollectif">
+					<?php 
+						$listCollectif = $managerCollectif->listCollectif();
+						foreach ($listCollectif as $collectif) {
+							if ($collectif->getIdCollectif() == $idCollectif) {
+								$selected = 'selected';
+							}else{
+								$selected = "";
+							}
+							echo '<option '.$selected.' value="'.$collectif->getIdCollectif().'"><span data-libelleCollectif="'.$collectif->getLibelleCollectif().'">'.$collectif->getLibelleCollectif().'</span></option>';
+						}
+
+					 ?>
+				</select>
+			</div>
+			<div class="submit">
+				<button type="submit">Modifier</button>
+			</div>
 		</form>
 	</div>
 	<div class="card-form pop-delOeuvre popGestionCard">
-		<i class="closeButton-context ion-android-close"></i>
-		<form action="../modules/traitementOeuvre.php" method="GET">
-			<label for="idOeuvre">Voulez vous supprimer definitvement cette oeuvre ?</label>
-			<input type="hidden" id="idOeuvre" name="idOeuvre" value="<?php echo $idOeuvre; ?>">
-			<button type="submit">Supprimer</button>
-			<button>Annuler</button>
+		<div class="closeButton"><i class="ion-android-close"></i></div>
+		<form action="../modules/traitementOeuvre.php" data-idOeuvre="<?php echo $oeuvre->getIdOeuvre() ?>" method="GET">
+			<div>
+				<label for="idOeuvre">Voulez vous supprimer definitvement cette oeuvre ?</label>
+				<input type="hidden" id="idOeuvre" name="idOeuvre" value="<?php echo $idOeuvre; ?>">
+			</div>
+			<div class="submit">
+				<button type="submit">Supprimer</button>
+				<button>Annuler</button>
+			</div>
+			
 		</form>
 	</div>
 </div>

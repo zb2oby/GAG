@@ -104,7 +104,7 @@ class OeuvreExposeeManager {
                             .'<img src="../img/oeuvres/'.$oeuvre->getImage().'" alt="'.$oeuvre->getImage().'">'
                         .'</div>'
                     .'</div>';
-                    include('../includes/carteOeuvre.php');
+                    include('../includes/popOeuvre.php');
                     // .'<div class="context-menu">'
                     //     .'<i class="closeButton ion-android-close"></i>'
                     //     .'<i class="deleteCard ion-ios-trash-outline"></i>'

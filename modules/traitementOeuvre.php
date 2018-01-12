@@ -1,25 +1,57 @@
 <?php 
 include('../class/OeuvreManager.class.php');
 include('../class/Oeuvre.class.php');
+include('../class/OeuvreExposeeManager.class.php');
+include('../class/OeuvreExposee.class.php');
 include('../includes/bdd/connectbdd.php');
 if (isset($_GET['idOeuvre'])) {
 	$idOeuvre = $_GET['idOeuvre'];
-	$titre = $_GET['titre'];
-	$longueur = $_GET['longueur'];
-	$hauteur = $_GET['hauteur'];
-	$etat = $_GET['etat'];
-	$descriptif = $_GET['descriptif'];
-
-	// $oeuvre = new Oeuvre(['idOeuvre'=>$idOeuvre, 'titre'=>$titre, 'longueur'=>$longueur, 'hauteur'=>$hauteur, 'etat'=>$etat, 'descriptif' => $descriptif]);
 	$managerOeuvre = new OeuvreManager($bdd);
 	$oeuvre = $managerOeuvre->infoOeuvre($idOeuvre);
-	$oeuvre->setTitre($titre);
-	$oeuvre->setLongueur($longueur);
-	$oeuvre->setHauteur($hauteur);
-	$oeuvre->setEtat($etat);
-	$oeuvre->setDescriptifFR($descriptif);
+
+	if (isset($_GET['etat'],$_GET['titre'],$_GET['longueur'],$_GET['hauteur'],$_GET['descriptif'])) {
+		$titre = $_GET['titre'];
+		$longueur = $_GET['longueur'];
+		$hauteur = $_GET['hauteur'];
+		$etat = $_GET['etat'];
+		$descriptif = $_GET['descriptif'];
+
+		$oeuvre->setTitre($titre);
+		$oeuvre->setLongueur($longueur);
+		$oeuvre->setHauteur($hauteur);
+		$oeuvre->setEtat($etat);
+		$oeuvre->setDescriptifFR($descriptif);
+	}
+	if (isset($_GET['idTypeOeuvre'])) {
+		$idTypeOeuvre = htmlentities($_GET['idTypeOeuvre']);
+		$oeuvre->setIdTypeOeuvre($idTypeOeuvre);
+	}
+	if (isset($_GET['idArtiste'], $_GET['idCollectif'])) {
+		$idArtiste = htmlentities($_GET['idArtiste']);
+		$idCollectif = htmlentities($_GET['idCollectif']);
+		$oeuvre->setIdArtiste($idArtiste);
+		$oeuvre->setIdCollectif($idCollectif);
+	}
+	
 	$managerOeuvre->updateOeuvre($oeuvre);
 }
+
+
+
+
+
+if (isset($_GET['idOeuvreExposee'])) {
+	$idOeuvreExposee = htmlentities($_GET['idOeuvreExposee']);
+	$manager = new OeuvreExposeeManager($bdd);
+	$oeuvreExposee = $manager->oeuvreexposee($idOeuvreExposee);
+
+	if (isset($_GET['dateEntree'])) {
+		$dateEntree = htmlentities($_GET['dateEntree']);
+		$oeuvreExposee->setDateEntree($dateEntree);
+		$manager->updateOeuvreExposee($oeuvreExposee);
+	}
+}
+
 
 
 

@@ -16,6 +16,61 @@ jQuery(document).ready(function($) {
 		$(this).parent().hide();
 		$('.context-overlay').hide()
 	});
+
+
+	$('.popGestionCard form').submit(function(event) {
+		var idOeuvre = $(event.target).data('idoeuvre');
+		var idOeuvreExposee = $(event.target).data('idoeuvreexposee');
+		var dateEntree = $(event.target).find('#dateEntree').val();
+		var idTypeOeuvre = $(event.target).find('#idType').val();
+		var typeOeuvre = $(event.target).find('#idType option:selected').text();
+		var idArtiste = $(event.target).find('#idArtiste').val();
+		var idCollectif = $(event.target).find('#idCollectif').val();
+		var nomArtiste = $(event.target).find('#idArtiste option:selected').text();
+		var nomCollectif = $(event.target).find('#idCollectif option:selected').text();
+
+		if (typeof idArtiste != 'undefined' || typeof idCollectif != 'undefined') {
+			$(event.target).closest('.context-menu').find('#afficheArtiste').html('Artiste : '+nomArtiste);
+			$(event.target).closest('.context-menu').find('#afficheCollectif').html('Collectif : '+nomCollectif);
+			var data = 'idArtiste=' + idArtiste + '&idCollectif=' + idCollectif + '&idOeuvre=' + idOeuvre;
+		}
+
+
+		if (typeof idTypeOeuvre != "undefined") {
+			var data = 'idTypeOeuvre=' + idTypeOeuvre + '&idOeuvre=' + idOeuvre;
+			
+		}
+
+		if (typeof idOeuvreExposee != "undefined" || typeof dateEntree != "undefined") {
+			var dateFormat = dateEntree.split('-');
+			var newDate = dateFormat[2]+'/'+dateFormat[1]+'/'+dateFormat[0];
+			$(event.target).closest('.context-menu').find('#afficheDateEntree').html('Date d\'entrée : '+newDate);
+			var data = 'idOeuvreExposee=' + idOeuvreExposee + '&dateEntree=' + dateEntree;
+		}
+			
+
+		$.ajax({
+				url: '../modules/traitementOeuvre.php',
+				type: 'GET',
+				dataType: 'html',
+				data: data,
+			})
+			.done(function() {
+				console.log("success");
+			})
+			.fail(function() {
+				console.log("error");
+			})
+			.always(function() {
+				console.log("complete");
+			});
+			
+		
+		return false;
+
+	});
+
+
 //A REECRIRE AVEC DES EVENT TARGET AU LIEU D'ID DEGEULASSE
 	var formId;
 	$('.submit-oeuvre').click(function(event) {

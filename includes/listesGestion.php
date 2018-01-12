@@ -9,7 +9,7 @@ include('../modules/traitementEmplacement.php');
 	<button class="cancelButton">Oula tout cela va bien trop vite</button>
 </div>
 <div class="popAddCard">
-	<i class="closeButton ion-android-close"></i>
+	<div class="closeButton"><i class="ion-android-close"></i></div>
 	<form class="addCardForm" action="../modules/traitementListes.php" method="GET">
 		<label for="oeuvre">Oeuvres disponibles pour les artistes choisis</label>
 		<select name="idOeuvre" id="oeuvre">
@@ -31,7 +31,7 @@ include('../modules/traitementEmplacement.php');
 		<span>L'oeuvre n'existe pas encore ? <a class="creerOeuvre" href="#">Creer une nouvelle oeuvre</a></span>
 </div>
 <div class="popAddRecue">
-	<i class="closeButton ion-android-close"></i>
+	<div class="closeButton"><i class="ion-android-close"></i></div>
 	<form class="addCardForm" action="../modules/traitementListes.php" method="GET">
 		<label for="oeuvre">Oeuvres disponibles pour les artistes choisis</label>
 		<select name="idOeuvre" id="oeuvre">
@@ -55,7 +55,7 @@ include('../modules/traitementEmplacement.php');
 		<span>L'oeuvre n'existe pas encore ? <a class="creerOeuvre" href="#">Creer une nouvelle oeuvre</a></span>
 </div>
 <div class="popAddArtiste">
-	<i class="closeButton ion-android-close"></i>
+	<div class="closeButton"><i class="ion-android-close"></i></div>
 	<form class="addCardForm" action="../modules/traitementListes.php" method="GET">
 		<label for="artiste">Artiste présents dans notre base</label>
 		<select name="idArtiste" id="artiste">

@@ -356,8 +356,8 @@ function deleteElt(target) {
     });
 
 	//EXTINCTION DES POPUP
-	$('.closeButton').click(function(event) {
-		$(event.target).parent().css('display', 'none');
+	$('.closeButton i').click(function(event) {
+		$(event.target).parent().parent().css('display', 'none');
 		$('.confirmPopup').css('display', 'none');
 		$('.overlay').hide();
 	});

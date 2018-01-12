@@ -75,4 +75,18 @@ class OeuvreManager {
         return $data['libelleTypeOeuvre'];
     }
 
+    //recupere la liste des types d'oeuvre existants
+    public function listTypeOeuvre() {
+       $list = [];
+        $q= $this->_db->query("SELECT idTypeOeuvre, libelleTypeOeuvre FROM Type_oeuvre");
+        while ($data = $q->fetch()) {
+            $id = $data['idTypeOeuvre'];
+            $libelle = $data['libelleTypeOeuvre'];
+            $list[$id] = $libelle;
+        }
+        return $list;
+      
+    }
+
+
 }

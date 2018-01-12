@@ -39,6 +39,15 @@ class CollectifManager {
 
     }
 
+    public function listCollectif() {
+        $list = [];
+        $q=$this->_db->query("SELECT * FROM Collectif");
+        while ($data = $q->fetch()) {
+           $list[] = new Collectif($data);
+        }
+        return $list;
+    }
+
     public function infoCollectif($idCollectif) {
         $q = $this->_db->prepare("SELECT * FROM Collectif WHERE idCollectif = :idCollectif");
         $q->bindValue(':idCollectif', $idCollectif);
