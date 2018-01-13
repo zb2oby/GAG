@@ -14,7 +14,12 @@ jQuery(document).ready(function($) {
 
 	$('.closeButton-context').click(function(event) {
 		$(this).parent().hide();
-		$('.context-overlay').hide()
+		$('.context-overlay').hide();
+	});
+
+	$('.cancelButton').click(function(event) {
+		$(this).parent().parent().parent().hide();
+		$('.context-overlay').hide();
 	});
 
 
@@ -28,12 +33,21 @@ jQuery(document).ready(function($) {
 		var idCollectif = $(event.target).find('#idCollectif').val();
 		var nomArtiste = $(event.target).find('#idArtiste option:selected').text();
 		var nomCollectif = $(event.target).find('#idCollectif option:selected').text();
+
+		var fileImage = $(event.target).find('#imageOeuvre').val();
+		var maxSize = $(event.target).find('#maxSize').val();
+		var existImage = $(event.target).find('#existImage').val();
 		
 		var message = $(event.target).find('#newMsg').val();
 		var dateMsg = $(event.target).find('#dateMsg').val();
 		var idUser = $(event.target).find('#idUser').val();
 		var nomUser = $(event.target).find('#nomUser').val();
 		var nbMsg = parseInt($(event.target).closest('.card-action').find('.nbMsg').text());
+
+
+		if (typeof fileImage != 'undefined') {
+			return true;
+		}
 		
 
 		if (typeof message != 'undefined' || typeof dateMsg != 'undefined' || typeof idUser != 'undefined' ) {

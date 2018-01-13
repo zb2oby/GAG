@@ -79,6 +79,9 @@ button:hover {
 	opacity: 0.7;
 	overflow: auto;
 }
+.overlay:hover {
+	cursor: pointer;
+}
 
 /*<<<<<<<<<<<<<<<<  HEADER >>>>>>>>>>>>>>*/
 header {
@@ -516,6 +519,8 @@ form.adminForm, form.expoForm {
 					float: left;
 					position: relative;
 					z-index: 1;
+					width: 50px;
+					height: 50px;
 				}
 
 				.recue img:hover {
@@ -545,7 +550,7 @@ form.adminForm, form.expoForm {
 	.popAddArtiste span, .popAddArtiste label, .popAddArtiste i, .popAddArtiste span, .popAddCard label, .popAddCard i, .popAddRecue span, .popAddRecue label,.popAddRecue i {
 		color: #fff;
 	}
-	.closeButton {
+	.closeButton, .closeButton-context {
 		position: absolute;
 		z-index: 6;
 		top: -15px;
@@ -562,7 +567,7 @@ form.adminForm, form.expoForm {
 		color: #fff;
 		background-color:#0A2675; 
 	}
-	.closeButton:hover {
+	.closeButton:hover, .closeButton-context:hover {
 		cursor: pointer;
 	}
 	.popAddCard i:hover {
@@ -577,10 +582,12 @@ form.adminForm, form.expoForm {
 	margin-left: -200px;
 	width: 400px;
 	height: 300px;
-	overflow: auto;
+	/*overflow: auto;*/
 	background-color: #ddd;
 	display: none;
 }
+
+	
 .confirmPopup {
 	display: none;
 	position: absolute;
@@ -602,13 +609,16 @@ form.adminForm, form.expoForm {
 .context-overlay {
 	display: none;
 	position: absolute;
-	background-color: #000;
+	background-color: #333;
 	opacity: 0.7;
 	z-index: 4;
 	top: 0;
 	bottom: 0;
 	left: 0;
 	right: 0;
+}
+.context-overlay:hover {
+	cursor: pointer;
 }
 .context-menu {
 	display: none;
@@ -683,7 +693,7 @@ form.adminForm, form.expoForm {
 		/*padding: 20px;*/
 
 	}
-
+	
 		.card-col {
 			display: flex;
 			flex-direction: column-reverse;
@@ -698,6 +708,16 @@ form.adminForm, form.expoForm {
 			.col-item {
 				/*border: 1px solid black;*/
 			}
+
+				.card-image img {
+					width: 100px !important;
+					height: 100px !important;
+				}
+
+				.qr-zone img {
+					width: 100px !important;
+					height: 100px !important;
+				}
 			.card-action #list-button {
 				
 			}
@@ -735,7 +755,7 @@ form.adminForm, form.expoForm {
 			.card-col.card-form {
 			flex-grow: 1;
 			}
-				.card-form div {
+				.card-form form div {
 					padding: 10px 0;
 				}
 
