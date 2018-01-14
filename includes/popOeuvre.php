@@ -25,8 +25,8 @@ $oeuvre = $managerOeuvre->infoOeuvre($idOeuvre);
  ?>
 
 <div class="context-menu">
-<div class="closeButton"><i class="ion-android-close"></i></div>
-<div class="context-overlay"></div>
+	<div class="closeButton"><i class="ion-android-close"></i></div>
+	<div class="context-overlay"></div>
 	
 	<div class="deleteCard"><i class="ion-ios-trash-outline" title="Enlever l'oeuvre de l'exposition"></i><span>Retirer de l'expo</span></div>
 
@@ -137,7 +137,7 @@ $oeuvre = $managerOeuvre->infoOeuvre($idOeuvre);
 						<?php 
 							$listExpo = $manager->listExpoOeuvreExposee($idOeuvre);
 							foreach ($listExpo as $exposition) {
-								echo '<li>'.$exposition->getDateDeb().'<br>Exposition '.$exposition->getTitre().'</li>';
+								echo '<li>'.$exposition->getDateDeb().'<br>Exposition : '.$exposition->getTitre().'</li>';
 							}
 						 ?>
 					</ul>
@@ -187,7 +187,7 @@ $oeuvre = $managerOeuvre->infoOeuvre($idOeuvre);
 						 	<input type="hidden" name="idUser" id="idUser" value="<?php if(isset($_SESSION['idUser'])){echo $_SESSION['idUser'];} ?>">
 							<input type="hidden" name="dateMsg" id="dateMsg" value="<?php echo date('Y-m-d'); ?>">
 							<input type="hidden" name="nomUser" id="nomUser" value="<?php echo $nomUser; ?>">
-							<div>
+							<div class="submit">
 								<button type="submit">Envoyer</button>
 							</div>
 						 	
@@ -323,20 +323,60 @@ $oeuvre = $managerOeuvre->infoOeuvre($idOeuvre);
 	</div>
 
 	<div class="card-form pop-metaData popGestionCard">
+
 		<div class="closeButton-context"><i class="ion-android-close"></i></div>
-		<form action="../modules/traitementOeuvre.php" data-idOeuvre="<?php echo $oeuvre->getIdOeuvre() ?>" method="GET">
+
+		<div class="card-data">
+			<ul>
 			<?php
 				$managerMeta = new DonneeEnrichieManager($bdd);
 				// $listType = $managerMeta->typeDonnee();
-				$listDonnee = $managerMeta->listDonnee($idOeuvre);
+				$listDonnee = $managerMeta->listDonneeOeuvre($idOeuvre);
 				foreach ($listDonnee as $donnee) {
 					$idType = $donnee->getIdTypeDonneEnrichie();
 					$libelleType = $managerMeta->libelleTypeDonnee($idType);
+					$idDonnee = $donnee->getIdDonneeEnrichie();
 
-					echo '<li> Type de donnée : '.$libelleType.' <br>Libellé : '.$donnee->getLibelleDonneeEnrichie().'</li>';
+					echo '<li class="metaData">Type de donnée : '.$libelleType.' <br>Libellé : '.$donnee->getLibelleDonneeEnrichie().'<br><form data-idOeuvre="'.$oeuvre->getIdOeuvre().'" action="../modules/traitementOeuvre.php" method="GET"><input type="hidden" id="req" name="req" value="deleteMeta"><input type="hidden" id="idDonnee" name="idDonnee" value="'.$idDonnee.'"><button type="submit" class="delData"><i class="ion-ios-trash-outline" title="Supprimer"></i></button></form></li>';
 				}
 
+
 			 ?>
-		</form>
+			 </ul>
+		</div>
+		
+			
+		<div class="newData">
+		 	<form action="../modules/traitementOeuvre.php" data-idOeuvre="<?php echo $oeuvre->getIdOeuvre() ?>" method="POST" enctype="multipart/form-data">
+			 	<span>Ajouter un contenu supplémentaire</span>
+			 	<div>
+					 <label for="typeDonnee">Type de donnée</label>
+					 <select name="typeDonnee" id="typeDonnee">
+					 	<option hidden selected value=""></option>
+					 	<?php 
+					 		$listType = $managerMeta->listTypeDonnee();
+					 		foreach ($listType as $id => $libelle) {
+					 			echo '<option value="'.$id.'">'.$libelle.'</option>';
+					 		}
+
+					 	 ?>
+					 </select>
+				 </div>
+				 <div>
+					 <label for="libelleDonnnee">Libélle Donnée</label>
+					 <input type="text" name="libelleDonnee" id="libelleDonnee">
+				 </div>
+				 <div>
+					 <span for="fichierDonnee">Fichier (JPG GIF JPEG PNG MP3 MP4 WAV MPEG| max. 500Ko) </span><br>
+					<input type="file" id="fichierDonnee" name="fichierDonnee[]" accept=".jpg, .jpeg, .gif, .png, .mp3, .mp4, .wav, .mpeg"><br>
+					<input type="hidden" id="maxSize" name="MAX_FILE_SIZE" value="500000">
+					<input type="hidden" id="idOeuvre" name="idOeuvre" value="<?php echo $oeuvre->getIdOeuvre(); ?>">
+				 </div>
+				 <div class="submit">
+				 	<button type="submit">Ajouter</button>
+				 </div>
+			</form> 
+		</div>
+		
 	</div>
 </div>

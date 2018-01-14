@@ -5,6 +5,8 @@ include('../class/OeuvreExposeeManager.class.php');
 include('../class/OeuvreExposee.class.php');
 include('../class/MessageManager.class.php');
 include('../class/Message.class.php');
+include('../class/DonneeEnrichieManager.class.php');
+include('../class/DonneeEnrichie.class.php');
 include('../includes/bdd/connectbdd.php');
 if (isset($_GET['idOeuvre'])) {
 	$idOeuvre = $_GET['idOeuvre'];
@@ -67,8 +69,11 @@ if (isset($_GET['idOeuvreExposee'])) {
 
 
 
-//traitement image
 
+
+
+
+//TRAITEMENT IMAGE OEUVRE ET CONTENU +
 
 		
 if (isset($_POST['idOeuvre'])) {
@@ -76,6 +81,7 @@ if (isset($_POST['idOeuvre'])) {
 	$managerOeuvre = new OeuvreManager($bdd);
 	$oeuvre = $managerOeuvre->infoOeuvre($idOeuvre);
 
+	//traitement image
 	if (isset($_POST['existImage'])) {
 	$nomFichier = $_POST['existImage'];
 	}
@@ -110,6 +116,80 @@ if (isset($_POST['idOeuvre'])) {
 		
 	 }
 
+//traitement contenu +
+	 
+	
+	
+	//test si dossier meta de l'oeuvre existe sinon creation du dossier
+	$dossier = '../meta/oeuvre'.$idOeuvre;
+	if(!is_dir($dossier)){
+	   mkdir($dossier);
+	}
+
+	if (isset($_POST['typeDonnee'])) {
+		$idType = htmlentities($_POST['typeDonnee']);
+	}
+	if (isset($_POST['libelleDonnee'])) {
+		$libelleDonnee = htmlentities($_POST['libelleDonnee']);
+		//on enleve les espace pour le nom de fichier
+		$space = explode(" ", $libelleDonnee);
+		$nomFichier = '';
+		foreach ($space as $key => $value) {
+			$nomFichier .= $value;
+		}
+	}
+
+	if (isset($_FILES['fichierDonnee']) && ($_FILES['fichierDonnee']['name'][0] != NULL)) {
+		$name = $_FILES['fichierDonnee']['name'][0];
+		
+		if (htmlentities(isset($_POST['MAX_FILE_SIZE'])) && $_POST['MAX_FILE_SIZE'] == '500000') {
+			$maxsize = (int)$_POST['MAX_FILE_SIZE'];
+			if ($_FILES['fichierDonnee']['error'][0] > 0) $erreur = "Erreur lors du transfert";
+			if ($_FILES['fichierDonnee']['size'][0] > $maxsize) {$erreur = "Le fichier est trop gros";}
+			
+			$extensions_valides = array( 'jpg' , 'jpeg' , 'gif' , 'png', 'mp3', 'mp4', 'wav', 'mpeg');
+			$extension_upload = strtolower(  substr(  strrchr($name, '.')  ,1)  );
+			if ( in_array($extension_upload,$extensions_valides) ) echo "Extension correcte";
+			$cheminFichier = "../meta/oeuvre{$idOeuvre}/{$nomFichier}.{$extension_upload}";
+			//suppression des fichiers existants
+			$file = "../meta/oeuvre{$idOeuvre}/{$nomFichier}.{$extension_upload}";
+			if (file_exists($file)) {
+				unlink($file);
+			}
+			$resultat = move_uploaded_file($_FILES['fichierDonnee']['tmp_name'][0],$cheminFichier);
+			if ($resultat) echo "Transfert réussi";
+			$nomFichier = $nomFichier.'.'.$extension_upload;
+			//mise a jour de la base
+			$donnee = new DonneeEnrichie(['urlFichier'=>$nomFichier, 'libelleDonneeEnrichie'=>$libelleDonnee, 'idTypeDonneEnrichie'=>$idType, 'idOeuvre'=>$idOeuvre]);
+			$managerMeta = new DonneeEnrichieManager($bdd);
+			$managerMeta->addDonnee($donnee);
+			
+			header('location: ../content/gestionPanel.php');
+			
+	 	}
+		
+	 }
+
+
 }
+
+
+//suppression contenu +
+if (isset($_GET['req'], $_GET['idOeuvre']) && $_GET['req'] == 'deleteMeta') {
+	$idOeuvre = $_GET['idOeuvre'];
+ 	$managerMeta = new DonneeEnrichieManager($bdd);
+ 	if (isset($_GET['idDonnee'])) {
+ 		$idDonnee = $_GET['idDonnee'];
+ 		$donnee = $managerMeta->infoDonnee($idDonnee);
+ 		$nomFichier = $donnee->getUrlFichier();
+ 		$file = "../meta/oeuvre".$idOeuvre."/".$nomFichier;
+ 		if (file_exists($file)) {
+			unlink($file);
+		}
+		$managerMeta->deleteDonnee($donnee);
+ 	}
+	
+}	
+
 
  ?>

@@ -624,7 +624,7 @@ form.adminForm, form.expoForm {
 	display: none;
 	position: absolute;
 	left: 50%;
-	top: -120px;
+	top: -110px;
 	margin-left: -300px;
 	z-index: 3;
 	width: 600px;
@@ -755,7 +755,7 @@ form.adminForm, form.expoForm {
 			.card-col.card-form {
 			flex-grow: 1;
 			}
-				.card-form form div {
+				.card-form .form-oeuvre div {
 					padding: 10px 0;
 				}
 
@@ -791,11 +791,13 @@ form.adminForm, form.expoForm {
 			overflow: auto;
 			max-height: 300px;
 		}
+
 			.message {
 				width: 90%;
 				margin: 20px;
 				border-radius: 7px;	
 				background-color: #fff;
+				box-shadow: 0 3px 0 #ccc;
 
 			}
 				.message-header {
@@ -803,16 +805,61 @@ form.adminForm, form.expoForm {
 					font-weight: bold;
 					background-color: #ddd;
 				}
+
 				.message-content {
 					padding: 20px;
 				}
+
 				.newMsg {
 					border-top: 4px solid #ccc;
 					display: block;
 					padding: 20px;
 					width: 100%;
 				}
-			
+
+	.pop-metaData {
+		margin-top: -250px;
+		height: auto;
+		width: 400px;
+	}	
+
+		.card-data {
+			overflow: auto;
+			max-height: 300px;
+			padding: 10px;
+		}
+			.card-data ul {
+				overflow: hidden;
+				padding: 0;
+				margin: 0;
+			}
+			li.metaData {
+				position: relative;
+				display: block;
+				padding: 20px 0;
+				border-bottom: 2px solid #ccc;
+			}
+
+			button.delData {
+				position: absolute;
+				right: 10px;
+				top: 25%;
+				min-width: 48px;
+				margin-top: 5px;
+				font-size: 24px;
+			}
+
+		.newData {
+			border-top: 4px solid #ccc;
+			padding: 20px;
+		}
+			.newData span {
+				display: block;
+				text-align: center;
+				padding: 10px;
+			}
+
+
 
 	.deleteCard {
 		position: absolute;
@@ -1016,7 +1063,7 @@ form.adminForm, form.expoForm {
 		}
 
 		.context-menu {
-			top: -120px;
+			top: -110px;
 		}
 	
 }

@@ -44,6 +44,21 @@ jQuery(document).ready(function($) {
 		var nomUser = $(event.target).find('#nomUser').val();
 		var nbMsg = parseInt($(event.target).closest('.card-action').find('.nbMsg').text());
 
+		var fichierDonnee = $(event.target).find('#fichierDonnee').val();
+
+		var idDonnee = $(event.target).find('#idDonnee').val();
+		console.log(idDonnee);
+		var delDonnee = $(event.target).find('#req').val();
+
+		if (typeof idDonnee != 'undefined' || typeof delDonnee != 'undefined') {
+			var data = 'idDonnee=' + idDonnee + '&req=' + delDonnee + '&idOeuvre=' + idOeuvre;
+			$(event.target).parent().remove();
+		}
+
+
+		if (typeof fichierDonnee != 'undefined') {
+			return true;
+		}
 
 		if (typeof fileImage != 'undefined') {
 			return true;
