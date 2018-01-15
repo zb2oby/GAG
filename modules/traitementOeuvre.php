@@ -149,7 +149,7 @@ if (isset($_POST['idOeuvre'])) {
 			
 			$extensions_valides = array( 'jpg' , 'jpeg' , 'gif' , 'png', 'mp3', 'mp4', 'wav', 'mpeg');
 			$extension_upload = strtolower(  substr(  strrchr($name, '.')  ,1)  );
-			if ( in_array($extension_upload,$extensions_valides) ) echo "Extension correcte";
+			// if ( in_array($extension_upload,$extensions_valides) ) echo "Extension correcte";
 			$cheminFichier = "../meta/oeuvre{$idOeuvre}/{$nomFichier}.{$extension_upload}";
 			//suppression des fichiers existants
 			$file = "../meta/oeuvre{$idOeuvre}/{$nomFichier}.{$extension_upload}";
@@ -157,14 +157,17 @@ if (isset($_POST['idOeuvre'])) {
 				unlink($file);
 			}
 			$resultat = move_uploaded_file($_FILES['fichierDonnee']['tmp_name'][0],$cheminFichier);
-			if ($resultat) echo "Transfert réussi";
+			// if ($resultat) echo "Transfert réussi";
 			$nomFichier = $nomFichier.'.'.$extension_upload;
 			//mise a jour de la base
 			$donnee = new DonneeEnrichie(['urlFichier'=>$nomFichier, 'libelleDonneeEnrichie'=>$libelleDonnee, 'idTypeDonneEnrichie'=>$idType, 'idOeuvre'=>$idOeuvre]);
 			$managerMeta = new DonneeEnrichieManager($bdd);
 			$managerMeta->addDonnee($donnee);
 			
-			header('location: ../content/gestionPanel.php');
+			//recuperation de l'id du dernier ajout en base pour l'affichage ajax
+			$lastId = $managerMeta->getLastDonnee();
+			echo $lastId;
+			// header('location: ../content/gestionPanel.php');
 			
 	 	}
 		

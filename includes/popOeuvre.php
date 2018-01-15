@@ -51,9 +51,12 @@ $oeuvre = $managerOeuvre->infoOeuvre($idOeuvre);
 						$dateEntree = $oeuvreExposee->getDateEntree();
 						if ($dateEntree != '0000-00-00') {
 							echo 'Date d\'entrée : '.date('d/m/Y', strtotime($dateEntree));
+						}else{
+							$dateEntree = '';
 						}
 						 
 					?>
+						
 					
 				</span>
 			</div>
@@ -335,9 +338,9 @@ $oeuvre = $managerOeuvre->infoOeuvre($idOeuvre);
 				foreach ($listDonnee as $donnee) {
 					$idType = $donnee->getIdTypeDonneEnrichie();
 					$libelleType = $managerMeta->libelleTypeDonnee($idType);
-					$idDonnee = $donnee->getIdDonneeEnrichie();
+					$idDonneeDeleted = $donnee->getIdDonneeEnrichie();
 
-					echo '<li class="metaData">Type de donnée : '.$libelleType.' <br>Libellé : '.$donnee->getLibelleDonneeEnrichie().'<br><form data-idOeuvre="'.$oeuvre->getIdOeuvre().'" action="../modules/traitementOeuvre.php" method="GET"><input type="hidden" id="req" name="req" value="deleteMeta"><input type="hidden" id="idDonnee" name="idDonnee" value="'.$idDonnee.'"><button type="submit" class="delData"><i class="ion-ios-trash-outline" title="Supprimer"></i></button></form></li>';
+					echo '<li class="metaData">Type de donnée : '.$libelleType.' <br>Libellé : '.$donnee->getLibelleDonneeEnrichie().'<br><form data-idOeuvre="'.$oeuvre->getIdOeuvre().'" action="../modules/traitementOeuvre.php" method="GET"><input type="hidden" id="req" name="req" value="deleteMeta"><input type="hidden" id="idDonnee" name="idDonnee" value="'.$idDonneeDeleted.'"><button type="submit" class="delData"><i class="ion-ios-trash-outline" title="Supprimer"></i></button></form></li>';
 				}
 
 

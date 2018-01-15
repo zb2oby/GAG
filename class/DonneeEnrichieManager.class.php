@@ -39,7 +39,7 @@ class DonneeEnrichieManager {
 
     public function listDonneeOeuvre($idOeuvre) {
         $list = [];
-        $q = $this->_db->query("SELECT idDonneeEnrichie, urlFichier, libelleDonneeEnrichie, idTypeDonneEnrichie, idOeuvre FROM Donnee_enrichie WHERE idOeuvre ='".$idOeuvre."'");
+        $q = $this->_db->query("SELECT idDonneeEnrichie, urlFichier, libelleDonneeEnrichie, idTypeDonneEnrichie, idOeuvre FROM Donnee_enrichie WHERE idOeuvre ='".$idOeuvre."' ORDER BY idDonneeEnrichie DESC");
         while ($data = $q->fetch()) {
             $list[] = new DonneeEnrichie($data);
         }
@@ -69,6 +69,16 @@ class DonneeEnrichieManager {
     	$q = $this->_db->query("SELECT * FROM Donnee_enrichie WHERE idDonneeEnrichie =".$idDonnee);
     	$data = $q->fetch();
     	return $donnee = new DonneeEnrichie($data);
+    }
+
+    public function getLastDonnee() {
+        
+        $q = $this->_db->query("SELECT MAX(idDonneeEnrichie) as idDonneeEnrichie FROM Donnee_enrichie");
+        while ($data = $q->fetch()) {
+            $idDonnee = $data['idDonneeEnrichie'];
+        }
+        
+        return $idDonnee;
     }
 
 }
