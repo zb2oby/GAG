@@ -1,23 +1,21 @@
 $(document).ready(function(){
 	
 	$('.multiple-items').slick({
-	  mobilefirst:true,
+	  // mobilefirst:true,
 	  infinite:false,
+    vertical: true,
 	  slidesToShow: 3,
-  	  slidesToScroll: 1,
-	  zIndex =  '1000',
+  	slidesToScroll: 1,
 	  prevArrow: $('.prev'),
-      nextArrow: $('.next'),
-       responsive: [
-    {
+    nextArrow: $('.next'),
+    responsive: [{
       breakpoint: 800,
       settings: {
-      mobilefirst:true,
-      slidesToShow: 2,
-  	  slidesToScroll: 1,
+        vertical:false,
+        slidesToShow: 2,
+        slick: true,
       }
-    },
-    ]
+    }]
 	});
 
 

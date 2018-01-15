@@ -1,6 +1,6 @@
 </div>	
 	<aside class="sideBar">
-		<a href=""><i class="flecheHor ion-ios-arrow-left"></i></a>
+		<div class="prev"><i class="flecheHor ion-ios-arrow-left"></i></div>
 		<div class="sideMenu">
 			<div class="searchLogo"><a class="search" href="#"><i class="ion-ios-search"></i><!-- <img src="../search.png" alt=""> --></a></div>
 			<div class="prev"><i class="flecheVert ion-ios-arrow-up"></i></div>
@@ -34,5 +34,5 @@
 				<a class="add" href="#"><i class="ion-ios-plus-outline"></i></a>
 			</div>
 		</div>
-		<a href=""><i class="flecheHor ion-ios-arrow-right"></i></a>
+		<div class="next"><i class="flecheHor ion-ios-arrow-right"></i></div>
 	</aside>
