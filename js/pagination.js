@@ -1,11 +1,10 @@
 $(document).ready(function(){
 	
 	$('.multiple-items').slick({
-	  // mobilefirst:true,
 	  infinite:false,
     vertical: true,
 	  slidesToShow: 3,
-  	slidesToScroll: 1,
+  	slidesToScroll: 2,
 	  prevArrow: $('.prev'),
     nextArrow: $('.next'),
     responsive: [{

@@ -71,7 +71,7 @@ class ExpositionManager {
     //renvoie les dates d'expo passer
     public function prevExpo(){
         $list = [];
-        $q = $this->_db->query("SELECT idExpo, titre, horaireO, horaireF, theme, descriptifFR, frequentation, dateDeb, dateFin, teaser, affiche FROM Exposition where dateDeb < now() ORDER BY datedeb desc LIMIT 4");
+        $q = $this->_db->query("SELECT idExpo, titre, horaireO, horaireF, theme, descriptifFR, frequentation, dateDeb, dateFin, teaser, affiche FROM Exposition where dateDeb < now() ORDER BY datedeb desc");
         while ( $data = $q->fetch()) {
             $expo = new Exposition($data);
             $list[] = $expo;
