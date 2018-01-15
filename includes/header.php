@@ -1,6 +1,7 @@
 <?php 
 
 /*=====>POUR LES TESTS */ $_SESSION['idExpo'] = 2; 
+						$_SESSION['idUser'] = 1;
 
 include('functions.php');
 

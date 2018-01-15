@@ -12,16 +12,15 @@ class MessageManager {
         $this->_db = $db;
     }
 
-    public function addMessage(Message $message) {
-    	$q = $this->_db->prepare('INSERT INTO Message_interne(idMessage, dateMessage, message, idUtilisateur, idOeuvre, idArtiste, idExpo, idCollectif) VALUES (:idMessage, :dateMessage, :message, :idUtilisateur, :idOeuvre, :idArtiste, :idExpo, :idCollectif)');
-    	$q->bindValue(':idMessage', $message->getIdMessage());
+    public function addMessageOeuvre(Message $message) {
+    	$q = $this->_db->prepare('INSERT INTO Message_interne(dateMessage, message, idUtilisateur, idOeuvre) VALUES (:dateMessage, :message, :idUtilisateur, :idOeuvre)');
         $q->bindValue(':dateMessage', $message->getDateMessage());
         $q->bindValue(':message', $message->getMessage());
         $q->bindValue(':idUtilisateur', $message->getIdUtilisateur());
         $q->bindValue(':idOeuvre', $message->getIdOeuvre());
-        $q->bindValue(':idArtiste', $message->getIdArtiste());
-        $q->bindValue(':idExpo', $message->getIdExpo());
-        $q->bindValue(':idCollectif', $message->getIdCollectif());
+        // $q->bindValue(':idArtiste', $message->getIdArtiste());
+        // $q->bindValue(':idExpo', $message->getIdExpo());
+        // $q->bindValue(':idCollectif', $message->getIdCollectif());
 
         $q->execute();
     }
@@ -33,7 +32,7 @@ class MessageManager {
     
     public function infoMessage($champ, $id) {
     	$list = [];
-        $q = $this->_db->query("SELECT dateMessage, message, idUtilisateur FROM Message_interne WHERE ".$champ." ='".$id."'ORDER BY dateMessage DESC LIMIT 10");
+        $q = $this->_db->query("SELECT dateMessage, message, idUtilisateur FROM Message_interne WHERE ".$champ." ='".$id."'ORDER BY dateMessage DESC, idMessage DESC LIMIT 10");
         while ($data = $q->fetch()) {
             $list[] = new Message($data);
         }

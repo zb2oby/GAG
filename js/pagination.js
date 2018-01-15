@@ -5,7 +5,7 @@ $(document).ready(function(){
 	  infinite:false,
 	  slidesToShow: 3,
   	  slidesToScroll: 1,
-	  zIndex = '1000',
+	  zIndex =  '1000',
 	  prevArrow: $('.prev'),
       nextArrow: $('.next'),
        responsive: [

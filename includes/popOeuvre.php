@@ -25,8 +25,8 @@ $oeuvre = $managerOeuvre->infoOeuvre($idOeuvre);
  ?>
 
 <div class="context-menu">
-<div class="closeButton"><i class="ion-android-close"></i></div>
-<div class="context-overlay"></div>
+	<div class="closeButton"><i class="ion-android-close"></i></div>
+	<div class="context-overlay"></div>
 	
 	<div class="deleteCard"><i class="ion-ios-trash-outline" title="Enlever l'oeuvre de l'exposition"></i><span>Retirer de l'expo</span></div>
 
@@ -51,9 +51,12 @@ $oeuvre = $managerOeuvre->infoOeuvre($idOeuvre);
 						$dateEntree = $oeuvreExposee->getDateEntree();
 						if ($dateEntree != '0000-00-00') {
 							echo 'Date d\'entrée : '.date('d/m/Y', strtotime($dateEntree));
+						}else{
+							$dateEntree = '';
 						}
 						 
 					?>
+						
 					
 				</span>
 			</div>
@@ -137,14 +140,14 @@ $oeuvre = $managerOeuvre->infoOeuvre($idOeuvre);
 						<?php 
 							$listExpo = $manager->listExpoOeuvreExposee($idOeuvre);
 							foreach ($listExpo as $exposition) {
-								echo '<li>'.$exposition->getDateDeb().'<br>Exposition '.$exposition->getTitre().'</li>';
+								echo '<li>'.$exposition->getDateDeb().'<br>Exposition : '.$exposition->getTitre().'</li>';
 							}
 						 ?>
 					</ul>
 					
 				</div>
 				<div class="pop-messagerieOeuvre popGestionCard">
-					<i class="closeButton-context ion-android-close"></i>
+					<div class="closeButton-context"><i class="ion-android-close"></i></div>
 					<div class="card-msg">
 						<?php 
 		//POUR LES TEST
@@ -163,13 +166,13 @@ $oeuvre = $managerOeuvre->infoOeuvre($idOeuvre);
 							$idUser = $message->getIdUtilisateur();
 							$managerUser = new UtilisateurManager($bdd);
 							$user = $managerUser->infoUtilisateur($idUser);
-							echo '<div class="message"><div class="message-header"> Message de '.$user->getNom().' Le '.$message->getDateMessage().'</div>';
+							echo '<div class="message"><div class="message-header"> Message de '.$user->getNom().' Le '.date('d/m/Y', strtotime($message->getDateMessage())).'</div>';
 							echo '<div class="message-content">'.$message->getMessage().'</div></div>';
 						}
 						 ?>
 					</div>
 					<?php 
-							if (isset($_GET['idUser'])) {
+							if (isset($_SESSION['idUser'])) {
 								$idUser = $_SESSION['idUser'];
 								$managerUser = new UtilisateurManager($bdd);
 								$user = $managerUser->infoUtilisateur($idUser);
@@ -185,9 +188,9 @@ $oeuvre = $managerOeuvre->infoOeuvre($idOeuvre);
 						 	</div>
 						 	
 						 	<input type="hidden" name="idUser" id="idUser" value="<?php if(isset($_SESSION['idUser'])){echo $_SESSION['idUser'];} ?>">
-							<input type="hidden" name="dateMsg" id="dateMsg" value="<?php date('d/m/Y'); ?>">
-							<input type="hidden" name="nomUser" id="nomUser" value="<?php $nomUser; ?>">
-							<div>
+							<input type="hidden" name="dateMsg" id="dateMsg" value="<?php echo date('Y-m-d'); ?>">
+							<input type="hidden" name="nomUser" id="nomUser" value="<?php echo $nomUser; ?>">
+							<div class="submit">
 								<button type="submit">Envoyer</button>
 							</div>
 						 	
@@ -198,8 +201,8 @@ $oeuvre = $managerOeuvre->infoOeuvre($idOeuvre);
 				<div class="col-item">
 					<h4>ACTIONS</h4>
 					<ul id="list-button">
-						<li><button class="action-button">Gérer le Contenu +</button></li>
-						<li><button class="action-button" id="modifDateEntree">Modifier date d'entrée</button></li>
+						<li><button class="action-button" id="metaData">Gérer le Contenu +</button></li>
+						<?php if(isset($_SESSION['idExpo'])){ echo '<li><button class="action-button" id="modifDateEntree">Modifier date d\'entrée</button></li>'; }?>
 						<li><button class="action-button" id="modifImageOeuvre">Modifier l'image</button></li>
 						<li><button class="action-button" id="modifTypeOeuvre">Modifier le type</button></li>
 						<li><button class="action-button" id="modifArtColl">Modifier Artiste/Collectif</button></li>
@@ -212,7 +215,7 @@ $oeuvre = $managerOeuvre->infoOeuvre($idOeuvre);
 		</div>
 		
 	<div class="card-form pop-modifDateEntree popGestionCard">
-		<div class="closeButton"><i class="ion-android-close"></i></div>
+		<div class="closeButton-context"><i class="ion-android-close"></i></div>
 		<form id="dateEntree-form" action="../modules/traitementOeuvre.php" data-idOeuvreExposee="<?php echo $idOeuvreExposee ?>" method="GET">
 			<div>
 				<label for="dateEntree">Date d'entrée dans l'expo</label>
@@ -225,11 +228,14 @@ $oeuvre = $managerOeuvre->infoOeuvre($idOeuvre);
 		</form>
 	</div>
 	<div class="card-form pop-modifImageOeuvre popGestionCard">
-		<div class="closeButton"><i class="ion-android-close"></i></div>
-		<form action="../modules/traitementOeuvre.php" data-idOeuvre="<?php echo $oeuvre->getIdOeuvre() ?>" method="GET">
+		<div class="closeButton-context"><i class="ion-android-close"></i></div>
+		<form action="../modules/traitementOeuvre.php" data-idOeuvre="<?php echo $oeuvre->getIdOeuvre() ?>" method="POST" enctype="multipart/form-data">
 			<div>
-				<label for="type">Choisir image</label>
-				<input type="file" id="type" name="type" value="<?php echo $oeuvre->getImage(); ?>">
+				<span for="imageOeuvre">Image (JPG GIF JPEG PNG| max. 300Ko) </span><br>
+				<input type="file" id="imageOeuvre" name="imageOeuvre[]" accept=".jpg, .jpeg, .gif, .png"><br>
+				<input type="hidden" id="maxSize" name="MAX_FILE_SIZE" value="500000">
+				<input type="hidden" id="existImage" name="existImage" value="<?php echo $oeuvre->getImage(); ?>">
+				<input type="hidden" id="idOeuvre" name="idOeuvre" value="<?php echo $oeuvre->getIdOeuvre(); ?>">
 			</div>
 			<div class="submit">
 				<button type="submit">Enregistrer</button>
@@ -237,7 +243,7 @@ $oeuvre = $managerOeuvre->infoOeuvre($idOeuvre);
 		</form>
 	</div>
 	<div class="card-form pop-modifTypeOeuvre popGestionCard">
-		<div class="closeButton"><i class="ion-android-close"></i></div>
+		<div class="closeButton-context"><i class="ion-android-close"></i></div>
 		<form action="../modules/traitementOeuvre.php" data-idOeuvre="<?php echo $oeuvre->getIdOeuvre() ?>" method="GET">
 			<div>
 				<label for="idType">Type d'oeuvre</label>
@@ -262,7 +268,7 @@ $oeuvre = $managerOeuvre->infoOeuvre($idOeuvre);
 		</form>
 	</div>
 	<div class="card-form pop-modifArtColl popGestionCard">
-		<div class="closeButton"><i class="ion-android-close"></i></div>
+		<div class="closeButton-context"><i class="ion-android-close"></i></div>
 		<form action="../modules/traitementOeuvre.php" data-idOeuvre="<?php echo $oeuvre->getIdOeuvre() ?>" method="GET">
 			<div>
 				<label for="idArtiste">Artiste</label>
@@ -304,17 +310,76 @@ $oeuvre = $managerOeuvre->infoOeuvre($idOeuvre);
 		</form>
 	</div>
 	<div class="card-form pop-delOeuvre popGestionCard">
-		<div class="closeButton"><i class="ion-android-close"></i></div>
+		<div class="closeButton-context"><i class="ion-android-close"></i></div>
 		<form action="../modules/traitementOeuvre.php" data-idOeuvre="<?php echo $oeuvre->getIdOeuvre() ?>" method="GET">
 			<div>
-				<label for="idOeuvre">Voulez vous supprimer definitvement cette oeuvre ?</label>
+				<span>Voulez vous supprimer definitvement cette oeuvre ?</span><br>
 				<input type="hidden" id="idOeuvre" name="idOeuvre" value="<?php echo $idOeuvre; ?>">
+				<input type="hidden" id="delOeuvre" name="req" value="delete">
 			</div>
 			<div class="submit">
 				<button type="submit">Supprimer</button>
-				<button>Annuler</button>
+				<button class="cancelButton">Annuler</button>
 			</div>
 			
 		</form>
+	</div>
+
+	<div class="card-form pop-metaData popGestionCard">
+
+		<div class="closeButton-context"><i class="ion-android-close"></i></div>
+
+		<div class="card-data">
+			<ul>
+			<?php
+				$managerMeta = new DonneeEnrichieManager($bdd);
+				// $listType = $managerMeta->typeDonnee();
+				$listDonnee = $managerMeta->listDonneeOeuvre($idOeuvre);
+				foreach ($listDonnee as $donnee) {
+					$idType = $donnee->getIdTypeDonneEnrichie();
+					$libelleType = $managerMeta->libelleTypeDonnee($idType);
+					$idDonneeDeleted = $donnee->getIdDonneeEnrichie();
+
+					echo '<li class="metaData">Type de donnée : '.$libelleType.' <br>Libellé : '.$donnee->getLibelleDonneeEnrichie().'<br><form data-idOeuvre="'.$oeuvre->getIdOeuvre().'" action="../modules/traitementOeuvre.php" method="GET"><input type="hidden" id="req" name="req" value="deleteMeta"><input type="hidden" id="idDonnee" name="idDonnee" value="'.$idDonneeDeleted.'"><button type="submit" class="delData"><i class="ion-ios-trash-outline" title="Supprimer"></i></button></form></li>';
+				}
+
+
+			 ?>
+			 </ul>
+		</div>
+		
+			
+		<div class="newData">
+		 	<form action="../modules/traitementOeuvre.php" data-idOeuvre="<?php echo $oeuvre->getIdOeuvre() ?>" method="POST" enctype="multipart/form-data">
+			 	<span>Ajouter un contenu supplémentaire</span>
+			 	<div>
+					 <label for="typeDonnee">Type de donnée</label>
+					 <select name="typeDonnee" id="typeDonnee">
+					 	<option hidden selected value=""></option>
+					 	<?php 
+					 		$listType = $managerMeta->listTypeDonnee();
+					 		foreach ($listType as $id => $libelle) {
+					 			echo '<option value="'.$id.'">'.$libelle.'</option>';
+					 		}
+
+					 	 ?>
+					 </select>
+				 </div>
+				 <div>
+					 <label for="libelleDonnnee">Libélle Donnée</label>
+					 <input type="text" name="libelleDonnee" id="libelleDonnee">
+				 </div>
+				 <div>
+					 <span for="fichierDonnee">Fichier (JPG GIF JPEG PNG MP3 MP4 WAV MPEG| max. 500Ko) </span><br>
+					<input type="file" id="fichierDonnee" name="fichierDonnee[]" accept=".jpg, .jpeg, .gif, .png, .mp3, .mp4, .wav, .mpeg"><br>
+					<input type="hidden" id="maxSize" name="MAX_FILE_SIZE" value="500000">
+					<input type="hidden" id="idOeuvre" name="idOeuvre" value="<?php echo $oeuvre->getIdOeuvre(); ?>">
+				 </div>
+				 <div class="submit">
+				 	<button type="submit">Ajouter</button>
+				 </div>
+			</form> 
+		</div>
+		
 	</div>
 </div>

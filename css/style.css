@@ -79,6 +79,9 @@ button:hover {
 	opacity: 0.7;
 	overflow: auto;
 }
+.overlay:hover {
+	cursor: pointer;
+}
 
 /*<<<<<<<<<<<<<<<<  HEADER >>>>>>>>>>>>>>*/
 header {
@@ -508,14 +511,12 @@ form.adminForm, form.expoForm {
 					background-color: #ddd;
 				}
 					
-
-				.cards li span {
-					display: block;
-				}
 				.cards li img {
 					float: left;
 					position: relative;
 					z-index: 1;
+					width: 50px;
+					height: 50px;
 				}
 
 				.recue img:hover {
@@ -545,7 +546,7 @@ form.adminForm, form.expoForm {
 	.popAddArtiste span, .popAddArtiste label, .popAddArtiste i, .popAddArtiste span, .popAddCard label, .popAddCard i, .popAddRecue span, .popAddRecue label,.popAddRecue i {
 		color: #fff;
 	}
-	.closeButton {
+	.closeButton, .closeButton-context {
 		position: absolute;
 		z-index: 6;
 		top: -15px;
@@ -562,7 +563,7 @@ form.adminForm, form.expoForm {
 		color: #fff;
 		background-color:#0A2675; 
 	}
-	.closeButton:hover {
+	.closeButton:hover, .closeButton-context:hover {
 		cursor: pointer;
 	}
 	.popAddCard i:hover {
@@ -577,10 +578,12 @@ form.adminForm, form.expoForm {
 	margin-left: -200px;
 	width: 400px;
 	height: 300px;
-	overflow: auto;
+	/*overflow: auto;*/
 	background-color: #ddd;
 	display: none;
 }
+
+	
 .confirmPopup {
 	display: none;
 	position: absolute;
@@ -602,7 +605,7 @@ form.adminForm, form.expoForm {
 .context-overlay {
 	display: none;
 	position: absolute;
-	background-color: #000;
+	background-color: #333;
 	opacity: 0.7;
 	z-index: 4;
 	top: 0;
@@ -610,11 +613,14 @@ form.adminForm, form.expoForm {
 	left: 0;
 	right: 0;
 }
+.context-overlay:hover {
+	cursor: pointer;
+}
 .context-menu {
 	display: none;
 	position: absolute;
 	left: 50%;
-	top: -120px;
+	top: -110px;
 	margin-left: -300px;
 	z-index: 3;
 	width: 600px;
@@ -669,12 +675,13 @@ form.adminForm, form.expoForm {
 			font-size: 14px;
 		}
 		.cardHeader-bottom {
+			width: 100%;
 			position: absolute;
 			bottom: 0;
 			font-size: 14px;
 		}
 		.cardHeader-bottom span {
-		 
+		 	display: inline;
 		}
 	.card-content {
 		display: flex;
@@ -683,7 +690,7 @@ form.adminForm, form.expoForm {
 		/*padding: 20px;*/
 
 	}
-
+	
 		.card-col {
 			display: flex;
 			flex-direction: column-reverse;
@@ -698,6 +705,16 @@ form.adminForm, form.expoForm {
 			.col-item {
 				/*border: 1px solid black;*/
 			}
+
+				.card-image img {
+					width: 100px !important;
+					height: 100px !important;
+				}
+
+				.qr-zone img {
+					width: 100px !important;
+					height: 100px !important;
+				}
 			.card-action #list-button {
 				
 			}
@@ -735,7 +752,7 @@ form.adminForm, form.expoForm {
 			.card-col.card-form {
 			flex-grow: 1;
 			}
-				.card-form div {
+				.card-form .form-oeuvre div {
 					padding: 10px 0;
 				}
 
@@ -771,11 +788,13 @@ form.adminForm, form.expoForm {
 			overflow: auto;
 			max-height: 300px;
 		}
+
 			.message {
 				width: 90%;
 				margin: 20px;
 				border-radius: 7px;	
 				background-color: #fff;
+				box-shadow: 0 3px 0 #ccc;
 
 			}
 				.message-header {
@@ -783,16 +802,61 @@ form.adminForm, form.expoForm {
 					font-weight: bold;
 					background-color: #ddd;
 				}
+
 				.message-content {
 					padding: 20px;
 				}
+
 				.newMsg {
 					border-top: 4px solid #ccc;
 					display: block;
 					padding: 20px;
 					width: 100%;
 				}
-			
+
+	.pop-metaData {
+		margin-top: -250px;
+		height: auto;
+		width: 400px;
+	}	
+
+		.card-data {
+			overflow: auto;
+			max-height: 300px;
+			padding: 10px;
+		}
+			.card-data ul {
+				overflow: hidden;
+				padding: 0;
+				margin: 0;
+			}
+			li.metaData {
+				position: relative;
+				display: block;
+				padding: 20px 0;
+				border-bottom: 2px solid #ccc;
+			}
+
+			button.delData {
+				position: absolute;
+				right: 10px;
+				top: 25%;
+				min-width: 48px;
+				margin-top: 5px;
+				font-size: 24px;
+			}
+
+		.newData {
+			border-top: 4px solid #ccc;
+			padding: 20px;
+		}
+			.newData span {
+				display: block;
+				text-align: center;
+				padding: 10px;
+			}
+
+
 
 	.deleteCard {
 		position: absolute;
@@ -1000,7 +1064,7 @@ form.adminForm, form.expoForm {
 		}
 
 		.context-menu {
-			top: -120px;
+			top: -110px;
 		}
 	
 }
