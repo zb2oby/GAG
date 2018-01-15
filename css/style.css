@@ -908,14 +908,23 @@ form.adminForm, form.expoForm {
 		height: 80px;
 		font-size: 0;
 	}
-		.sideMenu {
-			width: 50%;
-		}
 
 		.searchLogo {
-			display: none;
+			position: absolute;
+			top: 0;
+			left: 30px;
 			padding-bottom: 30px;
 			padding-top: 10px;
+			font-size: 48px;
+		}
+
+		.addLogo {
+			position: absolute;
+			top: 0;
+			right: 30px;
+			padding-bottom: 30px;
+			padding-top: 10px;
+			font-size: 48px;
 		}
 
 		.flecheVert {
@@ -924,16 +933,21 @@ form.adminForm, form.expoForm {
 		.flecheHor {
 			display: inline-block;
 			font-size: 42px;
-			line-height: 80px;
+			line-height: 70px;
 			padding: 0 20px;
 		}
 
 		.sideMenu {
+			width: 50%;
 			display: inline-block;
 			height: 80px;
 			
 			
 		}
+			.multiple-items {
+				height: 80px;
+				margin-top: -10px;
+			}
 
 			.sideMenu ul {
 				height: 80px;
@@ -959,12 +973,14 @@ form.adminForm, form.expoForm {
 				background-color: #fff;
 				color: #444;
 			}
+
+			
 		
-			.addLogo a.add {
+			/*.addLogo a.add {
 				display: none;
 				
 			}
-
+*/
 	.menu-portrait {
 		position: absolute;
 		bottom: 0;
