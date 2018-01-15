@@ -157,7 +157,7 @@ header {
 		.searchLogo {
 			display: block;
 			font-size: 4em;
-			padding-bottom: 40px;
+			padding-bottom: 30px;
 		}
 
 		.sideMenu {
@@ -847,6 +847,8 @@ form.adminForm, form.expoForm {
 
 		.searchLogo {
 			display: none;
+			padding-bottom: 30px;
+			padding-top: 10px;
 		}
 
 		.flecheVert {
@@ -893,6 +895,7 @@ form.adminForm, form.expoForm {
 		
 			.addLogo a.add {
 				display: none;
+				
 			}
 
 	.menu-portrait {
@@ -983,14 +986,15 @@ form.adminForm, form.expoForm {
 		}
 			.sideMenu {
 				display: inline-block;
-				font-size: 16px;
+				font-size: 14px;
 			}
 				.sideMenu li a {
-					padding: 40px 15px;
+					padding: 40px 0px;
 					/*vertical-align: middle;*/
 					text-align: center;
 					/*font-size: 16px;*/
 				}
+
 		.plan {
 			width: 97%;
 		}
