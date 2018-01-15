@@ -511,10 +511,6 @@ form.adminForm, form.expoForm {
 					background-color: #ddd;
 				}
 					
-
-				.cards li span {
-					display: block;
-				}
 				.cards li img {
 					float: left;
 					position: relative;
@@ -679,12 +675,13 @@ form.adminForm, form.expoForm {
 			font-size: 14px;
 		}
 		.cardHeader-bottom {
+			width: 100%;
 			position: absolute;
 			bottom: 0;
 			font-size: 14px;
 		}
 		.cardHeader-bottom span {
-		 
+		 	display: inline;
 		}
 	.card-content {
 		display: flex;
