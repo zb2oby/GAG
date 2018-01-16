@@ -1,0 +1,1344 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"date",
+				"dateEntree"
+			],
+			[
+				"idDo",
+				"idDonneeDeleted"
+			],
+			[
+				"manager",
+				"managerMeta"
+			],
+			[
+				"libelle",
+				"libelleTypeDonnee"
+			],
+			[
+				"w",
+				"width\t.width()"
+			],
+			[
+				"url",
+				"urlFichier"
+			],
+			[
+				"getIdDo",
+				"getIdDonneeEnrichie\t(DonneeEnrichie.class.php)"
+			],
+			[
+				"fichier",
+				"fichierDonnee"
+			],
+			[
+				"nom",
+				"nomFichier"
+			],
+			[
+				"Donn",
+				"DonneeEnrichieManager\t(popOeuvre.php)"
+			],
+			[
+				"box",
+				"box-shadow"
+			],
+			[
+				"listType",
+				"listTypeDonnee\t(DonneeEnrichieManager.class.php)"
+			],
+			[
+				"libe",
+				"libelleType"
+			],
+			[
+				"idType",
+				"idTypeDonnee"
+			],
+			[
+				"type",
+				"typeDonnee\t(DonneeEnrichieManager.class.php)"
+			],
+			[
+				"Don",
+				"DonneeEnrichieManager\t(DonneeEnrichieManager.class.php)"
+			],
+			[
+				"idDonne",
+				"idDonneeEnrichie"
+			],
+			[
+				"Donnee",
+				"Donnee_enrichie"
+			],
+			[
+				"getIdTy",
+				"getIdTypeDonnee\t(DonneeEnrichie.class.php)"
+			],
+			[
+				"getLibe",
+				"getLibelleDonnee\t(DonneeEnrichie.class.php)"
+			],
+			[
+				"idT",
+				"idTypeDonnee"
+			],
+			[
+				"ur",
+				"urlFichier"
+			],
+			[
+				"idD",
+				"idDonneeEnrichie"
+			],
+			[
+				"Mess",
+				"MessageManager\t(popOeuvre.php)"
+			],
+			[
+				"idO",
+				"idOeuvre"
+			],
+			[
+				"sele",
+				"selected"
+			],
+			[
+				"id",
+				"idCollectif"
+			],
+			[
+				"Arti",
+				"ArtisteManager\t(popOeuvre.php)"
+			],
+			[
+				"list",
+				"listType"
+			],
+			[
+				"mana",
+				"managerOeuvre"
+			],
+			[
+				"oeuvre",
+				"oeuvreexposee"
+			],
+			[
+				"upd",
+				"updateOeuvreExposee\t(OeuvreExposeeManager.class.php)"
+			],
+			[
+				"html",
+				"htmlentities"
+			],
+			[
+				"Oeuvre",
+				"OeuvreExposeeManager\t(popOeuvre.php)"
+			],
+			[
+				"closeButton",
+				"closeButton-context\t(carteOeuvre.php)"
+			],
+			[
+				"Uti",
+				"UtilisateurManager\t(UtilisateurManager.class.php)"
+			],
+			[
+				"getIdT",
+				"getIdTypeUtilisateur\t(Utilisateur.class.php)"
+			],
+			[
+				"ide",
+				"identifiant"
+			],
+			[
+				"_id",
+				"_identifiant"
+			],
+			[
+				"prenom",
+				"prenomArtiste"
+			],
+			[
+				"overf",
+				"overflow"
+			],
+			[
+				"Artiste",
+				"ArtisteManager\t(listesGestion.php)"
+			],
+			[
+				"inl",
+				"inline-block"
+			],
+			[
+				"min",
+				"min-width"
+			],
+			[
+				"traite",
+				"traitementOeuvre.php\t(oeuvreCard.js)"
+			],
+			[
+				"info",
+				"infoOeuvre\t(carteOeuvre.php)"
+			],
+			[
+				"traitement",
+				"traitementOeuvre.php\t(carteOeuvre.php)"
+			],
+			[
+				"sub",
+				"submit\t.submit()"
+			],
+			[
+				"OeuvreManager",
+				"OeuvreExposeeManager.class.php\t(traitementListes.php)"
+			],
+			[
+				"max",
+				"max-height"
+			],
+			[
+				"fl",
+				"flex-grow"
+			],
+			[
+				"tr",
+				"transparent"
+			],
+			[
+				"fle",
+				"flex-start"
+			],
+			[
+				"sp",
+				"space-around"
+			],
+			[
+				"m",
+				"middle"
+			],
+			[
+				"border",
+				"border"
+			],
+			[
+				"flex",
+				"flex"
+			],
+			[
+				"place",
+				"placeholder\tAttr"
+			],
+			[
+				"Expo",
+				"Exposition\t(header.php)"
+			],
+			[
+				"getDate",
+				"getDateMessage\t(Message.class.php)"
+			],
+			[
+				"Messa",
+				"MessageManager\t(MessageManager.class.php)"
+			],
+			[
+				"Message",
+				"Message_interne"
+			],
+			[
+				"getId",
+				"getIdUtilisateur\t(Message.class.php)"
+			],
+			[
+				"getDa",
+				"getDateEntree\t(OeuvreExposee.class.php)"
+			],
+			[
+				"Exposition",
+				"ExpositionManager\t(header.php)"
+			],
+			[
+				"getNb",
+				"getNbFantome\t(fantome.static.php)"
+			],
+			[
+				"dit",
+				"ditBonjour\t(admin.php)"
+			],
+			[
+				"liste",
+				"listeExpo"
+			],
+			[
+				"idOeuvre",
+				"idOeuvreExposee"
+			],
+			[
+				"per",
+				"perimetre\t(rectangle.php)"
+			],
+			[
+				"R",
+				"Rectangle\t(rectangle.php)"
+			],
+			[
+				"get",
+				"getLargeur"
+			],
+			[
+				"new",
+				"newPlace"
+			],
+			[
+				"var",
+				"var_dump"
+			],
+			[
+				"typ",
+				"typeFantome"
+			],
+			[
+				"fantome",
+				"fantome1"
+			],
+			[
+				"fanto",
+				"fantome"
+			],
+			[
+				"fant",
+				"fantome\t(fantome.class.php)"
+			],
+			[
+				"spl",
+				"spl_autoload_register"
+			],
+			[
+				"elt",
+				"eltPosTop"
+			],
+			[
+				"el",
+				"eltPosTop"
+			],
+			[
+				"off",
+				"offset\t.offset()"
+			],
+			[
+				"mouse",
+				"mousemove\t.mousemove()"
+			],
+			[
+				"consol",
+				"console"
+			],
+			[
+				"css",
+				"css\t.css() - single"
+			],
+			[
+				"defaut",
+				"default-place\t(plan.php)"
+			],
+			[
+				"getCoor",
+				"getCoordLeft"
+			],
+			[
+				"console",
+				"console.log(\"success"
+			],
+			[
+				"getE",
+				"getEmptyPlace\t(emplacement.manager.php)"
+			],
+			[
+				"data",
+				"dataApero"
+			],
+			[
+				"for",
+				"foreach\tforeach …"
+			],
+			[
+				"prix",
+				"prixApero"
+			],
+			[
+				"vol",
+				"volumeApero"
+			],
+			[
+				"libell",
+				"libelleApero"
+			],
+			[
+				"artiste",
+				"artisteExposeCollectif"
+			],
+			[
+				"idColl",
+				"idCollectifExpose"
+			],
+			[
+				"Co",
+				"Collectif"
+			],
+			[
+				"idCollectif",
+				"idCollectifExpose\t(collectifExpose.manager.php)"
+			],
+			[
+				"collect",
+				"collectifExpose_exist\t(collectifExpose.manager.php)"
+			],
+			[
+				"getIdC",
+				"getIdCollectifExpose"
+			],
+			[
+				"idCo",
+				"idCollectifExpose"
+			],
+			[
+				"coll",
+				"collectifExpose"
+			],
+			[
+				"Collec",
+				"CollectifExpose"
+			],
+			[
+				"te",
+				"tel\t(collectif.class.php)"
+			],
+			[
+				"descri",
+				"descriptifFR\t(exposition.class.php)"
+			],
+			[
+				"desc",
+				"descriptifFR\t(exposition.class.php)"
+			],
+			[
+				"_date",
+				"_dateFin"
+			],
+			[
+				"_ho",
+				"_horaireO"
+			],
+			[
+				"horaire",
+				"horaireF"
+			],
+			[
+				"bord",
+				"border"
+			],
+			[
+				"_",
+				"_SESSION"
+			],
+			[
+				"arti",
+				"artisteExpose"
+			],
+			[
+				"delete",
+				"deleteArtisteExpose\t(artisteExpose.manager.php)"
+			],
+			[
+				"nex",
+				"newArtisteExpose"
+			],
+			[
+				"lis",
+				"listArtisteExpo\t(artisteExpose.manager.php)"
+			],
+			[
+				"Artis",
+				"ArtisteExpose\t(artisteExpose.class.php)"
+			],
+			[
+				"on",
+				"on\t.on()"
+			],
+			[
+				"data-id",
+				"data-idoeuvreexposee"
+			],
+			[
+				"font",
+				"font-size"
+			],
+			[
+				"togg",
+				"toggleClass\t.toggleClass()"
+			],
+			[
+				"oncontex",
+				"oncontextmenu\t: EventHandler Window"
+			],
+			[
+				"onconte",
+				"oncontextmenu\t: EventHandler Document"
+			],
+			[
+				"has",
+				"hasClass\t.hasClass()"
+			],
+			[
+				"felx",
+				"flex-grow"
+			],
+			[
+				"add",
+				"addOeuvreExposee\t(oeuvreExposee.manager.php)"
+			],
+			[
+				"alig",
+				"align-items"
+			],
+			[
+				"ro",
+				"row-reverse"
+			],
+			[
+				"trai",
+				"traitementListes.php"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "popOeuvre.php",
+			"settings":
+			{
+				"buffer_size": 14831,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/modules/traitementOeuvre.php",
+			"settings":
+			{
+				"buffer_size": 6614,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/js/oeuvreCard.js",
+			"settings":
+			{
+				"buffer_size": 7434,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "popArtiste.php",
+			"settings":
+			{
+				"buffer_size": 14554,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class/ArtisteManager.class.php",
+			"settings":
+			{
+				"buffer_size": 2756,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class/Artiste.class.php",
+			"settings":
+			{
+				"buffer_size": 1372,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "// Get the current slide\nvar currentSlide = $('.your-element').slick('slickCurrentSlide');\n\n\n\n slick.slickGoTo($scope.currentIndex);",
+			"settings":
+			{
+				"buffer_size": 132,
+				"line_ending": "Unix",
+				"name": "// Get the current slide"
+			}
+		},
+		{
+			"file": "/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/js/pagination.js",
+			"settings":
+			{
+				"buffer_size": 350,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/Python/Python.sublime-build",
+					""
+				],
+				[
+					"Packages/Python/Python.sublime-build",
+					"Syntax Check"
+				]
+			],
+			[
+				"Packages/Python/Python.sublime-build",
+				""
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 132.0,
+		"last_filter": "PHP Code Sniffer: ",
+		"selected_items":
+		[
+			[
+				"PHP Code Sniffer: ",
+				"PHP Code Sniffer: Sniff this file"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"low",
+				"Convert Case: Lower Case"
+			],
+			[
+				"open",
+				"File: Open In Browser - Production Server"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"html",
+				"Snippet: html"
+			],
+			[
+				"du",
+				"File: Duplicate"
+			],
+			[
+				"dupl",
+				"File: Duplicate"
+			],
+			[
+				"wor",
+				"Word Wrap: Toggle"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 593.0
+	},
+	"console":
+	{
+		"height": 146.0,
+		"history":
+		[
+			"install",
+			"install package",
+			"Package Control : Install Packages",
+			"install"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/includes"
+	],
+	"file_history":
+	[
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class/ArtisteExposeManager.class.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/includes/header.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/includes/listesGestion.php",
+		"/home/zbooby/DEV/ISFAC/PHP/secure/.htaccess",
+		"/home/zbooby/DEV/ISFAC/PHP/secure/404.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/js/pagination.js",
+		"/home/zbooby/DEV/ISFAC/PHP/secure/auteurs.php",
+		"/home/zbooby/DEV/ISFAC/PHP/secure/auteur.php",
+		"/home/zbooby/DEV/ISFAC/PHP/secure/contact.php",
+		"/home/zbooby/DEV/ISFAC/PHP/POO/intro/exo5/fantome.class.php",
+		"/home/zbooby/DEV/ISFAC/PHP/POO/intro/heritage/cercle.php",
+		"/home/zbooby/DEV/ISFAC/PHP/POO/intro/heritage/test.php",
+		"/home/zbooby/DEV/ISFAC/PHP/POO/intro/exo5/jeu.php",
+		"/home/zbooby/DEV/ISFAC/PHP/POO/intro/exo5/fantome.static.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class/ExpositionManager.class.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/css/style.css",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/includes/menuExpo.php",
+		"/home/zbooby/DEV/ISFAC/PHP/secure/test.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/includes/bdd/connectbdd.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class/EmplacementManager.class.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class/DonneeEnrichieManager.class.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/includes/footer.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/content/gestionPanel.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class/OeuvreManager.class.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class/OeuvreExposeeManager.class.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class/DonneeEnrichie.class.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class/CollectifExposeManager.class.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class/Oeuvre.class.php",
+		"/home/zbooby/DEV/ISFAC/PHP/TP/ShareMyCar/modules/compte.php",
+		"/home/zbooby/DEV/ISFAC/PHP/TP/ShareMyCar/includes/compteForm.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class/ArtisteManager.class.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class/Message.class.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class/MessageManager.class.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/includes/plan.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/js/listesOeuvres.js",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class/Artiste.class.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class/CollectifManager.class.php",
+		"/home/zbooby/DEV/ISFAC/JAVASCRIPT/JQUERY/styleForms/traitement.js",
+		"/home/zbooby/DEV/ISFAC/PHP/TP/ShareMyCar/modules/edition.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class/Exposition.class.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class/TypeOeuvre.class.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class/UtilisateurManager.class.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class/Utilisateur.class.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/js/emplacement.js",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/js/onglets.js",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/js/oeuvreCard.js",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/modules/traitementOeuvre.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/modules/traitementListes.php",
+		"/home/zbooby/DEV/ISFAC/JAVASCRIPT/JQUERY/styleForms/index.html",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/includes/carteOeuvre.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class/OeuvreExposee.class.php",
+		"/home/zbooby/DEV/ISFAC/PHP/TP/ShareMyCar/includes/forms.php",
+		"/home/zbooby/DEV/ISFAC/PHP/TP/ShareMyCar/content/offres.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/modules/traitementEmplacement.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class/Emplacement.class.php",
+		"/home/zbooby/DEV/ISFAC/PHP/POO/intro/exo5/fantome.hydrate.php",
+		"/home/zbooby/DEV/ISFAC/PHP/POO/intro/exo5/fantome.enfant.class.php",
+		"/home/zbooby/DEV/ISFAC/PHP/POO/intro/heritage/user.php",
+		"/home/zbooby/DEV/ISFAC/PHP/POO/intro/heritage/admin.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/modules/testQrCode.php",
+		"/home/zbooby/DEV/ISFAC/PHP/POO/intro/heritage/carre.php",
+		"/home/zbooby/DEV/ISFAC/PHP/POO/intro/heritage/rectangle.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/includes/functions.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class/ArtisteExpose.class.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class/CollectifExpose.class.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class/Collectif.class.php",
+		"/home/zbooby/DEV/ISFAC/PHP/POO/intro/exo5/jeu.hydrate.php",
+		"/home/zbooby/DEV/ISFAC/PHP/POO/intro/exo5/sphere.class.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class/exposition.class.php",
+		"/home/zbooby/DEV/ISFAC/PHP/TP/ShareMyCar/includes/functions.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/js/procedureEmplacement.txt",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class/emplacement.manager.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class/emplacement.class.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class/artiste.manager.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class/collectif.manager.php",
+		"/home/zbooby/DEV/ISFAC/BDD/Analyse/resto_francois/maquette/content.php",
+		"/home/zbooby/DEV/ISFAC/BDD/Analyse/resto_francois/maquette/index.html",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class/artisteExpose.manager.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class/collectifExpose.manager.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class/collectif.class.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class/collectifExpose.class.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class/exposition.manager.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class/oeuvreExposee.manager.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class/oeuvreExposee.class.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/backupGAG/site/class/exposition.class.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/backupGAG/site/class/exposition.manager.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/test.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/backupGAG/site/test.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/includes/phpqrcode/qrimage.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/backupGAG/site/index.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/backupGAG/site/class/emplacement.class.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/backupGAG/site/class/oeuvre.manager.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/backupGAG/site/class/artiste.manager.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/backupGAG/site/class/emplacement.manager.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/css/lib/testlib.css",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/site/css/style.css",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/site/class/artisteExpose.manager.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/site/modules/traitementListes.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/site/js/listesOeuvres.js",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/site/includes/listesGestion.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/site/content/gestionPanel.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/site/index.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/site/class/artiste.class.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/site/class/artiste.manager.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/site/class/oeuvre.manager.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/site/class/artisteExpose.class.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/site/class/oeuvreExposee.class.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/site/class/oeuvreExposee.manager.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/site/js/emplacement.js",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/site/includes/footer.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/site/includes/plan.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/site/includes/header.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/site/modules/traitementEmplacement.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/site/class/emplacement.class.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/site/class/emplacement.manager.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/site/class/oeuvre.class.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/site/includes/menuExpo.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/ebauche/css/style.css",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/ebauche/js/script.js",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/site/js/onglets.js",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/testPlan/plan3.html",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/testPlan/plan.js",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/testPlan/plan.css",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/testPlan/updatePlace.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/ebauche/index.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/site/site.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/site/content/gestion.php",
+		"/home/zbooby/DEV/ISFAC/PHP/TP/ShareMyCar/modules/admin.php"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 90.0,
+		"where_history":
+		[
+			"/home/zbooby/DEV/ISFAC/PHP/is.php"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"$oeuvreExpose",
+			"sidebar",
+			"search",
+			"last-id",
+			"context-menu",
+			"ul",
+			"_GET",
+			"objDonnee",
+			"getIdTypeDonnee",
+			"getLibelleDonnee",
+			"imageOeuvre",
+			"overlay",
+			"_libelleDonneEnrichie",
+			"_idTypeDonneeEnrichie",
+			"_libelleDonneeEnrichie",
+			"_idDonnee",
+			"_libelleDonnee",
+			"_idTypeDonnee",
+			"idArtiste",
+			"libelleDonneeEnrichie",
+			"idExpo",
+			"idArtiste",
+			"artisteExpose",
+			"(",
+			"set",
+			"dataOeuvre",
+			"vehicule",
+			"close",
+			"closeButton",
+			"Button",
+			"button",
+			"Button",
+			"mess",
+			"message",
+			"idArtiste",
+			"artiste",
+			"Artiste",
+			"artiste",
+			"Artiste",
+			"artiste",
+			"listArtiste",
+			"idArtiste",
+			"Type",
+			"nom",
+			"<i class=\"closeButton-context ion-android-close\"></i>",
+			"\t\t<i class=\"closeButton-context ion-android-close\"></i>\n",
+			"<i class=\"closeButton-context ion-android-close\"></i>",
+			"closeButton ",
+			"closeButton",
+			"idOeuvreExposee",
+			"coordTop",
+			"coordLeft",
+			", ",
+			"emplacement",
+			"Emplacement",
+			"emplacement",
+			"Emplacement",
+			"= ",
+			"$t",
+			"set",
+			") {",
+			"set",
+			"dataArtiste",
+			"prenom",
+			"Prenom",
+			"prenom",
+			"type\"",
+			"nom",
+			"type\"",
+			"type",
+			"dateEntree",
+			"A.",
+			"A.tel",
+			"A.",
+			"layout",
+			"dateEntree",
+			"button",
+			"submit",
+			"type",
+			"= ",
+			"set",
+			"oeuvreExposee",
+			"OeuvreExposee",
+			"oeuvreExposee",
+			"dataOeuvre",
+			"date",
+			"largeur",
+			"rectangle",
+			"modif",
+			"private",
+			"//",
+			"_GET",
+			"content.php",
+			">'",
+			".'",
+			"$q",
+			"q",
+			"html",
+			"dataCollectif",
+			"dataExposition",
+			"idOeuvre",
+			"idCollectif",
+			"idArtiste",
+			"idTypeOeuvre",
+			"descriptifFR",
+			"qrcode",
+			"image",
+			"etat",
+			"hauteur",
+			"longueur",
+			"oeuvre",
+			"Oeuvre",
+			"oeuvre",
+			"recue",
+			"popAddCard",
+			"idOeuvreExposee",
+			"idExpo",
+			"idOeuvre",
+			"nbFlash",
+			"nbClic",
+			"dateSortie",
+			"dateEntree",
+			"oeuvreExposee",
+			"OeuvreExposee",
+			"private",
+			"idArtiste",
+			"dataOeuvreExposee",
+			"plan"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"utf8mb4_unicode_ci"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "popOeuvre.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 14831,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								293,
+								293
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/modules/traitementOeuvre.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6614,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6166,
+								6166
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 518.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/js/oeuvreCard.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7434,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								703,
+								703
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 3,
+					"file": "popArtiste.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 14554,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2237,
+								2237
+							]
+						],
+						"settings":
+						{
+							"open_with_edit": true,
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 627.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class/ArtisteManager.class.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2756,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2747,
+								2747
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 741.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class/Artiste.class.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1372,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 6,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 132,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								132,
+								132
+							]
+						],
+						"settings":
+						{
+							"auto_name": "// Get the current slide",
+							"default_dir": "/home/zbooby/DEV",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/js/pagination.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 350,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								143,
+								143
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 27.0
+	},
+	"input":
+	{
+		"height": 34.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			],
+			[
+				2,
+				0,
+				3,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.0311720698254,
+			0.872194513716,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 30.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.unsaved_changes":
+	{
+		"height": 28.0
+	},
+	"pinned_build_system": "Packages/Python/Python.sublime-build",
+	"project": "/home/zbooby/DEV/projet-sublime-text/GAG.sublime-project",
+	"replace":
+	{
+		"height": 50.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"integration/Integration-03-Positionnement-CSS/index.html"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 1,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 316.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

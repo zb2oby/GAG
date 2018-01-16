@@ -102,7 +102,7 @@ $oeuvre = $managerOeuvre->infoOeuvre($idOeuvre);
 						
 						<div>
 							<label for="titre">Titre</label>
-							<input type="text" name="titre" id="titre<?php echo $oeuvre->getIdOeuvre() ?>" value="<?php echo $oeuvre->getTitre() ?>">
+							<input type="text" name="titre" id="titre<?php echo $oeuvre->getIdOeuvre() ?>" value="<?php echo ucfirst($oeuvre->getTitre()) ?>">
 						</div>
 						<div>
 							<label for="longueur">Longueur</label>
@@ -122,7 +122,7 @@ $oeuvre = $managerOeuvre->infoOeuvre($idOeuvre);
 						</div>
 						
 						<div class="submit">
-							<button class="submit-oeuvre" type="submit">Enregistrer les modifications</button>
+							<button class="submit-oeuvre" type="submit">Enregistrer les informations</button>
 							
 						</div>
 						
@@ -150,10 +150,10 @@ $oeuvre = $managerOeuvre->infoOeuvre($idOeuvre);
 					<div class="closeButton-context"><i class="ion-android-close"></i></div>
 					<div class="card-msg">
 						<?php 
-		//POUR LES TEST
-		$champ = 'idOeuvre';
-		//dans le cas d'une oeuvre : dans les autres cas $artiste->getIdArtiste etc...
-		$id = $oeuvre->getIdOeuvre();
+//POUR LES TEST
+$champ = 'idOeuvre';
+//dans le cas d'une oeuvre : dans les autres cas $artiste->getIdArtiste etc...
+$id = $oeuvre->getIdOeuvre();
 
 						//recuperation d'un objet exposition avec l'idExpo de l'oeuvre exposée ici ouverte si on est dans le cas d'une carte "oeuvre exposée"
 						$managerExpo = new ExpositionManager($bdd);
@@ -203,9 +203,9 @@ $oeuvre = $managerOeuvre->infoOeuvre($idOeuvre);
 					<ul id="list-button">
 						<li><button class="action-button" id="metaData">Gérer le Contenu +</button></li>
 						<?php if(isset($_SESSION['idExpo'])){ echo '<li><button class="action-button" id="modifDateEntree">Modifier date d\'entrée</button></li>'; }?>
-						<li><button class="action-button" id="modifImageOeuvre">Modifier l'image</button></li>
-						<li><button class="action-button" id="modifTypeOeuvre">Modifier le type</button></li>
-						<li><button class="action-button" id="modifArtColl">Modifier Artiste/Collectif</button></li>
+						<li><button class="action-button" id="modifImageOeuvre">Enregistrer l'image</button></li>
+						<li><button class="action-button" id="modifTypeOeuvre">Info type Oeuvre</button></li>
+						<li><button class="action-button" id="modifArtColl">Infos Artiste/Collectif</button></li>
 						<li><button class="action-button" id="delOeuvre">Supprimer l'oeuvre</button></li>
 						<li><button class="action-button button-msg" id="messagerieOeuvre">Messagerie<div class="nbMsg"><?php echo $nbMsg; ?></div></button></li>
 					</ul>

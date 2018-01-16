@@ -42,6 +42,13 @@ class ArtisteExposeManager {
         return $list;
     }
 
+    public function artisteExpose($idArtisteExpose) {
+        $q = $this->_db->query("SELECT * FROM ArtisteExpose WHERE idArtiste ='".$idArtisteExpose."'");
+        $data = $q->fetch(); 
+        $artisteExposee = new ArtisteExpose($data);
+        return $artisteExposee;
+    }
+
     
 
 }

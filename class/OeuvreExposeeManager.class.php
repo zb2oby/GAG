@@ -99,7 +99,7 @@ class OeuvreExposeeManager {
             $idOeuvre = $oeuvre->getIdOeuvre();
             echo '<li class="portlet" data-id="'.$idOeuvreExposee.'">'
                     .'<div class="portlet-content">'
-                        .'<div class="titre">'.$oeuvre->getTitre().'</div>'
+                        .'<div class="titre">'.ucfirst($oeuvre->getTitre()).'</div>'
                         .'<div data-idoeuvreexposee="'.$idOeuvreExposee.'" data-id="'.$idOeuvre.'" class="img '.$class.'" data-src="'.$oeuvre->getImage().'">'  
                             .'<img src="../img/oeuvres/'.$oeuvre->getImage().'" alt="'.$oeuvre->getImage().'">'
                         .'</div>'

@@ -97,13 +97,22 @@ include('../modules/traitementEmplacement.php');
 
 						$artisteExpose = $manager->listArtisteExpo($idExpo);
 						foreach ($artisteExpose as $artiste) {
-							echo '<li class="portlet portlet-artiste" data-id="'.$artiste->getIdArtiste().'"><div class="portlet-content"><span>'.$artiste->getNom().'</span><span>'.$artiste->getPrenom().'</span><img src="../img/artistes/'.$artiste->getImage().'" alt=""></div>';
+							$idArtiste = $artiste->getIdArtiste();
+							echo '<li class="portlet portlet-artiste" data-id="'.$idArtiste.'">'
+									.'<div class="portlet-content">
+										<div class="titre">'.ucfirst($artiste->getNom()).' '.ucfirst($artiste->getPrenom())
+										.'</div>'
+										.'<div class="img">
+											<img src="../img/artistes/'.$artiste->getImage().'" alt="">'
+										.'</div>'
+									.'</div>';
+							include('../includes/popArtiste.php');
 				?>
-							<div class="context-menu">
+							<!-- <div class="context-menu">
 								<i class="closeButton ion-android-close"></i>
 								<i class="deleteCard ion-ios-trash-outline"></i>
 								<input type="text"></input>
-							</div>
+							</div> -->
 				<?php
 							echo '</li>';
 						}

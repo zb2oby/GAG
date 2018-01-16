@@ -25,6 +25,19 @@ class MessageManager {
         $q->execute();
     }
 
+    public function addMessageArtiste(Message $message) {
+        $q = $this->_db->prepare('INSERT INTO Message_interne(dateMessage, message, idUtilisateur, idArtiste) VALUES (:dateMessage, :message, :idUtilisateur, :idArtiste)');
+        $q->bindValue(':dateMessage', $message->getDateMessage());
+        $q->bindValue(':message', $message->getMessage());
+        $q->bindValue(':idUtilisateur', $message->getIdUtilisateur());
+        $q->bindValue(':idArtiste', $message->getIdArtiste());
+        // $q->bindValue(':idArtiste', $message->getIdArtiste());
+        // $q->bindValue(':idExpo', $message->getIdExpo());
+        // $q->bindValue(':idCollectif', $message->getIdCollectif());
+
+        $q->execute();
+    }
+
     public function deleteMessage(Message $message) {
     	$q = $this->_db->exec('DELETE FROM Message_interne WHERE idMessage ='.$message->getIdMessage());
     }

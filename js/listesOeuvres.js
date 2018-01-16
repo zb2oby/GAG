@@ -354,6 +354,15 @@ function deleteElt(target) {
         //     $('.overlay').hide();
         // });
     });
+    $('.portlet-content .titre').click(function(event) {
+        $(event.target).parent().parent().find('.context-menu').css('display', 'block');
+        $('.overlay').show();
+        
+        // $('.cancelButton').click(function(e) {
+        //     $('.context-menu').css('display', 'none');
+        //     $('.overlay').hide();
+        // });
+    });
 
 	//EXTINCTION DES POPUP
 	$('.closeButton i').click(function(event) {

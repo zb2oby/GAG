@@ -11,6 +11,7 @@
 <script src="../js/listesOeuvres.js"></script>
 <script src="../js/emplacement.js"></script>
 <script src="../js/oeuvreCard.js"></script>
+<script src="../js/artisteCard.js"></script>
 <script src="../js/lib/slick/slick.min.js"></script>
 <script src="../js/lib/slick/slick.js"></script>
 <script src="../js/pagination.js"></script>

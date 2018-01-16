@@ -36,6 +36,7 @@ class ArtisteManager {
         $q->bindValue(':image', $artiste->getImage());
         $q->bindValue(':descriptifFR', $artiste->getDescriptifFR());
         $q->bindValue(':email', $artiste->getEmail());
+        $q->bindValue(':idArtiste', $artiste->getIdArtiste());
 
         $q->execute();
     }
@@ -70,6 +71,24 @@ class ArtisteManager {
         $data = $q->fetch();
         $artiste = new Artiste($data);
         return $artiste;
+    }
+
+    public function getIdsCollectifs($idArtiste) {
+        $list = [];
+        $q=$this->_db->query("SELECT idCollectif FROM Communaute WHERE idArtiste =".$idArtiste);
+        while ($data = $q->fetch()) {
+            $list[] = $data['idCollectif'];
+        }
+        return $list;
+    }
+
+    public function listOeuvresArtiste($idArtiste) {
+        $list = [];
+        $q=$this->_db->query("SELECT * FROM Oeuvre WHERE idArtiste =".$idArtiste);
+        while ($data = $q->fetch()) {
+            $list[] = new Oeuvre($data);
+        }
+        return $list;
     }
 
 }

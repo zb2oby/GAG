@@ -510,6 +510,10 @@ form.adminForm, form.expoForm {
 				.portlet-content:hover {
 					background-color: #ddd;
 				}
+
+					.portlet .titre {
+						text-transform : capitalize;
+					}
 					
 				.cards li img {
 					float: left;
@@ -569,7 +573,7 @@ form.adminForm, form.expoForm {
 	.popAddCard i:hover {
 		cursor: pointer;
 	}
-.popGestionCard {
+.popGestionCard, .popGestionCard-artiste {
 	position: absolute;
 	z-index: 5;
 	top: 50%;
@@ -668,6 +672,7 @@ form.adminForm, form.expoForm {
 		padding: 20px;
 		border-bottom: 4px solid #ccc;
 		text-align: center;
+		text-transform : capitalize;
 	}
 		.card-header .card-title span {
 			display: block;
@@ -752,7 +757,7 @@ form.adminForm, form.expoForm {
 			.card-col.card-form {
 			flex-grow: 1;
 			}
-				.card-form .form-oeuvre div {
+				.card-form .form-oeuvre div, .card-form .form-artiste div {
 					padding: 10px 0;
 				}
 
