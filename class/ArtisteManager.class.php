@@ -92,7 +92,7 @@ class ArtisteManager {
 
     public function listOeuvresArtiste($idArtiste) {
         $list = [];
-        $q=$this->_db->query("SELECT * FROM Oeuvre WHERE idArtiste =".$idArtiste);
+        $q=$this->_db->query("SELECT * FROM Oeuvre WHERE idArtiste =".$idArtiste." ORDER BY idOeuvre DESC");
         while ($data = $q->fetch()) {
             $list[] = new Oeuvre($data);
         }

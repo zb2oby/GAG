@@ -366,8 +366,6 @@ function deleteElt(target) {
 
 	//EXTINCTION DES POPUP
     //(anciennement closeButton i)
-
-
 	$('.closeButton i').click(function(event) {
 		$(event.target).parent().parent().css('display', 'none');
 		$('.confirmPopup').css('display', 'none');
@@ -376,13 +374,19 @@ function deleteElt(target) {
 	});
 
 	$('.overlay').click(function(event) {
-    	$('.context-menu').css('display', 'none');
-        // $('.context-oeuvre').css('display', 'none');
-        // $('.context-artiste').css('display', 'none');
-    	$('.popAddCard').css('display', 'none');
-    	$('.popAddRecue').css('display', 'none');
-        $('.popAddArtiste').css('display', 'none');
-        $('.overlay').hide();
+        //si une carte oeuvre est ouverte on ne ferme que ça (gardera ouverte la carte artiste si o uverte en dessous)
+        if ($('.context-oeuvre').css('display') == 'block') {
+            $('.context-oeuvre').css('display', 'none');
+        }
+        //sinon on ferme tout
+        else{
+            $('.context-menu').css('display', 'none');
+            $('.popAddCard').css('display', 'none');
+            $('.popAddRecue').css('display', 'none');
+            $('.popAddArtiste').css('display', 'none');
+            $('.overlay').hide();
+        }
+    	
     });
     
     

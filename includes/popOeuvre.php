@@ -331,7 +331,6 @@ $id = $oeuvre->getIdOeuvre();
 			</div>
 			<div class="submit">
 				<button type="submit">Supprimer</button>
-				<button class="cancelButton">Annuler</button>
 			</div>
 			
 		</form>

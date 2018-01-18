@@ -96,7 +96,7 @@ if (isset($_POST['idOeuvre'])) {
 			
 			$extensions_valides = array( 'jpg' , 'jpeg' , 'gif' , 'png' );
 			$extension_upload = strtolower(  substr(  strrchr($name, '.')  ,1)  );
-			if ( in_array($extension_upload,$extensions_valides) ) echo "Extension correcte";
+			//if ( in_array($extension_upload,$extensions_valides) ) echo "Extension correcte";
 			$cheminFichier = "../img/oeuvres/oeuvre{$idOeuvre}.{$extension_upload}";
 			//suppression des fichiers existants
 			$files = glob("../img/oeuvres/oeuvre{$idOeuvre}.*");
@@ -104,13 +104,14 @@ if (isset($_POST['idOeuvre'])) {
 			  unlink($file);
 			}
 			$resultat = move_uploaded_file($_FILES['imageOeuvre']['tmp_name'][0],$cheminFichier);
-			if ($resultat) echo "Transfert réussi";
+			//if ($resultat) echo "Transfert réussi";
 			$nomFichier = 'oeuvre'.$idOeuvre.'.'.$extension_upload;
 			//mie a jour de la base
 			$oeuvre->setImage($nomFichier);
 			$managerOeuvre->updateOeuvre($oeuvre);
 			
-			header('location: ../content/gestionPanel.php');
+			echo $nomFichier;
+			//header('location: ../content/gestionPanel.php');
 			
 	 	}
 		

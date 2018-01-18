@@ -767,6 +767,7 @@ form.adminForm, form.expoForm {
 				}
 					.delOeuvreArtiste {
 						position: absolute;
+						z-index: 5;
 						right: 0;
 						min-width: 30px;
 						font-size: 15px;

@@ -24,9 +24,7 @@ jQuery(document).ready(function($) {
 	});
 
 
-	$('.delOeuvreArtiste').click(function(event) {
-		$(event.target).parent().parent().find('.pop-delOeuvre').css('display', 'block');
-	});
+	
 
 	//AFFICHAGE CONTEXT MENU DUNE CARTE ARTISTE
 	$('.portlet-artiste').click(function(event) {
@@ -41,16 +39,23 @@ jQuery(document).ready(function($) {
         $('.overlay').show();
         
     });
-
+    //AFFICHAGE POPUP DE CONFIRMATION DE SUPPRESSION (bug avec affichage carte oeuvre contenue dans carte artiste)
+    //surement un probleme de zindex ou qqch comme ca
+    $('i.delOeuvreArtiste').click(function(event) {
+		$(event.target).closest('.li-oeuvre-artiste').find('.pop-delOeuvreArtiste').css('display', 'block');
+		$('.context-oeuvre').css('display', 'none');
+	});
+    //AFFICHAGE CARTE OEUVRE CONTENUE DANS CARTE ARTISTE
 	$(document).on('click', '.li-oeuvre-artiste', function(event) {
 		// event.preventDefault();
 		$(event.currentTarget).find('.context-menu').css({
     		display: 'block',
     		zIndex: '7',
     		top: '0px',
-
     	});
 	});
+
+
 
 	$('.list-oeuvre-artiste .closeButton-oeuvre i').click(function(event) {
 		$('.overlay').show();
@@ -67,7 +72,8 @@ jQuery(document).ready(function($) {
 		var idCollectif = $(event.target).find('#idCollectif').val();
 		var nomCollectif = $(event.target).find('#idCollectif option:selected').text();
 		//modif image artiste
-		var fileImage = $(event.target).find('#imageArtiste').val();
+		var formImage = $(event.currentTarget).get(0);
+		var fileImage = new FormData(formImage);
 		var maxSize = $(event.target).find('#maxSize').val();
 		var existImage = $(event.target).find('#existImage').val();
 		//ajout message oeuvre
@@ -76,19 +82,28 @@ jQuery(document).ready(function($) {
 		var idUser = $(event.target).find('#idUser').val();
 		var nomUser = $(event.target).find('#nomUser').val();
 		var nbMsg = parseInt($(event.target).closest('.card-action').find('.nbMsg').text());
-
 		//suppression Collectif
 		var idCollectifDeleted = $(event.target).find('#idColl').val();
 		var delColl = $(event.target).find('#req').val();
-
 		//ajout Collectif
 		var idCollectif = $(event.target).find('#idCollectif').val();
 		var libelleCollectif = $(event.target).find('#idCollectif option:selected').text(); 
-
-
 		//creation nouvelle oeuvre pour l'artiste
 		var addOeuvreArtiste = $(event.target).find('#addArtiste').val();
+		//suppression d'une oeuvre de la fiche artiste
+		var delOeuvreArtiste = $(event.target).find('#delOeuvre').val();
+		var idDelOeuvre = $(event.target).find('#idOeuvre').val();
 
+
+
+		// //suppression d'une oeuvre de la fiche artiste
+		// if (typeof delOeuvreArtiste != 'undefined' && typeof idDelOeuvre != 'undefined') {
+		// 	method = 'GET';
+		// 	var data = 'idOeuvre=' + idDelOeuvre;
+		// 	$(event.currentTarget).closest('.li-oeuvre-artiste').remove();
+		// }
+
+		//creation nouvelle oeuvre
 		if (typeof addOeuvreArtiste != 'undefined') {
 			method = 'GET';
 			var data = 'idArtiste=' + idArtiste + '&req=' + addOeuvreArtiste;
@@ -107,17 +122,15 @@ jQuery(document).ready(function($) {
 			method = 'GET';
 			var data = 'idCollectif=' + idCollectifDeleted + '&req=' + delColl + '&idArtiste=' + idArtiste;
 			$(event.target).closest('.context-menu').find('.cardHeader-bottom #coll-'+idCollectifDeleted).html('');
-			$(event.target).parent().remove();
-			
+			$(event.target).parent().remove();	
 		}
-		
-
 		//modification de l'image artiste
-		if (typeof fileImage != 'undefined') {
+		if (typeof fileImage != 'undefined' && typeof maxSize != 'undefined' && typeof existImage != 'undefined') {
 			method = 'POST';
-			return true;
+			var data = fileImage;
+			var image = 'ok';
+			//return true;
 		}
-		
 		//ajout de message artiste
 		if (typeof message != 'undefined' || typeof dateMsg != 'undefined' || typeof idUser != 'undefined' ) {
 			method = 'GET';
@@ -147,11 +160,18 @@ jQuery(document).ready(function($) {
 			.done(function(response) {
 				console.log("success");
 				if (html == 'ok') {
-
-					var idNewOeuvre = parseFloat(response);
-					//apres on affiche la carte oeuvre liée a cet idoeuvre retournée par le php.
-						//on append un nouveau li avec le nouvel 'id oeuvre
-						//on find element li avec le nouvel id et on affiche sons popup
+					var affichageLastOeuvre = response;
+					$(event.currentTarget).closest('.context-menu').find('.list-oeuvre-artiste').prepend(affichageLastOeuvre);
+					//$(event.currentTarget).closest('.context-menu').find('.li-oeuvre-artiste').load('../includes/popOeuvre.php');
+					$(event.currentTarget).closest('.pop-addOeuvre').hide();
+					$('.context-overlay').hide();
+				}
+				else if (image == 'ok') {
+					$(document).load('../img/artistes/'+response);
+					$(event.currentTarget).closest('.context-menu').find('.card-image').html('<img src="../img/artistes/'+response+'">');
+					$(event.currentTarget).closest('.portlet').find('.img').html('<img src="../img/artistes/'+response+'">');
+					$(event.currentTarget).closest('.pop-modifImageArtiste').hide();
+					$('.context-overlay').hide();
 				}	
 
 			}) 

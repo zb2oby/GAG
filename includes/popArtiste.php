@@ -102,13 +102,13 @@ $artiste = $managerArtiste->infoArtiste($idArtiste);
 								?>
 
 								<li class="li-oeuvre-artiste">&nbsp;<?php echo $oeuvre->getTitre(); ?>
-									<div class="oeuvreArtiste" data-idOeuvre="<?php echo $idOeuvre ?>">
+									<div class="oeuvreArtiste" data-idOeuvre="<?php echo $oeuvre->getIdOeuvre() ?>">
 										<i class="delOeuvreArtiste ion-ios-trash-outline" title="Supprimer"></i>
 									</div>
 									<img style="width:20px; height: 20px;" src="../img/oeuvres/<?php echo $oeuvre->getImage() ?>">
-									<div class="card-form pop-delOeuvre popGestionCard">
+									<div class="card-form pop-delOeuvreArtiste popGestionCard">
 										<div class="closeButton-context"><i class="ion-android-close"></i></div>
-										<form action="../modules/traitementOeuvre.php" data-idOeuvre="<?php echo $oeuvre->getIdOeuvre() ?>" method="GET">
+										<form class="form-oeuvre" action="../modules/traitementOeuvre.php" data-idOeuvre="<?php echo $oeuvre->getIdOeuvre() ?>" method="GET">
 											<div>
 												<span>Voulez vous supprimer definitvement cette oeuvre ?</span><br>
 												<input type="hidden" id="idOeuvre" name="idOeuvre" value="<?php echo $oeuvre->getIdOeuvre(); ?>">
@@ -116,7 +116,6 @@ $artiste = $managerArtiste->infoArtiste($idArtiste);
 											</div>
 											<div class="submit">
 												<button type="submit">Supprimer</button>
-												<button class="cancelButton">Annuler</button>
 											</div>
 											
 										</form>

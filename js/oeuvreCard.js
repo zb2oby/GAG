@@ -19,7 +19,7 @@ jQuery(document).ready(function($) {
 	});
 
 	$('.cancelButton').click(function(event) {
-		$(this).parent().parent().parent().hide();
+		$(event.currentTarget).parent().parent().parent().hide();
 		$('.context-overlay').hide();
 	});
 
@@ -45,7 +45,8 @@ jQuery(document).ready(function($) {
 		var nomArtiste = $(event.currentTarget).find('#idArtiste option:selected').text();
 		var nomCollectif = $(event.currentTarget).find('#idCollectif option:selected').text();
 		//modif image oeuvre
-		var fileImage = $(event.currentTarget).find('#imageOeuvre').val();
+		var formImage = $(event.currentTarget).get(0);
+		var fileImage = new FormData(formImage);
 		var maxSize = $(event.currentTarget).find('#maxSize').val();
 		var existImage = $(event.currentTarget).find('#existImage').val();
 		//ajout message oeuvre
@@ -63,9 +64,18 @@ jQuery(document).ready(function($) {
 		var idTypeDonnee = $(event.currentTarget).find('#typeDonnee').val();
 		var libelleTypeDonnee = $(event.currentTarget).find('#typeDonnee option:selected').text();
 		var libelleDonnee = $(event.currentTarget).find('#libelleDonnee').val();
+		//suppression d'une oeuvre
+		var delOeuvre = $(event.currentTarget).find('#delOeuvre').val();
 
 
-
+		console.log(idOeuvre);
+		console.log(delOeuvre);
+		//suppression oeuvre
+		if (typeof delOeuvre != 'undefined') {
+			method = 'GET';
+			data = 'idOeuvre=' + idOeuvre + '&req=' + delOeuvre;
+			$(event.currentTarget).closest('.li-oeuvre-artiste').remove();
+		}
 		//donnee generale
 		if (typeof titre != 'undefined' || typeof longueur != 'undefined' || typeof hauteur != 'undefined' || typeof etat != 'undefined' || typeof descriptif != 'undefined') {
 			var method = 'GET';
@@ -88,9 +98,11 @@ jQuery(document).ready(function($) {
 		}
 
 		//modification de l'image oeuvre
-		if (typeof fileImage != 'undefined') {
+		if (typeof fileImage != 'undefined' && typeof maxSize != 'undefined' && typeof existImage != 'undefined') {
 			method = 'POST';
-			return true;
+			var data = fileImage;
+			var image = 'ok';
+			//return true;
 		}
 		
 		//ajout de message oeuvre
@@ -146,6 +158,13 @@ jQuery(document).ready(function($) {
 					$(event.currentTarget).each(function(){
 					    this.reset();
 					});
+				}
+				if (image == 'ok') {
+					$(document).load('../img/oeuvres/'+response);
+					$(event.currentTarget).closest('.context-menu').find('.card-image').html('<img src="../img/oeuvres/'+response+'">');
+					$(event.currentTarget).closest('.portlet').find('.img').html('<img src="../img/oeuvres/'+response+'">');
+					$(event.currentTarget).closest('.pop-modifImageOeuvre').hide();
+					$('.context-overlay').hide();
 				}
 				
 			}) 
