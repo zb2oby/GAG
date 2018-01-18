@@ -4,16 +4,28 @@
 		"selected_items":
 		[
 			[
+				"nb",
+				"nbCollectif"
+			],
+			[
+				"arti",
+				"artisteExposee\t(ArtisteExposeManager.class.php)"
+			],
+			[
+				"manager",
+				"managerArtExpo"
+			],
+			[
+				"Artis",
+				"ArtisteExposeManager\t(ArtisteExposeManager.class.php)"
+			],
+			[
 				"date",
 				"dateEntree"
 			],
 			[
 				"idDo",
 				"idDonneeDeleted"
-			],
-			[
-				"manager",
-				"managerMeta"
 			],
 			[
 				"libelle",
@@ -448,10 +460,6 @@
 				"_SESSION"
 			],
 			[
-				"arti",
-				"artisteExpose"
-			],
-			[
 				"delete",
 				"deleteArtisteExpose\t(artisteExpose.manager.php)"
 			],
@@ -462,10 +470,6 @@
 			[
 				"lis",
 				"listArtisteExpo\t(artisteExpose.manager.php)"
-			],
-			[
-				"Artis",
-				"ArtisteExpose\t(artisteExpose.class.php)"
 			],
 			[
 				"on",
@@ -510,10 +514,6 @@
 			[
 				"ro",
 				"row-reverse"
-			],
-			[
-				"trai",
-				"traitementListes.php"
 			]
 		]
 	},
@@ -523,16 +523,7 @@
 			"file": "popOeuvre.php",
 			"settings":
 			{
-				"buffer_size": 14831,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/modules/traitementOeuvre.php",
-			"settings":
-			{
-				"buffer_size": 6614,
+				"buffer_size": 14839,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -547,28 +538,47 @@
 			}
 		},
 		{
+			"file": "/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/modules/traitementOeuvre.php",
+			"settings":
+			{
+				"buffer_size": 6614,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "listesGestion.php",
+			"settings":
+			{
+				"buffer_size": 6147,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
 			"file": "popArtiste.php",
 			"settings":
 			{
-				"buffer_size": 14554,
+				"buffer_size": 8997,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class/ArtisteManager.class.php",
+			"file": "/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/js/artisteCard.js",
 			"settings":
 			{
-				"buffer_size": 2756,
+				"buffer_size": 4129,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class/Artiste.class.php",
+			"file": "/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/css/style.css",
 			"settings":
 			{
-				"buffer_size": 1372,
+				"buffer_size": 16778,
+				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
@@ -684,13 +694,33 @@
 	[
 		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG",
 		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class",
-		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/includes"
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/content",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/css",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/img",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/includes",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/js",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/modules"
 	],
 	"file_history":
 	[
-		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class/ArtisteExposeManager.class.php",
-		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/includes/header.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class/OeuvreExposeeManager.class.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/js/listesOeuvres.js",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/js/popCards.js",
 		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/includes/listesGestion.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/js/oeuvreCard.js",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class/MessageManager.class.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/modules/traitementArtiste.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/includes/footer.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class/ArtisteManager.class.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class/Message.class.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/content/gestionPanel.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/js/artisteCard.js",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class/Artiste.class.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class/ArtisteExposeManager.class.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class/OeuvreExposee.class.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class/ArtisteExpose.class.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class/CollectifManager.class.php",
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/includes/header.php",
 		"/home/zbooby/DEV/ISFAC/PHP/secure/.htaccess",
 		"/home/zbooby/DEV/ISFAC/PHP/secure/404.php",
 		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/js/pagination.js",
@@ -709,22 +739,13 @@
 		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/includes/bdd/connectbdd.php",
 		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class/EmplacementManager.class.php",
 		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class/DonneeEnrichieManager.class.php",
-		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/includes/footer.php",
-		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/content/gestionPanel.php",
 		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class/OeuvreManager.class.php",
-		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class/OeuvreExposeeManager.class.php",
 		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class/DonneeEnrichie.class.php",
 		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class/CollectifExposeManager.class.php",
 		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class/Oeuvre.class.php",
 		"/home/zbooby/DEV/ISFAC/PHP/TP/ShareMyCar/modules/compte.php",
 		"/home/zbooby/DEV/ISFAC/PHP/TP/ShareMyCar/includes/compteForm.php",
-		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class/ArtisteManager.class.php",
-		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class/Message.class.php",
-		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class/MessageManager.class.php",
 		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/includes/plan.php",
-		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/js/listesOeuvres.js",
-		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class/Artiste.class.php",
-		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class/CollectifManager.class.php",
 		"/home/zbooby/DEV/ISFAC/JAVASCRIPT/JQUERY/styleForms/traitement.js",
 		"/home/zbooby/DEV/ISFAC/PHP/TP/ShareMyCar/modules/edition.php",
 		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class/Exposition.class.php",
@@ -733,12 +754,10 @@
 		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class/Utilisateur.class.php",
 		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/js/emplacement.js",
 		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/js/onglets.js",
-		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/js/oeuvreCard.js",
 		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/modules/traitementOeuvre.php",
 		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/modules/traitementListes.php",
 		"/home/zbooby/DEV/ISFAC/JAVASCRIPT/JQUERY/styleForms/index.html",
 		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/includes/carteOeuvre.php",
-		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class/OeuvreExposee.class.php",
 		"/home/zbooby/DEV/ISFAC/PHP/TP/ShareMyCar/includes/forms.php",
 		"/home/zbooby/DEV/ISFAC/PHP/TP/ShareMyCar/content/offres.php",
 		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/modules/traitementEmplacement.php",
@@ -751,7 +770,6 @@
 		"/home/zbooby/DEV/ISFAC/PHP/POO/intro/heritage/carre.php",
 		"/home/zbooby/DEV/ISFAC/PHP/POO/intro/heritage/rectangle.php",
 		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/includes/functions.php",
-		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class/ArtisteExpose.class.php",
 		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class/CollectifExpose.class.php",
 		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class/Collectif.class.php",
 		"/home/zbooby/DEV/ISFAC/PHP/POO/intro/exo5/jeu.hydrate.php",
@@ -812,10 +830,7 @@
 		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/testPlan/plan.js",
 		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/testPlan/plan.css",
 		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/testPlan/updatePlace.php",
-		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/ebauche/index.php",
-		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/site/site.php",
-		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/site/content/gestion.php",
-		"/home/zbooby/DEV/ISFAC/PHP/TP/ShareMyCar/modules/admin.php"
+		"/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/ebauche/index.php"
 	],
 	"find":
 	{
@@ -834,6 +849,17 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"afficheCol",
+			"popGes",
+			"popGestionCard",
+			"imageOeuvre",
+			"oeuvre",
+			"hauteur",
+			"longueur",
+			"titre",
+			"etat",
+			"$expo",
+			"imageOeuvre",
 			"$oeuvreExpose",
 			"sidebar",
 			"search",
@@ -950,18 +976,7 @@
 			"recue",
 			"popAddCard",
 			"idOeuvreExposee",
-			"idExpo",
-			"idOeuvre",
-			"nbFlash",
-			"nbClic",
-			"dateSortie",
-			"dateEntree",
-			"oeuvreExposee",
-			"OeuvreExposee",
-			"private",
-			"idArtiste",
-			"dataOeuvreExposee",
-			"plan"
+			"idExpo"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -980,7 +995,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -989,15 +1004,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 14831,
+						"buffer_size": 14839,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								293,
-								293
+								3272,
+								3272
 							]
 						],
 						"settings":
@@ -1006,143 +1021,19 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/modules/traitementOeuvre.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 6614,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								6166,
-								6166
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 518.0,
+						"translation.y": 2147.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 4,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
+					"buffer": 1,
 					"file": "/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/js/oeuvreCard.js",
 					"semi_transient": false,
 					"settings":
 					{
 						"buffer_size": 7434,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								703,
-								703
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 7,
-					"type": "text"
-				}
-			]
-		},
-		{
-			"selected": 0,
-			"sheets":
-			[
-				{
-					"buffer": 3,
-					"file": "popArtiste.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 14554,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2237,
-								2237
-							]
-						],
-						"settings":
-						{
-							"open_with_edit": true,
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 627.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class/ArtisteManager.class.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2756,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2747,
-								2747
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 741.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/class/Artiste.class.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1372,
 						"regions":
 						{
 						},
@@ -1155,7 +1046,7 @@
 						],
 						"settings":
 						{
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
@@ -1163,6 +1054,159 @@
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/modules/traitementOeuvre.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6614,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								992,
+								992
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 651.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 3,
+			"sheets":
+			[
+				{
+					"buffer": 3,
+					"file": "listesGestion.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6147,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4417,
+								4417
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 2432.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "popArtiste.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 8997,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1415,
+								1415
+							]
+						],
+						"settings":
+						{
+							"open_with_edit": true,
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 855.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/js/artisteCard.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4129,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4011,
+								4011
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 15.0,
+						"translation.y": 1710.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/css/style.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 16778,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								15775,
+								15775
+							]
+						],
+						"settings":
+						{
+							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai (SL).tmTheme",
+							"syntax": "Packages/CSS/CSS.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 18949.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
 					"type": "text"
 				}
 			]
@@ -1172,7 +1216,7 @@
 			"sheets":
 			[
 				{
-					"buffer": 6,
+					"buffer": 7,
 					"semi_transient": false,
 					"settings":
 					{
@@ -1197,11 +1241,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 8,
 					"type": "text"
 				},
 				{
-					"buffer": 7,
+					"buffer": 8,
 					"file": "/home/zbooby/DEV/ISFAC/Fil-Rouge/GAG/js/pagination.js",
 					"semi_transient": false,
 					"settings":
@@ -1227,7 +1271,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 7,
 					"type": "text"
 				}
 			]
@@ -1267,8 +1311,8 @@
 		"cols":
 		[
 			0.0,
-			0.0311720698254,
-			0.872194513716,
+			0.309226932668,
+			0.93391521197,
 			1.0
 		],
 		"rows":

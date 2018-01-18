@@ -42,6 +42,30 @@ jQuery(document).ready(function($) {
 		var nomUser = $(event.target).find('#nomUser').val();
 		var nbMsg = parseInt($(event.target).closest('.card-action').find('.nbMsg').text());
 
+		//suppression Collectif
+		var idCollectifDeleted = $(event.target).find('#idColl').val();
+		var delColl = $(event.target).find('#req').val();
+
+		//ajout Collectif
+		var idCollectif = $(event.target).find('#idCollectif').val();
+		var libelleCollectif = $(event.target).find('#idCollectif option:selected').text();
+
+		//ajout de collectif
+		if (typeof idCollectif != 'undefined') {
+			method = 'GET';
+			var data = 'idCollectif=' + idCollectif + '&idArtiste=' + idArtiste;
+			$(event.target).closest('.context-menu').find('.card-communaute ul').prepend('<li>Collectif '+libelleCollectif+'<form data-idArtiste="'+idArtiste+'" action="../modules/traitementArtiste.php" method="GET"><input type="hidden" id="req" name="req" value="deleteColl"><input type="hidden" id="idColl" name="idColl" value="'+idCollectifDeleted+'"><button type="submit" class="delColl"><i class="ion-ios-trash-outline" title="Supprimer"></i></button></form></li>');
+			$(event.target).closest('.context-menu').find('#afficheCollectifArtiste').append('<div id="coll-'+idCollectif+'"> - Collectif '+libelleCollectif+'</div>');
+		}
+		//suppression collectif
+		if (typeof idCollectifDeleted != 'undefined' || typeof delColl != 'undefined') {
+			method = 'GET';
+			var data = 'idCollectif=' + idCollectifDeleted + '&req=' + delColl + '&idArtiste=' + idArtiste;
+			$(event.target).closest('.context-menu').find('.cardHeader-bottom #coll-'+idCollectifDeleted).html('');
+			$(event.target).parent().remove();
+			
+		}
+		
 
 		//modification de l'image artiste
 		if (typeof fileImage != 'undefined') {

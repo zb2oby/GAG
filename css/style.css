@@ -687,6 +687,7 @@ form.adminForm, form.expoForm {
 		}
 		.cardHeader-bottom span {
 		 	display: inline;
+
 		}
 	.card-content {
 		display: flex;
@@ -825,12 +826,12 @@ form.adminForm, form.expoForm {
 		width: 400px;
 	}	
 
-		.card-data {
+		.card-data, .card-communaute {
 			overflow: auto;
 			max-height: 300px;
 			padding: 10px;
 		}
-			.card-data ul {
+			.card-data ul, .card-communaute ul {
 				overflow: hidden;
 				padding: 0;
 				margin: 0;
@@ -851,11 +852,11 @@ form.adminForm, form.expoForm {
 				font-size: 24px;
 			}
 
-		.newData {
+		.newData, .newCommunaute {
 			border-top: 4px solid #ccc;
 			padding: 20px;
 		}
-			.newData span {
+			.newData span, .newCommunaute span {
 				display: block;
 				text-align: center;
 				padding: 10px;
@@ -1018,8 +1019,8 @@ form.adminForm, form.expoForm {
 		}
 	
 	.cards ul {
-		min-height: 300px;
-		max-height: 300px;
+		min-height: 310px;
+		max-height: 310px;
 	}
 	.down-content {
 		/*margin-top: 20px;*/

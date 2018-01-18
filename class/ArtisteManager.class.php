@@ -82,6 +82,14 @@ class ArtisteManager {
         return $list;
     }
 
+    public function deleteCollectifArtiste($idArtiste, $idCollectif) {
+        $q=$this->_db->exec("DELETE FROM Communaute WHERE idCollectif = ".$idCollectif." AND idArtiste =".$idArtiste);
+    }
+
+    public function setCollectifArtiste($idArtiste, $idCollectif) {
+        $q=$this->_db->exec("INSERT INTO Communaute(idArtiste, idCollectif) VALUES (".$idArtiste.", ".$idCollectif.")");
+    }
+
     public function listOeuvresArtiste($idArtiste) {
         $list = [];
         $q=$this->_db->query("SELECT * FROM Oeuvre WHERE idArtiste =".$idArtiste);

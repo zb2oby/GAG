@@ -28,10 +28,15 @@ if (isset($_GET['idArtiste'])) {
 		$artiste->setDescriptifFR($descriptif);
 	}
 	
-	// if (isset($_GET['idCollectif'])) {
-	// 	$idCollectif = htmlentities($_GET['idCollectif']);
-	// 	$artiste->setIdCollectif($idCollectif);
-	// }
+	if (isset($_GET['idCollectif'])) {
+		$idCollectif = htmlentities($_GET['idCollectif']);
+		if (isset($_GET['req']) && $_GET['req'] == 'deleteColl') {
+			$managerArtiste->deleteCollectifArtiste($idArtiste, $idCollectif);
+		}else{
+			$managerArtiste->setCollectifArtiste($idArtiste, $idCollectif);
+		}
+		
+	}
 
 	if (isset($_GET['message'], $_GET['dateMsg'], $_GET['idUser'])) {
 		$contenu = htmlentities($_GET['message']);

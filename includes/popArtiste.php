@@ -31,9 +31,9 @@ $artiste = $managerArtiste->infoArtiste($idArtiste);
 			</div> 
 			<div class="cardHeader-bottom">
 				
-				<span id="afficheCollectif">
+				<span id="afficheCollectifArtiste">
 					
-					Collectif(s) : 
+					<h4>Communauté</h4>
 					<?php 
 						$listIdCollectif = $managerArtiste->getIdsCollectifs($idArtiste);
 						$managerCollectif = new CollectifManager($bdd);
@@ -42,7 +42,7 @@ $artiste = $managerArtiste->infoArtiste($idArtiste);
 							$collectif = $managerCollectif->infoCollectif($value);
 							if ($collectif != false) {
 								$nomCollectif = $collectif->getLibelleCollectif();
-								echo '<br>- '.$nomCollectif;
+								echo '<div id="coll-'.$value.'">- Collectif '.$nomCollectif.'</div>';
 							}
 						}
 						 
@@ -102,9 +102,9 @@ $artiste = $managerArtiste->infoArtiste($idArtiste);
 								echo '<li>&nbsp;'.$oeuvre->getTitre().'<img style="width:20px; height: 20px;" src="../img/oeuvres/'.$oeuvre->getImage().'"></li>';
 							}
 						 ?>
-
+						
 					</ul>
-					
+					<button class="action-button" id="addOeuvre">Gerer la liste</button>					
 				</div>
 				<div class="pop-messagerieOeuvre popGestionCard-artiste">
 					<div class="closeButton-context"><i class="ion-android-close"></i></div>
@@ -164,9 +164,8 @@ $id = $artiste->getIdArtiste();
 					<h4>ACTIONS</h4>
 					<ul id="list-button">
 						<li><button class="action-button" id="modifImageArtiste">Enregistrer l'image</button></li>
-						<li><button class="action-button" id="modifColl">infos Collectif(s)</button></li>
+						<li><button class="action-button" id="modifColl">infos Comunauté</button></li>
 						<li><button class="action-button" id="delArtiste">Supprimer l'artiste</button></li>
-						<li><button class="action-button" id="addOeuvre">Ajouter une oeuvre</button></li>
 						<li><button class="action-button button-msg" id="messagerieOeuvre">Messagerie<div class="nbMsg"><?php echo $nbMsg; ?></div></button></li>
 					</ul>
 				</div>
@@ -191,28 +190,48 @@ $id = $artiste->getIdArtiste();
 	</div>
 	<div class="card-form pop-modifColl popGestionCard-artiste">
 		<div class="closeButton-context"><i class="ion-android-close"></i></div>
-		<form action="../modules/traitementArtiste.php" data-idArtiste="<?php echo $artiste->getIdArtiste() ?>" method="GET">
-			<div>
-				<label for="idCollectif">Collectif</label>
-				<select name="idCollectif" id="idCollectif">
-					<?php 
-						$listCollectif = $managerCollectif->listCollectif();
-						foreach ($listCollectif as $collectif) {
-							if ($collectif->getIdCollectif() == $idCollectif) {
-								$selected = 'selected';
-							}else{
-								$selected = "";
-							}
-							echo '<option '.$selected.' value="'.$collectif->getIdCollectif().'"><span data-libelleCollectif="'.$collectif->getLibelleCollectif().'">'.$collectif->getLibelleCollectif().'</span></option>';
+		<div class="card-communaute">
+			<ul>
+				<?php 
+					$listIdCollectif = $managerArtiste->getIdsCollectifs($idArtiste);
+					$managerCollectif = new CollectifManager($bdd);
+					
+					foreach ($listIdCollectif as $idCollectif => $value) {
+						$collectif = $managerCollectif->infoCollectif($value);
+						if ($collectif != false) {
+							$nomCollectif = $collectif->getLibelleCollectif();
+							echo '<li>Collectif '.$nomCollectif.'<form data-idArtiste="'.$artiste->getIdArtiste().'" action="../modules/traitementArtiste.php" method="GET"><input type="hidden" id="req" name="req" value="deleteColl"><input type="hidden" id="idColl" name="idColl" value="'.$collectif->getIdCollectif().'"><button type="submit" class="delColl"><i class="ion-ios-trash-outline" title="Supprimer"></i></button></form></li>';
 						}
+					}
+				 ?>
+			</ul>
+		</div>
+		<div class="newCommunaute">
+			<form action="../modules/traitementArtiste.php" data-idArtiste="<?php echo $artiste->getIdArtiste() ?>" method="GET">
+				<div>
+					<label for="idCollectif">Collectif</label>
+					<select name="idCollectif" id="idCollectif">
+						<?php 
+							$listCollectif = $managerCollectif->listCollectif();
+							foreach ($listCollectif as $collectif) {
+								if ($collectif->getIdCollectif() == $idCollectif) {
+									$selected = 'selected';
+								}else{
+									$selected = "";
+								}
+								echo '<option '.$selected.' value="'.$collectif->getIdCollectif().'"><span data-libelleCollectif="'.$collectif->getLibelleCollectif().'">'.$collectif->getLibelleCollectif().'</span></option>';
+							}
 
-					 ?>
-				</select>
-			</div>
-			<div class="submit">
-				<button type="submit">Enregistrer</button>
-			</div>
-		</form>
+						 ?>
+					</select>
+				</div>
+				<div class="submit">
+					<button type="submit">Enregistrer</button>
+				</div>
+				</form>
+		</div>
+			
+		
 	</div>
 	<div class="card-form pop-delArtiste popGestionCard-artiste">
 		<div class="closeButton-context"><i class="ion-android-close"></i></div>
