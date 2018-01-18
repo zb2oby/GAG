@@ -6,11 +6,15 @@
 
 include('bdd/connectbdd.php');
 
-$manager = new OeuvreExposeeManager($bdd);
 
+	$managerOeuvreExpo = new OeuvreExposeeManager($bdd);
 //si on a l'idoeuvre exposee (si ona  cliqué depuis une expo en fait) alors : 
 //$idOeuvreExposee = 53; //data-id du conteneur de ce fichier
-$oeuvreExposee = $manager->oeuvreExposee($idOeuvreExposee);
+if (isset($idOeuvreExposee)) {
+
+	$oeuvreExposee = $managerOeuvreExpo->oeuvreExposee($idOeuvreExposee);
+}
+
 // $idOeuvre = $oeuvreExposee->getIdOeuvre();
 // $oeuvre = $manager->oeuvre($idOeuvreExposee);
 //si on a lid oeuvre (si on a cliqué depuis la carte oeuvre ailleur) alors : 
@@ -24,11 +28,12 @@ $oeuvre = $managerOeuvre->infoOeuvre($idOeuvre);
 // $exposition = $managerExpo->infoExpo($idExpo);
  ?>
 
-<div class="context-menu">
-	<div class="closeButton"><i class="ion-android-close"></i></div>
+<div class="context-menu context-oeuvre">
+	<div class="closeButton closeButton-oeuvre"><i class="ion-android-close"></i></div>
 	<div class="context-overlay"></div>
-	
+	<?php if(isset($oeuvreExposee)){ ?>
 	<div class="deleteCard"><i class="ion-ios-trash-outline" title="Enlever l'oeuvre de l'exposition"></i><span>Retirer de l'expo</span></div>
+	<?php } ?>
 
 	
 		
@@ -46,14 +51,17 @@ $oeuvre = $managerOeuvre->infoOeuvre($idOeuvre);
 						echo 'Type : '.$typeOeuvre;
 					?>
 				</span>
-				<span id="afficheDateEntree"> 
+				<span id="afficheDateEntree">
 					<?php 
+					if (isset($idOeuvreExposee)) {
 						$dateEntree = $oeuvreExposee->getDateEntree();
 						if ($dateEntree != '0000-00-00') {
 							echo 'Date d\'entrée : '.date('d/m/Y', strtotime($dateEntree));
 						}else{
 							$dateEntree = '';
 						}
+					}
+						
 						 
 					?>
 						
@@ -68,10 +76,10 @@ $oeuvre = $managerOeuvre->infoOeuvre($idOeuvre);
 					<?php 
 						$idArtiste = $oeuvre->getIdArtiste();
 						$managerArtiste = new ArtisteManager($bdd);
-						$artiste = $managerArtiste->infoArtiste($idArtiste);
+						$artisteO = $managerArtiste->infoArtiste($idArtiste);
 
-						$nomArtiste = $artiste->getNom();
-						$prenomArtiste = $artiste->getPrenom();
+						$nomArtiste = $artisteO->getNom();
+						$prenomArtiste = $artisteO->getPrenom();
 						echo 'Artiste : '.ucfirst($nomArtiste).' '.ucfirst($prenomArtiste);
 						
 						 
@@ -98,27 +106,27 @@ $oeuvre = $managerOeuvre->infoOeuvre($idOeuvre);
 
 			<div class="card-col card-form">
 				<div class="col-item card-form">
-					<form class="form-oeuvre" id="form-oeuvre<?php echo $oeuvre->getIdOeuvre() ?>" data-idOeuvre="<?php echo $oeuvre->getIdOeuvre() ?>" action="../modules/traitementOeuvre.php" method="GET">
+					<form class="form-oeuvre" data-idOeuvre="<?php echo $oeuvre->getIdOeuvre() ?>" action="../modules/traitementOeuvre.php" method="GET">
 						
 						<div>
 							<label for="titre">Titre</label>
-							<input type="text" name="titre" id="titre<?php echo $oeuvre->getIdOeuvre() ?>" value="<?php echo ucfirst($oeuvre->getTitre()) ?>">
+							<input type="text" name="titre" id="titre" value="<?php echo ucfirst($oeuvre->getTitre()) ?>">
 						</div>
 						<div>
 							<label for="longueur">Longueur</label>
-							<input type="text" name="longueur" id="longueur<?php echo $oeuvre->getIdOeuvre() ?>" value="<?php echo $oeuvre->getLongueur() ?>">
+							<input type="text" name="longueur" id="longueur" value="<?php echo $oeuvre->getLongueur() ?>">
 						</div>
 						<div>
 							<label for="hauteur">Hauteur</label>
-							<input type="text" name="hauteur" id="hauteur<?php echo $oeuvre->getIdOeuvre() ?>" value="<?php echo $oeuvre->getHauteur() ?>">
+							<input type="text" name="hauteur" id="hauteur" value="<?php echo $oeuvre->getHauteur() ?>">
 						</div>
 						<div>
 							<label for="etat">Etat</label>
-							<input type="text" name="etat" id="etat<?php echo $oeuvre->getIdOeuvre() ?>" value="<?php echo $oeuvre->getEtat() ?>">
+							<input type="text" name="etat" id="etat" value="<?php echo $oeuvre->getEtat() ?>">
 						</div>
 						<div>
 							<label for="descriptif">Descriptif</label><br>
-							<textarea name="descriptif" id="descriptif<?php echo $oeuvre->getIdOeuvre() ?>" cols="40" rows="10" value="<?php echo $oeuvre->getDescriptifFR() ?>"><?php echo $oeuvre->getDescriptifFR() ?></textarea>
+							<textarea name="descriptif" id="descriptif" cols="40" rows="10" value="<?php echo $oeuvre->getDescriptifFR() ?>"><?php echo $oeuvre->getDescriptifFR() ?></textarea>
 						</div>
 						
 						<div class="submit">
@@ -138,7 +146,7 @@ $oeuvre = $managerOeuvre->infoOeuvre($idOeuvre);
 					<ul id="list-info">
 
 						<?php 
-							$listExpo = $manager->listExpoOeuvreExposee($idOeuvre);
+							$listExpo = $managerOeuvreExpo->listExpoOeuvreExposee($idOeuvre);
 							foreach ($listExpo as $exposition) {
 								echo '<li>'.$exposition->getDateDeb().'<br>Exposition : '.$exposition->getTitre().'</li>';
 							}
@@ -152,15 +160,18 @@ $oeuvre = $managerOeuvre->infoOeuvre($idOeuvre);
 						<?php 
 //POUR LES TEST
 $champ = 'idOeuvre';
-//dans le cas d'une oeuvre : dans les autres cas $artiste->getIdArtiste etc...
+//dans le cas d'une oeuvre : dans les autres cas $artisteO->getIdArtiste etc...
 $id = $oeuvre->getIdOeuvre();
 
 						//recuperation d'un objet exposition avec l'idExpo de l'oeuvre exposée ici ouverte si on est dans le cas d'une carte "oeuvre exposée"
-						$managerExpo = new ExpositionManager($bdd);
-						$expo = $managerExpo->infoExpo($oeuvreExposee->getIdExpo());
+						if (isset($oeuvreExposee)) {
+							$managerExpo = new ExpositionManager($bdd);
+							$expo = $managerExpo->infoExpo($oeuvreExposee->getIdExpo());
+						}
+						
 						//recuperation de la liste des messages pour cette oeuvre
-						$manager = new MessageManager($bdd);
-						$listMessage = $manager->infoMessage($champ, $id);
+						$managerMsgOeuvre = new MessageManager($bdd);
+						$listMessage = $managerMsgOeuvre->infoMessage($champ, $id);
 						$nbMsg = count($listMessage);
 						foreach ($listMessage as $message) {
 							$idUser = $message->getIdUtilisateur();
@@ -181,7 +192,7 @@ $id = $oeuvre->getIdOeuvre();
 							
 					 ?>
 					 <div class="newMsg">
-						 <form action="action="../modules/traitementOeuvre.php" data-idOeuvre="<?php echo $oeuvre->getIdOeuvre() ?>" method="GET">
+						 <form class="form-oeuvre" action="../modules/traitementOeuvre.php" data-idOeuvre="<?php echo $oeuvre->getIdOeuvre() ?>" method="GET">
 						 	<div>
 						 		<label for="newMsg">Nouveau message</label><br>
 						 		<textarea name="newMsg" id="newMsg" cols="40" rows="4" placeholder="Ici votre message"></textarea>
@@ -216,10 +227,10 @@ $id = $oeuvre->getIdOeuvre();
 		
 	<div class="card-form pop-modifDateEntree popGestionCard">
 		<div class="closeButton-context"><i class="ion-android-close"></i></div>
-		<form id="dateEntree-form" action="../modules/traitementOeuvre.php" data-idOeuvreExposee="<?php echo $idOeuvreExposee ?>" method="GET">
+		<form class="form-oeuvre" id="dateEntree-form" action="../modules/traitementOeuvre.php" data-idOeuvreExposee="<?php if(isset($oeuvreExposee)){ echo $idOeuvreExposee;} ?>" method="GET">
 			<div>
 				<label for="dateEntree">Date d'entrée dans l'expo</label>
-				<input type="date" id="dateEntree" name="dateEntree" value="<?php echo $dateEntree; ?>">
+				<input type="date" id="dateEntree" name="dateEntree" value="<?php if(isset($dateEntree)){echo $dateEntree;} ?>">
 			</div>
 			<div class="submit">
 				<button type="submit">Modifier</button>
@@ -229,7 +240,7 @@ $id = $oeuvre->getIdOeuvre();
 	</div>
 	<div class="card-form pop-modifImageOeuvre popGestionCard">
 		<div class="closeButton-context"><i class="ion-android-close"></i></div>
-		<form action="../modules/traitementOeuvre.php" data-idOeuvre="<?php echo $oeuvre->getIdOeuvre() ?>" method="POST" enctype="multipart/form-data">
+		<form class="form-oeuvre" action="../modules/traitementOeuvre.php" data-idOeuvre="<?php echo $oeuvre->getIdOeuvre() ?>" method="POST" enctype="multipart/form-data">
 			<div>
 				<span for="imageOeuvre">Image (JPG GIF JPEG PNG| max. 300Ko) </span><br>
 				<input type="file" id="imageOeuvre" name="imageOeuvre[]" accept=".jpg, .jpeg, .gif, .png"><br>
@@ -244,7 +255,7 @@ $id = $oeuvre->getIdOeuvre();
 	</div>
 	<div class="card-form pop-modifTypeOeuvre popGestionCard">
 		<div class="closeButton-context"><i class="ion-android-close"></i></div>
-		<form action="../modules/traitementOeuvre.php" data-idOeuvre="<?php echo $oeuvre->getIdOeuvre() ?>" method="GET">
+		<form class="form-oeuvre" action="../modules/traitementOeuvre.php" data-idOeuvre="<?php echo $oeuvre->getIdOeuvre() ?>" method="GET">
 			<div>
 				<label for="idType">Type d'oeuvre</label>
 				<select name="idType" id="idType">
@@ -269,19 +280,19 @@ $id = $oeuvre->getIdOeuvre();
 	</div>
 	<div class="card-form pop-modifArtColl popGestionCard">
 		<div class="closeButton-context"><i class="ion-android-close"></i></div>
-		<form action="../modules/traitementOeuvre.php" data-idOeuvre="<?php echo $oeuvre->getIdOeuvre() ?>" method="GET">
+		<form class="form-oeuvre" action="../modules/traitementOeuvre.php" data-idOeuvre="<?php echo $oeuvre->getIdOeuvre() ?>" method="GET">
 			<div>
 				<label for="idArtiste">Artiste</label>
 				<select name="idArtiste" id="idArtiste">
 					<?php 
 						$listArtiste = $managerArtiste->listArtiste();
-						foreach ($listArtiste as $artiste) {
-							if ($artiste->getIdArtiste() == $idArtiste) {
+						foreach ($listArtiste as $artisteO) {
+							if ($artisteO->getIdArtiste() == $idArtiste) {
 								$selected = 'selected';
 							}else{
 								$selected = "";
 							}
-							echo '<option '.$selected.' value="'.$artiste->getIdArtiste().'"><span data-nomArtiste="'.$artiste->getNom().'" data-prenomArtiste="'.$artiste->getPrenom().'">'.$artiste->getPrenom().' '.$artiste->getNom().'</span></option>';
+							echo '<option '.$selected.' value="'.$artisteO->getIdArtiste().'"><span data-nomArtiste="'.$artisteO->getNom().'" data-prenomArtiste="'.$artisteO->getPrenom().'">'.$artisteO->getPrenom().' '.$artisteO->getNom().'</span></option>';
 						}
 
 					 ?>
@@ -290,6 +301,7 @@ $id = $oeuvre->getIdOeuvre();
 			<div>
 				<label for="idCollectif">Collectif</label>
 				<select name="idCollectif" id="idCollectif">
+					<option value="" hidden selected></option>
 					<?php 
 						$listCollectif = $managerCollectif->listCollectif();
 						foreach ($listCollectif as $collectif) {
@@ -311,7 +323,7 @@ $id = $oeuvre->getIdOeuvre();
 	</div>
 	<div class="card-form pop-delOeuvre popGestionCard">
 		<div class="closeButton-context"><i class="ion-android-close"></i></div>
-		<form action="../modules/traitementOeuvre.php" data-idOeuvre="<?php echo $oeuvre->getIdOeuvre() ?>" method="GET">
+		<form class="form-oeuvre" action="../modules/traitementOeuvre.php" data-idOeuvre="<?php echo $oeuvre->getIdOeuvre() ?>" method="GET">
 			<div>
 				<span>Voulez vous supprimer definitvement cette oeuvre ?</span><br>
 				<input type="hidden" id="idOeuvre" name="idOeuvre" value="<?php echo $idOeuvre; ?>">
@@ -340,7 +352,7 @@ $id = $oeuvre->getIdOeuvre();
 					$libelleType = $managerMeta->libelleTypeDonnee($idType);
 					$idDonneeDeleted = $donnee->getIdDonneeEnrichie();
 
-					echo '<li class="metaData">Type de donnée : '.$libelleType.' <br>Libellé : '.$donnee->getLibelleDonneeEnrichie().'<br><form data-idOeuvre="'.$oeuvre->getIdOeuvre().'" action="../modules/traitementOeuvre.php" method="GET"><input type="hidden" id="req" name="req" value="deleteMeta"><input type="hidden" id="idDonnee" name="idDonnee" value="'.$idDonneeDeleted.'"><button type="submit" class="delData"><i class="ion-ios-trash-outline" title="Supprimer"></i></button></form></li>';
+					echo '<li class="metaData">Type de donnée : '.$libelleType.' <br>Libellé : '.$donnee->getLibelleDonneeEnrichie().'<br><form class="form-oeuvre" data-idOeuvre="'.$oeuvre->getIdOeuvre().'" action="../modules/traitementOeuvre.php" method="GET"><input type="hidden" id="req" name="req" value="deleteMeta"><input type="hidden" id="idDonnee" name="idDonnee" value="'.$idDonneeDeleted.'"><button type="submit" class="delData"><i class="ion-ios-trash-outline" title="Supprimer"></i></button></form></li>';
 				}
 
 
@@ -350,7 +362,7 @@ $id = $oeuvre->getIdOeuvre();
 		
 			
 		<div class="newData">
-		 	<form action="../modules/traitementOeuvre.php" data-idOeuvre="<?php echo $oeuvre->getIdOeuvre() ?>" method="POST" enctype="multipart/form-data">
+		 	<form class="form-oeuvre" action="../modules/traitementOeuvre.php" data-idOeuvre="<?php echo $oeuvre->getIdOeuvre() ?>" method="POST" enctype="multipart/form-data">
 			 	<span>Ajouter un contenu supplémentaire</span>
 			 	<div>
 					 <label for="typeDonnee">Type de donnée</label>

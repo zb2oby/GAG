@@ -88,5 +88,12 @@ class OeuvreManager {
       
     }
 
+    //recupere l'id de la derniere oeuvre 'entrée en base
+    public function getLastOeuvre() {
+        $q=$this->_db->query("SELECT MAX(idOeuvre) AS idOeuvre FROM Oeuvre");
+        $data = $q->fetch();
+        return $data['idOeuvre'];
+    }
+
 
 }

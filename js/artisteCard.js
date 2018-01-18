@@ -24,7 +24,42 @@ jQuery(document).ready(function($) {
 	});
 
 
-	$(document).on('submit', '.popGestionCard-artiste form', function(event) {
+	$('.delOeuvreArtiste').click(function(event) {
+		$(event.target).parent().parent().find('.pop-delOeuvre').css('display', 'block');
+	});
+
+	//AFFICHAGE CONTEXT MENU DUNE CARTE ARTISTE
+	$('.portlet-artiste').click(function(event) {
+        $(event.target).parent().find('.context-artiste').css('display', 'block');
+        $(this).parent().find('.context-oeuvre').hide();
+        $('.overlay').show();
+        
+    });
+    $('.portlet-artiste .titre').click(function(event) {
+        $(event.target).parent().parent().find('.context-artiste').css('display', 'block');
+        $(this).parent().find('.context-oeuvre').hide();
+        $('.overlay').show();
+        
+    });
+
+	$(document).on('click', '.li-oeuvre-artiste', function(event) {
+		// event.preventDefault();
+		$(event.currentTarget).find('.context-menu').css({
+    		display: 'block',
+    		zIndex: '7',
+    		top: '0px',
+
+    	});
+	});
+
+	$('.list-oeuvre-artiste .closeButton-oeuvre i').click(function(event) {
+		$('.overlay').show();
+	});
+
+    
+
+
+	$(document).on('submit', '.form-artiste', function(event) {
 		//varaibles communes
 		var method = '';
 		var idArtiste = $(event.target).data('idartiste');
@@ -48,7 +83,17 @@ jQuery(document).ready(function($) {
 
 		//ajout Collectif
 		var idCollectif = $(event.target).find('#idCollectif').val();
-		var libelleCollectif = $(event.target).find('#idCollectif option:selected').text();
+		var libelleCollectif = $(event.target).find('#idCollectif option:selected').text(); 
+
+
+		//creation nouvelle oeuvre pour l'artiste
+		var addOeuvreArtiste = $(event.target).find('#addArtiste').val();
+
+		if (typeof addOeuvreArtiste != 'undefined') {
+			method = 'GET';
+			var data = 'idArtiste=' + idArtiste + '&req=' + addOeuvreArtiste;
+			var html = 'ok';
+		}
 
 		//ajout de collectif
 		if (typeof idCollectif != 'undefined') {
@@ -99,8 +144,16 @@ jQuery(document).ready(function($) {
 				processData: false,
 				contentType: false
 			})
-			.done(function() {
-				console.log("success");	
+			.done(function(response) {
+				console.log("success");
+				if (html == 'ok') {
+
+					var idNewOeuvre = parseFloat(response);
+					//apres on affiche la carte oeuvre liée a cet idoeuvre retournée par le php.
+						//on append un nouveau li avec le nouvel 'id oeuvre
+						//on find element li avec le nouvel id et on affiche sons popup
+				}	
+
 			}) 
 			.fail(function() {
 				console.log("error");

@@ -346,7 +346,7 @@ function deleteElt(target) {
 
 	//AFFICHAGE CONTEXT MENU DUNE CARTE OEUVRE
 	$('.portlet-content').click(function(event) {
-        $(event.target).parent().find('.context-menu').css('display', 'block');
+        $(event.target).parent().find('.context-oeuvre').css('display', 'block');
         $('.overlay').show();
         
         // $('.cancelButton').click(function(e) {
@@ -355,7 +355,7 @@ function deleteElt(target) {
         // });
     });
     $('.portlet-content .titre').click(function(event) {
-        $(event.target).parent().parent().find('.context-menu').css('display', 'block');
+        $(event.target).parent().parent().find('.context-oeuvre').css('display', 'block');
         $('.overlay').show();
         
         // $('.cancelButton').click(function(e) {
@@ -365,14 +365,20 @@ function deleteElt(target) {
     });
 
 	//EXTINCTION DES POPUP
+    //(anciennement closeButton i)
+
+
 	$('.closeButton i').click(function(event) {
 		$(event.target).parent().parent().css('display', 'none');
 		$('.confirmPopup').css('display', 'none');
 		$('.overlay').hide();
+        event.stopPropagation();
 	});
 
 	$('.overlay').click(function(event) {
     	$('.context-menu').css('display', 'none');
+        // $('.context-oeuvre').css('display', 'none');
+        // $('.context-artiste').css('display', 'none');
     	$('.popAddCard').css('display', 'none');
     	$('.popAddRecue').css('display', 'none');
         $('.popAddArtiste').css('display', 'none');

@@ -13,8 +13,8 @@ $artiste = $managerArtiste->infoArtiste($idArtiste);
 // $exposition = $managerExpo->infoExpo($idExpo);
  ?>
 
-<div class="context-menu">
-	<div class="closeButton"><i class="ion-android-close"></i></div>
+<div class="context-menu context-artiste">
+	<div class="closeButton closeButton-artiste"><i class="ion-android-close"></i></div>
 	<div class="context-overlay"></div>
 	
 	<div class="deleteCard"><i class="ion-ios-trash-outline" title="Enlever l'artiste de l'exposition"></i><span>Retirer de l'expo</span></div>
@@ -94,19 +94,49 @@ $artiste = $managerArtiste->infoArtiste($idArtiste);
 				
 				<div class="col-item">
 					<h4>OEUVRES</h4>
-					<ul id="list-info">
+					<ul id="list-info" class="list-oeuvre-artiste">
 
 						<?php 
 							$listOeuvre = $managerArtiste->listOeuvresArtiste($idArtiste);
 							foreach ($listOeuvre as $oeuvre) {
-								echo '<li>&nbsp;'.$oeuvre->getTitre().'<img style="width:20px; height: 20px;" src="../img/oeuvres/'.$oeuvre->getImage().'"></li>';
+								?>
+
+								<li class="li-oeuvre-artiste">&nbsp;<?php echo $oeuvre->getTitre(); ?>
+									<div class="oeuvreArtiste" data-idOeuvre="<?php echo $idOeuvre ?>">
+										<i class="delOeuvreArtiste ion-ios-trash-outline" title="Supprimer"></i>
+									</div>
+									<img style="width:20px; height: 20px;" src="../img/oeuvres/<?php echo $oeuvre->getImage() ?>">
+									<div class="card-form pop-delOeuvre popGestionCard">
+										<div class="closeButton-context"><i class="ion-android-close"></i></div>
+										<form action="../modules/traitementOeuvre.php" data-idOeuvre="<?php echo $oeuvre->getIdOeuvre() ?>" method="GET">
+											<div>
+												<span>Voulez vous supprimer definitvement cette oeuvre ?</span><br>
+												<input type="hidden" id="idOeuvre" name="idOeuvre" value="<?php echo $oeuvre->getIdOeuvre(); ?>">
+												<input type="hidden" id="delOeuvre" name="req" value="delete">
+											</div>
+											<div class="submit">
+												<button type="submit">Supprimer</button>
+												<button class="cancelButton">Annuler</button>
+											</div>
+											
+										</form>
+									</div>
+									<?php 
+									$idOeuvre = $oeuvre->getIdOeuvre();
+
+									include('popOeuvre.php'); 
+
+									?>
+								</li>
+
+							<?php
 							}
 						 ?>
 						
 					</ul>
-					<button class="action-button" id="addOeuvre">Gerer la liste</button>					
+					<button class="action-button" id="addOeuvre">Ajouter Oeuvre</button>					
 				</div>
-				<div class="pop-messagerieOeuvre popGestionCard-artiste">
+				<div class="pop-messagerieArtiste popGestionCard-artiste">
 					<div class="closeButton-context"><i class="ion-android-close"></i></div>
 					<div class="card-msg">
 						<?php 
@@ -121,8 +151,8 @@ $id = $artiste->getIdArtiste();
 						// $expo = $managerExpo->infoExpo($artisteExpose->getIdExpo());
 
 						//recuperation de la liste des messages pour cette oeuvre
-						$manager = new MessageManager($bdd);
-						$listMessage = $manager->infoMessage($champ, $id);
+						$managerMsgArtiste = new MessageManager($bdd);
+						$listMessage = $managerMsgArtiste->infoMessage($champ, $id);
 						$nbMsg = count($listMessage);
 						foreach ($listMessage as $message) {
 							$idUser = $message->getIdUtilisateur();
@@ -143,7 +173,7 @@ $id = $artiste->getIdArtiste();
 							
 					 ?>
 					 <div class="newMsg">
-						 <form action="../modules/traitementArtiste.php" data-idArtiste="<?php echo $artiste->getIdArtiste() ?>" method="GET">
+						 <form class="form-artiste" action="../modules/traitementArtiste.php" data-idArtiste="<?php echo $artiste->getIdArtiste() ?>" method="GET">
 						 	<div>
 						 		<label for="newMsg">Nouveau message</label><br>
 						 		<textarea name="newMsg" id="newMsg" cols="40" rows="4" placeholder="Ici votre message"></textarea>
@@ -166,7 +196,7 @@ $id = $artiste->getIdArtiste();
 						<li><button class="action-button" id="modifImageArtiste">Enregistrer l'image</button></li>
 						<li><button class="action-button" id="modifColl">infos Comunauté</button></li>
 						<li><button class="action-button" id="delArtiste">Supprimer l'artiste</button></li>
-						<li><button class="action-button button-msg" id="messagerieOeuvre">Messagerie<div class="nbMsg"><?php echo $nbMsg; ?></div></button></li>
+						<li><button class="action-button button-msg" id="messagerieArtiste">Messagerie<div class="nbMsg"><?php echo $nbMsg; ?></div></button></li>
 					</ul>
 				</div>
 			</div>
@@ -175,7 +205,7 @@ $id = $artiste->getIdArtiste();
 		
 	<div class="card-form pop-modifImageArtiste popGestionCard-artiste">
 		<div class="closeButton-context"><i class="ion-android-close"></i></div>
-		<form action="../modules/traitementArtiste.php" data-idArtiste="<?php echo $artiste->getIdArtiste() ?>" method="POST" enctype="multipart/form-data">
+		<form class="form-artiste" action="../modules/traitementArtiste.php" data-idArtiste="<?php echo $artiste->getIdArtiste() ?>" method="POST" enctype="multipart/form-data">
 			<div>
 				<span for="imageArtiste">Image (JPG GIF JPEG PNG| max. 300Ko) </span><br>
 				<input type="file" id="imageArtiste" name="imageArtiste[]" accept=".jpg, .jpeg, .gif, .png"><br>
@@ -193,21 +223,21 @@ $id = $artiste->getIdArtiste();
 		<div class="card-communaute">
 			<ul>
 				<?php 
-					$listIdCollectif = $managerArtiste->getIdsCollectifs($idArtiste);
+					$listIdCollectif = $managerArtiste->getIdsCollectifs($artiste->getIdArtiste());
 					$managerCollectif = new CollectifManager($bdd);
 					
 					foreach ($listIdCollectif as $idCollectif => $value) {
 						$collectif = $managerCollectif->infoCollectif($value);
 						if ($collectif != false) {
 							$nomCollectif = $collectif->getLibelleCollectif();
-							echo '<li>Collectif '.$nomCollectif.'<form data-idArtiste="'.$artiste->getIdArtiste().'" action="../modules/traitementArtiste.php" method="GET"><input type="hidden" id="req" name="req" value="deleteColl"><input type="hidden" id="idColl" name="idColl" value="'.$collectif->getIdCollectif().'"><button type="submit" class="delColl"><i class="ion-ios-trash-outline" title="Supprimer"></i></button></form></li>';
+							echo '<li class="comInfo">Collectif '.$nomCollectif.'<form class="form-artiste" data-idArtiste="'.$artiste->getIdArtiste().'" action="../modules/traitementArtiste.php" method="GET"><input type="hidden" id="req" name="req" value="deleteColl"><input type="hidden" id="idColl" name="idColl" value="'.$collectif->getIdCollectif().'"><button type="submit" class="delColl"><i class="ion-ios-trash-outline" title="Supprimer"></i></button></form></li>';
 						}
 					}
 				 ?>
 			</ul>
 		</div>
 		<div class="newCommunaute">
-			<form action="../modules/traitementArtiste.php" data-idArtiste="<?php echo $artiste->getIdArtiste() ?>" method="GET">
+			<form class="form-artiste" action="../modules/traitementArtiste.php" data-idArtiste="<?php echo $artiste->getIdArtiste() ?>" method="GET">
 				<div>
 					<label for="idCollectif">Collectif</label>
 					<select name="idCollectif" id="idCollectif">
@@ -235,7 +265,7 @@ $id = $artiste->getIdArtiste();
 	</div>
 	<div class="card-form pop-delArtiste popGestionCard-artiste">
 		<div class="closeButton-context"><i class="ion-android-close"></i></div>
-		<form action="../modules/traitementArtiste.php" data-idArtiste="<?php echo $artiste->getIdArtiste() ?>" method="GET">
+		<form class="form-artiste" action="../modules/traitementArtiste.php" data-idArtiste="<?php echo $artiste->getIdArtiste() ?>" method="GET">
 			<div>
 				<span>Voulez vous supprimer definitvement cet Artiste ?</span><br>
 				<input type="hidden" id="idArtiste" name="idArtiste" value="<?php echo $idArtiste; ?>">
@@ -248,5 +278,16 @@ $id = $artiste->getIdArtiste();
 			
 		</form>
 	</div>
+	<div class="card-form pop-addOeuvre popGestionCard-artiste">
+		<div class="closeButton-context"><i class="ion-android-close"></i></div>
+		<form class="form-artiste" action="../modules/traitementArtiste.php" data-idArtiste="<?php echo $artiste->getIdArtiste() ?>" method="GET">
+			<input type="hidden" id="addArtiste" name="reqAdd" value="add">
+			<div class="submit">
+				<button type="submit">Ajouter</button>
+				<button class="cancelButton">Annuler</button>
+			</div>
+		</form>
+	</div>
+
 
 </div>

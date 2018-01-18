@@ -46,8 +46,18 @@ if (isset($_GET['idArtiste'])) {
 		$message = new Message(['dateMessage'=>$dateMsg, 'message'=>$contenu, 'idUtilisateur'=>$idUser, 'idArtiste'=>$idArtiste]);
 		$manager->addMessageArtiste($message);
 	}
-	if (isset($_GET['req']) && $_GET['req'] == 'delete') {
-	$managerArtiste->deleteArtiste($artiste);
+	if (isset($_GET['req'])) {
+		if ($_GET['req'] == 'delete') {
+			$managerArtiste->deleteArtiste($artiste);
+		}elseif ($_GET['req'] == 'add') {
+			$managerOeuvre = new OeuvreManager($bdd);
+			$oeuvre = new Oeuvre(['idArtiste'=>$idArtiste]);
+			$managerOeuvre->addOeuvre($oeuvre);
+			$idLastOeuvre = $managerOeuvre->getLastOeuvre();
+			echo $idLastOeuvre;
+			
+		}
+	
 	}	
 
 

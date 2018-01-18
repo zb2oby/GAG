@@ -752,6 +752,26 @@ form.adminForm, form.expoForm {
 					text-align: center;
 
 				}
+				.list-oeuvre-artiste .li-oeuvre-artiste {
+					margin-top: 20px;
+					border-bottom: 2px solid #ccc;
+					padding-bottom: 10px;
+				}
+				.oeuvreArtiste {
+					position: relative;
+					float: right;
+					/*display: inline-block;*/
+					vertical-align: top;
+					margin-top: -20px;
+					text-align: right;
+				}
+					.delOeuvreArtiste {
+						position: absolute;
+						right: 0;
+						min-width: 30px;
+						font-size: 15px;
+						padding: 7px;
+					}
 			
 
 				
@@ -784,7 +804,7 @@ form.adminForm, form.expoForm {
 					text-align: center;
 				}
 
-	.pop-messagerieOeuvre {
+	.pop-messagerieOeuvre,.pop-messagerieArtiste {
 		margin-top: -250px;
 		height: auto;
 		width: 400px;
@@ -824,6 +844,11 @@ form.adminForm, form.expoForm {
 		margin-top: -250px;
 		height: auto;
 		width: 400px;
+	}
+	.pop-modifColl {
+		margin-top: -250px;
+		height: auto;
+		width: 400px;
 	}	
 
 		.card-data, .card-communaute {
@@ -836,14 +861,18 @@ form.adminForm, form.expoForm {
 				padding: 0;
 				margin: 0;
 			}
-			li.metaData {
+			li.metaData, li.comInfo {
 				position: relative;
 				display: block;
 				padding: 20px 0;
 				border-bottom: 2px solid #ccc;
 			}
 
-			button.delData {
+			li.comInfo {
+				padding: 40px 0 ;
+			}
+
+			button.delData, button.delColl {
 				position: absolute;
 				right: 10px;
 				top: 25%;
@@ -851,6 +880,7 @@ form.adminForm, form.expoForm {
 				margin-top: 5px;
 				font-size: 24px;
 			}
+
 
 		.newData, .newCommunaute {
 			border-top: 4px solid #ccc;

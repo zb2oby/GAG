@@ -1,10 +1,10 @@
 jQuery(document).ready(function($) {
 
-
+	//affichage des formulaires en popup au clic sur les bouton d'action
 	$('.action-button').click(function(event) {
 		var classe = $(this).attr('id');
-		$(event.target).closest('.context-menu').find('.context-overlay').show();
-		$(event.target).closest('.context-menu').find('.pop-'+classe+'.popGestionCard').show();
+		$(event.currentTarget).closest('.context-menu').find('.context-overlay').show();
+		$(event.currentTarget).closest('.context-menu').find('.pop-'+classe+'.popGestionCard').show();
 
 	});
 
@@ -23,50 +23,61 @@ jQuery(document).ready(function($) {
 		$('.context-overlay').hide();
 	});
 
-
-	$(document).on('submit', '.popGestionCard form', function(event) {
+	$(document).on('submit', '.form-oeuvre', function(event) {
 		//varaibles communes
 		var method = '';
-		var idOeuvre = $(event.target).data('idoeuvre');
+		var idOeuvre = $(event.currentTarget).data('idoeuvre');
+		//donnee Generale
+		var titre = $(event.currentTarget).find('#titre').val();
+		var longueur = $(event.currentTarget).find('#longueur').val();
+		var hauteur = $(event.currentTarget).find('#hauteur').val();
+		var etat = $(event.currentTarget).find('#etat').val();
+		var descriptif = $(event.currentTarget).find('#descriptif').val();
 		//modif date entree oeuvre exposee
-		var idOeuvreExposee = $(event.target).data('idoeuvreexposee');
-		var dateEntree = $(event.target).find('#dateEntree').val();
+		var idOeuvreExposee = $(event.currentTarget).data('idoeuvreexposee');
+		var dateEntree = $(event.currentTarget).find('#dateEntree').val();
 		//poidif type oeuvre
-		var idTypeOeuvre = $(event.target).find('#idType').val();
-		var typeOeuvre = $(event.target).find('#idType option:selected').text();
+		var idTypeOeuvre = $(event.currentTarget).find('#idType').val();
+		var typeOeuvre = $(event.currentTarget).find('#idType option:selected').text();
 		//modif artiste ou clooectif
-		var idArtiste = $(event.target).find('#idArtiste').val();
-		var idCollectif = $(event.target).find('#idCollectif').val();
-		var nomArtiste = $(event.target).find('#idArtiste option:selected').text();
-		var nomCollectif = $(event.target).find('#idCollectif option:selected').text();
+		var idArtiste = $(event.currentTarget).find('#idArtiste').val();
+		var idCollectif = $(event.currentTarget).find('#idCollectif').val();
+		var nomArtiste = $(event.currentTarget).find('#idArtiste option:selected').text();
+		var nomCollectif = $(event.currentTarget).find('#idCollectif option:selected').text();
 		//modif image oeuvre
-		var fileImage = $(event.target).find('#imageOeuvre').val();
-		var maxSize = $(event.target).find('#maxSize').val();
-		var existImage = $(event.target).find('#existImage').val();
+		var fileImage = $(event.currentTarget).find('#imageOeuvre').val();
+		var maxSize = $(event.currentTarget).find('#maxSize').val();
+		var existImage = $(event.currentTarget).find('#existImage').val();
 		//ajout message oeuvre
-		var message = $(event.target).find('#newMsg').val();
-		var dateMsg = $(event.target).find('#dateMsg').val();
-		var idUser = $(event.target).find('#idUser').val();
-		var nomUser = $(event.target).find('#nomUser').val();
-		var nbMsg = parseInt($(event.target).closest('.card-action').find('.nbMsg').text());
-
-		
+		var message = $(event.currentTarget).find('#newMsg').val();
+		var dateMsg = $(event.currentTarget).find('#dateMsg').val();
+		var idUser = $(event.currentTarget).find('#idUser').val();
+		var nomUser = $(event.currentTarget).find('#nomUser').val();
+		var nbMsg = parseInt($(event.currentTarget).closest('.card-action').find('.nbMsg').text());
 		//suppression contenu+
-		var idDonneeDeleted = $(event.target).find('#idDonnee').val();
-		var delDonnee = $(event.target).find('#req').val();
-
+		var idDonneeDeleted = $(event.currentTarget).find('#idDonnee').val();
+		var delDonnee = $(event.currentTarget).find('#req').val();
 		//ajout contenu+
-		var formMeta = $(event.target).get(0);
+		var formMeta = $(event.currentTarget).get(0);
 		var formData = new FormData(formMeta);
-		var idTypeDonnee = $(event.target).find('#typeDonnee').val();
-		var libelleTypeDonnee = $(event.target).find('#typeDonnee option:selected').text();
-		var libelleDonnee = $(event.target).find('#libelleDonnee').val();
-		//var idDonneeDeleted = '';
+		var idTypeDonnee = $(event.currentTarget).find('#typeDonnee').val();
+		var libelleTypeDonnee = $(event.currentTarget).find('#typeDonnee option:selected').text();
+		var libelleDonnee = $(event.currentTarget).find('#libelleDonnee').val();
+
+
+
+		//donnee generale
+		if (typeof titre != 'undefined' || typeof longueur != 'undefined' || typeof hauteur != 'undefined' || typeof etat != 'undefined' || typeof descriptif != 'undefined') {
+			var method = 'GET';
+			var data = 'idOeuvre=' + idOeuvre + '&titre=' + titre + '&longueur=' + longueur + '&hauteur=' + hauteur + '&etat=' + etat + '&descriptif=' + descriptif;
+			$(this).closest('.portlet').find('.titre').html(titre);
+			$(this).closest('.portlet').find('.card-header h4').html('"'+titre+'"');
+		}
 		//suppression contenu+
 		if (typeof idDonneeDeleted != 'undefined' || typeof delDonnee != 'undefined') {
 			method = 'GET';
 			var data = 'idDonnee=' + idDonneeDeleted + '&req=' + delDonnee + '&idOeuvre=' + idOeuvre;
-			$(event.target).parent().remove();
+			$(event.currentTarget).parent().remove();
 		}
 
 		//ajout contenu+
@@ -75,11 +86,6 @@ jQuery(document).ready(function($) {
 			var data = formData;
 			var html = 'ok';
 		}
-		// if (typeof fichierData != 'undefined' || typeof idTypeDonnee != 'undefined' || typeof libelleDonnee != 'undefined') {
-		// 	method = 'POST';
-		// 	var data = 'fichierDonnee=' + fichierData + '&typeDonnee=' + idTypeDonnee + '&libelleDonnee=' + libelleDonnee + '&idOeuvre=' + idOeuvre;
-		// 	// return true;
-		// }
 
 		//modification de l'image oeuvre
 		if (typeof fileImage != 'undefined') {
@@ -93,16 +99,16 @@ jQuery(document).ready(function($) {
 			var dateFormat = dateMsg.split('-');
 			var newDate = dateFormat[2]+'/'+dateFormat[1]+'/'+dateFormat[0];
 			var data = 'idOeuvre=' + idOeuvre + '&message=' + message + '&dateMsg=' + dateMsg + '&idUser=' + idUser;
-			$(event.target).closest('.context-menu').find('.card-msg').prepend('<div class="message"><div class="message-header"> Message de '+nomUser+' Le '+newDate+'</div><div class="message-content">'+message+'</div></div>');
+			$(event.currentTarget).closest('.context-menu').find('.card-msg').prepend('<div class="message"><div class="message-header"> Message de '+nomUser+' Le '+newDate+'</div><div class="message-content">'+message+'</div></div>');
 			nbMsg++;
-			$(event.target).closest('.card-action').find('.nbMsg').text(nbMsg);
-			$(event.target).find('#newMsg').val('');
+			$(event.currentTarget).closest('.card-action').find('.nbMsg').text(nbMsg);
+			$(event.currentTarget).find('#newMsg').val('');
 		}
 		//update nom artiste et collectif
 		if (typeof idArtiste != 'undefined' || typeof idCollectif != 'undefined') {
 			method = 'GET';
-			$(event.target).closest('.context-menu').find('#afficheArtiste').html('Artiste : '+nomArtiste);
-			$(event.target).closest('.context-menu').find('#afficheCollectif').html('Collectif : '+nomCollectif);
+			$(event.currentTarget).closest('.context-menu').find('#afficheArtiste').html('Artiste : '+nomArtiste);
+			$(event.currentTarget).closest('.context-menu').find('#afficheCollectif').html('Collectif : '+nomCollectif);
 			var data = 'idArtiste=' + idArtiste + '&idCollectif=' + idCollectif + '&idOeuvre=' + idOeuvre;
 		}
 
@@ -110,7 +116,7 @@ jQuery(document).ready(function($) {
 		if (typeof idTypeOeuvre != "undefined") {
 			method = 'GET';
 			var data = 'idTypeOeuvre=' + idTypeOeuvre + '&idOeuvre=' + idOeuvre;
-			$(event.target).closest('.context-menu').find('#afficheType').html('Type : '+typeOeuvre);
+			$(event.currentTarget).closest('.context-menu').find('#afficheType').html('Type : '+typeOeuvre);
 			
 		}
 
@@ -119,7 +125,7 @@ jQuery(document).ready(function($) {
 			method = 'GET';
 			var dateFormat = dateEntree.split('-');
 			var newDate = dateFormat[2]+'/'+dateFormat[1]+'/'+dateFormat[0];
-			$(event.target).closest('.context-menu').find('#afficheDateEntree').html('Date d\'entrée : '+newDate);
+			$(event.currentTarget).closest('.context-menu').find('#afficheDateEntree').html('Date d\'entrée : '+newDate);
 			var data = 'idOeuvreExposee=' + idOeuvreExposee + '&dateEntree=' + dateEntree;
 		}
 			
@@ -136,8 +142,8 @@ jQuery(document).ready(function($) {
 				console.log("success");
 				if (html == 'ok') {
 					var idDonneeDeleted = parseFloat(response);
-					$(event.target).closest('.context-menu').find('.card-data ul').prepend('<li class="metaData">Type de donnée : '+libelleTypeDonnee+' <br>Libellé : '+libelleDonnee+'<br><form data-idOeuvre="'+idOeuvre+'" action="../modules/traitementOeuvre.php" method="GET"><input type="hidden" id="req" name="req" value="deleteMeta"><input type="hidden" id="idDonnee" name="idDonnee" value="'+idDonneeDeleted+'"><button type="submit" class="delData"><i class="ion-ios-trash-outline" title="Supprimer"></i></button></form></li>');
-					$(event.target).each(function(){
+					$(event.currentTarget).closest('.context-menu').find('.card-data ul').prepend('<li class="metaData">Type de donnée : '+libelleTypeDonnee+' <br>Libellé : '+libelleDonnee+'<br><form data-idOeuvre="'+idOeuvre+'" action="../modules/traitementOeuvre.php" method="GET"><input type="hidden" id="req" name="req" value="deleteMeta"><input type="hidden" id="idDonnee" name="idDonnee" value="'+idDonneeDeleted+'"><button type="submit" class="delData"><i class="ion-ios-trash-outline" title="Supprimer"></i></button></form></li>');
+					$(event.currentTarget).each(function(){
 					    this.reset();
 					});
 				}
@@ -150,51 +156,9 @@ jQuery(document).ready(function($) {
 				console.log("complete");
 			});
 			
-		
 		return false;
 
 	});
 
-
-//A REECRIRE AVEC DES EVENT TARGET AU LIEU D'ID DEGEULASSE
-	var formId;
-	$('.submit-oeuvre').click(function(event) {
-		var idData = $(this).closest('.form-oeuvre').data('idoeuvre');
-		var formId = '#form-oeuvre'+idData;
-
-		$(formId).submit(function(event) {
-			var idOeuvre = idData;
-			var titre = $('#titre'+idData).val();
-			var longueur = $('#longueur'+idData).val();
-			var hauteur = $('#hauteur'+idData).val();
-			var etat = $('#etat'+idData).val();
-			var descriptif = $('#descriptif'+idData).val();
-
-			var data = 'idOeuvre=' + idOeuvre + '&titre=' + titre + '&longueur=' + longueur + '&hauteur=' + hauteur + '&etat=' + etat + '&descriptif=' + descriptif;
-
-			$.ajax({
-				url: '../modules/traitementOeuvre.php',
-				type: 'GET',
-				dataType: 'html',
-				data: data,
-			})
-			.done(function() {
-				console.log("success");
-			})
-			.fail(function() {
-				console.log("error");
-			})
-			.always(function() {
-				console.log("complete");
-			});
-			
-			$(this).closest('.portlet').find('.titre').html(titre);
-			$(this).closest('.portlet').find('.card-header h4').html('"'+titre+'"');
-			
-
-			return false;
-		});
-	 });
-	
 	
 });
