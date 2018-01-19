@@ -17,7 +17,7 @@ $artiste = $managerArtiste->infoArtiste($idArtiste);
 	<div class="closeButton closeButton-artiste"><i class="ion-android-close"></i></div>
 	<div class="context-overlay"></div>
 	
-	<div class="deleteCard"><i class="ion-ios-trash-outline" title="Enlever l'artiste de l'exposition"></i><span>Retirer de l'expo</span></div>
+	<div class="deleteCard deleteCardArtiste"><i class="ion-ios-trash-outline" title="Enlever l'artiste de l'exposition"></i><span>Retirer de l'expo</span></div>
 
 	
 		

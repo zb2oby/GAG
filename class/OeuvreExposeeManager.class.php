@@ -110,6 +110,16 @@ class OeuvreExposeeManager {
         }
     }
 
+    //retourne un objet oeuvre exposé en fonction de son idoeuvre fournit en argument
+    public function idExposee($idOeuvre, $idExpo) {
+        $q = $this->_db->query("SELECT idOeuvreExposee FROM OeuvreExposee WHERE idOeuvre =".$idOeuvre." AND idExpo = ".$idExpo);
+        $data = $q->fetch();
+            $idOeuvreExposee = $data['idOeuvreExposee'];
+            return $idOeuvreExposee;
+        
+        
+    }
+
 
 }
 

@@ -1,4 +1,4 @@
-<?php //test pour les oeuvre d'abord ?>
+
 <?php
 //autoloader ne peut pas foncitonner ici car fichier inclus en ajax
 require_once('../class/ArtisteManager.class.php');
@@ -19,30 +19,33 @@ require_once('../class/DonneeEnrichie.class.php');
 include('bdd/connectbdd.php');
 
 
-$managerOeuvreExpo = new OeuvreExposeeManager($bdd);
-//si on a l'idoeuvre exposee (si ona  cliqué depuis une expo en fait) alors : 
-if (isset($idOeuvreExposee)) {
-
-	$oeuvreExposee = $managerOeuvreExpo->oeuvreExposee($idOeuvreExposee);
-}
 
 //variable idOeuvre recuperée en ajax via l'ajout d'une nouvelle oeuvre sur la carte artiste
 if (isset($_GET['idOeuvre'])) {
 	$idOeuvre = $_GET['idOeuvre'];
-	echo $idOeuvre;
 }
 
 //si on a lid oeuvre (si on a cliqué depuis la carte oeuvre ailleur) alors : 
 $managerOeuvre = new OeuvreManager($bdd);
 $oeuvre = $managerOeuvre->infoOeuvre($idOeuvre);
 
+//verifier si l'oeuvre est exposée : 
+
+$managerOeuvreExpo = new OeuvreExposeeManager($bdd);
+$idOeuvreExposee = $managerOeuvreExpo->idExposee($idOeuvre, $_SESSION['idExpo']);
+//si on a l'idoeuvre exposee (si ona  cliqué depuis une expo en fait) alors : 
+if (isset($idOeuvreExposee)) {
+
+	$oeuvreExposee = $managerOeuvreExpo->oeuvreExposee($idOeuvreExposee);
+}
+
  ?>
 
-<div class="context-menu context-oeuvre">
+<div class="context-menu context-oeuvre" data-idOeuvreExposee="<?php if(isset($oeuvreExposee)){ echo $oeuvreExposee->getIdOeuvreExposee(); } ?>">
 	<div class="closeButton closeButton-oeuvre"><i class="ion-android-close"></i></div>
 	<div class="context-overlay"></div>
 	<?php if(isset($oeuvreExposee)){ ?>
-	<div class="deleteCard"><i class="ion-ios-trash-outline" title="Enlever l'oeuvre de l'exposition"></i><span>Retirer de l'expo</span></div>
+	<div class="deleteCard deleteCardOeuvreExpo"><i class="ion-ios-trash-outline" title="Enlever l'oeuvre de l'exposition"></i><span>Retirer de l'expo</span></div>
 	<?php } ?>
 
 	

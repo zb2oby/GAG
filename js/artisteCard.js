@@ -19,10 +19,10 @@ jQuery(document).ready(function($) {
 		$('.context-overlay').hide();
 	});
 
-	$('.cancelButton').click(function(event) {
-		$(this).parent().parent().parent().hide();
-		$('.context-overlay').hide();
-	});
+	// $('.cancelButton').click(function(event) {
+	// 	$(this).parent().parent().parent().hide();
+	// 	$('.context-overlay').hide();
+	// });
 
 
 	//AFFICHAGE CONTEXT MENU DUNE CARTE ARTISTE
@@ -130,7 +130,7 @@ jQuery(document).ready(function($) {
 		if (typeof idCollectif != 'undefined') {
 			method = 'GET';
 			var data = 'idCollectif=' + idCollectif + '&idArtiste=' + idArtiste;
-			$(event.target).closest('.context-menu').find('.card-communaute ul').prepend('<li>Collectif '+libelleCollectif+'<form data-idArtiste="'+idArtiste+'" action="../modules/traitementArtiste.php" method="GET"><input type="hidden" id="req" name="req" value="deleteColl"><input type="hidden" id="idColl" name="idColl" value="'+idCollectifDeleted+'"><button type="submit" class="delColl"><i class="ion-ios-trash-outline" title="Supprimer"></i></button></form></li>');
+			$(event.target).closest('.context-menu').find('.card-communaute ul').prepend('<li class="comInfo" >Collectif '+libelleCollectif+'<form class="form-artiste" data-idArtiste="'+idArtiste+'" action="../modules/traitementArtiste.php" method="GET"><input type="hidden" id="req" name="req" value="deleteColl"><input type="hidden" id="idColl" name="idColl" value="'+idCollectifDeleted+'"><button type="submit" class="delColl"><i class="ion-ios-trash-outline" title="Supprimer"></i></button></form></li>');
 			$(event.target).closest('.context-menu').find('#afficheCollectifArtiste').append('<div id="coll-'+idCollectif+'"> - Collectif '+libelleCollectif+'</div>');
 		}
 		//suppression collectif

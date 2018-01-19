@@ -202,12 +202,20 @@ $('.recue').find('.item').mouseup(function(event) {
 //SUPPRESSION OEUVRE PREVUE OU RECUE ET ARTISTE ET EMPLACEMENTS PLAN
 
 function deleteCard(target, idExpo) {
-    if (target.parent().parent().hasClass('portlet-artiste')) {
-        var idArtiste = target.parent().parent().data('id');
+    if (target.hasClass('portlet-artiste')) {
+        var idArtiste = target.data('id');
         var place = 'idArtiste=' + idArtiste + '&req=delete' +'&idExpo=' + idExpo;
+        target.remove();
     }else{
-	   var idOeuvreExposee = target.parent().parent().data('id');
+	   var idOeuvreExposee = target.find('.context-oeuvre').data('idoeuvreexposee');
 	   var place = 'idOeuvreExposee=' + idOeuvreExposee + '&req=delete';
+       var arrayPortlet = $('.portlet-oeuvre');
+       for (var i = arrayPortlet.length - 1; i >= 0; i--) {
+            if ($(arrayPortlet[i]).data('id') == idOeuvreExposee) {
+                arrayPortlet[i].remove();   
+            }
+           
+       }
     }
         $.ajax({
             url: '../modules/traitementListes.php',
@@ -224,7 +232,7 @@ function deleteCard(target, idExpo) {
         .always(function() {
             console.log("complete");
         });
-        target.parent().parent().remove();
+        
         $('.confirmPopup').css('display', 'none');
         $('.context-menu').css('display', 'none');
         $('.overlay').hide();
@@ -257,30 +265,38 @@ function deletePlace(target) {
 
 function deleteElt(target) {
 	$('.confirmPopup').css('display', 'block');
-    $('.overlay').show();
+    $('.context-overlay').show();
     $('.cancelButton').click(function(e) {
         $('.confirmPopup').css('display', 'none');
-        $('.overlay').hide();
+        $('.context-overlay').hide();
     });
     $('.deleteButton').click(function(e) {
 		if (target.parent().hasClass('emplacement')) {
 			deletePlace(target);
-		}else if (target.parent().parent().hasClass('portlet')) {
+		}else {
 			deleteCard(target, idExpoSession);
 		}
     });    
 }
 
-	$('.deleteCard').click(function(event) {
-		var target = $(event.target);
-		deleteElt(target);
-	});
+
+    $('.deleteCardArtiste').click(function(event) {
+        var target = $(event.target).closest('.portlet');
+        deleteElt(target);
+    });
+    $('.deleteCardOeuvreExpo').click(function(event) {
+        var target = $(event.target).closest('.li-oeuvre-artiste');
+        deleteElt(target);
+    });
+
 	$('.deletePlace').click(function(event) {
 		var target = $(event.target);
 		deleteElt(target);
 	});
 
 //>>>>>>>>>>>>>>>>>< POPUP <>>>>>>>>>>>>>>>>>>
+
+
 
     $(document).click(function(event) {
         if ($(event.target).parent().hasClass('img')) {
@@ -303,13 +319,26 @@ function deleteElt(target) {
         $('.overlay').show();
     });
 
-	//CLIC SUR LIEN CREATION OEUVRE DANS POPUP addCard
-	$('.creerOeuvre').click(function(event) {
-		$('.popAddCard').css('display', 'none');
-		$('.popAddRecue').css('display', 'none');
-        $('.popAddArtiste').css('display', 'none');
-		//ici on ajoutera le display d'un nouveau popup avec un formulaire de creation d'oeuvre
-	});
+
+
+
+
+
+
+
+//CLIC SUR LIEN CREATION OEUVRE DANS POPUP addCard
+$('.creerOeuvre').click(function(event) {
+	$('.popAddCard').css('display', 'none');
+	$('.popAddRecue').css('display', 'none');
+    $('.popAddArtiste').css('display', 'none');
+	//ici on ajoutera le display d'un nouveau popup avec un formulaire de creation d'oeuvre
+});
+
+
+
+
+
+
 
 	//AFFICHAGE CONTEXT MENU DUNE CARTE OEUVRE
 	$('.portlet-content').click(function(event) {

@@ -42,6 +42,7 @@ button {
 	outline: none;
 	border-radius: 30px;
 	text-align: center;
+	/*box-shadow: 3px 3px 3px #444;*/
 
 }
 
@@ -791,6 +792,7 @@ form.adminForm, form.expoForm {
 					border: none;
 					border-radius: 5px;
 					padding: 10px;
+					box-shadow: 1px 1px 1px #666;
 				}
 				.card-form textarea {
 					border: none;
@@ -798,6 +800,7 @@ form.adminForm, form.expoForm {
 					margin-top: 10px;
 					border-radius: 5px;
 					padding: 10px;
+					box-shadow: 1px 1px 1px #555;
 				}
 				.card-form .submit { 
 					text-align: center;

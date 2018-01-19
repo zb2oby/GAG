@@ -1,5 +1,5 @@
 <?php 
-
+session_start();
 /*=====>POUR LES TESTS */ $_SESSION['idExpo'] = 2; 
 						$_SESSION['idUser'] = 1;
 
