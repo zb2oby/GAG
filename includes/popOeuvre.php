@@ -1,31 +1,41 @@
 <?php //test pour les oeuvre d'abord ?>
-<?php 
-// include('functions.php');
-
-// spl_autoload_register('loader');
+<?php
+//autoloader ne peut pas foncitonner ici car fichier inclus en ajax
+require_once('../class/ArtisteManager.class.php');
+require_once('../class/Artiste.class.php');
+require_once('../class/ArtisteExposeManager.class.php');
+require_once('../class/ArtisteExpose.class.php');
+require_once('../class/OeuvreManager.class.php');
+require_once('../class/Oeuvre.class.php');
+require_once('../class/OeuvreExposeeManager.class.php');
+require_once('../class/OeuvreExposee.class.php');
+require_once('../class/MessageManager.class.php');
+require_once('../class/Message.class.php');
+require_once('../class/CollectifManager.class.php');
+require_once('../class/Collectif.class.php');
+require_once('../class/DonneeEnrichieManager.class.php');
+require_once('../class/DonneeEnrichie.class.php');
 
 include('bdd/connectbdd.php');
 
 
-	$managerOeuvreExpo = new OeuvreExposeeManager($bdd);
+$managerOeuvreExpo = new OeuvreExposeeManager($bdd);
 //si on a l'idoeuvre exposee (si ona  cliqué depuis une expo en fait) alors : 
-//$idOeuvreExposee = 53; //data-id du conteneur de ce fichier
 if (isset($idOeuvreExposee)) {
 
 	$oeuvreExposee = $managerOeuvreExpo->oeuvreExposee($idOeuvreExposee);
 }
 
-// $idOeuvre = $oeuvreExposee->getIdOeuvre();
-// $oeuvre = $manager->oeuvre($idOeuvreExposee);
+//variable idOeuvre recuperée en ajax via l'ajout d'une nouvelle oeuvre sur la carte artiste
+if (isset($_GET['idOeuvre'])) {
+	$idOeuvre = $_GET['idOeuvre'];
+	echo $idOeuvre;
+}
+
 //si on a lid oeuvre (si on a cliqué depuis la carte oeuvre ailleur) alors : 
 $managerOeuvre = new OeuvreManager($bdd);
-//$idOeuvre = 5; //data-idOeuvre 
 $oeuvre = $managerOeuvre->infoOeuvre($idOeuvre);
 
-
-// $idExpo = 2;
-// $managerExpo = new ExpositionManager($bdd);
-// $exposition = $managerExpo->infoExpo($idExpo);
  ?>
 
 <div class="context-menu context-oeuvre">

@@ -101,11 +101,11 @@ $artiste = $managerArtiste->infoArtiste($idArtiste);
 							foreach ($listOeuvre as $oeuvre) {
 								?>
 
-								<li class="li-oeuvre-artiste">&nbsp;<?php echo $oeuvre->getTitre(); ?>
+								<li class="li-oeuvre-artiste"><span class="titreOeuvreArtiste">&nbsp;<?php echo $oeuvre->getTitre(); ?></span>
 									<div class="oeuvreArtiste" data-idOeuvre="<?php echo $oeuvre->getIdOeuvre() ?>">
-										<i class="delOeuvreArtiste ion-ios-trash-outline" title="Supprimer"></i>
+										<!-- <i class="delOeuvreArtiste ion-ios-trash-outline" title="Supprimer"></i> -->
 									</div>
-									<img style="width:20px; height: 20px;" src="../img/oeuvres/<?php echo $oeuvre->getImage() ?>">
+									<img class="imgOeuvreArtiste" style="width:20px; height: 20px;" src="../img/oeuvres/<?php echo $oeuvre->getImage() ?>">
 									<div class="card-form pop-delOeuvreArtiste popGestionCard">
 										<div class="closeButton-context"><i class="ion-android-close"></i></div>
 										<form class="form-oeuvre" action="../modules/traitementOeuvre.php" data-idOeuvre="<?php echo $oeuvre->getIdOeuvre() ?>" method="GET">

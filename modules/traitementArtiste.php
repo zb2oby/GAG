@@ -1,19 +1,19 @@
 <?php 
-include('../class/ArtisteManager.class.php');
-include('../class/Artiste.class.php');
-include('../class/ArtisteExposeManager.class.php');
-include('../class/ArtisteExpose.class.php');
-include('../class/OeuvreManager.class.php');
-include('../class/Oeuvre.class.php');
-include('../class/OeuvreExposeeManager.class.php');
-include('../class/OeuvreExposee.class.php');
-include('../class/MessageManager.class.php');
-include('../class/Message.class.php');
-include('../class/CollectifManager.class.php');
-include('../class/Collectif.class.php');
-include('../class/DonneeEnrichieManager.class.php');
-include('../class/DonneeEnrichie.class.php');
-include('../includes/bdd/connectbdd.php');
+require_once('../class/ArtisteManager.class.php');
+require_once('../class/Artiste.class.php');
+require_once('../class/ArtisteExposeManager.class.php');
+require_once('../class/ArtisteExpose.class.php');
+require_once('../class/OeuvreManager.class.php');
+require_once('../class/Oeuvre.class.php');
+require_once('../class/OeuvreExposeeManager.class.php');
+require_once('../class/OeuvreExposee.class.php');
+require_once('../class/MessageManager.class.php');
+require_once('../class/Message.class.php');
+require_once('../class/CollectifManager.class.php');
+require_once('../class/Collectif.class.php');
+require_once('../class/DonneeEnrichieManager.class.php');
+require_once('../class/DonneeEnrichie.class.php');
+require_once('../includes/bdd/connectbdd.php');
 
 if (isset($_GET['idArtiste'])) {
 	$idArtiste = $_GET['idArtiste'];

@@ -622,6 +622,7 @@ form.adminForm, form.expoForm {
 }
 .context-menu {
 	display: none;
+	/*visibility: hidden;*/
 	position: absolute;
 	left: 50%;
 	top: -110px;
@@ -758,7 +759,7 @@ form.adminForm, form.expoForm {
 					padding-bottom: 10px;
 				}
 				.oeuvreArtiste {
-					position: relative;
+					/*position: relative;*/ /*supprimé pour faire marcher le chargement du include popOeuvre*/
 					float: right;
 					/*display: inline-block;*/
 					vertical-align: top;
@@ -766,9 +767,6 @@ form.adminForm, form.expoForm {
 					text-align: right;
 				}
 					.delOeuvreArtiste {
-						position: absolute;
-						z-index: 5;
-						right: 0;
 						min-width: 30px;
 						font-size: 15px;
 						padding: 7px;
@@ -1049,9 +1047,14 @@ form.adminForm, form.expoForm {
 			font-size: 42px;
 		}
 	
-	.cards ul {
+	/*.cards ul {
 		min-height: 310px;
 		max-height: 310px;
+	}*/
+
+	.context-artiste .cards ul {
+		min-height: 200px;
+		max-height: 200px;
 	}
 	.down-content {
 		/*margin-top: 20px;*/

@@ -280,39 +280,6 @@ function deleteElt(target) {
 		deleteElt(target);
 	});
 
-
-//ancien code avec e drop dans un e poubelle
-    // $('.deleteCard').droppable({
-    //     accept: '.column > .portlet',
-    //     activeClass: 'dropArea',
-    //     hoverClass: 'dropAreaHover',
-    //     drop: function(event, ui) {
-    //     	var idOeuvreExposee = ui.draggable.data('id');
-
-    //         // mise a jour de l'emplacement : suppression de l'oeuvre droppé
-    //         var place = 'idOeuvreExposee=' + idOeuvreExposee + '&req=delete';
-    //         $.ajax({
-    //             url: '../modules/traitementListes.php',
-    //             type: 'GET',
-    //             dataType: 'html',
-    //             data: place,
-    //         })
-    //         .done(function() {
-    //             console.log("success");
-    //         })
-    //         .fail(function() {
-    //             console.log("error");
-    //         })
-    //         .always(function() {
-    //             console.log("complete");
-    //         });
-
-    //         ui.draggable.remove();
-            
-    //     }
-    // });
-
-
 //>>>>>>>>>>>>>>>>>< POPUP <>>>>>>>>>>>>>>>>>>
 
     $(document).click(function(event) {
@@ -336,56 +303,55 @@ function deleteElt(target) {
         $('.overlay').show();
     });
 
-		//CLIC SUR LIEN CREATION OEUVRE DANS POPUP addCard
-		$('.creerOeuvre').click(function(event) {
-			$('.popAddCard').css('display', 'none');
-			$('.popAddRecue').css('display', 'none');
-            $('.popAddArtiste').css('display', 'none');
-			//ici on ajoutera le display d'un nouveau popup avec un formulaire de creation d'oeuvre
-		});
+	//CLIC SUR LIEN CREATION OEUVRE DANS POPUP addCard
+	$('.creerOeuvre').click(function(event) {
+		$('.popAddCard').css('display', 'none');
+		$('.popAddRecue').css('display', 'none');
+        $('.popAddArtiste').css('display', 'none');
+		//ici on ajoutera le display d'un nouveau popup avec un formulaire de creation d'oeuvre
+	});
 
 	//AFFICHAGE CONTEXT MENU DUNE CARTE OEUVRE
 	$('.portlet-content').click(function(event) {
-        $(event.target).parent().find('.context-oeuvre').css('display', 'block');
+        //on recupere l'idoeuvre de lelement cliqué
+       var idOeuvrePortlet =  $(event.currentTarget).find('.img').data('id');
+       //on creer un tableau des element ou se trouve le popup d destination
+       var afficheDestination = $('.oeuvreArtiste');
+       //on boucle dedans 
+       for (var i = afficheDestination.length - 1; i >= 0; i--) {
+            //pour chaque element on compare les idoeuvre si l'idoeuvre cliqué correspon a un idoeuvre de la carte artiste on affiche
+          if ($(afficheDestination[i]).data('idoeuvre') == idOeuvrePortlet) {
+            $(afficheDestination[i]).closest('.context-artiste').css({
+                display: 'block',
+            });
+            $(afficheDestination[i]).parent().find('.context-oeuvre').css({
+                display: 'block',
+                top: '0'
+            });
+          } 
+
+       }
         $('.overlay').show();
-        
-        // $('.cancelButton').click(function(e) {
-        //     $('.context-menu').css('display', 'none');
-        //     $('.overlay').hide();
-        // });
     });
-    $('.portlet-content .titre').click(function(event) {
-        $(event.target).parent().parent().find('.context-oeuvre').css('display', 'block');
-        $('.overlay').show();
-        
-        // $('.cancelButton').click(function(e) {
-        //     $('.context-menu').css('display', 'none');
-        //     $('.overlay').hide();
-        // });
-    });
+   
 
 	//EXTINCTION DES POPUP
-    //(anciennement closeButton i)
 	$('.closeButton i').click(function(event) {
 		$(event.target).parent().parent().css('display', 'none');
 		$('.confirmPopup').css('display', 'none');
+        $('.context-artiste').css('display', 'none');
+        $('.context-oeuvre').css('display', 'none');
 		$('.overlay').hide();
         event.stopPropagation();
 	});
 
 	$('.overlay').click(function(event) {
-        //si une carte oeuvre est ouverte on ne ferme que ça (gardera ouverte la carte artiste si o uverte en dessous)
-        if ($('.context-oeuvre').css('display') == 'block') {
-            $('.context-oeuvre').css('display', 'none');
-        }
-        //sinon on ferme tout
-        else{
-            $('.context-menu').css('display', 'none');
-            $('.popAddCard').css('display', 'none');
-            $('.popAddRecue').css('display', 'none');
-            $('.popAddArtiste').css('display', 'none');
-            $('.overlay').hide();
-        }
+        $('.context-menu').css('display', 'none');
+        $('.popAddCard').css('display', 'none');
+        $('.popAddRecue').css('display', 'none');
+        $('.popAddArtiste').css('display', 'none');
+        $('.overlay').hide();
+
     	
     });
     

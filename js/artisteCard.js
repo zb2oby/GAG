@@ -5,14 +5,15 @@ jQuery(document).ready(function($) {
 		var classe = $(this).attr('id');
 		$(event.target).closest('.context-menu').find('.context-overlay').show();
 		$(event.target).closest('.context-menu').find('.pop-'+classe+'.popGestionCard-artiste').show();
-
+		$(event.currentTarget).closest('.context-menu').find('.pop-'+classe+'.popGestionCard').show();
 	});
 
 	$('.context-overlay').click(function(event) {
 		$(this).hide();
 		$('.popGestionCard-artiste').hide();
+		$('.popGestionCard').hide();
 	});
-
+	//FERMETURE DES FORMULAIRES INTEGRE A LA CARTE
 	$('.closeButton-context').click(function(event) {
 		$(this).parent().hide();
 		$('.context-overlay').hide();
@@ -23,8 +24,6 @@ jQuery(document).ready(function($) {
 		$('.context-overlay').hide();
 	});
 
-
-	
 
 	//AFFICHAGE CONTEXT MENU DUNE CARTE ARTISTE
 	$('.portlet-artiste').click(function(event) {
@@ -39,12 +38,13 @@ jQuery(document).ready(function($) {
         $('.overlay').show();
         
     });
-    //AFFICHAGE POPUP DE CONFIRMATION DE SUPPRESSION (bug avec affichage carte oeuvre contenue dans carte artiste)
-    //surement un probleme de zindex ou qqch comme ca
-    $('i.delOeuvreArtiste').click(function(event) {
-		$(event.target).closest('.li-oeuvre-artiste').find('.pop-delOeuvreArtiste').css('display', 'block');
-		$('.context-oeuvre').css('display', 'none');
-	});
+ //    //AFFICHAGE POPUP DE CONFIRMATION DE SUPPRESSION (bug avec affichage carte oeuvre contenue dans carte artiste)
+ //    //surement un probleme de zindex ou qqch comme ca
+ //    $('.oeuvreArtiste').click(function(event) {
+	// 	$(event.currentTarget).closest('.li-oeuvre-artiste').find('.pop-delOeuvreArtiste').css('display', 'block');
+	// 	$(event.currentTarget).closest('.li-oeuvre-artiste').find('.context-oeuvre').css('display', 'none');
+	// 	// $('.context-oeuvre').css('display', 'none');
+	// });
     //AFFICHAGE CARTE OEUVRE CONTENUE DANS CARTE ARTISTE
 	$(document).on('click', '.li-oeuvre-artiste', function(event) {
 		// event.preventDefault();
@@ -54,14 +54,6 @@ jQuery(document).ready(function($) {
     		top: '0px',
     	});
 	});
-
-
-
-	$('.list-oeuvre-artiste .closeButton-oeuvre i').click(function(event) {
-		$('.overlay').show();
-	});
-
-    
 
 
 	$(document).on('submit', '.form-artiste', function(event) {
@@ -159,10 +151,22 @@ jQuery(document).ready(function($) {
 			})
 			.done(function(response) {
 				console.log("success");
+				//retour de l'ajout d'oeuvre
+				//creation de l'element dans le dom avec include du popOeuvre pour le clic sur lelement ajouté
 				if (html == 'ok') {
 					var affichageLastOeuvre = response;
+					//on cree l'element
 					$(event.currentTarget).closest('.context-menu').find('.list-oeuvre-artiste').prepend(affichageLastOeuvre);
-					//$(event.currentTarget).closest('.context-menu').find('.li-oeuvre-artiste').load('../includes/popOeuvre.php');
+					//on recupere l'idOeuvre du dernier element cree
+					var idOeuvre = $(event.currentTarget).closest('.context-menu').find('.oeuvreArtiste').data('idoeuvre');
+					console.log(idOeuvre);
+					//on charge le include popOeuvre seuelement pour le dernier element cree avec l'idoeuvre recuepere pour le fonctionnement du include
+					var arrayOeuvre = $('.oeuvreArtiste');
+					if ($(arrayOeuvre[0]).data('idoeuvre') == idOeuvre ){
+						$(arrayOeuvre[0]).load('../includes/popOeuvre.php?idOeuvre='+idOeuvre);
+
+					}
+					//on ferme le formulaire d'ajout d'oeuvre
 					$(event.currentTarget).closest('.pop-addOeuvre').hide();
 					$('.context-overlay').hide();
 				}
@@ -220,8 +224,8 @@ jQuery(document).ready(function($) {
 				console.log("complete");
 			});
 			
-			$(this).closest('.portlet').find('.titre').html(nom+' '+prenom);
-			$(this).closest('.portlet').find('.card-header h4').html('"'+nom+'"');
+			$(this).closest('.portlet-artiste').find('.titre').html(nom+' '+prenom);
+			$(this).closest('.context-artiste').find('.card-title h4').html('"'+nom+'"');
 			
 
 			return false;

@@ -97,19 +97,14 @@ class OeuvreExposeeManager {
             $idOeuvreExposee = $q->fetch();
             $idOeuvreExposee = $idOeuvreExposee['idOeuvreExposee'];
             $idOeuvre = $oeuvre->getIdOeuvre();
-            echo '<li class="portlet" data-id="'.$idOeuvreExposee.'">'
+            echo '<li class="portlet portlet-oeuvre" data-id="'.$idOeuvreExposee.'">'
                     .'<div class="portlet-content">'
                         .'<div class="titre">'.ucfirst($oeuvre->getTitre()).'</div>'
                         .'<div data-idoeuvreexposee="'.$idOeuvreExposee.'" data-id="'.$idOeuvre.'" class="img '.$class.'" data-src="'.$oeuvre->getImage().'">'  
                             .'<img src="../img/oeuvres/'.$oeuvre->getImage().'" alt="'.$oeuvre->getImage().'">'
                         .'</div>'
                     .'</div>';
-                    include('../includes/popOeuvre.php');
-                    // .'<div class="context-menu">'
-                    //     .'<i class="closeButton ion-android-close"></i>'
-                    //     .'<i class="deleteCard ion-ios-trash-outline"></i>'
-                    //     .'<input type="text"></input>'
-                    // .'</div>'
+                    // include('../includes/popOeuvre.php');
             echo '</li>';
 
         }

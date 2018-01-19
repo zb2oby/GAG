@@ -1,28 +1,5 @@
 jQuery(document).ready(function($) {
 
-	//affichage des formulaires en popup au clic sur les bouton d'action
-	$('.action-button').click(function(event) {
-		var classe = $(this).attr('id');
-		$(event.currentTarget).closest('.context-menu').find('.context-overlay').show();
-		$(event.currentTarget).closest('.context-menu').find('.pop-'+classe+'.popGestionCard').show();
-
-	});
-
-	$('.context-overlay').click(function(event) {
-		$(this).hide();
-		$('.popGestionCard').hide();
-	});
-
-	$('.closeButton-context').click(function(event) {
-		$(this).parent().hide();
-		$('.context-overlay').hide();
-	});
-
-	$('.cancelButton').click(function(event) {
-		$(event.currentTarget).parent().parent().parent().hide();
-		$('.context-overlay').hide();
-	});
-
 	$(document).on('submit', '.form-oeuvre', function(event) {
 		//varaibles communes
 		var method = '';
@@ -78,8 +55,22 @@ jQuery(document).ready(function($) {
 		if (typeof titre != 'undefined' || typeof longueur != 'undefined' || typeof hauteur != 'undefined' || typeof etat != 'undefined' || typeof descriptif != 'undefined') {
 			var method = 'GET';
 			var data = 'idOeuvre=' + idOeuvre + '&titre=' + titre + '&longueur=' + longueur + '&hauteur=' + hauteur + '&etat=' + etat + '&descriptif=' + descriptif;
-			$(this).closest('.portlet').find('.titre').html(titre);
-			$(this).closest('.portlet').find('.card-header h4').html('"'+titre+'"');
+			var arrayPortlet = $('.portlet-oeuvre');
+			for (var i = arrayPortlet.length - 1; i >= 0; i--) {
+				if ($(arrayPortlet[i]).find('.img').data('id') == idOeuvre) {
+					$(arrayPortlet[i]).find('.titre').html(titre);
+
+				}
+				
+			}
+			var arrayOeuvre = $('.oeuvreArtiste');
+			for (var i = arrayOeuvre.length - 1; i >= 0; i--) {
+				if ($(arrayOeuvre[i]).data('idoeuvre') == idOeuvre) {
+					$(arrayOeuvre[i]).parent().find('.titreOeuvreArtiste').html(titre);
+				}
+			}
+			
+			$(this).closest('.context-oeuvre').find('.card-header h4').html('"'+titre+'"');
 		}
 		//suppression contenu+
 		if (typeof idDonneeDeleted != 'undefined' || typeof delDonnee != 'undefined') {
@@ -99,7 +90,7 @@ jQuery(document).ready(function($) {
 		if (typeof fileImage != 'undefined' && typeof maxSize != 'undefined' && typeof existImage != 'undefined') {
 			method = 'POST';
 			var data = fileImage;
-			var image = 'ok';
+			var imageOeuvre = 'ok';
 			//return true;
 		}
 		
@@ -157,23 +148,30 @@ jQuery(document).ready(function($) {
 					    this.reset();
 					});
 				}
-				if (image == 'ok') {
+				if (imageOeuvre == 'ok') {
 					$(document).load('../img/oeuvres/'+response);
-					$(event.currentTarget).closest('.context-menu').find('.card-image').html('<img src="../img/oeuvres/'+response+'">');
-					$(event.currentTarget).closest('.portlet').find('.img').html('<img src="../img/oeuvres/'+response+'">');
-					$(event.currentTarget).closest('.pop-modifImageOeuvre').hide();
+					//changement de l'image sur la carte oeuvre
+					// console.log($(event.currentTarget).closest('.context-oeuvre').find('.card-image img'));
+					$(event.currentTarget).closest('.context-oeuvre').find('.card-image').html('<img src="../img/oeuvres/'+response+'">');
+					
+					//changement de l'image sur le portlet
+					var arrayPortlet = $('.portlet-oeuvre');
+					for (var i = arrayPortlet.length - 1; i >= 0; i--) {
+						if ($(arrayPortlet[i]).find('.img').data('id') == idOeuvre) {
+							$(arrayPortlet[i]).closest('.portlet').find('.img').html('<img src="../img/oeuvres/'+response+'">');
+						}
+						
+					}
+					//changement de l'image sur la liste des oeuvre de la carte artiste
 					var arrayOeuvre = $('.oeuvreArtiste');
 					for (var i = arrayOeuvre.length - 1; i >= 0; i--) {
 						if ($(arrayOeuvre[i]).data('idoeuvre') == idOeuvre ){
-							$(arrayOeuvre[i]).parent().find('img').remove();
-							$(arrayOeuvre[i]).parent().append('<img style="width:20px; height:20px;" src="../img/oeuvres/'+response+'">');
-							console.log($(arrayOeuvre[i]));
+							$(arrayOeuvre[i]).parent().find('.imgOeuvreArtiste').remove();
+							$(arrayOeuvre[i]).parent().append('<img class="imgOeuvreArtiste" style="width:20px; height:20px;" src="../img/oeuvres/'+response+'">');
+
 						}
 					}
-					
-						
-				
-					
+					$(event.currentTarget).closest('.pop-modifImageOeuvre').hide();
 					$('.context-overlay').hide();
 				}
 				
