@@ -49,6 +49,22 @@ jQuery(document).ready(function($) {
 		if (typeof delOeuvre != 'undefined') {
 			method = 'GET';
 			data = 'idOeuvre=' + idOeuvre + '&req=' + delOeuvre;
+			var arrayPortlet = $('.portlet-oeuvre');
+			for (var i = arrayPortlet.length - 1; i >= 0; i--) {
+				if ($(arrayPortlet[i]).find('.img').data('id') == idOeuvre) {
+					$(arrayPortlet[i]).remove();
+
+				}
+				
+			}
+			var arraySelect = $('select#oeuvre option');
+			console.log(arraySelect);
+			for (var i = arraySelect.length - 1; i >= 0; i--) {
+				if ($(arraySelect[i]).val() == idOeuvre ) {
+					$(arraySelect[i]).remove();
+				}
+				
+			}
 			$(event.currentTarget).closest('.li-oeuvre-artiste').remove();
 		}
 		//donnee generale

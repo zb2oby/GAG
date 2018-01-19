@@ -19,7 +19,13 @@ include('../modules/traitementEmplacement.php');
 					$manager = new OeuvreManager($bdd);
 					$listOeuvre = $manager->listOeuvreExpo($idExpo);
 					foreach ($listOeuvre as $oeuvre) {
-						echo '<option value="'.$oeuvre->getIdOeuvre().'">'.$oeuvre->getTitre().'</option>';
+						if ($oeuvre->getTitre() == '') {
+							$titreOeuvre = 'Oeuvre sans titre';
+						}else{
+							$titreOeuvre = $oeuvre->getTitre();
+						}
+
+						echo '<option value="'.$oeuvre->getIdOeuvre().'">'.$titreOeuvre.'</option>';
 					}
 				}
 			 ?>
@@ -28,7 +34,7 @@ include('../modules/traitementEmplacement.php');
 		<input type="hidden" name="idExpo" value="<?php echo $_SESSION['idExpo']; ?>">
 		<input type="submit" value="Creer Carte">
 	</form>
-		<span>L'oeuvre n'existe pas encore ? <a class="creerOeuvre" href="#">Creer une nouvelle oeuvre</a></span>
+		<span>L'oeuvre n'existe pas encore ? <button class="action-button" id="addOeuvre">Ajouter Oeuvre</button><!-- <a class="creerOeuvre" href="#">Creer une nouvelle oeuvre</a> --></span>
 </div>
 <div class="popAddRecue">
 	<div class="closeButton"><i class="ion-android-close"></i></div>
@@ -41,7 +47,13 @@ include('../modules/traitementEmplacement.php');
 					$manager = new OeuvreManager($bdd);
 					$listOeuvre = $manager->listOeuvreExpo($idExpo);
 					foreach ($listOeuvre as $oeuvre) {
-						echo '<option value="'.$oeuvre->getIdOeuvre().'">'.$oeuvre->getTitre().'</option>';
+						if ($oeuvre->getTitre() == '') {
+							$titreOeuvre = 'Oeuvre sans titre';
+						}else{
+							$titreOeuvre = $oeuvre->getTitre();
+						}
+
+						echo '<option value="'.$oeuvre->getIdOeuvre().'">'.$titreOeuvre.'</option>';
 					}
 				}
 			 ?>
@@ -52,7 +64,7 @@ include('../modules/traitementEmplacement.php');
 		<input type="hidden" name="idExpo" value="<?php echo $_SESSION['idExpo']; ?>">
 		<input type="submit" value="Creer Carte">
 	</form>
-		<span>L'oeuvre n'existe pas encore ? <a class="creerOeuvre" href="#">Creer une nouvelle oeuvre</a></span>
+		<span>L'oeuvre n'existe pas encore ? <button class="action-button" id="addOeuvre">Ajouter Oeuvre</button><!-- <a class="creerOeuvre" href="#">Creer une nouvelle oeuvre</a> --></span>
 </div>
 <div class="popAddArtiste">
 	<div class="closeButton"><i class="ion-android-close"></i></div>

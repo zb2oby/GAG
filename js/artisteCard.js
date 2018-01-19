@@ -1,11 +1,11 @@
 jQuery(document).ready(function($) {
 
-
-	$('.action-button').click(function(event) {
+	$(document).on('click', '.action-button', function(event) {
 		var classe = $(this).attr('id');
 		$(event.target).closest('.context-menu').find('.context-overlay').show();
 		$(event.target).closest('.context-menu').find('.pop-'+classe+'.popGestionCard-artiste').show();
 		$(event.currentTarget).closest('.context-menu').find('.pop-'+classe+'.popGestionCard').show();
+		
 	});
 
 	$('.context-overlay').click(function(event) {
@@ -87,6 +87,8 @@ jQuery(document).ready(function($) {
 		//suppression d'un artiste
 		var delArtiste = $(event.currentTarget).find('#delArtiste').val();
 
+
+		//donnee generales
 		if (typeof nom != 'undefined' || typeof prenom != 'undefined' || typeof tel != 'undefined' || typeof email != 'undefined' || typeof descriptif != 'undefined') {
 			method = 'GET';
 			var data = 'idArtiste=' + idArtiste + '&nom=' + nom + '&prenom=' + prenom + '&tel=' + tel + '&email=' + email + '&descriptif=' + descriptif;
@@ -99,12 +101,28 @@ jQuery(document).ready(function($) {
 			method = 'GET';
 			var data = 'idArtiste=' + idArtiste + '&req=' + delArtiste;
 			$(event.currentTarget).closest('.portlet-artiste').remove();
+			//suppression des option de select correspondant a l'artiste supprimé
+			var arraySelect = $('select#artiste option');
+			console.log(arraySelect);
+			for (var i = arraySelect.length - 1; i >= 0; i--) {
+				if ($(arraySelect[i]).val() == idArtiste ) {
+					$(arraySelect[i]).remove();
+				}
+				
+			}
+			$('.overlay').hide();
 		}
 
 		//creation nouvelle oeuvre
 		if (typeof addOeuvreArtiste != 'undefined') {
 			method = 'GET';
 			var data = 'idArtiste=' + idArtiste + '&req=' + addOeuvreArtiste;
+			//ajout de la nouvelle oeuvre dans les selects oeuvre prevue et recue
+			if (typeof titre == 'undefined') {
+				var titre = 'Oeuvre sans titre';
+			}
+			$(document).find('.popAddCard select#oeuvre').append('<option value="'+idOeuvre+'">'+titre+'</option>');
+			$(document).find('.popAddRecue select#oeuvre').append('<option value="'+idOeuvre+'">'+titre+'</option>')
 			var html = 'ok';
 		}
 
