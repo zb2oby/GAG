@@ -46,7 +46,7 @@ if (isset($_GET['idOeuvre'])) {
 		$manager->addMessageOeuvre($message);
 	}
 	if (isset($_GET['req']) && $_GET['req'] == 'delete') {
-	$managerOeuvre->deleteOeuvre($oeuvre);
+		$managerOeuvre->deleteOeuvre($oeuvre);
 	}	
 
 

@@ -61,23 +61,23 @@ $artiste = $managerArtiste->infoArtiste($idArtiste);
 						
 						<div>
 							<label for="nom"> Nom</label>
-							<input type="text" name="nom" id="nom<?php echo $artiste->getIdArtiste() ?>" value="<?php echo ucfirst($artiste->getNom()) ?>">
+							<input type="text" name="nom" id="nom" value="<?php echo ucfirst($artiste->getNom()) ?>">
 						</div>
 						<div>
 							<label for="prenom">Prenom</label>
-							<input type="text" name="prenom" id="prenom<?php echo $artiste->getIdArtiste() ?>" value="<?php echo ucfirst($artiste->getPrenom()) ?>">
+							<input type="text" name="prenom" id="prenom" value="<?php echo ucfirst($artiste->getPrenom()) ?>">
 						</div>
 						<div>
 							<label for="tel">Téléphone</label>
-							<input type="text" name="tel" id="tel<?php echo $artiste->getIdArtiste() ?>" value="<?php echo $artiste->getTel() ?>">
+							<input type="text" name="tel" id="tel" value="<?php echo $artiste->getTel() ?>">
 						</div>
 						<div>
 							<label for="email">E-mail</label>
-							<input type="email" name="email" id="email<?php echo $artiste->getIdArtiste() ?>" value="<?php echo $artiste->getEmail() ?>">
+							<input type="email" name="email" id="email" value="<?php echo $artiste->getEmail() ?>">
 						</div>
 						<div>
 							<label for="descriptif">Descriptif</label><br>
-							<textarea name="descriptif" id="descriptif<?php echo $artiste->getIdArtiste() ?>" cols="40" rows="10" value="<?php echo $artiste->getDescriptifFR() ?>"><?php echo $artiste->getDescriptifFR() ?></textarea>
+							<textarea name="descriptif" id="descriptif" cols="40" rows="10" value="<?php echo $artiste->getDescriptifFR() ?>"><?php echo $artiste->getDescriptifFR() ?></textarea>
 						</div>
 						
 						<div class="submit">

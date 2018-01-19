@@ -38,13 +38,6 @@ jQuery(document).ready(function($) {
         $('.overlay').show();
         
     });
- //    //AFFICHAGE POPUP DE CONFIRMATION DE SUPPRESSION (bug avec affichage carte oeuvre contenue dans carte artiste)
- //    //surement un probleme de zindex ou qqch comme ca
- //    $('.oeuvreArtiste').click(function(event) {
-	// 	$(event.currentTarget).closest('.li-oeuvre-artiste').find('.pop-delOeuvreArtiste').css('display', 'block');
-	// 	$(event.currentTarget).closest('.li-oeuvre-artiste').find('.context-oeuvre').css('display', 'none');
-	// 	// $('.context-oeuvre').css('display', 'none');
-	// });
     //AFFICHAGE CARTE OEUVRE CONTENUE DANS CARTE ARTISTE
 	$(document).on('click', '.li-oeuvre-artiste', function(event) {
 		// event.preventDefault();
@@ -60,6 +53,12 @@ jQuery(document).ready(function($) {
 		//varaibles communes
 		var method = '';
 		var idArtiste = $(event.target).data('idartiste');
+		//info generale
+		var nom = $(event.target).find('#nom').val();
+		var prenom = $(event.target).find('#prenom').val();
+		var tel = $(event.target).find('#tel').val();
+		var email = $(event.target).find('#email').val();
+		var descriptif = $(event.target).find('#descriptif').val();
 		//modif clooectif
 		var idCollectif = $(event.target).find('#idCollectif').val();
 		var nomCollectif = $(event.target).find('#idCollectif option:selected').text();
@@ -85,15 +84,22 @@ jQuery(document).ready(function($) {
 		//suppression d'une oeuvre de la fiche artiste
 		var delOeuvreArtiste = $(event.target).find('#delOeuvre').val();
 		var idDelOeuvre = $(event.target).find('#idOeuvre').val();
+		//suppression d'un artiste
+		var delArtiste = $(event.currentTarget).find('#delArtiste').val();
 
+		if (typeof nom != 'undefined' || typeof prenom != 'undefined' || typeof tel != 'undefined' || typeof email != 'undefined' || typeof descriptif != 'undefined') {
+			method = 'GET';
+			var data = 'idArtiste=' + idArtiste + '&nom=' + nom + '&prenom=' + prenom + '&tel=' + tel + '&email=' + email + '&descriptif=' + descriptif;
+			$(this).closest('.portlet-artiste').find('.titre').html(nom+' '+prenom);
+			$(this).closest('.context-artiste').find('.card-title h4').html('"'+nom+'"');
+		}
 
-
-		// //suppression d'une oeuvre de la fiche artiste
-		// if (typeof delOeuvreArtiste != 'undefined' && typeof idDelOeuvre != 'undefined') {
-		// 	method = 'GET';
-		// 	var data = 'idOeuvre=' + idDelOeuvre;
-		// 	$(event.currentTarget).closest('.li-oeuvre-artiste').remove();
-		// }
+		//suppression artiste
+		if (typeof delArtiste != 'undefined') {
+			method = 'GET';
+			var data = 'idArtiste=' + idArtiste + '&req=' + delArtiste;
+			$(event.currentTarget).closest('.portlet-artiste').remove();
+		}
 
 		//creation nouvelle oeuvre
 		if (typeof addOeuvreArtiste != 'undefined') {
@@ -189,48 +195,6 @@ jQuery(document).ready(function($) {
 		
 		return false;
 
-	});
-
-
-//A REECRIRE AVEC DES EVENT TARGET AU LIEU D'ID DEGEULASSE
-	var formId;
-	$('.submit-artiste').click(function(event) {
-		var idData = $(this).closest('.form-artiste').data('idartiste');
-		var formId = '#form-artiste'+idData;
-
-		$(formId).submit(function(event) {
-			var idArtiste = idData;
-			var nom = $('#nom'+idData).val();
-			var prenom = $('#prenom'+idData).val();
-			var tel = $('#tel'+idData).val();
-			var email = $('#email'+idData).val();
-			var descriptif = $('#descriptif'+idData).val();
-
-			var data = 'idArtiste=' + idArtiste + '&nom=' + nom + '&prenom=' + prenom + '&tel=' + tel + '&email=' + email + '&descriptif=' + descriptif;
-
-			$.ajax({
-				url: '../modules/traitementArtiste.php',
-				type: 'GET',
-				dataType: 'html',
-				data: data,
-			})
-			.done(function() {
-				console.log("success");
-			})
-			.fail(function() {
-				console.log("error");
-			})
-			.always(function() {
-				console.log("complete");
-			});
-			
-			$(this).closest('.portlet-artiste').find('.titre').html(nom+' '+prenom);
-			$(this).closest('.context-artiste').find('.card-title h4').html('"'+nom+'"');
-			
-
-			return false;
-		});
-	 });
-	
+	});	
 	
 });

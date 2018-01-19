@@ -89,6 +89,9 @@ if (isset($_GET['idArtiste'])) {
 			
 		}
 	
+	}
+	if (isset($_GET['req']) && $_GET['req'] == 'delete') {
+		$managerArtiste->deleteArtiste($artiste);
 	}	
 
 
