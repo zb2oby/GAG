@@ -68,8 +68,6 @@ jQuery(document).ready(function($) {
 		var delOeuvre = $(event.currentTarget).find('#delOeuvre').val();
 
 
-		console.log(idOeuvre);
-		console.log(delOeuvre);
 		//suppression oeuvre
 		if (typeof delOeuvre != 'undefined') {
 			method = 'GET';
@@ -164,6 +162,18 @@ jQuery(document).ready(function($) {
 					$(event.currentTarget).closest('.context-menu').find('.card-image').html('<img src="../img/oeuvres/'+response+'">');
 					$(event.currentTarget).closest('.portlet').find('.img').html('<img src="../img/oeuvres/'+response+'">');
 					$(event.currentTarget).closest('.pop-modifImageOeuvre').hide();
+					var arrayOeuvre = $('.oeuvreArtiste');
+					for (var i = arrayOeuvre.length - 1; i >= 0; i--) {
+						if ($(arrayOeuvre[i]).data('idoeuvre') == idOeuvre ){
+							$(arrayOeuvre[i]).parent().find('img').remove();
+							$(arrayOeuvre[i]).parent().append('<img style="width:20px; height:20px;" src="../img/oeuvres/'+response+'">');
+							console.log($(arrayOeuvre[i]));
+						}
+					}
+					
+						
+				
+					
 					$('.context-overlay').hide();
 				}
 				
