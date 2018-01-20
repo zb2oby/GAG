@@ -1,5 +1,6 @@
 
 <?php
+
 //autoloader ne peut pas foncitonner ici car fichier inclus en ajax
 require_once('../class/ArtisteManager.class.php');
 require_once('../class/Artiste.class.php');
@@ -24,15 +25,22 @@ include('bdd/connectbdd.php');
 if (isset($_GET['idOeuvre'])) {
 	$idOeuvre = $_GET['idOeuvre'];
 }
-
+if (isset($_GET['idExpo'])) {
+	$idOeuvre = $_GET['idExpo'];
+}
+if (isset($_SESSION['idExpo'])) {
+	$idExpo = $_SESSION['idExpo'];
+}
 //si on a lid oeuvre (si on a cliqué depuis la carte oeuvre ailleur) alors : 
 $managerOeuvre = new OeuvreManager($bdd);
 $oeuvre = $managerOeuvre->infoOeuvre($idOeuvre);
 
 //verifier si l'oeuvre est exposée : 
-
 $managerOeuvreExpo = new OeuvreExposeeManager($bdd);
-$idOeuvreExposee = $managerOeuvreExpo->idExposee($idOeuvre, $_SESSION['idExpo']);
+if (isset($idExpo)) {
+	$idOeuvreExposee = $managerOeuvreExpo->idExposee($idOeuvre, $idExpo);
+}
+
 //si on a l'idoeuvre exposee (si ona  cliqué depuis une expo en fait) alors : 
 if (isset($idOeuvreExposee)) {
 

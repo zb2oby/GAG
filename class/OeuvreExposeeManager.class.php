@@ -1,5 +1,4 @@
 <?php
-
 class OeuvreExposeeManager {
 
 	private $_db;
@@ -91,9 +90,9 @@ class OeuvreExposeeManager {
         return $oeuvre;
     }
     //affichage des info d'une oeuvre a partir du tableau d'oeuvre generé en fonction des oeuvreExposee presente
-    public function affichageOeuvre ($tabOeuvres, $class) {
+    public function affichageOeuvre ($tabOeuvres, $class, $idExpo) {
         foreach ($tabOeuvres as $oeuvre) {
-            $q = $this->_db->query("SELECT idOeuvreExposee FROM OeuvreExposee WHERE idExpo='".$_SESSION['idExpo']."' AND idOeuvre='".$oeuvre->getIdOeuvre()."'");
+            $q = $this->_db->query("SELECT idOeuvreExposee FROM OeuvreExposee WHERE idExpo='".$idExpo."' AND idOeuvre='".$oeuvre->getIdOeuvre()."'");
             $idOeuvreExposee = $q->fetch();
             $idOeuvreExposee = $idOeuvreExposee['idOeuvreExposee'];
             $idOeuvre = $oeuvre->getIdOeuvre();
@@ -103,16 +102,16 @@ class OeuvreExposeeManager {
                         .'<div data-idoeuvreexposee="'.$idOeuvreExposee.'" data-id="'.$idOeuvre.'" class="img '.$class.'" data-src="'.$oeuvre->getImage().'">'  
                             .'<img src="../img/oeuvres/'.$oeuvre->getImage().'" alt="'.$oeuvre->getImage().'">'
                         .'</div>'
-                    .'</div>';
+                    .'</div>'
                     // include('../includes/popOeuvre.php');
-            echo '</li>';
+                .'</li>';
 
         }
     }
 
     //retourne un objet oeuvre exposé en fonction de son idoeuvre fournit en argument
     public function idExposee($idOeuvre, $idExpo) {
-        $q = $this->_db->query("SELECT idOeuvreExposee FROM OeuvreExposee WHERE idOeuvre =".$idOeuvre." AND idExpo = ".$idExpo);
+        $q = $this->_db->query("SELECT idOeuvreExposee FROM OeuvreExposee WHERE idOeuvre ='".$idOeuvre."' AND idExpo = '".$idExpo."'");
         $data = $q->fetch();
             $idOeuvreExposee = $data['idOeuvreExposee'];
             return $idOeuvreExposee;

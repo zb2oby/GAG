@@ -533,7 +533,7 @@ form.adminForm, form.expoForm {
 			}
 
 /*>>>>>>>>>>>>>>>>  POPUP >>>>>>>>>>>>>>>>*/	
-.popAddCard, .popAddRecue, .popAddArtiste {
+.popAddCard, .popAddRecue, .popAddArtiste, .popAddOeuvrePrevue {
 	position: absolute;
 	z-index: 2;
 	top: 10%;
@@ -551,6 +551,11 @@ form.adminForm, form.expoForm {
 	.popAddArtiste span, .popAddArtiste label, .popAddArtiste i, .popAddArtiste span, .popAddCard label, .popAddCard i, .popAddRecue span, .popAddRecue label,.popAddRecue i {
 		color: #fff;
 	}
+
+/*.popAddOeuvrePrevue {
+	display: none;
+	background-color: #fff;
+}*/
 	.closeButton, .closeButton-context {
 		position: absolute;
 		z-index: 6;

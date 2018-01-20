@@ -8,6 +8,8 @@ include('../modules/traitementEmplacement.php');
 	<button class="deleteButton">Supprimer</button>
 	<button class="cancelButton">Oula tout cela va bien trop vite</button>
 </div>
+
+
 <div class="popAddCard">
 	<div class="closeButton"><i class="ion-android-close"></i></div>
 	<form class="addCardForm" action="../modules/traitementListes.php" method="GET">
@@ -36,6 +38,34 @@ include('../modules/traitementEmplacement.php');
 	</form>
 		<span>L'oeuvre n'existe pas encore ?<a class="creerOeuvre" href="#">Creer une nouvelle oeuvre</a></span>
 </div>
+
+
+<div class="popAddOeuvrePrevue">
+	<form class="form-liste" action="../modules/traitementListes.php" method="GET">
+		<select name="idArtisteExpo" id="idArtisteExpo">
+			<?php 
+				if (isset($_SESSION['idExpo'])) {
+					$idExpo = htmlentities($_SESSION['idExpo']);
+
+					$manager = new ArtisteExposeManager($bdd);
+
+					$artisteExpose = $manager->listArtisteExpo($idExpo);
+					foreach ($artisteExpose as $artiste) {
+						echo '<option value="'.$artiste->getIdArtiste().'">'.$artiste->getNom().' '.$artiste->getPrenom().'</option>';
+					}
+				}
+			?>
+		</select>
+		<input type="hidden" name="req" id="req" value="add">
+		<input type="hidden" name="status" id="status" value="prevue">
+		<input type="hidden" name="idExpo" id="idExpo" value="<?php if (isset($_SESSION['idExpo'])){echo $_SESSION['idExpo'];} ?>">
+		<div class="submit">
+			<button type="submit">Creer Oeuvre</button>
+		</div>
+	</form>
+</div>
+
+
 <div class="popAddRecue">
 	<div class="closeButton"><i class="ion-android-close"></i></div>
 	<form class="addCardForm" action="../modules/traitementListes.php" method="GET">
@@ -66,6 +96,8 @@ include('../modules/traitementEmplacement.php');
 	</form>
 		<span>L'oeuvre n'existe pas encore ?<a class="creerOeuvre" href="#">Creer une nouvelle oeuvre</a></span>
 </div>
+
+
 <div class="popAddArtiste">
 	<div class="closeButton"><i class="ion-android-close"></i></div>
 	<form class="addCardForm" action="../modules/traitementListes.php" method="GET">
@@ -95,6 +127,8 @@ include('../modules/traitementEmplacement.php');
 	</form>
 		<span>L'artiste n'existe pas encore ? <a class="creerOeuvre" href="#">Creer un nouvel artiste</a></span>
 </div>
+
+
 <section class="list artistes">
 	<div class="cards">
 		<h4>Artistes exposé(e)s</h4>
@@ -150,7 +184,7 @@ include('../modules/traitementEmplacement.php');
 
 						$oeuvresPrevues = $manager->ListOeuvresPrevues($idExpo);
 						$classe_item = '';
-						$manager->affichageOeuvre($oeuvresPrevues, $classe_item);
+						$manager->affichageOeuvre($oeuvresPrevues, $classe_item, $idExpo);
 					}
 				?>	
 			</ul>
@@ -172,7 +206,7 @@ include('../modules/traitementEmplacement.php');
 
 						$oeuvresRecues = $manager->ListOeuvresRecues($idExpo);
 						$classe_item = 'item';
-						$manager->affichageOeuvre($oeuvresRecues, $classe_item);
+						$manager->affichageOeuvre($oeuvresRecues, $classe_item, $idExpo);
 					}
 				?>
 			</ul>

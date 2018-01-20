@@ -85,6 +85,8 @@ if (isset($_GET['idArtiste'])) {
 					</form>
 				</div>
 			</li>';
+			
+			
 			echo $affichageLast;
 			
 		}
