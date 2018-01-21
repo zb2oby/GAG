@@ -1,0 +1,118 @@
+/**************************************** FEUILLE DE STYLE **********************************\
+Voici comment cela fonctionne:
+
+font-family: Police d'écriture
+text-align: alignement du texte (left,center,right)
+font-size: taille du texte en pt
+font-style: style du texte ("normal,"italic")
+font-weight: graisse de police ("normal","bold","bolder")
+width: largeur de la cellule en px
+height: hauteur de la cellule en px
+border-color: couleur de la bordure de la cellule
+border-width: largeur de la bordure
+border-style: style de la bordure (normal = "solid", pointillés = "dotted, tirets="dashed", aucune = "none")
+color: couleur du texte
+**********************************************************************************************/
+/* DOCUMENT */
+.header-accueil-calendar header {
+  /*height: 80px;*/
+ /* width: 100%;
+  margin-top: 0;
+  margin-left: 0;*/
+}
+
+.header-accueil-calendar .container {
+  /*left: 0;
+  right: 0;
+  width: 100%;*/
+}
+
+table {
+  margin: 0 auto;
+  padding: 0px 20px;
+}
+	
+/* TABLEAU */
+td  {
+  text-align:center;
+  vertical-align:middle; }
+td a {
+  display: block;
+  height: 100%;
+  padding-top: 30px;
+} 
+td a:hover {
+  cursor: pointer;
+  background-color: #eee;
+  color: #0A2675;
+}
+/* NOM DU MOIS */
+td.nom_mois  {
+  font-size:24px;
+  font-style:normal;
+  font-weight:normal;}
+  
+  /* FLECHES */
+td.fleches a {
+  font-size:48px;
+  font-style:normal;
+  font-weight:normal;
+  color: #0A2675;
+  }
+  
+/* NOMS DES JOURS*/
+tr.noms_jours  {
+  width:50px;
+  height:50px;
+  font-size:8pt; }
+  
+ /*DATES*/
+td.jours  {
+  width:120px;
+  height:80px;
+  border-color:#ccc;
+  border-width:1px;
+  border-style:solid;
+  font-size:8pt;
+  background-color:#ddd; }
+  
+ /* AUJOURD'HUI */
+td.aujourdhui  {
+  width:120px;
+  height:80px;
+  border-color:#000000;
+  border-width:1px;
+  border-style:solid;
+  font-size:8pt;
+  color: #fff;
+  background-color:#DE9318;}
+  
+ /* CASES DES MOIS PRECEDENTS ET SUIVANTS*/
+td.cases_vides  {
+  width:120px;
+  height:80px;
+  border-color:#F5F5F5;
+  border-width:1px;
+  border-style:solid;
+  font-size:8pt;
+  color:#C0C0C0;}
+
+td.jourExpo {
+  width:120px;
+  height:80px;
+  border-color:#000000;
+  border-width:1px;
+  border-style:solid;
+  font-size:8pt;
+  color: #fff;
+  background-color:#0A2675; }
+
+/*td.jourExpo:hover {
+  cursor: pointer;
+  background-color: #eee;
+  color: #0A2675;
+}*/
+  
+a:link  {text-decoration:none;}
+a:visited  {text-decoration:none;}
+a:active  {text-decoration:none;}

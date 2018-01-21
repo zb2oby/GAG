@@ -60,6 +60,15 @@ class ExpositionManager {
         return $list;
     }
 
+    public function listExpoMois($mois, $annee) {
+        $list = [];
+        $q = $this->_db->query("SELECT * FROM Exposition WHERE MONTH(dateDeb) = ".$mois." AND YEAR(dateDeb) = ".$annee);
+        while ($data = $q->fetch()) {
+            $list[] = new Exposition($data);
+        }
+        return $list;
+    }
+
     //renvoie les info expo d'une expo 
     public function infoExpo($idExpo) {
         $q = $this->_db->query("SELECT * FROM Exposition WHERE idExpo ='".$idExpo."'");

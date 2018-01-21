@@ -1,1 +1,1 @@
-<?php header('location: content/gestionPanel.php') ?>
+<?php header('location: content/accueil.php?onglet=calendar') ?>

@@ -1,7 +1,6 @@
 <?php 
-session_start();
-/*=====>POUR LES TESTS */ $_SESSION['idExpo'] = 2; 
-						$_SESSION['idUser'] = 1;
+//session_start();
+
 
 include('functions.php');
 
@@ -21,6 +20,7 @@ include('bdd/connectbdd.php');
 		<link rel="stylesheet" type="text/css" href="../css/lib/slick/slick.css"/>
 		<link rel="stylesheet" type="text/css" href="../css/lib/slick/slick-theme.css"/>
         <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="../includes/calendar/calendar.css">
         <link rel="author" href="humans.txt">
     </head>
 
@@ -32,7 +32,7 @@ include('bdd/connectbdd.php');
 
 	    	<div class="expoInfo">
 	    		<?php 
-	    			if (isset($_SESSION['idExpo'])) {
+	    			if (isset($_SESSION['idExpo']) && !empty($_SESSION['idExpo'])) {
 	    				$idExpo = htmlentities($_SESSION['idExpo']);
 	    				$manager = new ExpositionManager($bdd);
 	    				$expo = $manager->infoExpo($idExpo);
@@ -51,9 +51,13 @@ include('bdd/connectbdd.php');
 	    	</div>
 	    	<div class="timeLine">
 	    		<ul>
-	    			<li><span>Aujourd'hui : </span><a href="" class="button date"><?php 
-						echo $date = date("d/m/Y");
-						?></a></li>
+	    			<li><span>Aujourd'hui : </span><a href="../content/accueil.php?a=<?php echo date('Y') ?>&m=<?php echo date('m') ?>&onglet=calendar" class="button date" title="Retour Accueil"><i class="ion-android-arrow-back"></i><?php 
+						echo $date = ' '.date("d/m/Y");
+						?></a>
+					</li>
+					<?php if (isset($_SESSION['idExpo'])) { ?>
+						
+					
 	    			<li>
 	    				<span>Date Expo : </span>
 	    				<?php 
@@ -66,9 +70,15 @@ include('bdd/connectbdd.php');
 	    				<?php
 			    			$now = time(); 
 			    			$time = $dateExpo - $now;
-			    			echo (floor(($dateExpo - $now)/86400)+1).' Jours';
+			    			if ($time < 0 ) {
+			    				echo 'Expo terminée';
+			    			}else {
+			    				echo (floor(($dateExpo - $now)/86400)+1).' Jours';
+			    			}
+			    			
 			    		?> 
 			    	</li>
+			    	<?php } ?>
 	    		</ul>
 	    	</div>
 	    </header>

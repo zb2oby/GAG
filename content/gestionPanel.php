@@ -1,4 +1,12 @@
-
+<?php 
+session_start();
+if (isset($_GET['idExpo'])) {
+        $idExpo = htmlentities($_GET['idExpo']);
+        $_SESSION['idExpo'] = $idExpo;
+}
+/*=====>POUR LES TESTS */ //$_SESSION['idExpo'] = 2; 
+                        $_SESSION['idUser'] = 1;
+ ?>
 
 <?php require('../includes/bdd/connectbdd.php'); ?>
 
@@ -67,9 +75,9 @@
         	</div>
         </div>
 
-        <div class="onglet <?php if (isset($_GET['onglet']) && $_GET['onglet'] == 'admin') {
-        	echo 'onglet-actif';
-        } ?>" id="admin">
+        <!-- <div class="onglet <?php //if (isset($_GET['onglet']) && $_GET['onglet'] == 'admin') {
+        	//echo 'onglet-actif';
+        //} ?>" id="admin">
         	<div class="onglet-title">
         		Admin	
         	</div>
@@ -85,7 +93,7 @@
         			<input type="submit" value="Supprimer">
         		</form>
         	</div>
-        </div>
+        </div> -->
 
 	</div>
 
