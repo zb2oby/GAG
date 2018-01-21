@@ -177,6 +177,13 @@ header {
 				font-size: 4em;
 			}
 
+			.flecheHor:hover {
+				cursor: pointer;
+			}
+			.flecheVert:hover {
+				cursor: pointer;
+			}
+
 			.sideMenu li {
 				padding: 30px 0 ;
 			}
@@ -533,7 +540,7 @@ form.adminForm, form.expoForm {
 			}
 
 /*>>>>>>>>>>>>>>>>  POPUP >>>>>>>>>>>>>>>>*/	
-.popAddCard, .popAddRecue, .popAddArtiste, .popAddOeuvrePrevue {
+.popAddCard, .popAddRecue, .popAddArtiste, .popAddOeuvrePrevue, .popAddOeuvreRecue {
 	position: absolute;
 	z-index: 2;
 	top: 10%;
@@ -548,7 +555,7 @@ form.adminForm, form.expoForm {
 	font-size: 16px;
 	text-align: center;
 }
-	.popAddArtiste span, .popAddArtiste label, .popAddArtiste i, .popAddArtiste span, .popAddCard label, .popAddCard i, .popAddRecue span, .popAddRecue label,.popAddRecue i {
+	.popAddArtiste span, .popAddArtiste label, .popAddArtiste i, .popAddCard span, .popAddCard label, .popAddCard i, .popAddRecue span, .popAddRecue label,.popAddRecue i {
 		color: #fff;
 	}
 
@@ -749,8 +756,10 @@ form.adminForm, form.expoForm {
 			}
 			ul#list-info {
 				min-height: auto;
-				max-height: 130px;
+				max-height: 150px;
 				overflow: auto;
+				margin-top: 0;
+
 			}
 			#list-info > li {
 				
@@ -760,10 +769,15 @@ form.adminForm, form.expoForm {
 
 				}
 				.list-oeuvre-artiste .li-oeuvre-artiste {
-					margin-top: 20px;
+					margin-bottom: 10px;
 					border-bottom: 2px solid #ccc;
 					padding-bottom: 10px;
+					background-color: #fff;
 				}
+					.li-oeuvre-artiste:hover {
+						background-color: #ccc;
+						cursor: pointer;
+					}
 				.oeuvreArtiste {
 					/*position: relative;*/ /*supprimé pour faire marcher le chargement du include popOeuvre*/
 					float: right;

@@ -65,6 +65,31 @@ include('../modules/traitementEmplacement.php');
 	</form>
 </div>
 
+<div class="popAddOeuvreRecue">
+	<form class="form-liste" action="../modules/traitementListes.php" method="GET">
+		<select name="idArtisteExpo" id="idArtisteExpo">
+			<?php 
+				if (isset($_SESSION['idExpo'])) {
+					$idExpo = htmlentities($_SESSION['idExpo']);
+
+					$manager = new ArtisteExposeManager($bdd);
+
+					$artisteExpose = $manager->listArtisteExpo($idExpo);
+					foreach ($artisteExpose as $artiste) {
+						echo '<option value="'.$artiste->getIdArtiste().'">'.$artiste->getNom().' '.$artiste->getPrenom().'</option>';
+					}
+				}
+			?>
+		</select>
+		<input type="date" name="dateEntree" id="dateEntree">
+		<input type="hidden" name="req" id="req" value="add">
+		<input type="hidden" name="status" id="status" value="recue">
+		<input type="hidden" name="idExpo" id="idExpo" value="<?php if (isset($_SESSION['idExpo'])){echo $_SESSION['idExpo'];} ?>">
+		<div class="submit">
+			<button type="submit">Creer Oeuvre</button>
+		</div>
+	</form>
+</div>
 
 <div class="popAddRecue">
 	<div class="closeButton"><i class="ion-android-close"></i></div>
