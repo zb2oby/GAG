@@ -3,7 +3,10 @@
 	<img src="../img/plan.png" alt="plan">
 	<form action="../modules/traitementEmplacement.php" method="GET">
 		<input type="text" hidden name="idExpo" value="<?php echo $_SESSION['idExpo'] ?>">
-			<div class="addPlace"><button type="submit" title="Ajouter un Nouvel Emplacement"><i class="ion-plus-circled"></i></button></div>
+		<input type="hidden" name="req" value="addPlace">
+		<div class="addPlace">
+			<button type="submit" title="Ajouter un Nouvel Emplacement"><i class="ion-plus-circled"></i></button>
+		</div>
 			
 	</form>
 		<div class="trash"><i class="ion-trash-a"></i></div>

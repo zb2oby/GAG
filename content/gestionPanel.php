@@ -1,8 +1,8 @@
 <?php 
 session_start();
-if (isset($_GET['idExpo'])) {
-        $idExpo = htmlentities($_GET['idExpo']);
-        $_SESSION['idExpo'] = $idExpo;
+if (isset($_GET['expo'])) {
+$idExpo = htmlentities($_GET['expo']);
+$_SESSION['idExpo'] = $idExpo;
 }
 /*=====>POUR LES TESTS */ //$_SESSION['idExpo'] = 2; 
                         $_SESSION['idUser'] = 1;

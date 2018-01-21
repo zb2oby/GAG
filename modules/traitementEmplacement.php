@@ -10,7 +10,7 @@ require '../class/EmplacementManager.class.php';
 $manager = new EmplacementManager($bdd);
 
 
-//CREATION DUN NOUVEL EMPLACEMENT A LOUVERTURE DE PAGE EXPO (inclus dans listeGEstion.php)
+//CREATION DUN NOUVEL EMPLACEMENT A LOUVERTURE DE PAGE EXPO SI AUCUN EMPLACEMENT NEXISTE (inclus dans listeGEstion.php)
 
 if (isset($_SESSION['idExpo'])) {
 	$idExpo = $_SESSION['idExpo'];
@@ -46,22 +46,26 @@ if (isset($_SESSION['idExpo'])) {
 if (isset($_GET['idExpo'])) { 
 //=>creation d'une div avec data-id= idEmplacement de la base lié a l'expo ouverte
 	$idExpo = $_GET['idExpo'];
-	//on creer donc un nouvel objet emplacement a des coordonnée differente de 50/50 pour eviter l'ajout de l'id default-place caché par defaut
-	$emplacement = new Emplacement(['idExpo'=>$idExpo, 'idOeuvreExposee'=>0, 'coordTop'=>51, 'coordLeft'=>51]);
+	if (isset($_GET['req']) && $_GET['req'] == 'addPlace') {
+			# code..
+		
+		//on creer donc un nouvel objet emplacement a des coordonnée differente de 50/50 pour eviter l'ajout de l'id default-place caché par defaut
+		$emplacement = new Emplacement(['idExpo'=>$idExpo, 'idOeuvreExposee'=>0, 'coordTop'=>51, 'coordLeft'=>51]);
 
-	//on l'ajoute en base : il a desormais un id
-	$manager->addEmplacement($emplacement);
-	//on recupere l'id du dernier enregistrement
-	$idEmplacement = $manager->getLast($emplacement);
-	
-	//on recupere le tableau des coordonnées de cet emplacement
-	$coord = $manager->getCoord($idEmplacement);
-	//on affiche maintenan la div aux coordonnées presente en base:
-	foreach ($coord as $axe) {
-		echo '<div class="emplacement" data-id="place'.$idEmplacement.'" style="top:'.$axe->getCoordTop().'%; left:'.$axe->getCoordLeft().'%;"></div>';
+		//on l'ajoute en base : il a desormais un id
+		$manager->addEmplacement($emplacement);
+		//on recupere l'id du dernier enregistrement
+		$idEmplacement = $manager->getLast($emplacement);
+		
+		//on recupere le tableau des coordonnées de cet emplacement
+		$coord = $manager->getCoord($idEmplacement);
+		//on affiche maintenan la div aux coordonnées presente en base:
+		foreach ($coord as $axe) {
+			echo '<div class="emplacement" data-id="place'.$idEmplacement.'" style="top:'.$axe->getCoordTop().'%; left:'.$axe->getCoordLeft().'%;"></div>';
+		}
+
+		header('location: ../content/gestionPanel.php');
 	}
-
-header('location: ../content/gestionPanel.php');
 }
 
 

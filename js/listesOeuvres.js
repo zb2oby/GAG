@@ -299,8 +299,8 @@ function deleteElt(target) {
 
 
     $(document).click(function(event) {
-        if ($(event.target).parent().hasClass('img')) {
-            $('.overlay').show();
+        if ($(event.target).parent().parent().hasClass('oeuvre-place')) {
+            $('.overlay').hide();
         }
         
     });

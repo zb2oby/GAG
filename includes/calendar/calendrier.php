@@ -5,6 +5,8 @@ function calendrier($m_donne,$a_donne){
 	include('../includes/bdd/connectbdd.php');
 	require('../class/ExpositionManager.class.php');
 	require('../class/Exposition.class.php');
+	require('../class/OeuvreExposeeManager.class.php');
+	require('../class/OeuvreExposee.class.php');
 
 	include("config.php");
 	// $m = 02;
@@ -78,12 +80,25 @@ function calendrier($m_donne,$a_donne){
 				$dateDeb = strtotime($exposition->getDateDeb());
 				$dateFin = strtotime($exposition->getDateFin());
 				$titre = $exposition->getTitre();
-				$lienExpo = '../content/gestionPanel.php?idExpo='.$exposition->getIdExpo();
+				$idExposition = $exposition->getIdExpo();
+				$lienExpo = '../content/gestionPanel.php?expo='.$idExposition;
 				
 					
 				//si le jour testé est compris dans la plage de jour de l'expo on ajoute la classe expo
 				if ($tsBoucle >= $dateDeb && $tsBoucle <= $dateFin) {
-					echo "<td class=\"jourExpo\"><a href=\"$lienExpo\">$jour<br>$titre</a></td>";
+					$now = time(); 
+	    			$dateExpo = strtotime($exposition->getDateDeb());
+	    			$time = $dateExpo - $now;
+	    			$remain = (floor(($dateExpo - $now)/86400)+1);
+	    			if ($remain > 0 && $remain < 10 ) {
+	    				$managerOeuvreExpo = new OeuvreExposeeManager($bdd);
+		    			$listNonRecue = $managerOeuvreExpo->ListOeuvresPrevues($idExposition);
+		    			$nbRetard = count($listNonRecue);
+		    			echo '<td class="jourExpo"><a href="'.$lienExpo.'">'.$jour.'<br>'.$titre.'<br><span style="color:red;">'.$nbRetard.' RETARD</span></a></td>';
+	    			}else{
+	    				echo "<td class=\"jourExpo\"><a href=\"$lienExpo\">$jour<br>$titre</a></td>";	
+	    			}
+				
 					$today = 'expo';
 					
 				}
@@ -134,7 +149,7 @@ function mois_suivant($m,$a){
 		$a++;
 		$m=1;
 	}
-	return '<a href="'.$_SERVER['PHP_SELF']."?m=$m&a=$a\"> &raquo; </a>";
+	return '<a href="'.$_SERVER['PHP_SELF']."?m=$m&a=$a&onglet=calendar\"> &raquo; </a>";
 }
 
 //FONCTION POUR AFFICHER LE MOINS PRECEDENT
@@ -144,6 +159,6 @@ function mois_precedent($m,$mois,$a){
 		$a--;
 		$m=12;
 	}
-	return '<a href="'.$_SERVER['PHP_SELF']."?m=$m&a=$a\"> &laquo; </a>";
+	return '<a href="'.$_SERVER['PHP_SELF']."?m=$m&a=$a&onglet=calendar\"> &laquo; </a>";
 }
 ?>

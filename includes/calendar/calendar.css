@@ -31,7 +31,9 @@ table {
   margin: 0 auto;
   padding: 0px 20px;
 }
-	
+.header-accueil-calendar .deco i {
+  top: 50px;
+}
 /* TABLEAU */
 td  {
   text-align:center;
@@ -59,6 +61,9 @@ td.fleches a {
   font-weight:normal;
   color: #0A2675;
   }
+td.fleches a:hover {
+  background-color: transparent;
+}
   
 /* NOMS DES JOURS*/
 tr.noms_jours  {

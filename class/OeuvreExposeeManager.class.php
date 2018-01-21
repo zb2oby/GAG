@@ -89,8 +89,31 @@ class OeuvreExposeeManager {
         $oeuvre = new Oeuvre($data);
         return $oeuvre;
     }
+
+    public function ListOeuvresRetard($idExpo, $dateDeb) {
+        $listRetard = [];
+        $now = time(); 
+        $dateExpo = strtotime($dateDeb);
+        $time = $dateExpo - $now;
+        $remain = (floor(($dateExpo - $now)/86400)+1);
+        if ($remain < 10) {
+            $q = $this->_db->query("SELECT O.idOeuvre, titre, longueur, hauteur, etat, image, qrcode, descriptifFR, idTypeOeuvre, idArtiste, idCollectif FROM Oeuvre O, OeuvreExposee E WHERE O.idOeuvre = E.idOeuvre AND dateEntree = '0000-00-00' AND idExpo ='".$idExpo."'");
+            while ($data = $q->fetch()) {
+                $listRetard[] = new Oeuvre($data);
+            }
+            
+            return $listRetard;
+
+        }else{
+            return false;
+        }
+
+    }
+
+
+
     //affichage des info d'une oeuvre a partir du tableau d'oeuvre generé en fonction des oeuvreExposee presente
-    public function affichageOeuvre ($tabOeuvres, $class, $idExpo) {
+    public function affichageOeuvre ($tabOeuvres, $class, $idExpo, $dateDeb = '') {
         foreach ($tabOeuvres as $oeuvre) {
             $q = $this->_db->query("SELECT idOeuvreExposee FROM OeuvreExposee WHERE idExpo='".$idExpo."' AND idOeuvre='".$oeuvre->getIdOeuvre()."'");
             $idOeuvreExposee = $q->fetch();
@@ -98,12 +121,20 @@ class OeuvreExposeeManager {
             $idOeuvre = $oeuvre->getIdOeuvre();
             echo '<li class="portlet portlet-oeuvre" data-id="'.$idOeuvreExposee.'">'
                     .'<div class="portlet-content">'
-                        .'<div class="titre">'.ucfirst($oeuvre->getTitre()).'</div>'
+                        .'<div class="titre">'.ucfirst($oeuvre->getTitre());
+                            $listRetard = $this->ListOeuvresRetard($idExpo, $dateDeb);
+                            foreach ($listRetard as $oeuvreRetard) {
+                                if ($oeuvre->getIdOeuvre() == $oeuvreRetard->getIdOeuvre()) {
+                                    echo '<span class="retard" style="font-size:12px; position:relative; left:0px; top:20px;"><i class="ion-alert-circled" style="color:red; font-size:1em; position:absolute; left:-15px; top:0px;"></i>RETARD</span>';
+                                }
+                            }
+                echo    '</div>'
                         .'<div data-idoeuvreexposee="'.$idOeuvreExposee.'" data-id="'.$idOeuvre.'" class="img '.$class.'" data-src="'.$oeuvre->getImage().'">'  
                             .'<img src="../img/oeuvres/'.$oeuvre->getImage().'" alt="'.$oeuvre->getImage().'">'
                         .'</div>'
+                        
                     .'</div>'
-                    // include('../includes/popOeuvre.php');
+                    
                 .'</li>';
 
         }
@@ -118,6 +149,8 @@ class OeuvreExposeeManager {
         
         
     }
+
+
 
 
 }

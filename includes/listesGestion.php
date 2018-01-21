@@ -204,9 +204,12 @@ include('../modules/traitementEmplacement.php');
 				<?php 
 					if (isset($_SESSION['idExpo'])) {
 						$idExpo = htmlentities($_SESSION['idExpo']);
+						$managerExpo = new ExpositionManager($bdd);
+						$exposition = $managerExpo->infoExpo($idExpo);
+						$dateDeb = $exposition->getDateDeb();
 
 						$manager = new OeuvreExposeeManager($bdd);
-
+						
 						$oeuvresPrevues = $manager->ListOeuvresPrevues($idExpo);
 						$classe_item = '';
 						$manager->affichageOeuvre($oeuvresPrevues, $classe_item, $idExpo);
