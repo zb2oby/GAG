@@ -90,6 +90,18 @@ class ExpositionManager {
 
 
     }
+    //renvoie les dates d'expo a venir
+    public function nextExpo(){
+    $list = [];
+    $q = $this->_db->query("SELECT idExpo, titre, horaireO, horaireF, theme, descriptifFR, frequentation, dateDeb, dateFin, teaser, affiche, couleurExpo FROM Exposition where dateDeb > now() ORDER BY datedeb desc");
+    while ( $data = $q->fetch()) {
+        $expo = new Exposition($data);
+        $list[] = $expo;
+    }
+    return $list;
+
+
+    }
 
     //renvoie la derniere exposition creer
     public function lastExpo() {

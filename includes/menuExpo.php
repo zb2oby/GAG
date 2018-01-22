@@ -7,9 +7,27 @@
 			<div class="multiple-items">
 				<!-- <li><a href="#">EXPO  --><?php 
 				$manager = new ExpositionManager($bdd);
-				$listPrevExpo = $manager->prevExpo();  
+				$listPrevExpo = $manager->prevExpo();
+				$listNextExpo = $manager->nextExpo(); 
 				$listDate = [];
+				//affichage des expo précédent la date du jour
 				foreach ($listPrevExpo as $exposition ) {
+					$key = $exposition->getDateDeb();
+					$value = $exposition->getTitre();
+					$couleurExpo = $exposition->getCouleurExpo();
+					$idExpoParam = $exposition->getIdExpo();
+					$listDate[$key] = ['titre' => $value, 'couleur' => $couleurExpo, 'id' => $idExpoParam];
+
+				}
+			
+				ksort($listDate);
+				foreach ($listDate as $dateExpo => $dataExpo ) {
+					echo '<li><a href="../content/gestionPanel.php?expo='.$dataExpo['id'].'"><div>'.$dataExpo['titre'];
+					echo '<br/>'.$dateExpo.'<br><span style="display:inline-block; width:100px; height:5px; font-size:16px; background-color:'.$dataExpo['couleur'].';"></span></div></a></li>';
+					
+				}
+				//affichage des expo suivant la date du jour
+				foreach ($listNextExpo as $exposition ) {
 					$key = $exposition->getDateDeb();
 					$value = $exposition->getTitre();
 					$couleurExpo = $exposition->getCouleurExpo();
