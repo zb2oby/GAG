@@ -111,9 +111,11 @@ function calendrier($m_donne,$a_donne){
 	    				$managerOeuvreExpo = new OeuvreExposeeManager($bdd);
 		    			$listNonRecue = $managerOeuvreExpo->ListOeuvresPrevues($idExposition);
 		    			$nbRetard = count($listNonRecue);
-		    			
-		    			
-		    			echo '<td style="background-color:'.$couleurExpo.';" class="'.$class.'"><a href="'.$lienExpo.'"><span style="background-color: '.$todayColor.'; margin:4px; position:absolute; top:0; left:5px;">'.$contenu.'</span>'.$jour.'<br>'.$titre.'<br><span style="color:red; font-weight:bold;">'.$nbRetard.' RETARD</span></a></td>';
+		    			if ($nbRetard > 0) {
+		    				echo '<td style="background-color:'.$couleurExpo.';" class="'.$class.'"><a href="'.$lienExpo.'"><span style="background-color: '.$todayColor.'; margin:4px; position:absolute; top:0; left:5px;">'.$contenu.'</span>'.$jour.'<br>'.$titre.'<br><span style="color:red; font-weight:bold;">'.$nbRetard.' RETARD</span></a></td>';
+		    			}else{
+		    				echo '<td style="position: relative; background-color:'.$couleurExpo.';" class="'.$class.'"><a href="'.$lienExpo.'"><span style="background-color: '.$todayColor.'; width: 100%; position:absolute; top:0; left:0; padding:5px;">'.$contenu.'</span>'.$jour.'<br>'.$titre.'</a></td>';
+		    			}
 	    			}else{
 	    				echo '<td style="position: relative; background-color:'.$couleurExpo.';" class="'.$class.'"><a href="'.$lienExpo.'"><span style="background-color: '.$todayColor.'; width: 100%; position:absolute; top:0; left:0; padding:5px;">'.$contenu.'</span>'.$jour.'<br>'.$titre.'</a></td>';	
 	    			}

@@ -64,6 +64,7 @@ td.fleches a {
   }
 td.fleches a:hover {
   background-color: transparent;
+  border: none;
 }
   
 /* NOMS DES JOURS*/

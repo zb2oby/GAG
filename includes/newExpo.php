@@ -1,6 +1,7 @@
 <div>
 	<div class="overlay"></div>
-	<form id="newExpo" action="">
+	<form id="newExpo" action="../modules/traitementExpo.php" method="POST" enctype="multipart/form-data">
+		<span>AJOUTER UNE NOUVELLE EXPOSITION</span>
 		<div id="CloseNewExpo" class="closeButton"><i class="ion-android-close"></i></div>
 		<div>
 			<label for="dateDebut">Date de début</label>
@@ -23,20 +24,24 @@
 			<input type="text" name="theme" id="theme">
 		</div>	
 		<div>
-			<label for="teaser">Teaser</label>
-			<input type="file" name="teaser" id="teaser">
+			<label for="teaser">Teaser (JPG GIF JPEG PNG| max. 300Ko)</label>
+			<input type="file" name="teaser[]" id="teaser" accept=".jpg, .jpeg, .gif, .png">
+			<input type="hidden" id="maxSize" name="MAX_FILE_SIZE" value="500000">
+				
 		</div>	
 		<div>
-			<label for="affiche">Affiche</label>
-			<input type="file" name="affiche" id="affiche">
+			<label for="affiche">Affiche (JPG GIF JPEG PNG| max. 300Ko)</label>
+			<input type="file" name="affiche[]" id="affiche" accept=".jpg, .jpeg, .gif, .png">
+			<input type="hidden" id="maxSize" name="MAX_FILE_SIZE" value="500000">
+				
 		</div>	
 		<div>
 			<label for="horaireO">Horaire d'ouverture</label>
-			<input type="text" name="horaireO" id="horaireO">
+			<input type="time" name="horaireO" id="horaireO">
 		</div>	
 		<div>
 			<label for="horaireF">Horaire de fermeture</label>
-			<input type="text" name="horaireF" id="horaireF">
+			<input type="time" name="horaireF" id="horaireF">
 		</div>	
 		<div>
 			<label for="descriptif">descriptif</label>

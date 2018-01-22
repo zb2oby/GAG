@@ -54,11 +54,16 @@ include('bdd/connectbdd.php');
 				    		if ($remain < 10) {
 		    					$managerOeuvreExpo = new OeuvreExposeeManager($bdd);
 		    					$listNonRecue = $managerOeuvreExpo->ListOeuvresPrevues($idExpo);
+		    					if (count($listNonRecue) > 0) {
+		    						# code...
+		    					
 		    			?>
 		    					<span class="retard" style="position: relative; color:red; margin-left: 80px;"><i class="ion-alert-circled" style="color:red; font-size:2em; position:absolute; left:-30px; top:-10px;"></i>Il y a <?php echo count($listNonRecue); ?> Oeuvre(s) En retard ! </span>
 						
 			    	
-			    	<?php } 
+			    	<?php 
+			    				}
+			    			} 
 	    			}
 	    			
 	    		?>
