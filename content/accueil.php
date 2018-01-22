@@ -56,5 +56,5 @@ require('../includes/bdd/connectbdd.php');
 
 </div>
 
-<?php include('../includes/menuExpo.php'); ?>
+<?php //include('../includes/menuExpo.php'); ?>
 <?php include('../includes/footer.php'); ?>
