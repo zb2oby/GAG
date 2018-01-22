@@ -13,6 +13,7 @@ class Exposition {
 	private $_dateFin;
 	private $_teaser;
 	private $_affiche;
+	private $_couleurExpo;
 
 	public function hydrate($dataExposition) {
 		foreach ($dataExposition as $key => $value) {
@@ -62,6 +63,9 @@ class Exposition {
 	public function setAffiche ($affiche) {
 		$this->_affiche = $affiche;
 	}
+	public function setCouleurExpo ($couleurExpo) {
+		$this->_couleurExpo = $couleurExpo;
+	}
 
 	// GETTERS
 
@@ -97,6 +101,9 @@ class Exposition {
 	}
 	public function getAffiche () {
 		return $this->_affiche;
+	}
+	public function getCouleurExpo () {
+		return $this->_couleurExpo;
 	}
 
 	//METHODES

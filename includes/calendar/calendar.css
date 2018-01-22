@@ -45,7 +45,7 @@ td a {
 } 
 td a:hover {
   cursor: pointer;
-  background-color: #eee;
+  background-color: #fff;
   color: #0A2675;
 }
 /* NOM DU MOIS */
@@ -112,6 +112,10 @@ td.jourExpo {
   color: #fff;
   background-color:#0A2675; }
 
+
+/*td.jourExpo.aujourdhui {
+  background-color: #0A2675 !important;
+}*/
 /*td.jourExpo:hover {
   cursor: pointer;
   background-color: #eee;

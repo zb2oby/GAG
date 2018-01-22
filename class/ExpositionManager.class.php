@@ -13,7 +13,7 @@ class ExpositionManager {
     }
 
     public function addExposition(Exposition $exposition) {
-    	$q = $this->_db->prepare('INSERT INTO Exposition(idExpo, titre, horaireO, horaireF, theme, descriptifFR, frequentation, dateDeb, dateFin, teaser, affiche) VALUES (:titre, :longueur, :hauteur, :etat, :image, :qrcode, :descriptifFR, :idTypeOeuvre, :idArtiste, :idCollectif)');
+    	$q = $this->_db->prepare('INSERT INTO Exposition(idExpo, titre, horaireO, horaireF, theme, descriptifFR, frequentation, dateDeb, dateFin, teaser, affiche, couleurExpo) VALUES (:titre, :longueur, :hauteur, :etat, :image, :qrcode, :descriptifFR, :idTypeOeuvre, :idArtiste, :idCollectif, :couleurExpo)');
         $q->bindValue(':idExpo', $exposition->getIdExpo());
         $q->bindValue(':titre', $exposition->getTitre());
     	$q->bindValue(':horaireO', $exposition->getLongueur());
@@ -25,6 +25,7 @@ class ExpositionManager {
         $q->bindValue(':dateFin', $exposition->getdateFin());
         $q->bindValue(':teaser', $exposition->getTeaser());
         $q->bindValue(':affiche', $exposition->getAffiche());
+        $q->bindValue(':couleurExpo', $exposition->getCouleurExpo());
 
         $q->execute();
     }
@@ -34,7 +35,7 @@ class ExpositionManager {
     }
 
     public function updateExposition(Exposition $exposition) {
-        $q = $this->_db->prepare('UPDATE Exposition SET idExpo = :idExpo, titre = :titre, horaireO = :horaireO, horaireF = :horaireF, theme = :theme, descriptifFR = :descriptifFR, frequentation = :frequentation, dateDeb = :dateDeb, dateFin = :dateFin, teaser = :teaser, affiche = :affiche WHERE idExpo = :idExpo');
+        $q = $this->_db->prepare('UPDATE Exposition SET idExpo = :idExpo, titre = :titre, horaireO = :horaireO, horaireF = :horaireF, theme = :theme, descriptifFR = :descriptifFR, frequentation = :frequentation, dateDeb = :dateDeb, dateFin = :dateFin, teaser = :teaser, affiche = :affiche , couleurExpo = :couleuExpo WHERE idExpo = :idExpo');
         $q->bindValue(':idExpo', $exposition->getIdExpo());
         $q->bindValue(':titre', $exposition->getTitre());
         $q->bindValue(':horaireO', $exposition->getLongueur());
@@ -46,6 +47,7 @@ class ExpositionManager {
         $q->bindValue(':dateFin', $exposition->getdateFin());
         $q->bindValue(':teaser', $exposition->getTeaser());
         $q->bindValue(':affiche', $exposition->getAffiche());
+        $q->bindValue(':couleurExpo', $exposition->getCouleurExpo());
 
         $q->execute();
     }
@@ -80,7 +82,7 @@ class ExpositionManager {
     //renvoie les dates d'expo passer
     public function prevExpo(){
         $list = [];
-        $q = $this->_db->query("SELECT idExpo, titre, horaireO, horaireF, theme, descriptifFR, frequentation, dateDeb, dateFin, teaser, affiche FROM Exposition where dateDeb < now() ORDER BY datedeb desc");
+        $q = $this->_db->query("SELECT idExpo, titre, horaireO, horaireF, theme, descriptifFR, frequentation, dateDeb, dateFin, teaser, affiche, couleurExpo FROM Exposition where dateDeb < now() ORDER BY datedeb desc");
         while ( $data = $q->fetch()) {
             $expo = new Exposition($data);
             $list[] = $expo;

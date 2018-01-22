@@ -75,6 +75,7 @@ include('bdd/connectbdd.php');
 	    				<span>Date Expo : </span>
 	    				<?php 
 	    					$dateExpo = strtotime($expo->getDateDeb());
+	    					$dateFin = strtotime($expo->getDateFin());
 	    					echo date('d/m/Y', $dateExpo);
 	    				?>
 	    			</li>
@@ -83,9 +84,13 @@ include('bdd/connectbdd.php');
 	    				<?php
 			    			$now = time(); 
 			    			$time = $dateExpo - $now;
-			    			if ($time < 0 ) {
+			    			$end = $dateFin -$now;
+			    			if ($time < 0 && $end > 0 ) {
+			    				echo 'Expo en cours';
+			    			}elseif($end < 0) {
 			    				echo 'Expo terminée';
-			    			}else {
+			    			}
+			    			else {
 			    				echo (floor(($dateExpo - $now)/86400)+1).' Jours';
 			    			}
 			    		}

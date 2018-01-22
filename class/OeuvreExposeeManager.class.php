@@ -125,7 +125,7 @@ class OeuvreExposeeManager {
                             $listRetard = $this->ListOeuvresRetard($idExpo, $dateDeb);
                             foreach ($listRetard as $oeuvreRetard) {
                                 if ($oeuvre->getIdOeuvre() == $oeuvreRetard->getIdOeuvre()) {
-                                    echo '<span class="retard" style="font-size:12px; position:relative; left:0px; top:20px;"><i class="ion-alert-circled" style="color:red; font-size:1em; position:absolute; left:-15px; top:0px;"></i>RETARD</span>';
+                                    echo '<span class="retard" style="font-size:12px; position:absolute; right:0px; top:40px;"><i class="ion-alert-circled" style="color:red; font-size:1em; position:absolute; left:-15px; top:0px;"></i>RETARD</span>';
                                 }
                             }
                 echo    '</div>'

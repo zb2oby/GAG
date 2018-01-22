@@ -65,14 +65,22 @@ function calendrier($m_donne,$a_donne){
 		$joursmoisavant++;
 		}else{
 			$today = '';
+			$contenu = '';
 			$tsBoucle = mktime(0,0,0,$m,$jour,$a);
+
+
+			if ($today != 'expo') {
+				if($tsBoucle == $timeStamp){ 	//Si la variable $jour correspond à la date d'aujourd'hui, la case est d'une couleur différente
+				//echo "<td class=\"aujourdhui\">$jour</td>";
+				$today = 'yes';
+				$class = 'aujourdhui';
+
+				}
+			}
 			// var_dump($tsBoucle);
 			// var_dump($timeStamp);
 			// exit;
-			if($tsBoucle == $timeStamp){ 	//Si la variable $jour correspond à la date d'aujourd'hui, la case est d'une couleur différente
-				echo "<td class=\"aujourdhui\">$jour</td>";
-				$today = 'yes';
-			}
+			
 			//si la variable corrspond a un jour d'expo on colore avec la classe jourExpo
 			$managerExpo = new ExpositionManager($bdd);
 			$listExpo = $managerExpo->listExpo();
@@ -81,6 +89,7 @@ function calendrier($m_donne,$a_donne){
 				$dateFin = strtotime($exposition->getDateFin());
 				$titre = $exposition->getTitre();
 				$idExposition = $exposition->getIdExpo();
+				$couleurExpo = $exposition->getCouleurExpo();
 				$lienExpo = '../content/gestionPanel.php?expo='.$idExposition;
 				
 					
@@ -90,13 +99,23 @@ function calendrier($m_donne,$a_donne){
 	    			$dateExpo = strtotime($exposition->getDateDeb());
 	    			$time = $dateExpo - $now;
 	    			$remain = (floor(($dateExpo - $now)/86400)+1);
+	    			if ($today == 'yes') {
+	    				$class .= ' '.'jourExpo';
+	    				$contenu = 'Aujourd\'hui';
+	    				$todayColor = '#DE9318';
+	    			}else {
+	    				$class = 'jourExpo';
+	    				$todayColor = '';
+	    			}
 	    			if ($remain > 0 && $remain < 10 ) {
 	    				$managerOeuvreExpo = new OeuvreExposeeManager($bdd);
 		    			$listNonRecue = $managerOeuvreExpo->ListOeuvresPrevues($idExposition);
 		    			$nbRetard = count($listNonRecue);
-		    			echo '<td class="jourExpo"><a href="'.$lienExpo.'">'.$jour.'<br>'.$titre.'<br><span style="color:red;">'.$nbRetard.' RETARD</span></a></td>';
+		    			
+		    			
+		    			echo '<td style="background-color:'.$couleurExpo.';" class="'.$class.'"><a href="'.$lienExpo.'"><span style="background-color: '.$todayColor.'; margin:4px; position:absolute; top:0; left:5px;">'.$contenu.'</span>'.$jour.'<br>'.$titre.'<br><span style="color:red; font-weight:bold;">'.$nbRetard.' RETARD</span></a></td>';
 	    			}else{
-	    				echo "<td class=\"jourExpo\"><a href=\"$lienExpo\">$jour<br>$titre</a></td>";	
+	    				echo '<td style="position: relative; background-color:'.$couleurExpo.';" class="'.$class.'"><a href="'.$lienExpo.'"><span style="background-color: '.$todayColor.'; width: 100%; position:absolute; top:0; left:0; padding:5px;">'.$contenu.'</span>'.$jour.'<br>'.$titre.'</a></td>';	
 	    			}
 				
 					$today = 'expo';
@@ -104,10 +123,11 @@ function calendrier($m_donne,$a_donne){
 				}
 				
 			}
-
+			
+			
 			//si la variable n'est ni aujourdhui ni un jjour dexpo on colore avec la classe par defaut
 			if ($today != 'expo' && $today != 'yes') {
-				echo '<td class="jours">'.$jour.'</td>';
+				echo '<td class="jours">'.$contenu.$jour.'</td>';
 			}
 
 

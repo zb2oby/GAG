@@ -28,6 +28,11 @@ a.button {
 
 }
 
+a.button:hover {
+	color:#0A2675;
+	background-color: #fff;
+}
+
 body {
 	font-size: 0;
 	font-family: 'Roboto', sans-serif;
@@ -520,6 +525,7 @@ form.adminForm, form.expoForm {
 				}
 
 					.portlet .titre {
+						position: relative;
 						text-transform : capitalize;
 					}
 					
@@ -540,12 +546,14 @@ form.adminForm, form.expoForm {
 			}
 
 /*>>>>>>>>>>>>>>>>  POPUP >>>>>>>>>>>>>>>>*/	
+
 .popAddCard, .popAddRecue, .popAddArtiste, .popAddOeuvrePrevue, .popAddOeuvreRecue {
 	position: absolute;
 	z-index: 2;
 	top: 10%;
-	left: 35%;
+	left: 50%;
 	width: 400px;
+	margin-left: -200px;
 	height: 300px;
 	padding: 20px;
 	background-color: #333;

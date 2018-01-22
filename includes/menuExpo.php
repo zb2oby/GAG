@@ -12,22 +12,19 @@
 				foreach ($listPrevExpo as $exposition ) {
 					$key = $exposition->getDateDeb();
 					$value = $exposition->getTitre();
-					$listDate[$key] = $value;
+					$couleurExpo = $exposition->getCouleurExpo();
+					$idExpoParam = $exposition->getIdExpo();
+					$listDate[$key] = ['titre' => $value, 'couleur' => $couleurExpo, 'id' => $idExpoParam];
+
 				}
+			
 				ksort($listDate);
-				foreach ($listDate as $dateExpo => $titreExpo) {
-					// class = '';
-					// $managerExpo = new managerExpo
-					// $expoOuverte = managerexposition-getexpo(idexpo)
-					// if expoouverte-gettitre = titreExpo
-					// 	class = active;
-					echo '<li><a href="#"><div>'.$titreExpo;
-					echo '<br/>'.$dateExpo.'</div></a></li>';
+				foreach ($listDate as $dateExpo => $dataExpo ) {
+					echo '<li><a href="../content/gestionPanel.php?expo='.$dataExpo['id'].'"><div>'.$dataExpo['titre'];
+					echo '<br/>'.$dateExpo.'<br><span style="display:inline-block; width:100px; height:5px; font-size:16px; background-color:'.$dataExpo['couleur'].';"></span></div></a></li>';
+					
 				}	
-				?><!-- </a></li> -->
-				<!-- <li><a href="#">EXPO 10/08/17</a></li>
-				<li><a class="active-expo" href="#">EXPO 21/08/18</a></li>
-				<li><a href="#">EXPO 25/12/17</a></li> -->
+				?>
 			</div>		
 			<div class="next"><i class="flecheVert ion-ios-arrow-down"></i></div>
 			<div class="addLogo">
