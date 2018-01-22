@@ -47,6 +47,7 @@ td a:hover {
   cursor: pointer;
   background-color: #fff;
   color: #0A2675;
+  border: 1px solid #CC1818;
 }
 /* NOM DU MOIS */
 td.nom_mois  {
@@ -80,13 +81,15 @@ td.jours  {
   border-style:solid;
   font-size:8pt;
   background-color:#ddd; }
-  
+td.jours:hover {
+  cursor: pointer;
  /* AUJOURD'HUI */
+}
 td.aujourdhui  {
   width:120px;
   height:80px;
-  border-color:#000000;
-  border-width:1px;
+  border-color:#CC1818;
+  border-width:3px;
   border-style:solid;
   font-size:8pt;
   color: #fff;
@@ -105,9 +108,6 @@ td.cases_vides  {
 td.jourExpo {
   width:120px;
   height:80px;
-  border-color:#000000;
-  border-width:1px;
-  border-style:solid;
   font-size:8pt;
   color: #fff;
   background-color:#0A2675; }

@@ -447,6 +447,7 @@ $('.creerOeuvre').click(function(event) {
         $('.popAddArtiste').css('display', 'none');
         $('.popAddOeuvrePrevue').css('display', 'none');
         $('.popAddOeuvreRecue').css('display', 'none');
+        $('#newExpo').css('display', 'none');
         $('.overlay').hide();
 
     	

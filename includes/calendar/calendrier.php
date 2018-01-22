@@ -7,7 +7,7 @@ function calendrier($m_donne,$a_donne){
 	require('../class/Exposition.class.php');
 	require('../class/OeuvreExposeeManager.class.php');
 	require('../class/OeuvreExposee.class.php');
-
+	require('../includes/newExpo.php');
 	include("config.php");
 	// $m = 02;
 	// $a = 2018;
@@ -127,7 +127,8 @@ function calendrier($m_donne,$a_donne){
 			
 			//si la variable n'est ni aujourdhui ni un jjour dexpo on colore avec la classe par defaut
 			if ($today != 'expo' && $today != 'yes') {
-				echo '<td class="jours">'.$contenu.$jour.'</td>';
+				
+				echo '<td class="jours" title="Creer nouvelle Expo" data-debut="'.$tsBoucle.'">'.$contenu.$jour.'</td>';
 			}
 
 

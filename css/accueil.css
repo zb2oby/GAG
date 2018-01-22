@@ -1,0 +1,26 @@
+#newExpo {
+	display: none;
+	position: absolute;	
+	z-index: 3;
+	width: 400px;
+	/*height: 500px;*/
+	top: 30px;
+	left: 50%;
+	margin-left:-200px;
+	padding: 20px;
+	background-color: #333;
+	opacity: 0.8;
+	font-size: 16px;	
+
+}
+
+	#newExpo label {
+		display: inline-block;
+		color: #fff;
+		width: 200px;
+		text-align: left;
+	}
+
+#closeNewExpo {
+	padding-top: 2px;
+}
