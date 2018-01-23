@@ -15,6 +15,6 @@ jQuery(document).ready(function($) {
 		$('#newExpo').css('display', 'block');
 		$('#newExpo').find('#dateDebut').val(formattedDate);
 		$('.overlay').show();
-
+		
 	});
 });

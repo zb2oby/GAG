@@ -69,17 +69,13 @@ function calendrier($m_donne,$a_donne){
 			$tsBoucle = mktime(0,0,0,$m,$jour,$a);
 
 
-			if ($today != 'expo') {
+			
 				if($tsBoucle == $timeStamp){ 	//Si la variable $jour correspond à la date d'aujourd'hui, la case est d'une couleur différente
-				//echo "<td class=\"aujourdhui\">$jour</td>";
 				$today = 'yes';
 				$class = 'aujourdhui';
 
 				}
-			}
-			// var_dump($tsBoucle);
-			// var_dump($timeStamp);
-			// exit;
+			
 			
 			//si la variable corrspond a un jour d'expo on colore avec la classe jourExpo
 			$managerExpo = new ExpositionManager($bdd);
@@ -133,12 +129,10 @@ function calendrier($m_donne,$a_donne){
 				echo '<td class="jours" title="Creer nouvelle Expo" data-debut="'.$tsBoucle.'">'.$contenu.$jour.'</td>';
 			}
 
-
-
-			// else{
-			// 	echo '<td class="jours">'.$jour.'</td>';
-			// }	
-
+			if ($today != 'expo' && $today == 'yes') {
+				echo "<td class=\"jours aujourdhui\" data-debut=\"$tsBoucle\">$jour</td>";
+			}
+			
 			$jour++;	//On passe au lendemain ^^
 		
 			/*Si la variable $jour est plus élevée que le nombre de jours du mois,  c'est que c'est la fin du mois! 

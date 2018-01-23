@@ -34,8 +34,7 @@ class ExpositionManager {
     }
 
     public function updateExposition(Exposition $exposition) {
-        $q = $this->_db->prepare('UPDATE Exposition SET titre = :titre, horaireO = :horaireO, horaireF = :horaireF, theme = :theme, descriptifFR = :descriptifFR, frequentation = :frequentation, dateDeb = :dateDeb, dateFin = :dateFin, teaser = :teaser, affiche = :affiche , couleurExpo = :couleuExpo WHERE idExpo = :idExpo');
-        $q->bindValue(':idExpo', $exposition->getIdExpo());
+        $q = $this->_db->prepare('UPDATE Exposition SET titre = :titre, horaireO = :horaireO, horaireF = :horaireF, theme = :theme, descriptifFR = :descriptifFR, frequentation = :frequentation, dateDeb = :dateDeb, dateFin = :dateFin, teaser = :teaser, affiche = :affiche, couleurExpo = :couleurExpo WHERE idExpo = :idExpo');
         $q->bindValue(':titre', $exposition->getTitre());
         $q->bindValue(':horaireO', $exposition->getHoraireO());
         $q->bindValue(':horaireF', $exposition->getHoraireF());
@@ -47,6 +46,7 @@ class ExpositionManager {
         $q->bindValue(':teaser', $exposition->getTeaser());
         $q->bindValue(':affiche', $exposition->getAffiche());
         $q->bindValue(':couleurExpo', $exposition->getCouleurExpo());
+        $q->bindValue(':idExpo', $exposition->getIdExpo());
 
         $q->execute();
     }
@@ -104,11 +104,11 @@ class ExpositionManager {
     }
 
     //renvoie la derniere exposition creer
-    public function lastExpo() {
-        $q = $this->_db->query("SELECT MAX(idExpo) AS idExpo, titre, horaireO, horaireF, theme, descriptifFR, frequentation, dateDeb, dateFin, teaser, affiche, couleurExpo FROM Exposition");
+    public function lastIdExpo() {
+        $q = $this->_db->query("SELECT MAX(idExpo) AS idExpo FROM Exposition");
         $data = $q->fetch();
-        $exposition = new Exposition($data);
-        return $exposition;
+        $idExpo = $data['idExpo'];
+        return $idExpo;
 
     }
 

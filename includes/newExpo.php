@@ -24,13 +24,12 @@
 			<input type="text" name="theme" id="theme">
 		</div>	
 		<div>
-			<label for="teaser">Teaser (JPG GIF JPEG PNG| max. 300Ko)</label>
+			<label for="teaser">Teaser (JPG GIF JPEG PNG| max. 500Ko)</label>
 			<input type="file" name="teaser[]" id="teaser" accept=".jpg, .jpeg, .gif, .png">
-			<input type="hidden" id="maxSize" name="MAX_FILE_SIZE" value="500000">
 				
 		</div>	
 		<div>
-			<label for="affiche">Affiche (JPG GIF JPEG PNG| max. 300Ko)</label>
+			<label for="affiche">Affiche (JPG GIF JPEG PNG| max. 500Ko)</label>
 			<input type="file" name="affiche[]" id="affiche" accept=".jpg, .jpeg, .gif, .png">
 			<input type="hidden" id="maxSize" name="MAX_FILE_SIZE" value="500000">
 				

@@ -8,13 +8,49 @@ jQuery(document).ready(function($) {
 	    $.ajax({
 	        url: '../modules/traitementExpo.php',
 	        method: 'POST',
-	        dataType: 'html',
+	        dataType: 'json',
 	        data: data,
 	        processData: false,
 	        contentType: false,
 	    	})
 	        .done(function(response) {
-	           console.log(response);
+	        	//dateDebut dateFin couleur et idExpo titre
+	        	var arrayJour = $(document).find('.jours');
+	        	for (var i = arrayJour.length - 1; i >= 0; i--) {
+	        		if ($(arrayJour[i]).data('debut') >= response.dateDebut && $(arrayJour[i]).data('debut') <= response.dateFin) {
+	        			var nJour = $(arrayJour[i]).text();
+	        			var todayColor = '#DE9318';
+	        			var today = '';
+
+	        			$(arrayJour[i]).removeClass('jours');
+	        			$(arrayJour[i]).removeClass('aujourdhui');
+	        			$(arrayJour[i]).removeAttr('title');
+	        			$(arrayJour[i]).off('click');
+
+
+	        			
+	        			$(arrayJour[i]).addClass('jourExpo');
+	        			$(arrayJour[i]).html('<a href="../content/gestionPanel.php?expo='+response.idExpo+'">'+nJour+'<br>'+response.titre+'</a>');
+	        			
+	        			if ($(arrayJour[i]).data('debut') == response.today) {
+	        				today = 'Aujourd\'hui';
+	        				$(arrayJour[i]).addClass('aujourdhui');
+	        				$(arrayJour[i]).find('a').prepend('<span style="background-color: '+todayColor+'; width: 100%; position:absolute; top:0; left:0; padding:5px;">'+today+'</span>');
+	        			}
+
+
+	        			$(arrayJour[i]).css({
+	        				position: 'relative',
+	        				backgroundColor: response.couleur
+	        			});
+	        			$('#newExpo').css('display', 'none');
+	        			$('.overlay').hide();
+
+	        		}
+	        		
+	        	}
+	        	
+          
 	        })
 	        .fail(function() {
 	            
