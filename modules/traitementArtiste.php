@@ -14,6 +14,7 @@ require_once('../class/Collectif.class.php');
 require_once('../class/DonneeEnrichieManager.class.php');
 require_once('../class/DonneeEnrichie.class.php');
 require_once('../includes/bdd/connectbdd.php');
+include('../includes/phpqrcode/qrlib.php');
 
 if (isset($_GET['idArtiste'])) {
 	$idArtiste = $_GET['idArtiste'];
@@ -56,12 +57,24 @@ if (isset($_GET['idArtiste'])) {
 		if ($_GET['req'] == 'delete') {
 			$managerArtiste->deleteArtiste($artiste);
 		}elseif ($_GET['req'] == 'add') {
+
+
+
+
 			$managerOeuvre = new OeuvreManager($bdd);
 			$oeuvre = new Oeuvre(['idArtiste'=>$idArtiste]);
 			$managerOeuvre->addOeuvre($oeuvre);
 			$idLastOeuvre = $managerOeuvre->getLastIdOeuvre();
 			$lastOeuvre = $managerOeuvre->infoOeuvre($idLastOeuvre);
 			$idOeuvre = $lastOeuvre->getIdOeuvre();
+			//ajout du qrCode
+			$nomFichierQr = 'oeuvre'.$idOeuvre.'.png';
+			$lienQr = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]/ISFAC/Fil-Rouge/GAG/content/vueOeuvreVisiteur.php?oeuvre=".$idOeuvre;
+			QRcode::png($lienQr, '../img/oeuvres/qrCode/'.$nomFichierQr);
+			$lastOeuvre->setQrcode($nomFichierQr);
+			$managerOeuvre->updateOeuvre($lastOeuvre);
+
+
 			$affichageLast = 
 			
 			'<li class="li-oeuvre-artiste">&nbsp;'.	$lastOeuvre->getTitre()
