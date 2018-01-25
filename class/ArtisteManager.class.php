@@ -99,4 +99,11 @@ class ArtisteManager {
         return $list;
     }
 
+    //renvoie le dernier artiste creer
+    public function getLastIdArtiste() {
+         $q=$this->_db->query("SELECT MAX(idArtiste) AS idArtiste FROM Artiste");
+        $data = $q->fetch();
+        return $data['idArtiste'];
+    }
+
 }

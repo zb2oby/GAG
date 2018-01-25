@@ -14,26 +14,12 @@ border-style: style de la bordure (normal = "solid", pointillés = "dotted, tire
 color: couleur du texte
 **********************************************************************************************/
 /* DOCUMENT */
-.header-accueil-calendar header {
-  /*height: 180px;*/
-  width: 100%;
-  margin-top: 0;
-  margin-left: 0;
-}
-
-.header-accueil-calendar .container {
-  left: 0;
-  right: 0;
-  width: 100%;
-}
 
 table {
   margin: 0 auto;
   padding: 0px 20px;
 }
-.header-accueil-calendar .deco i {
-  top: 50px;
-}
+
 /* TABLEAU */
 td  {
   text-align:center;

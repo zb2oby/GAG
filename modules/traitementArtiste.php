@@ -163,4 +163,13 @@ if (isset($_POST['idArtiste'])) {
 }
 
 
+//TRZAITEMENT SUPPRESSION MESSAGE 
+if (isset($_GET['idMessage'])) {
+	$idMessage = htmlentities($_GET['idMessage']);
+	$managerMsg = new MessageManager($bdd);
+	$message = new Message(['idMessage'=>$idMessage]);
+	$managerMsg->deleteMessage($message);	
+}
+
+
  ?>

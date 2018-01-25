@@ -29,7 +29,7 @@ include('bdd/connectbdd.php');
 
 	 <div class="container">
 		<header>
-	    	<a class="avatar deco" href="">F<i class="ion-log-out"></i></a>
+	    	<a class="avatar deco" href="">F<div class="logo-out"><i class="ion-log-out"></i></div></a>
 
 	    	<div class="expoInfo">
 	    		<?php 
@@ -64,6 +64,8 @@ include('bdd/connectbdd.php');
 			    	<?php 
 			    				}
 			    			} 
+	    			}else{
+	    				echo '<h2 class="accueil-titre">GAG GESTION</h2>';
 	    			}
 	    			
 	    		?>

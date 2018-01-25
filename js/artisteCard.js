@@ -214,5 +214,35 @@ jQuery(document).ready(function($) {
 		return false;
 
 	});	
+
+
+	$('.delMsgArt').click(function(event) {
+		
+		var idMessage = $(event.currentTarget).closest('.message').data('idmessage');
+		var nbMsg = parseInt($(event.target).closest('.card-action').find('.nbMsg').text());
+		nbMsg = nbMsg-1;
+		$(event.target).closest('.message').remove();
+		$(event.target).closest('.card-action').find('.nbMsg').text(nbMsg);
+		var data = 'idMessage=' + idMessage;
+
+
+		$.ajax({
+			url: '../modules/traitementArtiste.php',
+			type: 'GET',
+			dataType: 'html',
+			data: data
+		})
+		.done(function() {
+			console.log("success");
+		})
+		.fail(function() {
+			console.log("error");
+		})
+		.always(function() {
+			console.log("complete");
+		});
+		return false;
+
+	});
 	
 });

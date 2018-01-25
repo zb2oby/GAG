@@ -1,3 +1,9 @@
+.accueil-titre {
+  text-align: center;
+  margin-top: 30px;
+}
+
+
 #newExpo {
 	display: none;
 	position: absolute;	
@@ -29,4 +35,124 @@
 
 #closeNewExpo {
 	padding-top: 4px;
+}
+
+/*.multiple-items {
+	display: none;
+}
+
+.flecheVert, .flecheHor {
+	display: none;
+}*/
+
+
+/*<<<<<<<<<<<<CALENDRIER>>>>>>>>>>>>>>*/
+
+
+table {
+  margin: 0 auto;
+  padding: 0px 20px;
+}
+
+/* TABLEAU */
+td  {
+  text-align:center;
+  vertical-align:middle; }
+td a {
+  display: block;
+  height: 100%;
+  padding-top: 30px;
+} 
+td a:hover {
+  cursor: pointer;
+  background-color: #fff;
+  color: #0A2675;
+  border: 1px solid #CC1818;
+}
+/* NOM DU MOIS */
+td.nom_mois  {
+  font-size:24px;
+  font-style:normal;
+  font-weight:normal;}
+  
+  /* FLECHES */
+td.fleches a {
+  font-size:48px;
+  font-style:normal;
+  font-weight:normal;
+  color: #0A2675;
+  }
+td.fleches a:hover {
+  background-color: transparent;
+  border: none;
+}
+  
+/* NOMS DES JOURS*/
+tr.noms_jours  {
+  width:50px;
+  height:50px;
+  font-size:8pt; }
+  
+ /*DATES*/
+td.jours  {
+  width:120px;
+  height:80px;
+  border-color:#ccc;
+  border-width:1px;
+  border-style:solid;
+  font-size:8pt;
+  background-color:#ddd; }
+td.jours:hover {
+  cursor: pointer;
+ /* AUJOURD'HUI */
+}
+td.aujourdhui  {
+  width:120px;
+  height:80px;
+  border-color:#CC1818;
+  border-width:3px;
+  border-style:solid;
+  font-size:8pt;
+  color: #fff;
+  background-color:#DE9318;}
+  
+ /* CASES DES MOIS PRECEDENTS ET SUIVANTS*/
+td.cases_vides  {
+  width:120px;
+  height:80px;
+  border-color:#F5F5F5;
+  border-width:1px;
+  border-style:solid;
+  font-size:8pt;
+  color:#C0C0C0;}
+
+td.jourExpo {
+  width:120px;
+  height:80px;
+  font-size:8pt;
+  color: #fff;
+  background-color:#0A2675; }
+
+
+/*td.jourExpo.aujourdhui {
+  background-color: #0A2675 !important;
+}*/
+/*td.jourExpo:hover {
+  cursor: pointer;
+  background-color: #eee;
+  color: #0A2675;
+}*/
+  
+a:link  {text-decoration:none;}
+a:visited  {text-decoration:none;}
+a:active  {text-decoration:none;}
+
+
+@media all and (min-width: 1200px) {
+
+  td.cases_vides, td.jourExpo, td.aujourdhui, td.jours {
+    width: 200px !important;
+    height: 110px !important;
+    font-size: 16px !important;
+  }
 }

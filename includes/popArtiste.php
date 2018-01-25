@@ -139,25 +139,26 @@ $artiste = $managerArtiste->infoArtiste($idArtiste);
 					<div class="closeButton-context"><i class="ion-android-close"></i></div>
 					<div class="card-msg">
 						<?php 
-//POUR LES TEST
-$champ = 'idArtiste';
-//dans le cas d'une oeuvre : dans les autres cas $artiste->getIdArtiste etc...
-$id = $artiste->getIdArtiste();
+						
+						$champ = 'idArtiste';
+						
+						$id = $artiste->getIdArtiste();
 
-						//recuperation d'un objet exposition avec l'idExpo de l'artiste exposé ici ouverte si on est dans le cas d'une carte "artiste exposée"
-						// $managerExpo = new ExpositionManager($bdd);
-
-						// $expo = $managerExpo->infoExpo($artisteExpose->getIdExpo());
-
+						
 						//recuperation de la liste des messages pour cette oeuvre
 						$managerMsgArtiste = new MessageManager($bdd);
 						$listMessage = $managerMsgArtiste->infoMessage($champ, $id);
 						$nbMsg = count($listMessage);
 						foreach ($listMessage as $message) {
 							$idUser = $message->getIdUtilisateur();
+							$idMessage = $message->getIdMessage();
 							$managerUser = new UtilisateurManager($bdd);
 							$user = $managerUser->infoUtilisateur($idUser);
-							echo '<div class="message"><div class="message-header"> Message de '.$user->getNom().' Le '.date('d/m/Y', strtotime($message->getDateMessage())).'</div>';
+							$delMsg = '';
+							if ($idUser == $_SESSION['idUser']) {
+								$delMsg = '<span class="delMsgArt delMsg"><a>supprimer le message</a></span>';
+							}
+							echo '<div class="message" data-idMessage="'.$idMessage.'"><div class="message-header"> Message de '.$user->getNom().' Le '.date('d/m/Y', strtotime($message->getDateMessage())).$delMsg.'</div>';
 							echo '<div class="message-content">'.$message->getMessage().'</div></div>';
 						}
 						 ?>

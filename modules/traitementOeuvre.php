@@ -196,4 +196,14 @@ if (isset($_GET['req'], $_GET['idOeuvre']) && $_GET['req'] == 'deleteMeta') {
 }	
 
 
+
+//TRZAITEMENT SUPPRESSION MESSAGE 
+if (isset($_GET['idMessage'])) {
+	$idMessage = htmlentities($_GET['idMessage']);
+	$managerMsg = new MessageManager($bdd);
+	$message = new Message(['idMessage'=>$idMessage]);
+	$managerMsg->deleteMessage($message);	
+}
+
+
  ?>

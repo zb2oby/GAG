@@ -123,6 +123,7 @@ include('../modules/traitementEmplacement.php');
 </div>
 
 
+
 <div class="popAddArtiste">
 	<div class="closeButton"><i class="ion-android-close"></i></div>
 	<form class="addCardForm" action="../modules/traitementListes.php" method="GET">
@@ -150,7 +151,14 @@ include('../modules/traitementEmplacement.php');
 		<input type="hidden" name="idExpo" value="<?php echo $_SESSION['idExpo']; ?>">
 		<input type="submit" value="Creer Carte">
 	</form>
-		<span>L'artiste n'existe pas encore ? <a class="creerOeuvre" href="#">Creer un nouvel artiste</a></span>
+		<div class="create">L'artiste n'existe pas encore ?
+			<form class="createArtisteExpo" method="GET" action="../modules/traitementListes.php">
+				<input type="hidden" name="createArtiste" id="createArtiste" value="create">
+				<input type="hidden" name="idExpo" id="idExpo" value="<?php if (isset($_SESSION['idExpo'])){ echo $_SESSION['idExpo'];} ?>">
+				<button type="submit">Creer nouvel Artiste</button>
+			
+			</form>
+		</div>
 </div>
 
 

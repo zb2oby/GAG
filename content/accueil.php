@@ -10,7 +10,6 @@ require('../includes/bdd/connectbdd.php');
 <?php include('../includes/header.php'); ?>
 
 
-
 <div class="onglet <?php if (isset($_GET['onglet']) && $_GET['onglet'] == 'calendar') {
         	echo 'onglet-actif';
         } ?>" id="calendar">
@@ -55,5 +54,5 @@ require('../includes/bdd/connectbdd.php');
 
 </div>
 
-<?php //include('../includes/menuExpo.php'); ?>
+<?php include('../includes/menuExpo.php'); ?>
 <?php include('../includes/footer.php'); ?>

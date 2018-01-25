@@ -7,6 +7,24 @@ require '../class/Oeuvre.class.php';
 require '../class/OeuvreManager.class.php';
 require '../class/ArtisteExpose.class.php';
 require '../class/ArtisteExposeManager.class.php';
+require '../class/Artiste.class.php';
+require '../class/ArtisteManager.class.php';
+
+$managerArtiste = new ArtisteManager($bdd);
+//CREATION A LA VOLEE d'un nouvel artiste et retour pour affichage ajax
+if (isset($_GET['idExpo'], $_GET['createArtiste']) && $_GET['createArtiste'] == "create") {
+	$idExpo = htmlentities($_GET['idExpo']);
+	$artiste = new Artiste();
+	$managerArtiste->addArtiste($artiste);
+	$lastIdArtiste = $managerArtiste->getLastIdArtiste();
+
+	$managerArtisteExpose = new ArtisteExposeManager($bdd);
+	$artisteExpose = new ArtisteExpose(['idArtiste'=>$lastIdArtiste, 'idExpo'=>$idExpo]);
+	$managerArtisteExpose->addArtisteExpose($artisteExpose);
+
+	header('location: ../content/gestionPanel.php');
+}
+
 
 
 $manager = new OeuvreExposeeManager($bdd);

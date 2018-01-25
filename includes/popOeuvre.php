@@ -196,9 +196,14 @@ $id = $oeuvre->getIdOeuvre();
 						$nbMsg = count($listMessage);
 						foreach ($listMessage as $message) {
 							$idUser = $message->getIdUtilisateur();
+							$idMessage = $message->getIdMessage();
 							$managerUser = new UtilisateurManager($bdd);
 							$user = $managerUser->infoUtilisateur($idUser);
-							echo '<div class="message"><div class="message-header"> Message de '.$user->getNom().' Le '.date('d/m/Y', strtotime($message->getDateMessage())).'</div>';
+							$delMsg = '';
+							if ($idUser == $_SESSION['idUser']) {
+								$delMsg = '<span class="delMsgOeuvre delMsg"><a>supprimer le message</a></span>';
+							}
+							echo '<div class="message" data-idMessage="'.$idMessage.'"><div class="message-header"> Message de '.$user->getNom().' Le '.date('d/m/Y', strtotime($message->getDateMessage())).$delMsg.'</div>';
 							echo '<div class="message-content">'.$message->getMessage().'</div></div>';
 						}
 						 ?>
