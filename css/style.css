@@ -305,12 +305,14 @@ header {
 /*<<<<<<<<<<<<<<<<  EXPO / ADMIN >>>>>>>>>>>>>>*/
 
 form.adminForm, form.expoForm {
-	width: 600px;
-	height: 400px;
-	margin: 50px auto;
-	padding: 50px;
-	text-align: center;
-	background-color: #ddd;
+	width: 90%;
+	/*height: 400px;*/
+	margin: 0 auto;
+	margin-top: 10px;
+	
+	padding: 0px;
+	/*text-align: center;*/
+	background-color: #fff;
 }
 
 		.adminForm label, .expoForm label {
@@ -321,8 +323,35 @@ form.adminForm, form.expoForm {
 			color: black;
 		}
 		.adminForm input, .expoForm input {
+			width: 200px;
 			padding: 5px;
 			margin: 20px;
+			border: none;
+			border-bottom: 1px solid #0A2675;
+			background-color: #fff;
+		}
+
+		.expoForm fieldset {
+			display: inline-block;
+			vertical-align: top;
+			min-height: 550px;
+			margin: 0 10px;
+			width: 40%;
+			padding: 20px;
+			text-align: left;
+		}
+
+		.expoForm button {
+			display: inline-block;
+		}
+
+		.expoForm .submit {
+			padding: 10px;
+		}
+
+		.expoForm button {
+			margin: 10px;
+			padding:5px 15px;
 		}
 
 

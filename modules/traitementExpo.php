@@ -3,6 +3,16 @@ require('../class/Exposition.class.php');
 require('../class/ExpositionManager.class.php');
 require('../includes/bdd/connectbdd.php');
 
+$managerExpo = new ExpositionManager($bdd);
+$redirect = false;
+if (isset($_GET['req'], $_GET['idExpo']) && $_GET['req'] == 'deleteExpo') {
+	$idExpo = htmlentities($_GET['idExpo']);
+	$expo = $managerExpo->infoExpo($idExpo);
+	$managerExpo->deleteExposition($expo);
+	header('location: ../content/accueil.php?onglet=calendar');
+}
+
+
 if (isset($_POST['dateDebut'], $_POST['dateFin'], $_POST['titre'], $_POST['couleurExpo'])) {
 	$dateDebut = htmlentities($_POST['dateDebut']);
 	$dateFin = htmlentities($_POST['dateFin']);
@@ -42,16 +52,23 @@ if (isset($_POST['dateDebut'], $_POST['dateFin'], $_POST['titre'], $_POST['coule
 		$exposition->setDescriptifFR($descriptif);
 	}
 
+	if (!isset($_POST['req'])) {
+		//ajout en base de la nouvelle expo et recuperation du dernier Id
+		$managerExpo->addExposition($exposition);
+		$lastIdExpo = $managerExpo->lastIdExpo();
+		$expo = $managerExpo->infoExpo($lastIdExpo);
+		$idExpo = $expo->getIdExpo();
+	}elseif (isset($_POST['req'], $_POST['idExpo']) && $_POST['req'] == 'updateExpo') {
+		$idExpo = htmlentities($_POST['idExpo']);
+		$exposition->setIdExpo($idExpo);
+		$expo = $exposition;
+		$redirect = true;
+	}
 	
-	//ajout en base de la nouvelle expo et recuperation du dernier Id
-	$managerExpo->addExposition($exposition);
-	$lastIdExpo = $managerExpo->lastIdExpo();
-	$lastExpo = $managerExpo->infoExpo($lastIdExpo);
-	$idExpo = $lastExpo->getIdExpo();
 
 	
 	//mise a jour de la base et enregistrement des fichiers image de l'expo basé sur le dernier id d'expo recuperé
-	if (isset($lastExpo, $idExpo)) {
+	if (isset($expo, $idExpo)) {
 
 		//test si dossier meta de l'expo existe sinon creation du dossier
 		if (isset($_FILES['teaser']) || isset($_FILES['affiche'])) {
@@ -83,7 +100,7 @@ if (isset($_POST['dateDebut'], $_POST['dateFin'], $_POST['titre'], $_POST['coule
 				// if ($resultat) echo "Transfert réussi";
 				$nomFichier = $nomFichier.'.'.$extension_upload;
 				//mise a jour de l'objet
-				$lastExpo->setTeaser($nomFichier);
+				$expo->setTeaser($nomFichier);
 				
 		 	}
 		
@@ -110,22 +127,30 @@ if (isset($_POST['dateDebut'], $_POST['dateFin'], $_POST['titre'], $_POST['coule
 				// if ($resultat) echo "Transfert réussi";
 				$nomFichier = $nomFichier.'.'.$extension_upload;
 				//mise a jour de l'objet
-				$lastExpo->setAffiche($nomFichier);
+				$expo->setAffiche($nomFichier);
 				
 		 	}
 		
 	 	}
 
-
+	 		
 	 	//update de l'entrée en base
-		$managerExpo->updateExposition($lastExpo);
+		$managerExpo->updateExposition($expo);
+
+		
 	}
 	
 
 
-	//retour pour le callback ajax (besoin dateDebut dateFin couleur et idExpo titre)
+	//retour pour le callback ajax du calendrier(besoin dateDebut dateFin couleur et idExpo titre)
 	$listAjax = ['idExpo' => $idExpo, 'dateDebut' => strtotime($dateDebut), 'dateFin' => strtotime($dateFin), 'couleur' => $couleur, 'titre' => $titre, 'today'=>strtotime(date('Y-m-d'))];
 	echo json_encode($listAjax);
+
+	//redirection pour l'updateexpo depuis la page de gestion
+	if ($redirect == true) {
+		header('location: ../content/gestionPanel.php?onglet=expo&idExpo='.$idExpo);
+	}
+	
 
 }
 

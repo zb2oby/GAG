@@ -12,7 +12,7 @@
 <script src="../js/emplacement.js"></script>
 <script src="../js/oeuvreCard.js"></script>
 <script src="../js/artisteCard.js"></script>
-
+<script src="../js/calendrier.js"></script>
 <script src="../js/newExpo.js"></script>
 <script src="../js/lib/slick/slick.min.js"></script>
 <script src="../js/lib/slick/slick.js"></script>
