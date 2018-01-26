@@ -1,27 +1,5 @@
 $(document).ready(function(){
-	
-  	// $('.multiple-items').slick({
-  	//   infinite:false,
-   //    vertical: true,
-  	//   slidesToShow: 3,
-   //  	slidesToScroll: 2,
-   //    initialSlide: 3,
-  	//   prevArrow: $('.prev'),
-   //    nextArrow: $('.next'),
-   //    responsive: [{
-   //      breakpoint: 800,
-   //      settings: {
-   //        vertical:false,
-   //        initialSlide: 3,
-   //        slidesToShow: 3,
-   //        slick: true,
-   //      }
-   //    }]
-  	// });
 
-
-
-  
 const $slider = $('.multiple-items');
 $slider
   .on('init', () => {
@@ -30,6 +8,7 @@ $slider
   .slick({
     infinite:false,
     vertical: true,
+    verticalSwiping: true,
     slidesToShow: 3,
     slidesToScroll: 2,
     initialSlide: 3,
@@ -39,6 +18,7 @@ $slider
       breakpoint: 810,
       settings: {
         vertical:false,
+        verticalSwiping: false,
         initialSlide: 3,
         slidesToShow: 3,
         slick: true,
