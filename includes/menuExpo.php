@@ -8,7 +8,6 @@
 				<!-- <li><a href="#">EXPO  --><?php 
 				$manager = new ExpositionManager($bdd);
 				$listPrevExpo = $manager->prevExpo();
-				$listNextExpo = $manager->nextExpo(); 
 				$listDate = [];
 				//affichage des expo précédent la date du jour
 				foreach ($listPrevExpo as $exposition ) {
@@ -26,6 +25,8 @@
 					echo '<br/>'.$dateExpo.'<br><span style="display:inline-block; width:100px; height:5px; font-size:16px; background-color:'.$dataExpo['couleur'].';"></span></div></a></li>';
 					
 				}
+				$listNextExpo = $manager->nextExpo(); 
+				$listDate = [];
 				//affichage des expo suivant la date du jour
 				foreach ($listNextExpo as $exposition ) {
 					$key = $exposition->getDateDeb();

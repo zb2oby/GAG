@@ -81,7 +81,7 @@ class ExpositionManager {
     //renvoie les dates d'expo passer
     public function prevExpo(){
         $list = [];
-        $q = $this->_db->query("SELECT idExpo, titre, horaireO, horaireF, theme, descriptifFR, frequentation, dateDeb, dateFin, teaser, affiche, couleurExpo FROM Exposition where dateDeb < now() ORDER BY datedeb desc");
+        $q = $this->_db->query("SELECT idExpo, titre, horaireO, horaireF, theme, descriptifFR, frequentation, dateDeb, dateFin, teaser, affiche, couleurExpo FROM Exposition where dateDeb < now() ORDER BY datedeb desc limit 5");
         while ( $data = $q->fetch()) {
             $expo = new Exposition($data);
             $list[] = $expo;
@@ -93,7 +93,7 @@ class ExpositionManager {
     //renvoie les dates d'expo a venir
     public function nextExpo(){
     $list = [];
-    $q = $this->_db->query("SELECT idExpo, titre, horaireO, horaireF, theme, descriptifFR, frequentation, dateDeb, dateFin, teaser, affiche, couleurExpo FROM Exposition where dateDeb > now() ORDER BY datedeb desc");
+    $q = $this->_db->query("SELECT idExpo, titre, horaireO, horaireF, theme, descriptifFR, frequentation, dateDeb, dateFin, teaser, affiche, couleurExpo FROM Exposition where dateDeb > now() ORDER BY datedeb asc limit 5");
     while ( $data = $q->fetch()) {
         $expo = new Exposition($data);
         $list[] = $expo;
