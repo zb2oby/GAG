@@ -1,23 +1,23 @@
 $(document).ready(function(){
 	
-	$('.multiple-items').slick({
-	  infinite:false,
-    vertical: true,
-	  slidesToShow: 4,
-  	slidesToScroll: 2,
-    initialSlide: 4,
-	  prevArrow: $('.prev'),
-    nextArrow: $('.next'),
-    responsive: [{
-      breakpoint: 800,
-      settings: {
-        vertical:false,
-        initialSlide: 3,
-        slidesToShow: 3,
-        slick: true,
-      }
-    }]
-	});
+  	// $('.multiple-items').slick({
+  	//   infinite:false,
+   //    vertical: true,
+  	//   slidesToShow: 3,
+   //  	slidesToScroll: 2,
+   //    initialSlide: 3,
+  	//   prevArrow: $('.prev'),
+   //    nextArrow: $('.next'),
+   //    responsive: [{
+   //      breakpoint: 800,
+   //      settings: {
+   //        vertical:false,
+   //        initialSlide: 3,
+   //        slidesToShow: 3,
+   //        slick: true,
+   //      }
+   //    }]
+  	// });
 
 
 
@@ -28,9 +28,22 @@ $slider
     mouseWheel($slider)
   })
   .slick({
-    slidesToScroll: 4,
+    infinite:false,
     vertical: true,
-    infinite: false,
+    slidesToShow: 3,
+    slidesToScroll: 2,
+    initialSlide: 3,
+    prevArrow: $('.prev'),
+    nextArrow: $('.next'),
+    responsive: [{
+      breakpoint: 810,
+      settings: {
+        vertical:false,
+        initialSlide: 3,
+        slidesToShow: 3,
+        slick: true,
+      }
+    }]
   })
 function mouseWheel($slider) {
   $(window).on('wheel', { $slider: $slider }, mouseWheelHandler)
