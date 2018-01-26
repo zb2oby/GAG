@@ -7,7 +7,7 @@
 			<div class="multiple-items">
 				<!-- <li><a href="#">EXPO  --><?php 
 				$manager = new ExpositionManager($bdd);
-				$listPrevExpo = $manager->prevExpo();
+				$listPrevExpo = $manager->prevExpo();	
 				$listDate = [];
 				//affichage des expo précédent la date du jour
 				foreach ($listPrevExpo as $exposition ) {
@@ -21,7 +21,13 @@
 			
 				ksort($listDate);
 				foreach ($listDate as $dateExpo => $dataExpo ) {
-					echo '<li><a href="../content/gestionPanel.php?expo='.$dataExpo['id'].'"><div>'.$dataExpo['titre'];
+					$class = '';
+					if (isset($_SESSION['idExpo'])) {
+						if ($_SESSION['idExpo'] == $dataExpo['id']) {
+							$class = "link-active";
+						}
+					}
+					echo '<li class="'.$class.'"><a href="../content/gestionPanel.php?expo='.$dataExpo['id'].'"><div>'.$dataExpo['titre'];
 					echo '<br/>'.$dateExpo.'<br><span style="display:inline-block; width:100px; height:5px; font-size:16px; background-color:'.$dataExpo['couleur'].';"></span></div></a></li>';
 					
 				}
@@ -39,7 +45,13 @@
 			
 				ksort($listDate);
 				foreach ($listDate as $dateExpo => $dataExpo ) {
-					echo '<li><a href="../content/gestionPanel.php?expo='.$dataExpo['id'].'"><div>'.$dataExpo['titre'];
+					$class = '';
+					if (isset($_SESSION['idExpo'])) {
+						if ($_SESSION['idExpo'] == $dataExpo['id']) {
+							$class = "link-active";
+						}
+					}
+					echo '<li class="'.$class.'"><a href="../content/gestionPanel.php?expo='.$dataExpo['id'].'"><div>'.$dataExpo['titre'];
 					echo '<br/>'.$dateExpo.'<br><span style="display:inline-block; width:100px; height:5px; font-size:16px; background-color:'.$dataExpo['couleur'].';"></span></div></a></li>';
 					
 				}	

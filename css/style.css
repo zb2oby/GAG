@@ -93,6 +93,14 @@ button:hover {
 	cursor: pointer;
 }
 
+.link-active {
+	background-color: #bbb;
+
+}
+/*.slick-current {
+	background-color: #bbb;
+}*/
+
 /*<<<<<<<<<<<<<<<<  HEADER >>>>>>>>>>>>>>*/
 header {
 	/*margin-left: 15%;*/
