@@ -1,5 +1,21 @@
 jQuery(document).ready(function($) {
+
+
+//GESTION OUVERTURE DES POPUP SUR ONGLET EXPO
+$(document).on('click', '.action-button', function(event) {
+	var classe = $(this).attr('id');
+	$('.overlay').show();
+	$(event.currentTarget).closest('.onglet-content').find('.pop-'+classe+'.popGestionCard').show();
 	
+});
+
+
+
+
+
+
+
+//GESTION ENVOI FORMULAIRE INFO GENERALES DEPUIS LE FORMULAIRE NEW EXPO CONTENU DANS CALENDRIER
 	$(document).on('submit', '#newExpo', function(event) {
 
 		var $form = $(this);

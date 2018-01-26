@@ -45,8 +45,8 @@ body {
 button {
 	background-color: #0A2675;
 	color: #fff;
-	/*min-width: 180px;
-	padding: 15px 15px;*/
+	/*min-width: 180px;*/
+	/*padding: 5px 15px;*/
 	border: none;
 	outline: none;
 	border-radius: 30px;
@@ -586,7 +586,26 @@ form.adminForm, form.expoForm {
 				cursor: pointer;
 			}
 
-/*>>>>>>>>>>>>>>>>  POPUP >>>>>>>>>>>>>>>>*/	
+/*>>>>>>>>>>>>>>>>  POPUP ET FORMULAIRES >>>>>>>>>>>>>>>>*/	
+
+.expo-content {
+	position: relative;
+}
+
+	.list-button-expo {
+		position: absolute;
+		top:350px;
+		left: 53%;
+	}
+
+		.list-button-expo li {
+			display: inline-block;
+			margin: 5px;
+		}
+
+			.list-button-expo button, button[type="submit"] {
+				padding:5px 15px;
+			}
 
 .popAddCard, .popAddRecue, .popAddArtiste, .popAddOeuvrePrevue, .popAddOeuvreRecue {
 	position: absolute;
@@ -1077,6 +1096,7 @@ form.adminForm, form.expoForm {
 				height: 80px;
 			}
 			.sideMenu li {
+				text-align: center;
 				display: inline-block;
 				padding: 0;
 				vertical-align: middle;
@@ -1084,7 +1104,7 @@ form.adminForm, form.expoForm {
 			}
 
 			.sideMenu li a {
-				display: inline-block;
+				/*display: inline-block;*/
 				padding: 15px 15px;
 				overflow: hidden;
 				vertical-align: middle;

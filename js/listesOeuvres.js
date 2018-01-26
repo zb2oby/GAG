@@ -448,6 +448,8 @@ $('.creerOeuvre').click(function(event) {
         $('.popAddOeuvrePrevue').css('display', 'none');
         $('.popAddOeuvreRecue').css('display', 'none');
         $('#newExpo').css('display', 'none');
+        $('.pop-modifTeaser').css('display', 'none');
+        $('.pop-modifAffiche').css('display', 'none');
         $('.overlay').hide();
 
     	
