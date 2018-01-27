@@ -23,7 +23,7 @@ if (isset($_SESSION['idExpo'])) {
             
             <label for="descriptif">descriptif</label>
             <textarea name="descriptif" id="descriptif" cols="30" rows="7" value="<?php echo $expo->getDescriptifFR() ?>"><?php echo $expo->getDescriptifFR() ?></textarea>
-
+ 
         </fieldset>
         <fieldset>
             <legend>Info Complémentaires</legend>
@@ -45,8 +45,8 @@ if (isset($_SESSION['idExpo'])) {
     </form>
    
     <ul class="list-button-expo">
-        <li><button class="action-button" id="modifTeaser">Modifier le Teaser</button></li>
-        <li><button class="action-button" id="modifAffiche">Modifier l'affiche</button></li>
+        <li><div><img style="width:50px; height:50px;" src="../img/expositions/expo<?php echo $expo->getIdExpo(); ?>/<?php echo $expo->getTeaser(); ?>" alt=""></div><button class="action-button" id="modifTeaser">Modifier le Teaser</button></li>
+        <li><div><img style="width:50px; height:50px;" src="../img/expositions/expo<?php echo $expo->getIdExpo(); ?>/<?php echo $expo->getAffiche(); ?>" alt=""></div><button class="action-button" id="modifAffiche">Modifier l'affiche</button></li>
     </ul> 
 
 

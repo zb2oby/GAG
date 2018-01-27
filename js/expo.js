@@ -10,11 +10,6 @@ $(document).on('click', '.action-button', function(event) {
 });
 
 
-
-
-
-
-
 //GESTION ENVOI FORMULAIRE INFO GENERALES DEPUIS LE FORMULAIRE NEW EXPO CONTENU DANS CALENDRIER
 	$(document).on('submit', '#newExpo', function(event) {
 
