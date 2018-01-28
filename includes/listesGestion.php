@@ -1,6 +1,7 @@
 <?php 
 //inclus pour la creation d'un emplacement vide au chargement de page (a voir en ajax si possible ?)
 include('../modules/traitementEmplacement.php');
+include('../includes/newExpo.php');
 ?>
 
 <div class="confirmPopup">
@@ -119,7 +120,7 @@ include('../modules/traitementEmplacement.php');
 		<input type="hidden" name="idExpo" value="<?php echo $_SESSION['idExpo']; ?>">
 		<input type="submit" value="Creer Carte">
 	</form>
-		<span>L'oeuvre n'existe pas encore ?<a class="creerOeuvre" href="#">Creer une nouvelle oeuvre</a></span>
+		<span>L'oeuvre n'existe pas encore ?<a class="creerOeuvreRecue" href="#">Creer une nouvelle oeuvre</a></span>
 </div>
 
 

@@ -331,10 +331,20 @@ $('.creerOeuvre').click(function(event) {
 	$('.popAddCard').css('display', 'none');
 	$('.popAddRecue').css('display', 'none');
     $('.popAddArtiste').css('display', 'none');
+
     $('.popAddOeuvrePrevue').css('display', 'block');
-    $('.popAddOeuvreRecue').css('display', 'block');
+    
 	//ici on ajoutera le display d'un nouveau popup avec un formulaire de creation d'oeuvre
 });
+
+$('.creerOeuvreRecue').click(function(event) {
+    $('.popAddCard').css('display', 'none');
+    $('.popAddRecue').css('display', 'none');
+    $('.popAddArtiste').css('display', 'none');
+    
+    $('.popAddOeuvreRecue').css('display', 'block');
+});
+
 //Traitement ajout d'oeuvre depuis le popup d'ajout des listes prevue et recue.
 // $(document).on('submit', '.form-liste', function(event) {
 //     console.log('intercept');

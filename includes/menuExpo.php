@@ -2,10 +2,10 @@
 	<aside class="sideBar">
 		<div class="prev"><i class="flecheHor ion-ios-arrow-left"></i></div>
 		<div class="sideMenu">
-			<div class="searchLogo"><a class="search" href="#"><i class="ion-ios-search"></i><!-- <img src="../search.png" alt=""> --></a></div>
+			<div class="searchLogo"><a class="search" href="#"><i class="ion-ios-search"></i></a></div>
 			<div class="prev"><i class="flecheVert ion-ios-arrow-up"></i></div>
 			<div class="multiple-items">
-				<!-- <li><a href="#">EXPO  --><?php 
+				<?php 
 				$manager = new ExpositionManager($bdd);
 				$listPrevExpo = $manager->prevExpo();	
 				$listDate = [];
@@ -60,6 +60,11 @@
 			<div class="next"><i class="flecheVert ion-ios-arrow-down"></i></div>
 			<div class="addLogo">
 				<a class="add" href="#"><i class="ion-ios-plus-outline"></i></a>
+				<div class="context-add">
+					<span class="context-addExpo">+ Ajouter une Exposition</span>
+					<span class="context-addArtiste">+ Ajouter un Artiste</span>
+					<span class="context-addOeuvre">+ Ajouter une Oeuvre</span>
+				</div>
 			</div>
 		</div>
 		<div class="next"><i class="flecheHor ion-ios-arrow-right"></i></div>
