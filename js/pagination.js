@@ -2,7 +2,7 @@ $(document).ready(function(){
 
 const $slider = $('.multiple-items');
 $slider
-  .on('init', () => {
+  .on('mouseover', () => {
     mouseWheel($slider)
   })
   .slick({
@@ -26,6 +26,7 @@ $slider
     }]
   })
 function mouseWheel($slider) {
+
   $(window).on('wheel', { $slider: $slider }, mouseWheelHandler)
 }
 function mouseWheelHandler(event) {
@@ -40,6 +41,9 @@ function mouseWheelHandler(event) {
   }
 }
 
+$slider.mouseleave(function(event) {
+  $(window).off('wheel');
+});
 
 
 });

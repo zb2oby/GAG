@@ -19,11 +19,12 @@ $managerPlace = new EmplacementManager($bdd);
 
  ?>
  <div class="impression">
+ 	<span class="titresImpression">Liste des oeuvres</span>
   	<table>
 
 	 	<thead>
 	 		<tr>
-	 			<th>Nom Oeuvre</th>
+	 			<th>Oeuvre</th>
 	 			<th>Artiste</th>
 	 			<th>Status</th>
 	 			<th>Emplacement</th>
@@ -35,7 +36,8 @@ $managerPlace = new EmplacementManager($bdd);
 			<?php 
 				$listOeuvreExposee = $managerOeuvreExpo->ListOeuvresExposees($idExpo);
 				foreach ($listOeuvreExposee as $oeuvre) {
-					$nomOeuvre = $oeuvre->getTitre();
+					$nomOeuvre = ucfirst($oeuvre->getTitre());
+					$image = $oeuvre->getImage();
 					$idArtiste = $oeuvre->getIdArtiste();
 					$artiste = $managerArtiste->infoArtiste($idArtiste);
 					$idOeuvre = $oeuvre->getIdOeuvre();
@@ -57,7 +59,7 @@ $managerPlace = new EmplacementManager($bdd);
 
 					$commentaire = '';
 					//(SI DATE ENTREE EST NULLE ALORS STATUS = PREVU SINON RECU PREVOIR RETARD)
-					$status = 'Entrée : '.$dateEntree;
+					$status = 'Entrée : <br>'.date('d-m-Y', strtotime($dateEntree));
 					if ($dateEntree == '0000-00-00' || $dateEntree == NULL) {
 						$status = 'Non-reçue';
 						if (($dateDebut - date('Y-m-d')) < 9 ) {
@@ -68,12 +70,12 @@ $managerPlace = new EmplacementManager($bdd);
 					$qr = $oeuvre->getQrcode();
 					$nomArtiste = $artiste->getNom();
 
-					echo '<tr>'
-							.'<td>'.$nomOeuvre.'</td>'
+					echo '<tr class="page-break">'
+							.'<td>'.$nomOeuvre.'<br><img style="width:50px; height:50px;" src="../img/oeuvres/'.$image.'"></td>'
 							.'<td>'.$nomArtiste.'</td>'
 							.'<td>'.$status.'</td>'
 							.'<td>'.$idEmplacement.'</td>'
-							.'<td><img src="../img/oeuvres/qrCode/'.$qr.'"></td>'
+							.'<td><img style="width:100px; height:100px;" src="../img/oeuvres/qrCode/'.$qr.'"></td>'
 							.'<td>'.$commentaire.'</td>'
 						.'</tr>';
 
@@ -84,4 +86,6 @@ $managerPlace = new EmplacementManager($bdd);
 
 	 	</tbody>
 	 </table>
+	 <span class="titresImpression">PLAN DE L'EXPO</span>
+	 <?php include('../includes/plan.php') ?>
  </div>

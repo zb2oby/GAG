@@ -12,13 +12,6 @@
 		<div class="trash"><i class="ion-trash-a"></i></div>
 
 	<?php 
-function affichage($oeuvre) {
-		$content = '<div data-id="'.$oeuvre->getIdOeuvre().'" class="img item" data-src="'.$oeuvre->getImage().'">'	
-				.'<img src="../img/oeuvres/'.$oeuvre->getImage().'" alt="'.$oeuvre->getImage().'">'
-			.'</div>';
-		return $content;
-	
-}
 
 	if (isset($_SESSION['idExpo'])) {
 		$idExpo = htmlentities($_SESSION['idExpo']);
@@ -38,7 +31,9 @@ function affichage($oeuvre) {
 			$content = '';
 			if ($idOeuvreExposee != NULL && $idOeuvreExposee != 0) {
 				$oeuvre = $manager->oeuvre($idOeuvreExposee);
-				$content = affichage($oeuvre);
+				$content = '<div data-id="'.$oeuvre->getIdOeuvre().'" class="img item" data-src="'.$oeuvre->getImage().'">'	
+								.'<img src="../img/oeuvres/'.$oeuvre->getImage().'" alt="'.$oeuvre->getImage().'">'
+							.'</div>';
 			}
 			
 			// $image = $oeuvre->getImage();

@@ -1,5 +1,6 @@
 @media print {
-	
+
+
 .content {
 	display: none;
 }
@@ -20,20 +21,36 @@
 		}
 
 	.impression {
-		position: absolute;
-		z-index: 1000;
 		display: block !important;
-		color: black;
+		width: auto;
+		height: auto;
+		overflow: visible;
+		margin-top: 250px;
 	}
+		
+		.impression table {
+			page-break-after: always;
+			border-collapse: collapse;
+			margin-top: 50px;
+			margin-bottom: 50px;
+		}
 
 		.impression td {
 			width: 150px;
 			border: 1px solid black;
 			padding: 5px;
-			border-collapse: collapse;
 		}
 
-	.plan {
+		.plan .addPlace, .plan .trash {
+			display: none;
+		}
 
-	}
+		span.titresImpression {
+			display: block;
+			text-align: center;
+			padding: 10px;
+			font-size: 24px;
+			text-transform: uppercase;
+		} 
+
 }

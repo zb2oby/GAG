@@ -44,6 +44,7 @@ a.button:hover {
 body {
 	font-size: 0;
 	font-family: 'Roboto', sans-serif;
+
 }
 
 button {
@@ -75,7 +76,6 @@ button:hover {
 	display: inline-block;
 	width: 85%;
 	font-size: 16px;
-	/*margin-left: 15%;*/
 	overflow-x: hidden;
 	overflow-y: auto;
 

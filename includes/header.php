@@ -26,7 +26,17 @@ include('bdd/connectbdd.php');
     </head>
 
  <body>
+ 
+<?php 
+if (isset($_SESSION['idExpo'])) {
+	$idExpo = $_SESSION['idExpo'];
+	include('../includes/impression.php'); 
+}
 
+
+
+
+?>
 	 <div class="container">
 		<header>
 	    	<a class="avatar deco" href="">F<div class="logo-out"><i class="ion-log-out"></i></div></a>
