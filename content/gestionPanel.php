@@ -9,8 +9,8 @@ $_SESSION['idExpo'] = $idExpo;
  ?>
 
 <?php require('../includes/bdd/connectbdd.php'); ?>
-
 <?php include('../includes/header.php') ?>
+<?php include('../includes/impression.php'); ?>
 <div class="overlay"></div>
 	<div class="content">
 

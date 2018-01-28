@@ -53,6 +53,7 @@ if (isset($_GET['idArtiste'])) {
 		$message = new Message(['dateMessage'=>$dateMsg, 'message'=>$contenu, 'idUtilisateur'=>$idUser, 'idArtiste'=>$idArtiste]);
 		$manager->addMessageArtiste($message);
 	}
+	//SUPRESSION ARTISTE
 	if (isset($_GET['req'])) {
 		if ($_GET['req'] == 'delete') {
 			$managerArtiste->deleteArtiste($artiste);

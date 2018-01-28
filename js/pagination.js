@@ -29,7 +29,7 @@ function mouseWheel($slider) {
   $(window).on('wheel', { $slider: $slider }, mouseWheelHandler)
 }
 function mouseWheelHandler(event) {
-  event.preventDefault()
+  // event.preventDefault()
   const $slider = event.data.$slider
   const delta = event.originalEvent.deltaY
   if(delta > 0) {
@@ -39,5 +39,7 @@ function mouseWheelHandler(event) {
     $slider.slick('slickNext')
   }
 }
+
+
 
 });

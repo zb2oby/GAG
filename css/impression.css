@@ -1,0 +1,39 @@
+@media print {
+	
+.content {
+	display: none;
+}
+	.sideBar * {
+		display: none;
+	}
+
+	header {
+		display: block;
+	}
+
+		.printer *{
+			display: none;
+		}
+
+		.avatar {
+			display: none;
+		}
+
+	.impression {
+		position: absolute;
+		z-index: 1000;
+		display: block !important;
+		color: black;
+	}
+
+		.impression td {
+			width: 150px;
+			border: 1px solid black;
+			padding: 5px;
+			border-collapse: collapse;
+		}
+
+	.plan {
+
+	}
+}

@@ -18,6 +18,7 @@ include('bdd/connectbdd.php');
         <title>Grand Angle Gestion</title>
         <link rel="stylesheet" href="../css/ionicons.min.css">
 		<link rel="stylesheet" type="text/css" href="../css/lib/slick/slick.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/impression.css" media="print"/>
 		<link rel="stylesheet" type="text/css" href="../css/lib/slick/slick-theme.css"/>
         <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="../css/accueil.css">
@@ -36,7 +37,9 @@ include('bdd/connectbdd.php');
 	    				$idExpo = htmlentities($_SESSION['idExpo']);
 	    				$manager = new ExpositionManager($bdd);
 	    				$expo = $manager->infoExpo($idExpo);
-	    				echo '<h2>Exposition : '.$expo->getTitre().'</h2>';
+	    				echo '<h2>Exposition : '.$expo->getTitre().'<div class="printer">
+		    		<button onclick="javascript:window.print()" title="Imprimer Listes"><i class="ion-android-print"></i></button>
+		    	</div></h2>';
 
 	    				$manager = new CollectifExposeManager($bdd);
 	    				$idCollectifExpose = $manager->collectifExpose_exist($idExpo);
@@ -107,6 +110,7 @@ include('bdd/connectbdd.php');
 			    	
 	    		</ul>
 	    	</div>
+	    
 	    </header>
 
 		

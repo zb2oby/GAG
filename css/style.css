@@ -10,6 +10,10 @@
 	font-family: 'Roboto', sans-serif;
 }
 
+.impression {
+	display: none;
+}
+
 /*.ion-android-close {
 	line-height: 0px !important;
 }*/
@@ -151,6 +155,15 @@ header {
 		.expoInfo span {
 			display: block;
 			margin-left: 50px;
+		}
+		
+		.printer {
+			display: inline-block;
+			margin-left: 15px;
+		}
+		.printer i {
+			font-size: 3em;
+			padding: 20px 15px;
 		}
 /*<<<<<<<<<<<<<<<<  MENUEXPO >>>>>>>>>>>>>>*/
 	.sideBar {

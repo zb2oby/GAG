@@ -97,5 +97,20 @@ class EmplacementManager {
         }
     }
 
+    //renvoie un objet emplacement avec l'iOeuvre concerné pour l'expo concerné
+    public function getEmplacementOeuvre($idOeuvre, $idExpo) {
+        $q = $this->_db->query("SELECT * FROM Emplacement WHERE idExpo=".$idExpo." AND idOeuvreExposee=".$idOeuvre);
+        $data = $q->fetch();
+        $count = $q->rowCount();
+        if ($count> 0) {
+            $emplacement = new Emplacement($data);
+            return $emplacement;
+        }
+        else{
+            return false;
+        }
+        
+    }
+
 
 }

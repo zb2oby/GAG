@@ -24,8 +24,6 @@ function affichage($oeuvre) {
 		$idExpo = htmlentities($_SESSION['idExpo']);
 
 		//AFFICHAGE DES EMPLACEMENTS CREES SUR LE PLAN EN FONCTION DE LEXPO OUVERTE
-		// require '../class/emplacement.class.php';
-		// require '../class/emplacement.manager.php';
 
 		$manager = new EmplacementManager($bdd);
 
@@ -52,11 +50,6 @@ function affichage($oeuvre) {
 		}
 	}
  ?>
-	<!-- <div class="confirmPopup">
-		<span>Souhaitez vous supprimer l'Emplacement ?</span>
-		<button class="deleteButton">Supprimer</button>
-		<button class="cancelButton">Annuler</button>
 
-	</div> -->
  </div>	
  

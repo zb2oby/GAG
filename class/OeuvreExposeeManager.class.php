@@ -61,6 +61,16 @@ class OeuvreExposeeManager {
     }
     //retourne la liste des objets Oeuvre prevue et NON RECUE pour une exposition
 
+    public function ListOeuvresExposees($idExpo) {
+        $list=[];
+        $q = $this->_db->query("SELECT O.idOeuvre, titre, longueur, hauteur, etat, image, qrcode, descriptifFR, idTypeOeuvre, idArtiste, idCollectif FROM Oeuvre O, OeuvreExposee E WHERE O.idOeuvre = E.idOeuvre AND idExpo ='".$idExpo."'");
+        while ($data = $q->fetch()) {
+            $list[] = new Oeuvre($data);
+        }
+        
+        return $list;
+    }
+
     public function ListOeuvresPrevues($idExpo) {
         $list = [];
         $q = $this->_db->query("SELECT O.idOeuvre, titre, longueur, hauteur, etat, image, qrcode, descriptifFR, idTypeOeuvre, idArtiste, idCollectif FROM Oeuvre O, OeuvreExposee E WHERE O.idOeuvre = E.idOeuvre AND dateEntree = '0000-00-00' AND idExpo ='".$idExpo."'");

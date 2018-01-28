@@ -45,6 +45,7 @@ if (isset($_GET['idOeuvre'])) {
 		$message = new Message(['dateMessage'=>$dateMsg, 'message'=>$contenu, 'idUtilisateur'=>$idUser, 'idOeuvre'=>$idOeuvre]);
 		$manager->addMessageOeuvre($message);
 	}
+	//SUPPRESSION OEUVRE
 	if (isset($_GET['req']) && $_GET['req'] == 'delete') {
 		$managerOeuvre->deleteOeuvre($oeuvre);
 		$image = $oeuvre->getImage();

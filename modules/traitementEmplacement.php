@@ -1,8 +1,8 @@
 <?php 
 //SCRIPT D'AJOUT OU DE MISE A JOUR D'EMPLACEMENT SUR LE PLAN
 require '../includes/bdd/connectbdd.php';
-require '../class/Emplacement.class.php';
-require '../class/EmplacementManager.class.php';
+require_once '../class/Emplacement.class.php';
+require_once '../class/EmplacementManager.class.php';
 // include('../includes/functions.php');
 
 // spl_autoload_register('loader');
