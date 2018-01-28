@@ -56,6 +56,11 @@ if (isset($_GET['idArtiste'])) {
 	if (isset($_GET['req'])) {
 		if ($_GET['req'] == 'delete') {
 			$managerArtiste->deleteArtiste($artiste);
+			$image = $artiste->getImage();
+			$chemin = '../img/artistes/'.$image;
+			if(is_file($chemin)){
+			   unlink($chemin);
+			}
 		}elseif ($_GET['req'] == 'add') {
 
 

@@ -47,6 +47,16 @@ if (isset($_GET['idOeuvre'])) {
 	}
 	if (isset($_GET['req']) && $_GET['req'] == 'delete') {
 		$managerOeuvre->deleteOeuvre($oeuvre);
+		$image = $oeuvre->getImage();
+		$chemin = '../img/oeuvres/'.$image;
+		$qr = $oeuvre->getQrcode();
+		$cheminQr = '../img/oeuvres/qrCode/'.$qr;
+		if(is_file($chemin)){
+		   unlink($chemin);
+		}
+		if(is_file($cheminQr)){
+		   unlink($cheminQr);
+		}
 	}	
 
 

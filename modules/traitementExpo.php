@@ -80,6 +80,10 @@ if (isset($_GET['req'], $_GET['idExpo']) && $_GET['req'] == 'deleteExpo') {
 	$idExpo = htmlentities($_GET['idExpo']);
 	$expo = $managerExpo->infoExpo($idExpo);
 	$managerExpo->deleteExposition($expo);
+	$dossier = '../img/expositions/expo'.$idExpo;
+	if(is_dir($dossier)){
+	   rmdir($dossier);
+	}
 	header('location: ../content/accueil.php?onglet=calendar');
 }
 
