@@ -4,8 +4,7 @@ if (isset($_GET['expo'])) {
 $idExpo = htmlentities($_GET['expo']);
 $_SESSION['idExpo'] = $idExpo;
 }
-/*=====>POUR LES TESTS */ //
-                        $_SESSION['idUser'] = 1;
+
  ?>
 
 <?php require('../includes/bdd/connectbdd.php'); ?>

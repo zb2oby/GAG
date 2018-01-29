@@ -1,6 +1,7 @@
 <?php 
 //session_start();
-
+/*=====>POUR LES TESTS */ //
+                        $_SESSION['idUser'] = 1;
 
 include('functions.php');
 
@@ -123,6 +124,13 @@ if (isset($_SESSION['idExpo'])) {
 	    
 	    </header>
 
+		<?php if (isset($_SESSION['idUser'])) {
+			$idUser = $_SESSION['idUser'];
+		?>
+		<div class="addArt" data-iduser="<?php echo $idUser; ?>">
+			
+		</div>
+		<?php } ?>
 		
 		
 

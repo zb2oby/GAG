@@ -62,10 +62,8 @@ if (isset($_GET['idArtiste'])) {
 			if(is_file($chemin)){
 			   unlink($chemin);
 			}
+			//AJOUT DOEUVRE SUR LA CARTE ARTISTE
 		}elseif ($_GET['req'] == 'add') {
-
-
-
 
 			$managerOeuvre = new OeuvreManager($bdd);
 			$oeuvre = new Oeuvre(['idArtiste'=>$idArtiste]);

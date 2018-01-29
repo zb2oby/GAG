@@ -11,18 +11,21 @@ require '../class/Artiste.class.php';
 require '../class/ArtisteManager.class.php';
 
 $managerArtiste = new ArtisteManager($bdd);
-//CREATION A LA VOLEE d'un nouvel artiste et retour pour affichage ajax
+//CREATION A LA VOLEE d'un nouvel artiste vide et retour pour affichage ajax
 if (isset($_GET['idExpo'], $_GET['createArtiste']) && $_GET['createArtiste'] == "create") {
 	$idExpo = htmlentities($_GET['idExpo']);
-	$artiste = new Artiste();
+	$artiste = new Artiste(['nom' => '', 'prenom' =>'', 'tel'=>'', 'image'=>'', 'descriptifFR'=>'', 'email'=>'']);
 	$managerArtiste->addArtiste($artiste);
 	$lastIdArtiste = $managerArtiste->getLastIdArtiste();
+	if ($idExpo != 0) {
+		$managerArtisteExpose = new ArtisteExposeManager($bdd);
+		$artisteExpose = new ArtisteExpose(['idArtiste'=>$lastIdArtiste, 'idExpo'=>$idExpo]);
+		$managerArtisteExpose->addArtisteExpose($artisteExpose);
 
-	$managerArtisteExpose = new ArtisteExposeManager($bdd);
-	$artisteExpose = new ArtisteExpose(['idArtiste'=>$lastIdArtiste, 'idExpo'=>$idExpo]);
-	$managerArtisteExpose->addArtisteExpose($artisteExpose);
-
-	header('location: ../content/gestionPanel.php');
+		header('location: ../content/gestionPanel.php');
+	}else {
+		echo $lastIdArtiste;
+	}
 }
 
 

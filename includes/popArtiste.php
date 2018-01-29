@@ -1,6 +1,27 @@
 <?php 
+require_once('../class/ArtisteManager.class.php');
+require_once('../class/Artiste.class.php');
+require_once('../class/ArtisteExposeManager.class.php');
+require_once('../class/ArtisteExpose.class.php');
+require_once('../class/OeuvreManager.class.php');
+require_once('../class/Oeuvre.class.php');
+require_once('../class/OeuvreExposeeManager.class.php');
+require_once('../class/OeuvreExposee.class.php');
+require_once('../class/MessageManager.class.php');
+require_once('../class/Message.class.php');
+require_once('../class/CollectifManager.class.php');
+require_once('../class/Collectif.class.php');
+require_once('../class/DonneeEnrichieManager.class.php');
+require_once('../class/DonneeEnrichie.class.php');
+require_once('../class/UtilisateurManager.class.php');
+require_once('../class/Utilisateur.class.php');
 
-
+if (isset($_GET['idArtiste'])) {
+	$idArtiste = $_GET['idArtiste'];
+}
+if (isset($_GET['idUser'])) {
+	$idUser = htmlentities($_GET['idUser']);
+}
 include('bdd/connectbdd.php');
 
 $managerArtiste = new ArtisteManager($bdd);
@@ -16,9 +37,11 @@ $artiste = $managerArtiste->infoArtiste($idArtiste);
 <div class="context-menu context-artiste">
 	<div class="closeButton closeButton-artiste"><i class="ion-android-close"></i></div>
 	<div class="context-overlay"></div>
+<?php if (isset($_SESSION['idExpo'])) { ?>
 	
-	<div class="deleteCard deleteCardArtiste"><i class="ion-ios-trash-outline" title="Enlever l'artiste de l'exposition"></i><span>Retirer de l'expo</span></div>
 
+	<div class="deleteCard deleteCardArtiste"><i class="ion-ios-trash-outline" title="Enlever l'artiste de l'exposition"></i><span>Retirer de l'expo</span></div>
+<?php } ?>
 	
 		
 		<div class="card-header">
@@ -166,6 +189,8 @@ $artiste = $managerArtiste->infoArtiste($idArtiste);
 					<?php 
 							if (isset($_SESSION['idUser'])) {
 								$idUser = $_SESSION['idUser'];
+							}
+							if (isset($idUser)) {
 								$managerUser = new UtilisateurManager($bdd);
 								$user = $managerUser->infoUtilisateur($idUser);
 								$nomUser = $user->getNom();
@@ -177,9 +202,9 @@ $artiste = $managerArtiste->infoArtiste($idArtiste);
 						 	<div>
 						 		<label for="newMsg">Nouveau message</label><br>
 						 		<textarea name="newMsg" id="newMsg" cols="40" rows="4" placeholder="Ici votre message"></textarea>
-						 	</div>
-						 	
-						 	<input type="hidden" name="idUser" id="idUser" value="<?php if(isset($_SESSION['idUser'])){echo $_SESSION['idUser'];} ?>">
+							 	</div>
+							 	
+						 	<input type="hidden" name="idUser" id="idUser" value="<?php if(isset($idUser)){echo $idUser;} ?>">
 							<input type="hidden" name="dateMsg" id="dateMsg" value="<?php echo date('Y-m-d'); ?>">
 							<input type="hidden" name="nomUser" id="nomUser" value="<?php echo $nomUser; ?>">
 							<div class="submit">

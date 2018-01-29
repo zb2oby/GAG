@@ -69,4 +69,5 @@
 			</div>
 		</div>
 		<div class="next"><i class="flecheHor ion-ios-arrow-right"></i></div>
+		
 	</aside>

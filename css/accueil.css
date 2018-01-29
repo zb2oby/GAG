@@ -37,6 +37,27 @@
 	padding-top: 4px;
 }
 
+
+  .addArt .context-menu {
+    display: block;
+    top: 50px;
+  }
+
+  .addArt .context-oeuvre {
+    top: 0;
+  }
+  .addArt .context-menu li {
+      margin: 10px 0 ;
+    }
+
+@media all and (max-width: 810px) {
+  .addArt .context-menu {
+      display: block;
+      top: 110px;
+    }
+
+    
+}
 /*.multiple-items {
 	display: none;
 }

@@ -442,14 +442,17 @@ $('.creerOeuvreRecue').click(function(event) {
    
 
 	//EXTINCTION DES POPUP
-	$('.closeButton i').click(function(event) {
-		$(event.target).parent().parent().css('display', 'none');
-		$('.confirmPopup').css('display', 'none');
+    $(document).on('click', '.closeButton i', function(event) {
+       $(event.target).parent().parent().css('display', 'none');
+        $('.confirmPopup').css('display', 'none');
         $('.context-artiste').css('display', 'none');
         $('.context-oeuvre').css('display', 'none');
-		$('.overlay').hide();
-        event.stopPropagation();
-	});
+        $('.overlay').hide();
+        //event.stopPropagation();
+    });
+	// $('.closeButton i').click(function(event) {
+		
+	// });
 
 	$('.overlay').click(function(event) {
         $('.context-menu').css('display', 'none');

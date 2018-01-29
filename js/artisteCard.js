@@ -8,21 +8,23 @@ jQuery(document).ready(function($) {
 		
 	});
 
-	$('.context-overlay').click(function(event) {
+	$(document).on('click', '.context-overlay', function(event) {
 		$(this).hide();
 		$('.popGestionCard-artiste').hide();
 		$('.popGestionCard').hide();
 	});
 	//FERMETURE DES FORMULAIRES INTEGRE A LA CARTE
-	$('.closeButton-context').click(function(event) {
+	$(document).on('click', '.closeButton-context', function(event) {
 		$(this).parent().hide();
 		$('.context-overlay').hide();
 	});
+	
 
-	// $('.cancelButton').click(function(event) {
-	// 	$(this).parent().parent().parent().hide();
-	// 	$('.context-overlay').hide();
-	// });
+	$(document).on('click', '.cancelButton', function(event) {
+		$(this).parent().parent().parent().hide();
+		$('.context-overlay').hide();
+	});
+	
 
 
 	//AFFICHAGE CONTEXT MENU DUNE CARTE ARTISTE
@@ -50,6 +52,7 @@ jQuery(document).ready(function($) {
 
 
 	$(document).on('submit', '.form-artiste', function(event) {
+
 		//varaibles communes
 		var method = '';
 		var idArtiste = $(event.target).data('idartiste');
@@ -111,6 +114,8 @@ jQuery(document).ready(function($) {
 				
 			}
 			$('.overlay').hide();
+			$('.context-overlay').hide();
+			$(event.target).closest('.context-menu').remove();
 		}
 
 		//creation nouvelle oeuvre
@@ -121,8 +126,14 @@ jQuery(document).ready(function($) {
 			if (typeof titre == 'undefined') {
 				var titre = 'Oeuvre sans titre';
 			}
-			$(document).find('.popAddCard select#oeuvre').append('<option value="'+idOeuvre+'">'+titre+'</option>');
-			$(document).find('.popAddRecue select#oeuvre').append('<option value="'+idOeuvre+'">'+titre+'</option>')
+			var url = window.location.href;
+			var urlSplit = url.split('/');
+			var urlParam = urlSplit[urlSplit.length -1].split('?');
+			var page = urlParam[0];
+			if (page == 'gestionPanel.php') {
+				$(document).find('.popAddCard select#oeuvre').append('<option value="'+idOeuvre+'">'+titre+'</option>');
+				$(document).find('.popAddRecue select#oeuvre').append('<option value="'+idOeuvre+'">'+titre+'</option>')
+			}
 			var html = 'ok';
 		}
 
@@ -153,7 +164,7 @@ jQuery(document).ready(function($) {
 			var dateFormat = dateMsg.split('-');
 			var newDate = dateFormat[2]+'/'+dateFormat[1]+'/'+dateFormat[0];
 			var data = 'idArtiste=' + idArtiste + '&message=' + message + '&dateMsg=' + dateMsg + '&idUser=' + idUser;
-			$(event.target).closest('.context-menu').find('.card-msg').prepend('<div class="message"><div class="message-header"> Message de '+nomUser+' Le '+newDate+'</div><div class="message-content">'+message+'</div></div>');
+			$(event.target).closest('.context-menu').find('.card-msg').prepend('<div class="message"><div class="message-header"> Message de '+nomUser+' Le '+newDate+'<span class="delMsgArt delMsg"><a>supprimer le message</a></span></div><div class="message-content">'+message+'</div></div>');
 			nbMsg++;
 			$(event.target).closest('.card-action').find('.nbMsg').text(nbMsg);
 			$(event.target).find('#newMsg').val('');
