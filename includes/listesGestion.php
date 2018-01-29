@@ -1,7 +1,7 @@
 <?php 
 //inclus pour la creation d'un emplacement vide au chargement de page (a voir en ajax si possible ?)
 include('../modules/traitementEmplacement.php');
-include('../includes/newExpo.php');
+
 ?>
 
 <div class="confirmPopup">
@@ -221,7 +221,7 @@ include('../includes/newExpo.php');
 						
 						$oeuvresPrevues = $manager->ListOeuvresPrevues($idExpo);
 						$classe_item = '';
-						$manager->affichageOeuvre($oeuvresPrevues, $classe_item, $idExpo);
+						$manager->affichageOeuvre($oeuvresPrevues, $classe_item, $idExpo, $dateDeb);
 					}
 				?>	
 			</ul>

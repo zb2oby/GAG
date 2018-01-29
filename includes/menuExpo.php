@@ -1,4 +1,5 @@
-</div>	
+</div>
+	<?php  include('../includes/newExpo.php');  ?>	
 	<aside class="sideBar">
 		<div class="prev"><i class="flecheHor ion-ios-arrow-left"></i></div>
 		<div class="sideMenu">

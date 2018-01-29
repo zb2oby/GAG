@@ -11,7 +11,7 @@ jQuery(document).ready(function($) {
 	$('.context-addExpo').click(function(event) {
 		$('.context-add').css('display', 'none');
 		$('#newExpo').css('display', 'block');
-		$('#newExpo').closest('.onglet-content').find('.overlay').show();
+		$('#newExpo').parent().find('.overlay').show();
 	});
 
 });

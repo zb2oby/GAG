@@ -1,8 +1,4 @@
 <?php 
-// require_once('functions.php');
-
-//spl_autoload_register('loader');
-// include('bdd/connectbdd.php');
 $managerExpo = new ExpositionManager($bdd);
 $managerOeuvreExpo = new OeuvreExposeeManager($bdd);
 $managerOeuvre = new OeuvreManager($bdd);

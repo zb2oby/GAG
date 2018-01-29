@@ -7,7 +7,7 @@ function calendrier($m_donne,$a_donne){
 	require('../class/Exposition.class.php');
 	require('../class/OeuvreExposeeManager.class.php');
 	require('../class/OeuvreExposee.class.php');
-	require('../includes/newExpo.php');
+	// require('../includes/newExpo.php');
 	include("config.php");
 	// $m = 02;
 	// $a = 2018;

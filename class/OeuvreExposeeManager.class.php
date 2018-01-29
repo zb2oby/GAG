@@ -106,13 +106,21 @@ class OeuvreExposeeManager {
         $dateExpo = strtotime($dateDeb);
         $time = $dateExpo - $now;
         $remain = (floor(($dateExpo - $now)/86400)+1);
-        if ($remain < 10) {
+        if ($remain > 0 && $remain < 10) {
             $q = $this->_db->query("SELECT O.idOeuvre, titre, longueur, hauteur, etat, image, qrcode, descriptifFR, idTypeOeuvre, idArtiste, idCollectif FROM Oeuvre O, OeuvreExposee E WHERE O.idOeuvre = E.idOeuvre AND dateEntree = '0000-00-00' AND idExpo ='".$idExpo."'");
-            while ($data = $q->fetch()) {
-                $listRetard[] = new Oeuvre($data);
-            }
+                $count = $q->rowCount();
+                if ($count > 0 ) {
+                    while ($data = $q->fetch()) {
+                    $listRetard[] = new Oeuvre($data);
+                    }
+                    
+                    return $listRetard;
+                }else {
+                    return false;
+                }
+                
             
-            return $listRetard;
+            
 
         }else{
             return false;
@@ -133,9 +141,11 @@ class OeuvreExposeeManager {
                     .'<div class="portlet-content">'
                         .'<div class="titre">'.ucfirst($oeuvre->getTitre());
                             $listRetard = $this->ListOeuvresRetard($idExpo, $dateDeb);
-                            foreach ($listRetard as $oeuvreRetard) {
-                                if ($oeuvre->getIdOeuvre() == $oeuvreRetard->getIdOeuvre()) {
-                                    echo '<span class="retard" style="font-size:12px; position:absolute; right:0px; top:40px;"><i class="ion-alert-circled" style="color:red; font-size:1em; position:absolute; left:-15px; top:0px;"></i>RETARD</span>';
+                            if ($listRetard != false) {
+                                foreach ($listRetard as $oeuvreRetard) {
+                                    if ($oeuvre->getIdOeuvre() == $oeuvreRetard->getIdOeuvre()) {
+                                        echo '<span class="retard" style="font-size:12px; position:absolute; right:0px; top:40px;"><i class="ion-alert-circled" style="color:red; font-size:1em; position:absolute; left:-15px; top:0px;"></i>RETARD</span>';
+                                    }
                                 }
                             }
                 echo    '</div>'

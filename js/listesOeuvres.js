@@ -308,15 +308,15 @@ function deleteElt(target) {
 	//AFFICHAGE POPUP AJOUT DE CARTE
 	$('.addCard').click(function(event) {
 		$('.popAddCard').css('display', 'block');
-		$('.overlay').show();
+		$(this).closest('.container').find('.overlay').show();
 	});
 	$('.addCardRecue').click(function(event) {
 		$('.popAddRecue').css('display', 'block');
-		$('.overlay').show();
+		$(this).closest('.container').find('.overlay').show();
 	});
     $('.addCardArtiste').click(function(event) {
         $('.popAddArtiste').css('display', 'block');
-        $('.overlay').show();
+        $(this).closest('.container').find('.overlay').show();
     });
 
 
@@ -436,7 +436,8 @@ $('.creerOeuvreRecue').click(function(event) {
           } 
 
        }
-        $('.overlay').show();
+       $(event.target).closest('.container').find('.overlay').show();
+        //$('.overlay').show();
     });
    
 

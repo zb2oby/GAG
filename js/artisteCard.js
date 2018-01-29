@@ -29,13 +29,13 @@ jQuery(document).ready(function($) {
 	$('.portlet-artiste').click(function(event) {
         $(event.target).parent().find('.context-artiste').css('display', 'block');
         $(this).parent().find('.context-oeuvre').hide();
-        $('.overlay').show();
+        //$(event.target).closest('.container').find('.overlay').show();
         
     });
     $('.portlet-artiste .titre').click(function(event) {
         $(event.target).parent().parent().find('.context-artiste').css('display', 'block');
         $(this).parent().find('.context-oeuvre').hide();
-        $('.overlay').show();
+        //$(event.target).closest('.container').find('.overlay').show();
         
     });
     //AFFICHAGE CARTE OEUVRE CONTENUE DANS CARTE ARTISTE

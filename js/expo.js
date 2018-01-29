@@ -1,6 +1,15 @@
 jQuery(document).ready(function($) {
 
 
+//url = window.location.href
+	//split = url.split('/')
+	//page = split[split.length - 1]
+var url = window.location.href;
+var urlSplit = url.split('/');
+var urlParam = urlSplit[urlSplit.length -1].split('?');
+var page = urlParam[0];
+
+
 //GESTION OUVERTURE DES POPUP SUR ONGLET EXPO
 $(document).on('click', '.action-button', function(event) {
 	var classe = $(this).attr('id');
@@ -10,9 +19,10 @@ $(document).on('click', '.action-button', function(event) {
 });
 
 
-//GESTION ENVOI FORMULAIRE INFO GENERALES DEPUIS LE FORMULAIRE NEW EXPO CONTENU DANS CALENDRIER
-	$(document).on('submit', '#newExpo', function(event) {
+//GESTION ENVOI FORMULAIRE INFO GENERALES DEPUIS LE FORMULAIRE NEW EXPO CONTENU DANS CALENDRIER ET DANS LA SIDEBAR
 
+	$(document).on('submit', '#newExpo', function(event) {
+		if (page == 'accueil.php') {
 		var $form = $(this);
     	var data = new FormData($form[0]);
 
@@ -70,6 +80,11 @@ $(document).on('click', '.action-button', function(event) {
 	        
 	    	});
 		return false;
+	}else {
+		return true;
+	}
 	});
+
+
 
 });
