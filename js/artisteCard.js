@@ -21,8 +21,8 @@ jQuery(document).ready(function($) {
 	
 
 	$(document).on('click', '.cancelButton', function(event) {
-		$(this).parent().parent().parent().hide();
-		$('.context-overlay').hide();
+		// $(this).parent().parent().parent().hide();
+		// $('.context-overlay').hide();
 	});
 	
 

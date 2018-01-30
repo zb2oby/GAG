@@ -21,8 +21,9 @@ $_SESSION['idExpo'] = $idExpo;
         	</div>
 			<div class="onglet-content">
 				<?php include('../includes/listesGestion.php') ?>
-
-				<?php include('../includes/plan.php') ?>
+				<div class="gestionPlan">
+					<?php include('../includes/plan.php') ?>
+				</div>
 			</div>
 		</div>
 		

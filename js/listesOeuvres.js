@@ -72,13 +72,13 @@ jQuery(document).ready(function($) {
 //affichage de la place par defaut au clic sur l'image draggable
 //$('#default-place').css('visibility', 'visible');
 $('.recue').find('.item').mousedown(function(event) {
-   $('#default-place').css({
+   $('.gestionPlan #default-place').css({
        visibility: 'visible',
        border: '1px solid red'
    });
 });
 $('.recue').find('.item').mouseup(function(event) {
-   $('#default-place').css({
+   $('.gestionPlan #default-place').css({
        visibility: 'hidden',
        border: 'none'
    });
@@ -120,7 +120,7 @@ $('.recue').find('.item').mouseup(function(event) {
                 
      
 
-        $('.oeuvre-place').droppable({
+        $('.gestionPlan .oeuvre-place').droppable({
             accept: "#items .item",
             activeClass: "ui-state-highlight",
             drop: function( event, ui ) {
@@ -448,7 +448,7 @@ $('.creerOeuvreRecue').click(function(event) {
         $('.context-artiste').css('display', 'none');
         $('.context-oeuvre').css('display', 'none');
         $('.overlay').hide();
-        //event.stopPropagation();
+        event.stopPropagation();
     });
 	// $('.closeButton i').click(function(event) {
 		

@@ -31,13 +31,13 @@ jQuery(document).ready(function($) {
     })
 
 //GESTION NOUVELLES COORDONNEES DES EMPLACEMENTS
-    $('.emplacement').draggable({
+    $('.gestionPlan .emplacement').draggable({
         handle: '.emplacement-handle',
-		containment: '.plan',
+		containment: '.gestionPlan .plan',
 		stop: function(event,ui) {
             //recuperation de la taille a l'instant T de la div "plan"
-            var widthPlan = parseFloat($('.plan').css('width'));
-            var heightPlan = parseFloat($('.plan').css('height'));
+            var widthPlan = parseFloat($('.gestionPlan .plan').css('width'));
+            var heightPlan = parseFloat($('.gestionPlan .plan').css('height'));
             //recuperation des coordonnées à l'instant T de l'emplacement
             var posTop = parseFloat($(this).css('top'));
             var posLeft = parseFloat($(this).css('left'));
@@ -68,38 +68,38 @@ jQuery(document).ready(function($) {
 
 //GESTION DE LA SUPPRESSION DELEMENT
 
-    //$('.deletePlace').click(function(event) {
+    // $('.deletePlace').click(function(event) {
 
-        // $('.confirmPopup').css('display', 'block');
+    //     $('.confirmPopup').css('display', 'block');
         
-        // $('.cancelButton').click(function(e) {
-        //     $('.confirmPopup').css('display', 'none');
-        // });
+    //     $('.cancelButton').click(function(e) {
+    //         $('.confirmPopup').css('display', 'none');
+    //     });
 
-        // $('.deleteButton').click(function(e) {
-        //     var emplacement = $(event.target).parent();
-        //     var idEmplacement = emplacement.data('id');
-        //     emplacement.remove();
-        //     $('.confirmPopup').css('display', 'none');
-        //     var deletePlace = 'delete=' + idEmplacement;
-        //     //traitement ajax
-        //     $.ajax({
-        //         url: '../modules/traitementEmplacement.php',
-        //         type: 'GET',
-        //         dataType: 'html',
-        //         data: deletePlace,
-        //     })
-        //     .done(function() {
-        //         // console.log("success");
-        //     })
-        //     .fail(function() {
-        //         // console.log("error");
-        //     })
-        //     .always(function() {
-        //         // console.log("complete");
-        //     });
-        // });
-    //});
+    //     $('.deleteButton').click(function(e) {
+    //         var emplacement = $(event.target).parent();
+    //         var idEmplacement = emplacement.data('id');
+    //         emplacement.remove();
+    //         $('.confirmPopup').css('display', 'none');
+    //         var deletePlace = 'delete=' + idEmplacement;
+    //         //traitement ajax
+    //         $.ajax({
+    //             url: '../modules/traitementEmplacement.php',
+    //             type: 'GET',
+    //             dataType: 'html',
+    //             data: deletePlace,
+    //         })
+    //         .done(function() {
+    //             // console.log("success");
+    //         })
+    //         .fail(function() {
+    //             // console.log("error");
+    //         })
+    //         .always(function() {
+    //             // console.log("complete");
+    //         });
+    //     });
+    // });
 
     
     
