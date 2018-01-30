@@ -227,8 +227,8 @@ jQuery(document).ready(function($) {
 	});	
 
 
-	$('.delMsgArt').click(function(event) {
-		
+
+	$(document).on('click', '.delMsgArt', function(event) {
 		var idMessage = $(event.currentTarget).closest('.message').data('idmessage');
 		var nbMsg = parseInt($(event.target).closest('.card-action').find('.nbMsg').text());
 		nbMsg = nbMsg-1;
@@ -253,7 +253,7 @@ jQuery(document).ready(function($) {
 			console.log("complete");
 		});
 		return false;
-
 	});
+
 	
 });

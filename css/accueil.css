@@ -37,11 +37,25 @@
 	padding-top: 4px;
 }
 
-
+/*A BOUGER DANS LE CSS GLOBAL CAR TOUT CECI EST DANS LE HEADER*/
   .addArt .context-menu {
     display: block;
     top: 50px;
   }
+    .modalAddOeuvre {
+      position: absolute;
+      z-index: 6;
+      width: 200px;  
+      height: 200px;
+      top: 25%;
+      left: 50%;
+      margin-left: -100px;
+      background-color: rgba(0,0,0,0.8);
+      display: none;
+    }
+    .addArt .addOeuv {
+      display: block;
+    }
 
   .addArt .context-oeuvre {
     top: 0;

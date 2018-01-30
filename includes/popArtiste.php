@@ -1,4 +1,5 @@
 <?php 
+//autoloader ne peut pas foncitonner ici car fichier inclus en ajax
 require_once('../class/ArtisteManager.class.php');
 require_once('../class/Artiste.class.php');
 require_once('../class/ArtisteExposeManager.class.php');
@@ -143,12 +144,21 @@ $artiste = $managerArtiste->infoArtiste($idArtiste);
 											
 										</form>
 									</div>
+									<?php if (isset($_GET['idLastOeuvre'])) {
+										$class = 'addOeuv';
+										$idOeuvre = htmlentities($_GET['idLastOeuvre']);
+									}else{
+										$class='';
+										$idOeuvre = $oeuvre->getIdOeuvre();
+									} ?>
+									<div class="addOeuv">
 									<?php 
-									$idOeuvre = $oeuvre->getIdOeuvre();
+									
 
 									include('popOeuvre.php'); 
 
 									?>
+									</div>
 								</li>
 
 							<?php

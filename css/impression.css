@@ -19,6 +19,12 @@
 		.avatar {
 			display: none;
 		}
+		.timeLine a {
+			color: black;
+		}
+		.timeLine i {
+			display: none;
+		}
 
 	.impression {
 		display: block !important;
@@ -40,8 +46,14 @@
 			border: 1px solid black;
 			padding: 5px;
 		}
-
 		
+		.imprPlan {
+			margin-top: 250pt;
+			transform: rotate(90deg);
+			width: 150%;
+			
+		}
+
 		.plan .addPlace, .plan .trash {
 			display: none;
 		}

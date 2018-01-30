@@ -8,9 +8,34 @@ include('../class/Message.class.php');
 include('../class/DonneeEnrichieManager.class.php');
 include('../class/DonneeEnrichie.class.php');
 include('../includes/bdd/connectbdd.php');
+include('../includes/phpqrcode/qrlib.php');
+$managerOeuvre = new OeuvreManager($bdd);
+
+//creation d'une oeuvre a la volée depuis le bouton + du menu de nav
+if (isset($_GET['req'], $_GET['idArtiste']) && $_GET['req'] == 'add') {
+	$idArtiste = htmlentities($_GET['idArtiste']);
+	$oeuvre = new Oeuvre(['idArtiste' => $idArtiste]);
+	$managerOeuvre->addOeuvre($oeuvre);
+	$id = $managerOeuvre->getLastIdOeuvre();
+	$lastOeuvre = $managerOeuvre->infoOeuvre($id);
+	//ajout du qrCode(attention present aussi dan traitement artiste)
+	$nomFichierQr = 'oeuvre'.$id.'.png';
+	$lienQr = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]/ISFAC/Fil-Rouge/GAG/content/vueOeuvreVisiteur.php?oeuvre=".$id;
+	QRcode::png($lienQr, '../img/oeuvres/qrCode/'.$nomFichierQr);
+	$lastOeuvre->setQrcode($nomFichierQr);
+	$managerOeuvre->updateOeuvre($lastOeuvre);
+
+
+	//retour ajax de lidoeuvre pour affichage popOeuvre
+	echo $id;
+}
+
+
+
+//traitement du contenu d'une oeuvre
 if (isset($_GET['idOeuvre'])) {
 	$idOeuvre = $_GET['idOeuvre'];
-	$managerOeuvre = new OeuvreManager($bdd);
+	
 	$oeuvre = $managerOeuvre->infoOeuvre($idOeuvre);
 
 	if (isset($_GET['etat'],$_GET['titre'],$_GET['longueur'],$_GET['hauteur'],$_GET['descriptif'])) {

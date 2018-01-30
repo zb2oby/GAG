@@ -82,6 +82,9 @@ $managerPlace = new EmplacementManager($bdd);
 
 	 	</tbody>
 	 </table>
+	 <div class="imprPlan">
 	 <span class="titresImpression">PLAN DE L'EXPO</span>
+	 
 	 <?php include('../includes/plan.php') ?>
+	 </div>
  </div>

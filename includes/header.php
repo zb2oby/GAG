@@ -130,7 +130,11 @@ if (isset($_SESSION['idExpo'])) {
 		<div class="addArt" data-iduser="<?php echo $idUser; ?>">
 			
 		</div>
-		<?php } ?>
+
+		<?php
+			include('../includes/addOeuvre-modal.php');
+		 }
+		  ?>
 		
 		
 

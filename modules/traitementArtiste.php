@@ -71,7 +71,7 @@ if (isset($_GET['idArtiste'])) {
 			$idLastOeuvre = $managerOeuvre->getLastIdOeuvre();
 			$lastOeuvre = $managerOeuvre->infoOeuvre($idLastOeuvre);
 			$idOeuvre = $lastOeuvre->getIdOeuvre();
-			//ajout du qrCode
+			//ajout du qrCode(attention present aussi dans traitement oeuvre)
 			$nomFichierQr = 'oeuvre'.$idOeuvre.'.png';
 			$lienQr = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]/ISFAC/Fil-Rouge/GAG/content/vueOeuvreVisiteur.php?oeuvre=".$idOeuvre;
 			QRcode::png($lienQr, '../img/oeuvres/qrCode/'.$nomFichierQr);

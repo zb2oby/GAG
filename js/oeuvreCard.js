@@ -66,6 +66,8 @@ jQuery(document).ready(function($) {
 				
 			}
 			$(event.currentTarget).closest('.li-oeuvre-artiste').remove();
+			$('.context-menu').hide();
+			$('.overlay').hide();
 		}
 		//donnee generale
 		if (typeof titre != 'undefined' || typeof longueur != 'undefined' || typeof hauteur != 'undefined' || typeof etat != 'undefined' || typeof descriptif != 'undefined') {
@@ -116,7 +118,7 @@ jQuery(document).ready(function($) {
 			var dateFormat = dateMsg.split('-');
 			var newDate = dateFormat[2]+'/'+dateFormat[1]+'/'+dateFormat[0];
 			var data = 'idOeuvre=' + idOeuvre + '&message=' + message + '&dateMsg=' + dateMsg + '&idUser=' + idUser;
-			$(event.currentTarget).closest('.context-menu').find('.card-msg').prepend('<div class="message"><div class="message-header"> Message de '+nomUser+' Le '+newDate+'<span class="delMsgArt delMsg"><a>supprimer le message</a></span></div><div class="message-content">'+message+'</div></div>');
+			$(event.currentTarget).closest('.context-menu').find('.card-msg').prepend('<div class="message"><div class="message-header"> Message de '+nomUser+' Le '+newDate+'<span class="delMsgOeuvre delMsg"><a>supprimer le message</a></span></div><div class="message-content">'+message+'</div></div>');
 			nbMsg++;
 			$(event.currentTarget).closest('.card-action').find('.nbMsg').text(nbMsg);
 			$(event.currentTarget).find('#newMsg').val('');
@@ -203,9 +205,7 @@ jQuery(document).ready(function($) {
 
 	});
 
-
-	$('.delMsgOeuvre').click(function(event) {
-		
+	$(document).on('click', '.delMsgOeuvre', function(event) {
 		var idMessage = $(event.currentTarget).closest('.message').data('idmessage');
 		var nbMsg = parseInt($(event.target).closest('.card-action').find('.nbMsg').text());
 		nbMsg = nbMsg-1;

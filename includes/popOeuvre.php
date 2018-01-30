@@ -211,6 +211,8 @@ $id = $oeuvre->getIdOeuvre();
 					<?php 
 							if (isset($_SESSION['idUser'])) {
 								$idUser = $_SESSION['idUser'];
+							}
+							if (isset($idUser)) {
 								$managerUser = new UtilisateurManager($bdd);
 								$user = $managerUser->infoUtilisateur($idUser);
 								$nomUser = $user->getNom();
@@ -224,7 +226,7 @@ $id = $oeuvre->getIdOeuvre();
 						 		<textarea name="newMsg" id="newMsg" cols="40" rows="4" placeholder="Ici votre message"></textarea>
 						 	</div>
 						 	
-						 	<input type="hidden" name="idUser" id="idUser" value="<?php if(isset($_SESSION['idUser'])){echo $_SESSION['idUser'];} ?>">
+						 	<input type="hidden" name="idUser" id="idUser" value="<?php if(isset($idUser)){echo $idUser;} ?>">
 							<input type="hidden" name="dateMsg" id="dateMsg" value="<?php echo date('Y-m-d'); ?>">
 							<input type="hidden" name="nomUser" id="nomUser" value="<?php echo $nomUser; ?>">
 							<div class="submit">
