@@ -13,7 +13,16 @@
     	<div class="container">
         <div class="login-form">
 			<span class="form-title"><img class="logo" src="../img/logo.png" alt="logo"><h1>Grand Angle Gestion</h1></span>
-			<div class="error-area"></div>
+			<?php if (isset($_GET['message'])) {
+					$message = htmlentities($_GET['message']);
+					$class = 'error-area';
+			} ?>
+			<div class="<?php echo $class; ?>">
+				
+					<?php if(isset($message)){echo $message;} ?>
+				
+
+			</div>
 			<form action="../modules/traitementLogin.php" method="POST">
 				<div class="login-input">
 					<label for="login"><i class="ion-person"></i>Identifiant</label>

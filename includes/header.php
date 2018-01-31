@@ -1,6 +1,6 @@
 <?php 
-if (!isset($_SESSION['role'], $_SESSION['idUser'])) {
-	header('location: ../content/login.html');
+if (!isset($_SESSION['idUser'])) {
+	header('location: ../content/login.php');
 }
                         
 
@@ -52,7 +52,7 @@ if (isset($_SESSION['idExpo'])) {
 					
 				}
 			 ?>
-	    	<a class="avatar deco" href="../modules/traitementLogout.php?req=logout"><?php echo ucfirst($identifiant[0]); ?><div class="logo-out"><i class="ion-log-out"></i></div></a>
+	    	<a class="avatar deco" href="../modules/traitementLogout.php?req=logout" title="Se déconnecter"><?php echo ucfirst($identifiant[0]); ?><div class="logo-out"><i class="ion-log-out"></i></div></a>
 
 	    	<div class="expoInfo">
 	    		<?php 

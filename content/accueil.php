@@ -20,6 +20,7 @@ require('../includes/bdd/connectbdd.php');
 		<div class="onglet-content">
 			<?php 
 				require_once('../includes/calendar/calendrier.php');
+				date_default_timezone_set('Europe/Paris');
 				calendrier(date("n"),date("Y"));
 			 ?>
 		</div>

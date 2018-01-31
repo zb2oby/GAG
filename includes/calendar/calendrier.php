@@ -12,7 +12,7 @@ function calendrier($m_donne,$a_donne){
 	// $m = 02;
 	// $a = 2018;
 	// On récupère le mois et l'année dans la barre de navigation
-
+	
 	if (isset($_GET['m'], $_GET['a'])) {
 		$m = intval($_GET['m']);
 		$a = intval($_GET['a']);

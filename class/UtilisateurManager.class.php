@@ -50,8 +50,8 @@ class UtilisateurManager {
     //verification user
     public function checkLogin($login, $passwd) {
         $q = $this->_db->query("SELECT * FROM Utilisateur WHERE identifiant ='".$login."' AND mot_de_passe ='".$passwd."'");
-        $data = $q->fetch();
         $count = $q->rowCount();
+        $data = $q->fetch();
         if ($count != 0) {
             $user = new Utilisateur($data);
             return $user;

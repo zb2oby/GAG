@@ -15,7 +15,7 @@ if (isset($_POST['login'], $_POST['passwd'])) {
 	$user = $managerUser->checkLogin($login, $passwd);
 	if (!$user) {
 		$message = 'Votre login ou votre mot de passe est incorrect';
-		header('location: ../includes/login.php?message='.$message);
+		header('location: ../content/login.php?message='.$message);
 	}else {
 		$_SESSION['idUser'] = $user->getIdUtilisateur();
 		header('location: ../content/accueil.php?onglet=calendar');
