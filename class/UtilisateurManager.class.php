@@ -43,7 +43,47 @@ class UtilisateurManager {
     public function infoUtilisateur($idUser) {
     	$q= $this->_db->query("SELECT * FROM Utilisateur WHERE idUtilisateur = '".$idUser."'");
     	$data = $q->fetch();
-    	return new Utilisateur($data);
+    	$user = new Utilisateur($data);
+        return $user;
     }
+
+    //verification user
+    public function checkLogin($login, $passwd) {
+        $q = $this->_db->query("SELECT * FROM Utilisateur WHERE identifiant ='".$login."' AND mot_de_passe ='".$passwd."'");
+        $data = $q->fetch();
+        $count = $q->rowCount();
+        if ($count != 0) {
+            $user = new Utilisateur($data);
+            return $user;
+        }else{
+            return false;
+        }
+        
+    }
+
+    //retourne la liste des type utilisateur
+    public function listTypeUser() {
+        $listType = [];
+        $q = $this->_db->query("SELECT idTypeUtilisateur, libelleTypeUtilisateur FROM Type_utilisateur");
+        while ($data = $q->fetch()) {
+            $listType[] = [$data['idTypeUtilisateur'] => $data['libelleTypeUtilisateur']] ;
+        }
+        return $listType;
+    }
+
+    //donne le role a l'utilisateur
+    public function giveRole(Utilisateur $user) {
+        $idTypeUtilisateur = $user->getIdUtilisateur();
+        $listType = $this->listTypeUser();
+        foreach ($listType as $type) {
+            foreach ($type as $idType => $libelle) {
+                if ($idType == $idTypeUtilisateur) {
+                    return $libelle;
+                }
+            }
+            
+        }
+    }
+
 
 }

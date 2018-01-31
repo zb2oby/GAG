@@ -1,11 +1,14 @@
 jQuery(document).ready(function($) {
+
 	$('.add').click(function(event) {
 		event.stopPropagation();
-		$('.context-add').css('display', 'block');
+		$('.context-add').toggleClass('context-add-visible');
+		
 	});
 
 	$('body').click(function(event) {
-		$('.context-add').css('display', 'none');
+		event.stopPropagation();
+		$('.context-add').removeClass('context-add-visible');
 	});
 //affichage duformulaire d'expo depuis bouton + (traitement dans expo.js)
 	$('.context-addExpo').click(function(event) {

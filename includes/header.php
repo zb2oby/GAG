@@ -1,7 +1,8 @@
 <?php 
-//session_start();
-/*=====>POUR LES TESTS */ //
-                        $_SESSION['idUser'] = 1;
+if (!isset($_SESSION['role'], $_SESSION['idUser'])) {
+	header('location: ../content/login.html');
+}
+                        
 
 include('functions.php');
 
@@ -40,7 +41,18 @@ if (isset($_SESSION['idExpo'])) {
 ?>
 	 <div class="container">
 		<header>
-	    	<a class="avatar deco" href="">F<div class="logo-out"><i class="ion-log-out"></i></div></a>
+			<?php 
+				$managerUser = new UtilisateurManager($bdd);
+				if (isset($_SESSION['idUser'])) {
+					$idUser = $_SESSION['idUser'];
+					$user = $managerUser->infoUtilisateur($idUser);
+					$identifiant = $user->getIdentifiant();
+					$role = $managerUser->giveRole($user);
+					$_SESSION['role'] = $role;
+					
+				}
+			 ?>
+	    	<a class="avatar deco" href="../modules/traitementLogout.php?req=logout"><?php echo ucfirst($identifiant[0]); ?><div class="logo-out"><i class="ion-log-out"></i></div></a>
 
 	    	<div class="expoInfo">
 	    		<?php 

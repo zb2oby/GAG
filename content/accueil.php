@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <?php $page = 'acceuil' ?>
 <?php 
 require('../includes/bdd/connectbdd.php'); 
@@ -6,7 +7,7 @@ require('../includes/bdd/connectbdd.php');
 
 
 
-<!-- <div class="header-accueil-calendar"> -->
+
 <?php include('../includes/header.php'); ?>
 
 
@@ -18,12 +19,14 @@ require('../includes/bdd/connectbdd.php');
 		</div>
 		<div class="onglet-content">
 			<?php 
-				include('../includes/calendar/calendrier.php');
+				require_once('../includes/calendar/calendrier.php');
 				calendrier(date("n"),date("Y"));
 			 ?>
 		</div>
 	</div>
 
+<?php if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin') { ?>
+	
 
 	<div class="onglet <?php if (isset($_GET['onglet']) && $_GET['onglet'] == 'admin') {
 	        	echo 'onglet-actif';
@@ -45,7 +48,7 @@ require('../includes/bdd/connectbdd.php');
 		</div>
 	</div>
 
-
+<?php } ?>
 
 
 

@@ -3,10 +3,10 @@
 //FONCTION PRINCIPALE DU CALENDRIER
 function calendrier($m_donne,$a_donne){
 	include('../includes/bdd/connectbdd.php');
-	require('../class/ExpositionManager.class.php');
-	require('../class/Exposition.class.php');
-	require('../class/OeuvreExposeeManager.class.php');
-	require('../class/OeuvreExposee.class.php');
+	require_once('../class/ExpositionManager.class.php');
+	require_once('../class/Exposition.class.php');
+	require_once('../class/OeuvreExposeeManager.class.php');
+	require_once('../class/OeuvreExposee.class.php');
 	// require('../includes/newExpo.php');
 	include("config.php");
 	// $m = 02;
