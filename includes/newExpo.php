@@ -41,7 +41,19 @@
 		<div>
 			<label for="horaireF">Horaire de fermeture</label>
 			<input type="time" name="horaireF" id="horaireF">
-		</div>	
+		</div>
+		<div class="langues">
+                <label for="fr">Fr</label>
+                <input type="checkbox" name="idLangue[]" id="fr" value="1">
+                <label for="en">En</label>
+                <input type="checkbox" name="idLangue[]" id="en" value="2">
+                <label for="de">De</label>
+                <input type="checkbox" name="idLangue[]" id="de" value="4">
+                <label for="cn">Cn</label>
+                <input type="checkbox" name="idLangue[]" id="cn" value="5">
+                <label for="ru">Ru</label>
+                <input type="checkbox" name="idLangue[]" id="ru" value="3">
+            </div>
 		<div>
 			<label for="descriptif">descriptif</label>
 			<textarea name="descriptif" id="descriptif" cols="30" rows="10"></textarea>

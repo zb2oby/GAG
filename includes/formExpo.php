@@ -25,7 +25,7 @@ if (isset($_SESSION['idExpo'])) {
             <textarea name="descriptif" id="descriptif" cols="30" rows="7" value="<?php echo $expo->getDescriptifFR() ?>"><?php echo $expo->getDescriptifFR() ?></textarea>
  
         </fieldset>
-        <fieldset>
+        <fieldset class="expo-cpl">
             <legend>Info Complémentaires</legend>
             <label for="couleurExpo">Couleur de l'expo</label>
             <input type="color" name="couleurExpo" id="couleurExpo" value="<?php echo $expo->getCouleurExpo() ?>"><br>
@@ -34,6 +34,44 @@ if (isset($_SESSION['idExpo'])) {
             <input type="time" name="horaireO" id="horaireO" value="<?php echo $expo->getHoraireO() ?>"><br>
             <label for="horaireF">Horaire de fermeture</label>
             <input type="time" name="horaireF" id="horaireF" value="<?php echo $expo->getHoraireF() ?>"><br>
+            <label>Langues Disponibles</label>
+            <div class="langues">
+                <?php $listLangueDispo = $managerExpo->getIdLangueExpo($idExpo);
+                    foreach ($listLangueDispo as $idLangue) {
+                        switch ($idLangue) {
+                            case 1:
+                                $fr = 'checked';
+                                break;
+                            case 2:
+                                $en = 'checked';
+                                break;
+                            case 3:
+                                $ru = 'checked';
+                                break;
+                            case 4:
+                                $de = 'checked';
+                                break;
+                            case 5:
+                                $cn = 'checked';
+                                break;
+                            
+                            default:
+                                # code...
+                                break;
+                        }
+                    }
+                ?>
+                <label for="fr">Fr</label>
+                <input type="checkbox" name="idLangue[]" id="fr" value="1" <?php if(isset($fr)){echo $fr;} ?> >
+                <label for="en">En</label>
+                <input type="checkbox" name="idLangue[]" id="en" value="2" <?php if(isset($en)){echo $en;} ?>>
+                <label for="de">De</label>
+                <input type="checkbox" name="idLangue[]" id="de" value="4" <?php if(isset($de)){echo $de;} ?>>
+                <label for="cn">Cn</label>
+                <input type="checkbox" name="idLangue[]" id="cn" value="5" <?php if(isset($cn)){echo $cn;} ?>>
+                <label for="ru">Ru</label>
+                <input type="checkbox" name="idLangue[]" id="ru" value="3" <?php if(isset($ru)){echo $ru;} ?>>
+            </div>
        </fieldset>
         <div class="submit">
             <input type="hidden" name="req" value="updateExpo">

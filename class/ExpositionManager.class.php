@@ -112,6 +112,34 @@ class ExpositionManager {
 
     }
 
+    //liste les langues dispo pour une expo
+    public function getIdLangueExpo($idExpo) {
+        $list = [];
+        $q = $this->_db->query("SELECT idLangue FROM Langue_expo WHERE idExpo = ".$idExpo);
+        while ($data = $q->fetch()) {
+            $list[] = $data['idLangue'];
+        }
+        return $list;
+    }
+
+    public function resetLnExpo($idExpo) {
+        $q = $this->_db->exec("DELETE FROM Langue_expo WHERE idExpo =".$idExpo);
+    }
+
+    //enregistre les langues pour l'expo
+    public function addLnExpo($idExpo, Array $langues) {
+        //on vide la base des enregistrement de langues existant
+        $this->resetLnExpo($idExpo);
+        //on rerempli avec les nouvelle valeurs
+        foreach ($langues as $idLangue) {
+            $q = $this->_db->prepare("INSERT INTO Langue_expo (idExpo, idLangue) VALUES (:idExpo, :idLangue)");
+            $q->bindValue(':idExpo', $idExpo);
+            $q->bindValue(':idLangue', $idLangue);
+            $q->execute();
+        }
+        
+    }
+
 
 
     

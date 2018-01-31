@@ -75,6 +75,15 @@ function makeExpoDir (Exposition $expo, $idExpo) {
 	}
 }
 
+
+function setLangueExpo ($managerExpo, $idExpo) {
+
+		if (isset($_POST['idLangue'])) {
+			$managerExpo->addLnExpo($idExpo, $_POST['idLangue']);
+		}else {
+			$managerExpo->resetLnExpo($idExpo);
+		}
+}
 //SUPPRESSION DE LEXPO
 if (isset($_GET['req'], $_GET['idExpo']) && $_GET['req'] == 'deleteExpo') {
 	$idExpo = htmlentities($_GET['idExpo']);
@@ -129,6 +138,7 @@ if (isset($_POST['dateDebut'], $_POST['dateFin'], $_POST['titre'], $_POST['coule
 	$exposition->setTitre($titre);
 	$exposition->setCouleurExpo($couleur);
 
+
 	if (isset($_POST['theme'])) {
 		$theme = htmlentities($_POST['theme']);
 		$exposition->setTheme($theme);
@@ -160,8 +170,12 @@ if (isset($_POST['dateDebut'], $_POST['dateFin'], $_POST['titre'], $_POST['coule
 		$lastIdExpo = $managerExpo->lastIdExpo();
 		$expo = $managerExpo->infoExpo($lastIdExpo);
 		$idExpo = $expo->getIdExpo();
+		setLangueExpo($managerExpo, $idExpo);
 	}elseif (isset($_POST['req'], $_POST['idExpo']) && $_POST['req'] == 'updateExpo') {
 		$idExpo = htmlentities($_POST['idExpo']);
+		
+		setLangueExpo($managerExpo, $idExpo);
+
 		$exposition->setIdExpo($idExpo);
 		$expo = $exposition;
 		$redirect = true;
@@ -177,9 +191,11 @@ if (isset($_POST['dateDebut'], $_POST['dateFin'], $_POST['titre'], $_POST['coule
 			makeExpoDir($expo, $idExpo);
 			
 
+
 			enregistrementTeaser($expo, $idExpo);
 
 			enregistrementAffiche($expo, $idExpo);
+
 
 		 		
 		 	//update de l'entrée en base
