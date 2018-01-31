@@ -77,7 +77,7 @@ $artiste = $managerArtiste->infoArtiste($idArtiste);
 			</div>
 		</div>
 		<div class="card-content">
-<!-- A REFACTORER + VOIR JS -->
+
 
 			<div class="card-col card-form">
 				<div class="col-item card-form">

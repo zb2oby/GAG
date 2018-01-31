@@ -227,7 +227,7 @@ jQuery(document).ready(function($) {
 	});	
 
 
-
+// A FACTORISER
 	$(document).on('click', '.delMsgArt', function(event) {
 		var idMessage = $(event.currentTarget).closest('.message').data('idmessage');
 		var nbMsg = parseInt($(event.target).closest('.card-action').find('.nbMsg').text());

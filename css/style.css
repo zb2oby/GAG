@@ -701,7 +701,7 @@ form.adminForm, form.expoForm {
 	.popAddCard i:hover {
 		cursor: pointer;
 	}
-.popGestionCard, .popGestionCard-artiste {
+.popGestionCard, .popGestionCard-artiste, .popGestionCard-collectif {
 	position: absolute;
 	z-index: 5;
 	top: 50%;
@@ -912,7 +912,7 @@ form.adminForm, form.expoForm {
 			.card-col.card-form {
 			flex-grow: 1;
 			}
-				.card-form .form-oeuvre div, .card-form .form-artiste div {
+				.card-form .form-oeuvre div, .card-form .form-artiste div, .card-form .form-collectif div {
 					padding: 10px 0;
 				}
 
@@ -940,7 +940,7 @@ form.adminForm, form.expoForm {
 					text-align: center;
 				}
 
-	.pop-messagerieOeuvre,.pop-messagerieArtiste {
+	.pop-messagerieOeuvre,.pop-messagerieArtiste, .pop-messagerieCollectif {
 		margin-top: -250px;
 		height: auto;
 		width: 400px;

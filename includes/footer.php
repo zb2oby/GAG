@@ -13,6 +13,7 @@
 <script src="../js/emplacement.js"></script>
 <script src="../js/oeuvreCard.js"></script>
 <script src="../js/artisteCard.js"></script>
+<script src="../js/collectifCard.js"></script>
 <script src="../js/addItem.js"></script>
 <script src="../js/calendrier.js"></script>
 <script src="../js/expo.js"></script>

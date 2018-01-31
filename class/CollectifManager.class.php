@@ -13,8 +13,7 @@ class CollectifManager {
     }
 
     function addCollectif(Collectif $collectif) {
-    	$q=$this->_db->prepare("INSERT INTO Collectif(idCollectif, libelleCollectif, descriptifFR, email, tel) VALUES (:idCollectif, :libelleCollectif, :descriptifFR, :email, :tel)");
-    	$q->bindValue(':idCollectif', $collectif->getIdCollectif());
+    	$q=$this->_db->prepare("INSERT INTO Collectif(libelleCollectif, descriptifFR, email, tel) VALUES (:libelleCollectif, :descriptifFR, :email, :tel)");
     	$q->bindValue(':libelleCollectif', $collectif->getLibelleCollectif());
     	$q->bindValue(':descriptifFR', $collectif->getDescriptifFR());
     	$q->bindValue(':email', $collectif->getEmail());
@@ -28,7 +27,7 @@ class CollectifManager {
     }
 
     function updateCollectif(Collectif $collectif) {
-    	$q=$this->_db->prepare("UPDATE Collectif SET idCollectif = :IdCollectif, libelleCollectif = :libelleCollectif, descriptifFR = :descriptifFR, email = :email, tel = :tel WHERE idCollectif = :idCollectif");
+    	$q=$this->_db->prepare("UPDATE Collectif SET libelleCollectif = :libelleCollectif, descriptifFR = :descriptifFR, email = :email, tel = :tel WHERE idCollectif = :idCollectif");
     	$q->bindValue(':idCollectif', $collectif->getIdCollectif());
     	$q->bindValue(':libelleCollectif', $collectif->getLibelleCollectif());
     	$q->bindValue(':descriptifFR', $collectif->getDescriptifFR());
@@ -60,6 +59,13 @@ class CollectifManager {
             
         }
         return $expo;
+    }
+
+    //retourne l'id du dernier collectif cree
+    public function getLastIdCollectif() {
+        $q = $this->_db->query("SELECT MAX(idCollectif) AS idCollectif FROM Collectif");
+        $data = $q->fetch();
+        return $data['idCollectif'];
     }
 
 

@@ -80,5 +80,30 @@ jQuery(document).ready(function($) {
 		return false;
 		
 	});
+
+//traitement de l'ajout de collectif depuis le bouton +
+$(document).on('click', '.context-addCollectif', function(event) {
+		$('.context-add').css('display', 'none');
+		var idUser = $('.addArt').data('iduser');
+		var data = 'createColl=create'; 
+		$.ajax({
+			url: '../modules/traitementCollectif.php',
+			type: 'GET',
+			dataType: 'html',
+			data: data,
+		})
+		.done(function(response) {
+			console.log("success");
+			$('.overlay').show();
+			$('.addArt').load('../includes/popCollectif.php?idCollectif='+response+'&idUser='+idUser);
+		})
+		.fail(function() {
+			console.log("error");
+		})
+		.always(function() {
+			console.log("complete");
+		});
+
+	});
 	
 });

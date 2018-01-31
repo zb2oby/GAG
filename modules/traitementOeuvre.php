@@ -77,11 +77,15 @@ if (isset($_GET['idOeuvre'])) {
 		$chemin = '../img/oeuvres/'.$image;
 		$qr = $oeuvre->getQrcode();
 		$cheminQr = '../img/oeuvres/qrCode/'.$qr;
+		$cheminMeta = '../meta/oeuvre'.$idOeuvre;
 		if(is_file($chemin)){
 		   unlink($chemin);
 		}
 		if(is_file($cheminQr)){
 		   unlink($cheminQr);
+		}
+		if (is_dir($cheminMeta)) {
+			rmdir($cheminMeta);
 		}
 	}	
 

@@ -65,6 +65,7 @@
 					<span class="context-addExpo">+ Ajouter une Exposition</span>
 					<span class="context-addArtiste">+ Ajouter un Artiste</span>
 					<span class="context-addOeuvre">+ Ajouter une Oeuvre</span>
+					<span class="context-addCollectif">+ Ajouter un Collectif</span>
 				</div>
 			</div>
 		</div>

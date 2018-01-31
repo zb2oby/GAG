@@ -204,7 +204,7 @@ jQuery(document).ready(function($) {
 		return false;
 
 	});
-
+//A FACTORISER
 	$(document).on('click', '.delMsgOeuvre', function(event) {
 		var idMessage = $(event.currentTarget).closest('.message').data('idmessage');
 		var nbMsg = parseInt($(event.target).closest('.card-action').find('.nbMsg').text());
