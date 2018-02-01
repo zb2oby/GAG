@@ -20,7 +20,7 @@ if (isset($_GET['req'], $_GET['idArtiste']) && $_GET['req'] == 'add') {
 	$lastOeuvre = $managerOeuvre->infoOeuvre($id);
 	//ajout du qrCode(attention present aussi dan traitement artiste)
 	$nomFichierQr = 'oeuvre'.$id.'.png';
-	$lienQr = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]/ISFAC/Fil-Rouge/GAG/content/vueOeuvreVisiteur.php?oeuvre=".$id;
+	$lienQr = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://".$_SERVER['HTTP_HOST'].realpath(dirname(__FILE__).'/..')."/content/vueOeuvreVisiteur.php?oeuvre=".$id;
 	QRcode::png($lienQr, '../img/oeuvres/qrCode/'.$nomFichierQr);
 	$lastOeuvre->setQrcode($nomFichierQr);
 	$managerOeuvre->updateOeuvre($lastOeuvre);

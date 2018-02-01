@@ -1,3 +1,4 @@
+<?php include('../config.php'); ?>
 <!doctype html>
 <html>
     <head>
@@ -37,7 +38,10 @@
 				</div>
 			</form>
 		</div>
-		<a href="../modules/decoHTTP.php">deco HTTP</a>
+		<?php if (DEV == true) { ?>
+			<a href="../modules/decoHTTP.php">deco HTTP</a>
+		<?php } ?>
+		
         </div>
     </body>
 </html>
