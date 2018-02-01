@@ -37,6 +37,7 @@
 				</div>
 			</form>
 		</div>
+		<a href="../modules/decoHTTP.php">deco HTTP</a>
         </div>
     </body>
 </html>
