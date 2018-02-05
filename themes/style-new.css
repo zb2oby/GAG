@@ -44,7 +44,8 @@ a.button:hover {
 
 body {
 	font-size: 0;
-	font-family: 'Roboto', sans-serif;
+	/*font-family: 'Roboto', sans-serif;*/
+	font-family: Overpass,Helvetica Neue,Helvetica,Arial,sans-serif;
 
 }
 
@@ -73,10 +74,11 @@ button:hover {
 	z-index: -1;
 	bottom: 0;
 	top: 0px;
-	left: 15%;
+	/*left: 12%;
+	margin-left: 10px;*/
 	right: 0;
 	display: inline-block;
-	width: 85%;
+	width: 100%;
 	font-size: 16px;
 	overflow-x: hidden;
 	overflow-y: auto;
@@ -103,14 +105,23 @@ button:hover {
 /*<<<<<<<<<<<<<<<<  HEADER >>>>>>>>>>>>>>*/
 header {
 	/*margin-left: 15%;*/
-	display: flex;
+	
+	height: 130px;
+	background: #0A2675 url(../img/login.svg) no-repeat 50% 39%;
+	/*background-color: #eee;*/
+	/*overflow: auto;*/
+}
+
+	.header-content {
+		display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
 	font-size: 16px;
-	height: 130px;
-	background-color: #eee;
-	/*overflow: auto;*/
-}
+	width: 88%;
+	margin-left: 12%;
+	padding-top: 5px;
+	padding-right: 15px;
+	}
 	.avatar	{
 		position: relative;
 		float: left;
@@ -174,38 +185,68 @@ header {
 	.sideBar {
 		display: flex;
 		flex-direction: column;
-		justify-content: center;
+		justify-content: space-around;
 		position: absolute;
-		top: 0;
-		left: 0;
-		bottom: 0;
+		top: 10px;
+		left: 10px;
+		bottom: 10px;
 		vertical-align: top;
 		font-size: 16px;
-		width: 15%;
-		background-color: #444;
-		color: #fff;
+		width: 12%;
+		background-color: #fff;
+		color: #7c8795;
 		text-align: center;
+		box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+		border-radius: 2px;
+	}
+	/*.sideMenu {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
 	}
 
+			.sideMenu li {
+				padding: 10px 0 ;
+			}*/
+		.multiple-items li a div{
+			padding: 10px 0;
+			color:#7c8795;
+		}
+
+			.link-active {
+				background-color: #eee;
+			}
+
+		.homeLogo i, .searchLogo i{
+			display: block;
+			font-size: 2em;
+			padding-bottom: 20px;
+			color: #7c8795;
+		}
+
+		.addLogo i, .logoutLogo i {
+			display: block;
+			font-size: 2em;
+			padding-top: 20px;
+			color: #7c8795;
+
+		}
+
+		.addLogo {
+			position: relative;
+		}
+
+			
 		
 
-		.searchLogo {
-			display: block;
-			font-size: 4em;
-			padding-bottom: 30px;
-		}
-
-		.sideMenu {
-			
-		}
-
+		
 			.flecheHor {
 				display: none;
 			}
 			.flecheVert {
 				width: 40px;
 				height: 40px;
-				font-size: 4em;
+				font-size: 2em;
 			}
 
 			.flecheHor:hover {
@@ -216,14 +257,9 @@ header {
 			}
 			
 
-				.sideMenu li {
-					padding: 30px 0 ;
-				}
+				
 
-			.link-active {
-				background-color: #bbb;
-
-			}
+			
 			a.active-expo {
 				display: block;
 				padding: 20px 0;
@@ -232,13 +268,7 @@ header {
 			}
 
 			
-			.addLogo  {
-				position: relative;
-				display: block;
-				font-size: 4em;
-				padding-top: 40px;
-
-			}
+			
 
 				.context-add {
 					position: absolute;
@@ -283,6 +313,9 @@ header {
 }
 .onglet	{
 	position: relative;
+	left: 12%;
+	width: 88%;
+	margin-left: 10px;
 	top: -30px;
 	/*float: left;*/
 	/*text-align: center;*/
@@ -329,6 +362,7 @@ header {
 
 	.onglet-actif .onglet-content {
 		display: block;
+		
 		/*overflow-y: scroll;*/
 		/*overflow-x: hidden;*/
 	}
@@ -580,7 +614,7 @@ form.adminForm, form.expoForm {
 .list {
 	display: inline-block;
 	vertical-align: top;
-	width: 33.333%;
+	width: 28%;
 	font-size: 16px;
 }
 	
@@ -589,16 +623,23 @@ form.adminForm, form.expoForm {
 		padding: 20px;
 		text-align: center;
 	}
+		.cards h4 {
+			font-size: 12px;
+			text-transform: uppercase;
+			color: #7c8795;
+		}
 		.contain-cards {
-			background-color: #ddd;
+			background-color: #fff;
 			padding-bottom: 10px;
 		}
 			.cards ul {
 				list-style: none;
-				background-color: #ddd;
+				background-color: #fff;
+				box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
 				min-height: 250px;
 				max-height: 250px;
 				overflow: auto;
+				border-radius: 2px;
 			}
 
 		.iconCard {
@@ -607,7 +648,7 @@ form.adminForm, form.expoForm {
 			margin-top: 5px;
 			padding-top: 5px;
 			text-align: center;
-			background-color: #ddd;
+			background-color: rgba(238,238,238,0.25);
 			height: 20px;
 			color: #000;
 		}
@@ -627,6 +668,8 @@ form.adminForm, form.expoForm {
 				margin: 10px;
 				background-color: #fff;
 				padding: 5px;
+				box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+
 			}
 				.portlet {
 					
@@ -1093,54 +1136,82 @@ form.adminForm, form.expoForm {
 
 /*<<<<<<<<<<<<<<<<< MEDIA QUERIES >>>>>>>>>>>>*/
 
-@media all and (max-width: 850px) {
+@media all and (max-width: 810px) {
+
+
 	header {
-		margin-top: 80px;
+		height: 210px;
+		/*margin-top: 80px;*/
 		font-size: 16px;
 		margin-left: 0;
 	}
 
+		.header-content {
+			padding-left: 15px;
+			padding-top: 90px;
+			margin-left: 0;
+			width: 100%;
+		}
+
 	.container {
-		width: 100%;
-		left: 0;
+		/*width: 100%;
+		left: 0;*/
 		
 	}
+		.onglet {
 
+		}
 		.onglet-content {
 			text-align: center;
 		}
 	
-	.sideBar * {
+	/*.sideBar * {
 		margin: 0;
 		padding: 0;
 
-	}
+	}*/
 	.sideBar {
+		display: block;
+		width: 96%;
 		flex-direction: row;
-		position: absolute;
-		/*z-index: 3;*/
-		width: 100%;
+		justify-content: center;
+		left: 2%;
+		margin: 0 auto;
 		height: 80px;
-		font-size: 0;
+		font-size: 16px;
+
+		
 	}
 
-		.searchLogo {
-			position: absolute;
-			top: 0;
-			left: 30px;
-			padding-bottom: 30px;
-			padding-top: 10px;
-			font-size: 48px;
+
+	.icons {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		position: absolute;
+		width: 200px;
+		height: 100%;
+		padding: 0;
+		margin: 0;
+	}
+
+		.icons-left {
+			left: 20px;
 		}
 
-		.addLogo {
-			position: absolute;
-			top: 0;
-			right: 30px;
-			padding-bottom: 30px;
-			padding-top: 10px;
-			font-size: 48px;
+		.icons-right {
+			right: 20px;
 		}
+
+			.homeLogo i, .searchLogo i{
+				padding-bottom: 0;
+			}
+
+			.addLogo i, .logoutLogo i {
+				padding-top: 0;
+
+			}
+		
 
 			.context-add {
 				top: -100%;
@@ -1170,6 +1241,10 @@ form.adminForm, form.expoForm {
 			
 		}
 			.multiple-items {
+				position: absolute;
+				width:50%;
+				left: 50%;
+				margin-left: -150px;
 				height: 80px;
 				margin-top: 3px;
 
@@ -1264,8 +1339,8 @@ form.adminForm, form.expoForm {
 @media all and (min-width: 1200px) {
 	
 	.container {
-		width: 90%;
-		left: 10%;
+		/*width: 100%;
+		left: 10%;*/
 		
 	}
 		header {
@@ -1282,6 +1357,7 @@ form.adminForm, form.expoForm {
 		}
 		.onglet {
 			top: -50px;
+			left: 7%;
 		}
 			.onglet-content {
 				text-align: center;
@@ -1324,3 +1400,4 @@ form.adminForm, form.expoForm {
 		}
 	
 }
+

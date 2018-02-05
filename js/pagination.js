@@ -15,7 +15,7 @@ $slider
     prevArrow: $('.prev'),
     nextArrow: $('.next'),
     responsive: [{
-      breakpoint: 810,
+      breakpoint: 850,
       settings: {
         vertical:false,
         verticalSwiping: false,

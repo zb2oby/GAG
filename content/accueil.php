@@ -1,13 +1,12 @@
 <?php session_start(); ?>
+
 <?php $page = 'acceuil' ?>
 <?php 
 require('../includes/bdd/connectbdd.php'); 
-
+if (isset($_SESSION['idExpo'])) {
+	unset($_SESSION['idExpo']);
+}
 ?>
-
-
-
-
 <?php include('../includes/header.php'); ?>
 
 
@@ -36,28 +35,13 @@ require('../includes/bdd/connectbdd.php');
 			Admin	
 		</div>
 		<div class="onglet-content">
-			<form class="adminForm" action="#" id="submit-admin" method="GET">
-				<label for="nom">Nom Collaborateur</label>
-				<input type="text" name="nom" id="nom"><br>
-				<label for="date">Date Naissance</label>
-				<input type="text" name="dateExpo" id="dateExpo">
-				<input type="hidden" name="onglet" value="admin">
-				<input type="submit" value="Enregistrer">
-				<input type="submit" value="Modifier">
-				<input type="submit" value="Supprimer">
-			</form>
+			<?php include('../includes/admin.php'); ?>
 		</div>
 	</div>
 
 <?php } ?>
 
-
-
-
-
-
 <!-- </div> -->
-
 
 <?php include('../includes/menuExpo.php'); ?>
 <?php include('../includes/footer.php'); ?>

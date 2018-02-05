@@ -18,13 +18,13 @@
 					$message = htmlentities($_GET['message']);
 					$class = 'error-area';
 			} ?>
-			<div class="<?php echo $class; ?>">
+			<div id="error-area" class="<?php if(isset($class)){echo $class;} ?>">
 				
 					<?php if(isset($message)){echo $message;} ?>
 				
 
 			</div>
-			<form action="../modules/traitementLogin.php" method="POST">
+			<form id="login-form" action="../modules/traitementLogin.php" method="POST">
 				<div class="login-input">
 					<label for="login"><i class="ion-person"></i>Identifiant</label>
 					<input type="text" name="login" id="login">
@@ -43,6 +43,8 @@
 		<?php } ?>
 		
         </div>
+		<script src="../js/lib/jquery-min-3.2.1.js"></script>
+        <script src="../js/login.js"></script>
     </body>
 </html>
 
