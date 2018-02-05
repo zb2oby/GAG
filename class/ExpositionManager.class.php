@@ -122,6 +122,12 @@ class ExpositionManager {
         return $list;
     }
 
+    public function getLibelleLangue($idLangue) {
+        $q = $this->_db->query("SELECT nomLangue FROM Langue WHERE idLangue =".$idLangue);
+        $data = $q->fetch();
+        return $data['nomLangue'];
+    }
+
     public function resetLnExpo($idExpo) {
         $q = $this->_db->exec("DELETE FROM Langue_expo WHERE idExpo =".$idExpo);
     }

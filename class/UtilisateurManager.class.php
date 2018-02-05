@@ -61,6 +61,23 @@ class UtilisateurManager {
         
     }
 
+    //retourn =e la liste des utilisateurs
+    public function listUser() {
+        $list = [];
+        $q = $this->_db->query("SELECT * FROM Utilisateur");
+        while ($data = $q->fetch()) {
+            $list[] = new Utilisateur($data);
+        }
+        return $list;
+    }
+
+    //retourn ele libelle du type en fonction de son id
+    public function getRole($idType) {
+        $q = $this->_db->query("SELECT libelleTypeUtilisateur FROM Type_utilisateur WHERE idTypeUtilisateur =".$idType);
+        $data = $q->fetch();
+        return $data['libelleTypeUtilisateur'];
+    }
+
     //retourne la liste des type utilisateur
     public function listTypeUser() {
         $listType = [];
