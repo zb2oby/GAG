@@ -71,18 +71,24 @@ jQuery(document).ready(function($) {
 
 //affichage de la place par defaut au clic sur l'image draggable
 //$('#default-place').css('visibility', 'visible');
-$('.recue').find('.item').mousedown(function(event) {
+$(document).on('mousedown', '.recue .item', function(event) {
    $('.gestionPlan #default-place').css({
        visibility: 'visible',
        border: '1px solid red'
    });
 });
-$('.recue').find('.item').mouseup(function(event) {
-   $('.gestionPlan #default-place').css({
+$(document).on('mouseup', '.recue .item', function(event) {
+     $('.gestionPlan #default-place').css({
        visibility: 'hidden',
        border: 'none'
    });
 });
+// $('.recue').find('.item').mousedown(function(event) {
+   
+// });
+// $('.recue').find('.item').mouseup(function(event) {
+ 
+// });
 
 
 
@@ -464,6 +470,7 @@ $('.creerOeuvreRecue').click(function(event) {
         $('#newExpo').css('display', 'none');
         $('.pop-modifTeaser').css('display', 'none');
         $('.pop-modifAffiche').css('display', 'none');
+        $('.modalAddOeuvre').css('display', 'none');
         $('.overlay').hide();
 
     	

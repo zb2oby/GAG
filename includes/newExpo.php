@@ -1,5 +1,5 @@
 <div>
-	<div class="overlay"></div>
+	<!-- <div class="overlay"></div> -->
 	<form id="newExpo" action="../modules/traitementExpo.php" method="POST" enctype="multipart/form-data">
 		<span>AJOUTER UNE NOUVELLE EXPOSITION</span>
 		<div id="CloseNewExpo" class="closeButton"><i class="ion-android-close"></i></div>

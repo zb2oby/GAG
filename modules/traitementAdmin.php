@@ -40,6 +40,7 @@ if (isset($idUser)) {
 
 	if (isset($_GET['req']) && $_GET['req'] == 'delUser') {
 		$managerUser->deleteUtilisateur($user);
+		echo 'del';
 	}else{
 		$managerUser->updateUtilisateur($user);
 	}

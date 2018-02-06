@@ -9,7 +9,7 @@ if (isset($_SESSION['idExpo'])) {
 ?>
 <?php include('../includes/header.php'); ?>
 
-
+<div class="overlay"></div>
 	<div class="onglet <?php if (isset($_GET['onglet']) && $_GET['onglet'] == 'calendar') {
 	        	echo 'onglet-actif';
 	        } ?>" id="calendar">

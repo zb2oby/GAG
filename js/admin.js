@@ -50,19 +50,29 @@ jQuery(document).ready(function($) {
 		.done(function(response) {
 			console.log("success");
 			//if (response != 'delete') {
-				if (response != '') {
+				if (response != 'del') {
 					var idUser = response;
 					$('.afficheUser ul').prepend('<li><a class="userAdmin" data-nom="'+nom+'" data-prenom="'+prenom+'" data-identifiant="'+identifiant+'" data-id="'+idUser+'" data-role="'+role+'" href="#">'+nom+' '+prenom+' '+libelleRole+'</a></li>');
 					
-				}
-				var list = $('.afficheUser ul').find('li a');
 				
-				for (var i = list.length - 1; i >= 0; i--) {
-					var idUserUpdate = $(list[i]).data('id');
-					console.log(idUserUpdate);
-					var idUser = $('.adminForm').find('#idUser').val();
-					if (idUser == idUserUpdate) {
-						$(list[i]).remove();
+					var list = $('.afficheUser ul').find('li a');
+					
+					for (var i = list.length - 1; i >= 0; i--) {
+						var idUserUpdate = $(list[i]).data('id');
+						console.log(idUserUpdate);
+						var idUser = $('.adminForm').find('#idUser').val();
+						if (idUser == idUserUpdate) {
+							$(list[i]).remove();
+						}
+					}
+				}else if (response == 'del') {
+					var list = $('.afficheUser ul').find('li a');
+					for (var i = list.length - 1; i >= 0; i--) {
+						var idUserUpdate = $(list[i]).data('id');
+						var idUser = $('.adminForm').find('#idUser').val();
+						if (idUser == idUserUpdate) {
+							$(list[i]).remove();
+						}
 					}
 				}
 

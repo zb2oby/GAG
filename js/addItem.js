@@ -1,26 +1,31 @@
 jQuery(document).ready(function($) {
 
-	$('.add').click(function(event) {
-		event.stopPropagation();
-		$('.context-add').toggleClass('context-add-visible');
-		
-	});
 
-	$('body').click(function(event) {
-		event.stopPropagation();
-		$('.context-add').removeClass('context-add-visible');
+	$(document).on('click', '.add', function(event) {
+		//event.preventDefault();
+		$('.context-add').toggleClass('context-add-visible');
 	});
+	// $('.add').click(function(event) {
+	// 	event.stopPropagation();
+		
+		
+	// });
+
+	// $('body').click(function(event) {
+	// 	//event.stopPropagation();
+	// 	$('.context-add').removeClass('context-add-visible');
+	// });
 //affichage duformulaire d'expo depuis bouton + (traitement dans expo.js)
 	$('.context-addExpo').click(function(event) {
 		$('.context-add').css('display', 'none');
 		$('#newExpo').css('display', 'block');
-		$('#newExpo').parent().find('.overlay').show();
+		$('.overlay').show();
 	});
 
 //traitmeent de l'ajout d'artiste depuis le bouton + 
 	$(document).on('click', '.context-addArtiste', function(event) {
 
-		$('.context-add').css('display', 'none');
+		$('.context-add').removeClass('context-add-visible');
 		var idExpo = 0;
 		var idUser = $('.addArt').data('iduser');
 		var data = 'createArtiste=create&idExpo=' + idExpo; 
@@ -51,10 +56,12 @@ jQuery(document).ready(function($) {
 //traitement de l'ajout d'oeuvre depuis le bouton +
 	$(document).on('click', '.context-addOeuvre', function(event) {
 		$('.modalAddOeuvre').css('display', 'block');
-		$('.context-add').css('display', 'none');
+		$('.overlay').show();
+		$('.context-add').removeClass('context-add-visible');
 	});
 
 	$(document).on('submit', '.modalAddOeuvre .form-add', function(event) {
+
 		$('.modalAddOeuvre').css('display', 'none');
 		var idArtiste = parseFloat($(event.target).find('#idArtiste').val());
 		var data = 'req=add&idArtiste='+idArtiste;
@@ -86,7 +93,8 @@ jQuery(document).ready(function($) {
 
 //traitement de l'ajout de collectif depuis le bouton +
 $(document).on('click', '.context-addCollectif', function(event) {
-		$('.context-add').css('display', 'none');
+
+		$('.context-add').removeClass('context-add-visible');
 		var idUser = $('.addArt').data('iduser');
 		var data = 'createColl=create'; 
 		$.ajax({
