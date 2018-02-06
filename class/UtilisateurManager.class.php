@@ -13,8 +13,7 @@ class UtilisateurManager {
     }
 
      public function addUtilisateur(Utilisateur $utilisateur) {
-    	$q = $this->_db->prepare('INSERT INTO Utilisateur(idUtilisateur, nom, mot_de_passe, identifiant, prenom, idTypeUtilisateur) VALUES (:idUtilisateur, :nom, :mot_de_passe, :identifiant, :prenom, :idTypeUtilisateur)');
-    	$q->bindValue(':idUtilisateur', $utilisateur->getIdUtilisateur());
+    	$q = $this->_db->prepare('INSERT INTO Utilisateur(nom, mot_de_passe, identifiant, prenom, idTypeUtilisateur) VALUES (:nom, :mot_de_passe, :identifiant, :prenom, :idTypeUtilisateur)');
         $q->bindValue(':nom', $utilisateur->getNom());
         $q->bindValue(':mot_de_passe', $utilisateur->getMot_de_passe());
         $q->bindValue(':identifiant', $utilisateur->getIdentifiant());
@@ -25,7 +24,7 @@ class UtilisateurManager {
     }
 
     public function deleteUtilisateur(Utilisateur $utilisateur) {
-    	$q = $this->_db->exec('DELETE FROM Utilisateur WHERE idEmplacement ='.$utilisateur->getIdEmplacement());
+    	$q = $this->_db->exec('DELETE FROM Utilisateur WHERE idUtilisateur ='.$utilisateur->getIdUtilisateur());
     }
 
     public function updateUtilisateur(Utilisateur $utilisateur) {
@@ -64,11 +63,19 @@ class UtilisateurManager {
     //retourn =e la liste des utilisateurs
     public function listUser() {
         $list = [];
-        $q = $this->_db->query("SELECT * FROM Utilisateur");
+        $q = $this->_db->query("SELECT idUtilisateur, nom, mot_de_passe, identifiant, prenom, idTypeUtilisateur FROM Utilisateur ORDER BY nom");
         while ($data = $q->fetch()) {
             $list[] = new Utilisateur($data);
         }
         return $list;
+    }
+
+
+    //retounr le dernier utilisateur creer
+    public function lastIdUser() {
+        $q = $this->_db->query("SELECT MAX(idUtilisateur) AS idUtilisateur FROM Utilisateur");
+        $data = $q->fetch();
+        return $data['idUtilisateur'];
     }
 
     //retourn ele libelle du type en fonction de son id
