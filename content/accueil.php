@@ -14,7 +14,7 @@ if (isset($_SESSION['idExpo'])) {
 	        	echo 'onglet-actif';
 	        } ?>" id="calendar">
 		<div class="onglet-title">
-			Calendrier	
+			<i class="ion-android-calendar"></i>Calendrier	
 		</div>
 		<div class="onglet-content">
 			<?php 
@@ -24,7 +24,7 @@ if (isset($_SESSION['idExpo'])) {
 			 ?>
 		</div>
 	</div>
-
+	<?php include('../includes/recherche.php'); ?>
 <?php if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin') { ?>
 	
 
@@ -32,7 +32,7 @@ if (isset($_SESSION['idExpo'])) {
 	        	echo 'onglet-actif';
 	        } ?>" id="admin">
 		<div class="onglet-title">
-			Admin	
+			<i class="ion-android-list"></i>Admin	
 		</div>
 		<div class="onglet-content">
 			<?php include('../includes/admin.php'); ?>

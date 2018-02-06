@@ -124,6 +124,17 @@ header {
 		line-height: 80px;
 	}
 
+
+			.avatar span {
+				width: 100%;
+				height: auto;
+				display: block;
+				position: absolute;
+				top: -30px;
+				left: 0px;
+				font-size: 12px;
+			}
+
 		.logo-out {
 			position: absolute;
 			display: block;
@@ -135,6 +146,8 @@ header {
 		}
 
 	.timeLine {
+		padding-top: 20px;
+		padding-right: 20px;
 		/*float: right;*/
 		/*display: inline-block;*/
 		/*vertical-align: top;*/
@@ -149,7 +162,7 @@ header {
 		}
 
 	.expoInfo {
-		display: inline-block;
+		/*display: inline-block;*/
 	}
 		.expoInfo h2 {
 			margin-left: 50px;
@@ -189,10 +202,13 @@ header {
 
 		
 
-		.searchLogo {
+		.homeLogo {
 			display: block;
 			font-size: 4em;
 			padding-bottom: 30px;
+		}
+		.homeLogo i:hover {
+			cursor:pointer;
 		}
 
 		.sideMenu {
@@ -238,6 +254,9 @@ header {
 				font-size: 4em;
 				padding-top: 40px;
 
+			}
+			.addLogo i:hover {
+				cursor:pointer;
 			}
 
 				.context-add {
@@ -299,6 +318,10 @@ header {
 		border-left: 1px solid #fff;
 
 	}
+		.onglet-title i {
+			margin-right: 5px;
+			font-size: 1.2em;
+		}
 	.onglet-title:hover {
 		cursor: pointer;
 		background-color: #fff;
@@ -957,7 +980,7 @@ form.expoForm {
 					padding-bottom: 10px;
 					background-color: #fff;
 				}
-					.li-oeuvre-artiste:hover {
+					li.li-oeuvre-artiste:hover {
 						background-color: #ccc;
 						cursor: pointer;
 					}
@@ -1159,7 +1182,7 @@ form.expoForm {
 		font-size: 0;
 	}
 
-		.searchLogo {
+		.homeLogo {
 			position: absolute;
 			top: 0;
 			left: 30px;
@@ -1308,13 +1331,19 @@ form.expoForm {
 		font-size: 16px;
 		margin-left: 0;
 		}
-		.avatar {
+		.avatar{
 			position: relative;
 			width: 120px;
 			height: 120px;
 			font-size: 2.5em;
 			line-height: 120px;
 		}
+
+			.avatar span {
+				top: -50px;
+				font-size: 14px;
+			}
+
 		.onglet {
 			top: -50px;
 		}

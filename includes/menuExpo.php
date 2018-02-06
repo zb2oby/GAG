@@ -3,7 +3,8 @@
 	<aside class="sideBar">
 		<div class="prev"><i class="flecheHor ion-ios-arrow-left"></i></div>
 		<div class="sideMenu">
-			<div class="searchLogo"><a class="search" href="#"><i class="ion-ios-search"></i></a></div>
+			<div class="homeLogo"><a href="../content/accueil.php?a=<?php echo date('Y') ?>&m=<?php echo date('m') ?>&onglet=calendar"><i class="ion-home"></i></a></div>
+			<!-- <div class="searchLogo"><a class="search" href="#"><i class="ion-ios-search"></i></a></div> -->
 			<div class="prev"><i class="flecheVert ion-ios-arrow-up"></i></div>
 			<div class="multiple-items">
 				<?php 

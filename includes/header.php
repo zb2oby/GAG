@@ -52,7 +52,7 @@ if (isset($_SESSION['idExpo'])) {
 					
 				}
 			 ?>
-	    	<a class="avatar deco" href="../modules/traitementLogout.php?req=logout" title="Se déconnecter"><?php echo ucfirst($identifiant[0]); ?><div class="logo-out"><i class="ion-log-out"></i></div></a>
+	    	<a class="avatar deco" href="../modules/traitementLogout.php?req=logout" title="Se déconnecter"><span><?php echo date('d/m/Y') ?></span><?php echo ucfirst($identifiant[0]); ?><div class="logo-out"><i class="ion-log-out"></i></div></a>
 
 	    	<div class="expoInfo">
 	    		<?php 
@@ -97,10 +97,10 @@ if (isset($_SESSION['idExpo'])) {
 	    	</div>
 	    	<div class="timeLine">
 	    		<ul>
-	    			<li><span>Aujourd'hui : </span><a href="../content/accueil.php?a=<?php echo date('Y') ?>&m=<?php echo date('m') ?>&onglet=calendar" class="button date" title="Retour Accueil"><i class="ion-android-arrow-back"></i><?php 
+	    			<!-- <li><span>Aujourd'hui : </span><?php 
 						echo $date = ' '.date("d/m/Y");
 						?></a>
-					</li>
+					</li> -->
 					<?php if (isset($_SESSION['idExpo'])) { ?>
 						
 					
@@ -113,7 +113,7 @@ if (isset($_SESSION['idExpo'])) {
 	    				?>
 	    			</li>
 	    			<li>
-	    				<span>Inauguration dans : </span> 
+	    				
 	    				<?php
 			    			$now = time(); 
 			    			$time = $dateExpo - $now;
@@ -124,7 +124,7 @@ if (isset($_SESSION['idExpo'])) {
 			    				echo 'Expo terminée';
 			    			}
 			    			else {
-			    				echo (floor(($dateExpo - $now)/86400)+1).' Jours';
+			    				echo '<span>Inauguration dans : </span>'.(floor(($dateExpo - $now)/86400)+1).' Jours';
 			    			}
 			    		}
 			    			

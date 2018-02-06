@@ -17,7 +17,7 @@ $_SESSION['idExpo'] = $idExpo;
 	        	echo 'onglet-actif';
 	        } ?>" id="gestion">
         	<div class="onglet-title">
-        		Gestion
+        		<i class="ion-gear-b"></i>Gestion
         	</div>
 			<div class="onglet-content">
 				<?php include('../includes/listesGestion.php') ?>
@@ -31,18 +31,20 @@ $_SESSION['idExpo'] = $idExpo;
 	        	echo 'onglet-actif';
 	        } ?>" id="expo">
         	<div class="onglet-title">
-        		Expo
+        		<i class="ion-information-circled"></i>Expo
         	</div>
         	<div class="onglet-content">
                 <?php include('../includes/formExpo.php') ?>
         	</div>
         </div>
+		
+		<?php include('../includes/recherche.php'); ?>
 
         <div class="onglet <?php if (isset($_GET['onglet']) && $_GET['onglet'] == 'stat') {
         	echo 'onglet-actif';
         } ?>" id="stat">
         	<div class="onglet-title">
-        		Stats
+        		<i class="ion-stats-bars"></i>Stats
         	</div>
         	<div class="onglet-content">
         		<div class="stat-content">
