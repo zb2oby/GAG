@@ -106,4 +106,15 @@ class ArtisteManager {
         return $data['idArtiste'];
     }
 
+    //retourne une liste de resultat en fonction d'une recherche demandée
+    public function getSearch($saisie) {
+        $list = [];
+        $q = $this->_db->query("SELECT * FROM Artiste WHERE nom LIKE '%".$saisie."%' OR prenom LIKE '%".$saisie."%' OR tel LIKE '%".$saisie."%' OR email LIKE '%".$saisie."%'");
+        while ($data = $q->fetch()) {
+            $list[] = $data;
+        }
+
+        return $list;
+    }
+
 }

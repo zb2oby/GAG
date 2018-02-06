@@ -98,7 +98,7 @@ if (isset($_SESSION['idExpo'])) {
 	    	<div class="timeLine">
 	    		<ul>
 	    			<!-- <li><span>Aujourd'hui : </span><?php 
-						echo $date = ' '.date("d/m/Y");
+						//echo $date = ' '.date("d/m/Y");
 						?></a>
 					</li> -->
 					<?php if (isset($_SESSION['idExpo'])) { ?>

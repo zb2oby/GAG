@@ -7,7 +7,8 @@
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
-	font-family: 'Roboto', sans-serif;
+	font-family: Overpass,Helvetica Neue,Helvetica,Arial,sans-serif;
+	/*font-family: 'Roboto', sans-serif;*/
 }
 
 .impression {
@@ -165,14 +166,14 @@ header {
 		/*display: inline-block;*/
 	}
 		.expoInfo h2 {
-			margin-left: 50px;
+			/*margin-left: 50px;*/
 			/*text-align: center;*/
 			padding-top: 5px;
 			padding-bottom: 5px;
 		}
 		.expoInfo span {
 			display: block;
-			margin-left: 50px;
+			/*margin-left: 50px;*/
 		}
 		
 		.printer {
@@ -309,13 +310,14 @@ header {
 
 	.onglet-title {
 		float: left;
-		width: 100px;
+		width: 150px;
 		height: 30px;
 		line-height: 30px;
 		color: #fff;
 		background-color: #0A2675;
 		text-align: center;
 		border-left: 1px solid #fff;
+		box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
 
 	}
 		.onglet-title i {
@@ -499,6 +501,138 @@ form.expoForm {
 			padding:5px 15px;
 		}
 
+/*<<<<<<<<<<<<<<<<  Recherche >>>>>>>>>>>>>>*/
+
+#search .onglet-content {
+	padding-top: 20px;
+	text-transform: uppercase;
+    font-size: 20px;
+    font-weight: 300;
+    color: #0A2675;
+}
+
+	#search span.title {
+		display: block;
+		font-size: 24px;
+		padding-top: 15px;
+	}
+
+	.searchType {
+
+	}
+
+	.searchForm {
+		width: 300px;
+		margin: 0 auto;
+		margin-top: 50px;
+		padding: 40px;
+		border-radius: 2px;
+    	box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+	}
+
+		.searchForm label {
+			display: inline-block;
+		    max-width: 100%;
+			color: #7c8795;
+		    margin-bottom: 0;
+		    font-size: .75rem;
+		    font-weight: 500;
+		    /*position: absolute;*/
+		    text-transform: uppercase;
+		    top: 0;
+		    left: 0;
+		    width: 100%;
+		}
+
+		
+		
+		.searchForm select {
+			display: inline-block;
+			width: 100%;
+		    height: 38px;
+		    background-color: transparent;
+		    background-image: none;
+		    border: 1px solid #ccc;
+		    border-radius: 0;
+		    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+		    -webkit-appearance: none;
+		    box-shadow: 0 1px 0 transparent;
+		    padding: 6px 12px;
+		    color: #0A2675;
+		    font-weight: 300;
+		    margin: 5px;
+		}
+
+		.selectType {
+			position: relative;
+		}
+		.selectType:after {
+			content: "";
+			position: absolute;
+			top: 40px;
+			right: 10px;
+   		 	border-left: 10px solid transparent;
+		    border-right: 10px solid transparent;
+		    border-top: 10px solid #7c8795;
+		    pointer-events: none;
+
+		}
+
+			.selectType select option span {
+				font-size: 8px;
+			}
+		.inputSaisie {
+			position: relative;
+			margin-top: 25px;
+		}
+
+			.inputSaisie button[type="submit"] {
+				width: 0;
+				height: 0;
+				padding: 0;
+				font-size: 2em;
+			}
+
+			.inputSaisie i {
+				font-size: 1em;
+				display: inline-block;
+				position: absolute;
+				top: 15px;
+				color: #7c8795;
+			}
+
+			.inputSaisie i:hover {
+				cursor: pointer;
+			}
+
+		.inputSaisie input.saisie {
+			display: inline-block;
+			width: 80%;
+		    height: 38px;
+		    font-size: 18px;
+		    background-color: transparent;
+		    background-image: none;
+		    border: 1px solid #ccc;
+		    border-radius: 0;
+		    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+		    -webkit-appearance: none;
+		    border-left: 0;
+		    border-right: 0;
+		    border-top: 0;
+		    box-shadow: 0 1px 0 transparent;
+		    padding: 6px 12px;
+		    color: #0A2675;
+		    font-weight: 300;
+		}
+
+		.inputSaisie input:focus {
+			outline:none;
+		}
+
+	.searchResult {
+
+	}
+
 
 
 /*<<<<<<<<<<<<<<<<  PLAN >>>>>>>>>>>>>>*/
@@ -650,6 +784,8 @@ form.expoForm {
 		.contain-cards {
 			background-color: #ddd;
 			padding-bottom: 10px;
+			border-radius: 2px;
+			box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2);
 		}
 			.cards ul {
 				list-style: none;
@@ -668,6 +804,8 @@ form.expoForm {
 			background-color: #ddd;
 			height: 20px;
 			color: #000;
+			border-radius: 2px;
+			box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2);
 		}
 			
 			.iconCard i {
@@ -687,7 +825,7 @@ form.expoForm {
 				padding: 5px;
 			}
 				.portlet {
-					
+					box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
 				}
 				.portlet-content {
 					display: flex;
@@ -854,6 +992,7 @@ form.expoForm {
 	color: #333;
 	font-size: 16px;
 	text-align: left;
+	border-radius: 3px;
 }
 .context-menu:hover {
 	cursor: default;
@@ -1162,7 +1301,11 @@ form.expoForm {
 		width: 100%;
 		left: 0;
 		
-	}
+	}	
+
+		.onglet-title {
+			width: 120px;
+		}
 
 		.onglet-content {
 			text-align: center;
@@ -1326,6 +1469,8 @@ form.expoForm {
 		left: 10%;
 		
 	}
+
+
 		header {
 		height: 200px;
 		font-size: 16px;

@@ -95,7 +95,16 @@ class OeuvreManager {
         return $data['idOeuvre'];
     }
 
+    //retourne une liste de resultat en fonction d'une recherche demandée
+    public function getSearch($saisie) {
+        $list = [];
+        $q = $this->_db->query("SELECT * FROM Oeuvre WHERE titre LIKE '%".$saisie."%' OR longueur LIKE '%".$saisie."%' OR hauteur LIKE '%".$saisie."%' OR etat LIKE '%".$saisie."%'");
+        while ($data = $q->fetch()) {
+            $list[] = $data;
+        }
 
+        return $list;
+    }
 
 
 }
