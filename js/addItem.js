@@ -1,20 +1,17 @@
 jQuery(document).ready(function($) {
 
-
 	$(document).on('click', '.add', function(event) {
 		//event.preventDefault();
 		$('.context-add').toggleClass('context-add-visible');
 	});
-	// $('.add').click(function(event) {
-	// 	event.stopPropagation();
-		
-		
-	// });
 
-	// $('body').click(function(event) {
-	// 	//event.stopPropagation();
-	// 	$('.context-add').removeClass('context-add-visible');
-	// });
+	$('.container').click(function(event) {
+		if (!$(event.target).hasClass('.add')) {
+			$('.context-add').removeClass('context-add-visible');
+		}
+	});
+	
+	
 //affichage duformulaire d'expo depuis bouton + (traitement dans expo.js)
 	$('.context-addExpo').click(function(event) {
 		$('.context-add').css('display', 'none');
@@ -37,8 +34,7 @@ jQuery(document).ready(function($) {
 		})
 		.done(function(response) {
 			console.log("success");
-			// console.log(response);
-			// console.log(idUser);
+			
 			$('.overlay').show();
 			$('.addArt').load('../js/artisteCard.js');
 			$('.addArt').load('../includes/popArtiste.php?idArtiste='+response+'&idUser='+idUser);

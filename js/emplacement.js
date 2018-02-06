@@ -1,7 +1,8 @@
 jQuery(document).ready(function($) {
 
 //GESTION AFFICHAGE LOGO DEPLACEMENT
-    $('.oeuvre-place').click(function(event) {
+    $(document).on('click', '.emplacement', function(event) {
+   
         //par defaut on cache les logo actifs
         $('.emplacement-handle, .deletePlace').css('visibility', 'hidden');
         //on affiche le logo de deplacement si on a cliqué sur une div "emplacement"
@@ -28,6 +29,12 @@ jQuery(document).ready(function($) {
             });;
         }  
     })
+
+    $('.container').click(function(event) {
+        if (!$(event.target).hasClass('.emplacement')) {
+            $('.emplacement-handle, .deletePlace').css('visibility', 'hidden');
+        }
+    });
 
 //GESTION NOUVELLES COORDONNEES DES EMPLACEMENTS
     $('.gestionPlan .emplacement').draggable({
