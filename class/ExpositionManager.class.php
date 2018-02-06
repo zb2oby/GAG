@@ -70,6 +70,15 @@ class ExpositionManager {
         return $list;
     }
 
+    //retourne un objet exposition par rapport à l'expo en cours.
+    public function currentExpo() {
+        $today = date('Y-m-d');
+        $q = $this->_db->query("SELECT * FROM Exposition WHERE dateDeb <=".$today." AND dateFin >=".$today);
+        $data = $q->fetch();
+        $expo = new Exposition($data);
+        return $expo;
+    }
+
     //renvoie les info expo d'une expo 
     public function infoExpo($idExpo) {
         $q = $this->_db->query("SELECT * FROM Exposition WHERE idExpo ='".$idExpo."'");

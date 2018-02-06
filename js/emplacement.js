@@ -1,7 +1,7 @@
 jQuery(document).ready(function($) {
 
 //GESTION AFFICHAGE LOGO DEPLACEMENT
-    $(document).on('click', function(event) {
+    $('.oeuvre-place').click(function(event) {
         //par defaut on cache les logo actifs
         $('.emplacement-handle, .deletePlace').css('visibility', 'hidden');
         //on affiche le logo de deplacement si on a cliqué sur une div "emplacement"
@@ -26,8 +26,7 @@ jQuery(document).ready(function($) {
             $(event.target).parent().parent().parent().find('.deletePlace').css({
                 visibility: 'visible'
             });;
-        }
-        
+        }  
     })
 
 //GESTION NOUVELLES COORDONNEES DES EMPLACEMENTS
