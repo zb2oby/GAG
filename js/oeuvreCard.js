@@ -66,7 +66,7 @@ jQuery(document).ready(function($) {
 				
 			}
 			$(event.currentTarget).closest('.li-oeuvre-artiste').remove();
-			//$('.context-menu').hide();
+			$('.context-menu').hide();
 			$('.overlay').hide();
 		}
 		//donnee generale

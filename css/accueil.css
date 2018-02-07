@@ -65,7 +65,7 @@
     }
 
 @media all and (max-width: 810px) {
-  .addArt .context-menu {
+  .addArt .context-artiste {
       display: block;
       top: 110px;
     }
