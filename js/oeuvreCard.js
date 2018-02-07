@@ -31,7 +31,7 @@ jQuery(document).ready(function($) {
 		var dateMsg = $(event.currentTarget).find('#dateMsg').val();
 		var idUser = $(event.currentTarget).find('#idUser').val();
 		var nomUser = $(event.currentTarget).find('#nomUser').val();
-		var nbMsg = parseInt($(event.currentTarget).closest('.card-action').find('.nbMsg').text());
+		var nbMsg = parseInt($(event.currentTarget).closest('.card-action').find('#messagerieOeuvre .nbMsg').text());
 		//suppression contenu+
 		var idDonneeDeleted = $(event.currentTarget).find('#idDonnee').val();
 		var delDonnee = $(event.currentTarget).find('#req').val();
@@ -120,7 +120,7 @@ jQuery(document).ready(function($) {
 			var data = 'idOeuvre=' + idOeuvre + '&message=' + message + '&dateMsg=' + dateMsg + '&idUser=' + idUser;
 			// $(event.currentTarget).closest('.context-menu').find('.card-msg').prepend('<div class="message"><div class="message-header"> Message de '+nomUser+' Le '+newDate+'<span class="delMsgOeuvre delMsg"><a>supprimer le message</a></span></div><div class="message-content">'+message+'</div></div>');
 			nbMsg++;
-			$(event.currentTarget).closest('.card-action').find('.nbMsg').text(nbMsg);
+			$(event.currentTarget).closest('.card-action').find('#messagerieOeuvre .nbMsg').text(nbMsg);
 			$(event.currentTarget).find('#newMsg').val('');
 			var msg = 'ok';
 		}
@@ -211,10 +211,10 @@ jQuery(document).ready(function($) {
 //A FACTORISER
 	$(document).on('click', '.delMsgOeuvre', function(event) {
 		var idMessage = $(event.currentTarget).closest('.message').data('idmessage');
-		var nbMsg = parseInt($(event.target).closest('.card-action').find('.nbMsg').text());
-		nbMsg = nbMsg-1;
-		$(event.target).closest('.message').remove();
-		$(event.target).closest('.card-action').find('.nbMsg').html(nbMsg);
+		var nbMsg = parseInt($(event.target).closest('.card-action').find('#messagerieOeuvre .nbMsg').text());
+		nbMsg --;
+		$(event.target).closest('.card-action').find('#messagerieOeuvre .nbMsg').html(nbMsg);
+				$(event.target).closest('.message').remove();
 		var data = 'idMessage=' + idMessage;
 
 

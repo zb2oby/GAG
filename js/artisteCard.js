@@ -75,7 +75,7 @@ jQuery(document).ready(function($) {
 		var dateMsg = $(event.target).find('#dateMsg').val();
 		var idUser = $(event.target).find('#idUser').val();
 		var nomUser = $(event.target).find('#nomUser').val();
-		var nbMsg = parseInt($(event.target).closest('.card-action').find('.nbMsg').text());
+		var nbMsg = parseInt($(event.currentTarget).parent().parent().parent().find('#messagerieArtiste .nbMsg').text());
 		//suppression Collectif
 		var idCollectifDeleted = $(event.target).find('#idColl').val();
 		var delColl = $(event.target).find('#req').val();
@@ -166,7 +166,7 @@ jQuery(document).ready(function($) {
 			var data = 'idArtiste=' + idArtiste + '&message=' + message + '&dateMsg=' + dateMsg + '&idUser=' + idUser;
 			// $(event.target).closest('.context-menu').find('.card-msg').prepend('<div class="message" data-idmessage=""><div class="message-header"> Message de '+nomUser+' Le '+newDate+'<span class="delMsgArt delMsg"><a>supprimer le message</a></span></div><div class="message-content">'+message+'</div></div>');
 			nbMsg++;
-			$(event.target).closest('.card-action').find('.nbMsg').text(nbMsg);
+			$(event.target).closest('.card-action').find('#messagerieArtiste .nbMsg').text(nbMsg);
 			$(event.target).find('#newMsg').val('');
 			var msg = 'ok';
 		}
@@ -235,10 +235,10 @@ jQuery(document).ready(function($) {
 // A FACTORISER
 	$(document).on('click', '.delMsgArt', function(event) {
 		var idMessage = $(event.currentTarget).closest('.message').data('idmessage');
-		var nbMsg = parseInt($(event.target).closest('.card-action').find('.nbMsg').text());
-		nbMsg = nbMsg-1;
+		var nbMsg = parseInt($(event.target).closest('.card-action').find('#messagerieArtiste .nbMsg').html());
+		nbMsg --;
+		$(event.target).closest('.card-action').find('#messagerieArtiste .nbMsg').text(nbMsg);
 		$(event.target).closest('.message').remove();
-		$(event.target).closest('.card-action').find('.nbMsg').text(nbMsg);
 		var data = 'idMessage=' + idMessage;
 
 
