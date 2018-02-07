@@ -13,11 +13,14 @@ jQuery(document).ready(function($) {
 	
 	
 //affichage duformulaire d'expo depuis bouton + (traitement dans expo.js)
-	$('.context-addExpo').click(function(event) {
+	$(document).on('click', '.context-addExpo', function(event) {
 		$('.context-add').css('display', 'none');
 		$('#newExpo').css('display', 'block');
 		$('.overlay').show();
 	});
+	// $('.context-addExpo').click(function(event) {
+		
+	// });
 
 //traitmeent de l'ajout d'artiste depuis le bouton + 
 	$(document).on('click', '.context-addArtiste', function(event) {

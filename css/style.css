@@ -329,6 +329,7 @@ header {
 		background-color: #fff;
 		color: #0A2675;
 		border-left: 1px solid #0A2675;
+		box-shadow: none;
 	}
 	.onglet:first-child {
 		border: none;
@@ -511,6 +512,8 @@ form.expoForm {
     color: #0A2675;
 }
 
+
+
 	#search span.title {
 		display: block;
 		font-size: 24px;
@@ -630,10 +633,32 @@ form.expoForm {
 		}
 
 	.searchResult {
-
+		margin-top: 20px;
+		padding: 20px 80px;
+		text-align: center;
+		max-height: 200px;
+		overflow: auto;
 	}
 
+		.searchResult ul {
+			font-size: 16px;
+			text-align: left;
+		}
 
+		.searchResult a {
+			display: block;
+			color:  #0A2675;
+			padding: 5px;
+		}
+
+		.searchResult a:hover {
+			cursor: pointer;
+			background-color: #ccc;
+		}
+
+		.searchPop {
+			display: block !important;
+		}
 
 /*<<<<<<<<<<<<<<<<  PLAN >>>>>>>>>>>>>>*/
 

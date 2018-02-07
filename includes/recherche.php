@@ -10,7 +10,7 @@
 			
 		</div>
 		<div class="searchForm">
-			<form class="search-form" action="#" method="GET">
+			<form class="search-form" action="#" method="GET" data-user="<?php if (isset($_SESSION['idUser'])){echo $_SESSION['idUser'];} ?>">
 				<div class="selectType">
 				<label for="type">Type de recherche</label>
 				<select name="type" id="type">
@@ -28,7 +28,24 @@
 			</form>
 		</div>
 		<div class="searchResult">
-			
+			<ul class="resultListe"></ul>
 		</div>
+		<style>
+			.searchPop .context-menu {
+				display: block;
+			}
+			.searchPop.popArt .context-oeuvre{
+				display: none;
+			}
+			.searchPop.popOeuvre .context-oeuvre {
+				top: 0;
+			}
+			.searchPop.popColl .context-collectif {
+				top: 0;
+			}
+		</style>
+		<div class="searchPop popArt"></div>
+		<div class="searchPop popOeuvre"></div>
+		<div class="searchPop popColl"></div>
 	</div>
 </div>

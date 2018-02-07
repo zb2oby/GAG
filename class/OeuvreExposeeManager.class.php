@@ -51,6 +51,7 @@ class OeuvreExposeeManager {
 
     //renvoi une liste d'objet exposition en fonction de l'idoeuvre recuperer d'une oeuvreexposee
     public function listExpoOeuvreExposee($idOeuvre) {
+        require_once('../class/Exposition.class.php');
         $list = [];
         $q = $this->_db->query("SELECT E.idExpo, titre, horaireO, horaireF, theme, descriptifFR, frequentation, dateDeb, dateFin, teaser, affiche FROM Exposition E, OeuvreExposee O WHERE E.idExpo = O.idExpo AND idOeuvre ='".$idOeuvre."' ORDER BY dateDeb ASC");
         while ($data = $q->fetch()) {
