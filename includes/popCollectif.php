@@ -146,6 +146,29 @@ $collectif = $managerCollectif->infoCollectif($idCollectif);
 						<li><button class="action-button button-msg" id="messagerieCollectif">Messagerie<div class="nbMsg"><?php echo $nbMsg; ?></div></button></li>
 					</ul>
 				</div>
+
+				<div class="col-item">
+					<h4>ARTISTES PRESENTS</h4>
+					<ul id="list-info" class="list-artiste-collectif">
+
+						<?php 
+							$listArtiste = $managerCollectif->listArtisteCollectif($idCollectif);
+							foreach ($listArtiste as $artiste) {
+								?>
+
+								<li class="li-artiste-collectif"><span class="titreArtisteCollectif">&nbsp;<?php echo $artiste->getNom(); ?></span>
+									<div class="ArtisteColl" data-idArtiste="<?php echo $artiste->getIdArtiste() ?>">
+										<!-- <i class="delOeuvreArtiste ion-ios-trash-outline" title="Supprimer"></i> -->
+									</div>
+									<img class="imgArtiste" style="width:20px; height: 20px;" src="../img/artistes/<?php echo $artiste->getImage() ?>">
+								</li>
+
+							<?php
+							}
+						 ?>
+						
+					</ul>
+				</div>
 			</div>
 			
 		</div>

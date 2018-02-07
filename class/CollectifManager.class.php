@@ -60,6 +60,15 @@ class CollectifManager {
         }
         return $expo;
     }
+    //retourne une collection d'objet artiste présent dans le collectif
+    public function listArtisteCollectif($idCollectif) {
+        $list = [];
+        $q=$this->_db->query("SELECT A.* FROM Collectif Co, Communaute C, Artiste A WHERE A.idArtiste = C.idArtiste AND Co.idCollectif = C.idCollectif AND Co.idCollectif = ".$idCollectif);
+        while ($data = $q->fetch()) {
+            $list[] = new Artiste($data);
+        }
+        return $list;
+    }
 
     //retourne l'id du dernier collectif cree
     public function getLastIdCollectif() {
