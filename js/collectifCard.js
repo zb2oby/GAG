@@ -28,7 +28,7 @@ jQuery(document).ready(function($) {
 		var dateMsg = $(event.target).find('#dateMsg').val();
 		var idUser = $(event.target).find('#idUser').val();
 		var nomUser = $(event.target).find('#nomUser').val();
-		var nbMsg = parseInt($(event.target).closest('.card-action').find('#messagerieCollectif .nbMsg').text());
+		var nbMsg = parseInt($(event.target).closest('.card-action').find('.nbMsg').text());
 
 		var delColl = $(event.target).find('#delColl').val();
 		console.log(delColl);
@@ -86,9 +86,9 @@ jQuery(document).ready(function($) {
 //A FACTORISER
 	$(document).on('click', '.delMsgColl', function(event) {
 		var idMessage = $(event.currentTarget).closest('.message').data('idmessage');
-		var nbMsg = parseInt($(event.target).closest('.card-action').find('#messagerieCollectif .nbMsg').text());
-		nbMsg = --;
-		$(event.target).closest('.card-action').find('#messagerieCollectif .nbMsg').text(nbMsg);
+		var nbMsg = parseInt($(event.target).closest('.card-action').find('.nbMsg').text());
+		nbMsg = nbMsg - 1;
+		$(event.target).closest('.card-action').find('.nbMsg').text(nbMsg);
 		$(event.target).closest('.message').remove();
 		var data = 'idMessage=' + idMessage;
 
