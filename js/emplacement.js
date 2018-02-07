@@ -37,93 +37,56 @@ jQuery(document).ready(function($) {
     });
 
 //GESTION NOUVELLES COORDONNEES DES EMPLACEMENTS
-    $('.gestionPlan .emplacement').draggable({
-        handle: '.emplacement-handle',
-		containment: '.gestionPlan .plan',
-		stop: function(event,ui) {
-            //recuperation de la taille a l'instant T de la div "plan"
-            var widthPlan = parseFloat($('.gestionPlan .plan').css('width'));
-            var heightPlan = parseFloat($('.gestionPlan .plan').css('height'));
-            //recuperation des coordonnées à l'instant T de l'emplacement
-            var posTop = parseFloat($(this).css('top'));
-            var posLeft = parseFloat($(this).css('left'));
-            //transformation des coordonnées en pourcentage de la div plan
-            var coordTop = (posTop/heightPlan)*100;
-            var coordLeft = (posLeft/widthPlan)*100;
-            //preparation des variables a envoyer
-            var idEmplacement = $(this).data('id');
-            var emplacement = 'coordTop=' + coordTop + '&coordLeft=' + coordLeft + '&idEmplacement=' + idEmplacement;
-            //traitement ajax
-            $.ajax({
-                url: '../modules/traitementEmplacement.php',
-                type: 'GET',
-                dataType: 'html',
-                data: emplacement,
-            })
-            .done(function() {
-                // console.log("success");
-            })
-            .fail(function() {
-                // console.log("error");
-            })
-            .always(function() {
-                // console.log("complete");
-            });
-        }
-	})
+    function  doDrag() {
+        $('.gestionPlan .emplacement').draggable({
+            handle: '.emplacement-handle',
+    		containment: '.gestionPlan .plan',
+    		stop: function(event,ui) {
+                //recuperation de la taille a l'instant T de la div "plan"
+                var widthPlan = parseFloat($('.gestionPlan .plan').css('width'));
+                var heightPlan = parseFloat($('.gestionPlan .plan').css('height'));
+                //recuperation des coordonnées à l'instant T de l'emplacement
+                var posTop = parseFloat($(this).css('top'));
+                var posLeft = parseFloat($(this).css('left'));
+                //transformation des coordonnées en pourcentage de la div plan
+                var coordTop = (posTop/heightPlan)*100;
+                var coordLeft = (posLeft/widthPlan)*100;
+                //preparation des variables a envoyer
+                var idEmplacement = $(this).data('id');
+                //on prepare l'idExpo pour la verification de l'existence d'un emplacement par defaut
+                var idExpo = $(event.target).closest('.plan').data('idexpo');
+                console.log(idExpo);
+                var emplacement = 'idExpo='+idExpo+ '&coordTop=' + coordTop + '&coordLeft=' + coordLeft + '&idEmplacement=' + idEmplacement;
+                //traitement ajax
+                $.ajax({
+                    url: '../modules/traitementEmplacement.php',
+                    type: 'GET',
+                    dataType: 'html',
+                    data: emplacement,
+                })
+                .done(function(response) {
+                    console.log(response);
+                    if (response) {
+                        $(event.target).closest('.plan').prepend('<div id="default-place" class="emplacement" data-id="'+response+'" style="top:50%; left:50%;"><div class="emplacement-handle ion-arrow-move" title="Déplacer"></div><div class="deletePlace ion-android-close" title="Supprimer"></div><div title="Cliquez pour plus d\'options" class="oeuvre-place" data-idemplacement="'+response+'"></div></div>');
+                    }
+                    // console.log("success");
+                })
+                .fail(function() {
+                    // console.log("error");
+                })
+                .always(function() {
+                    // console.log("complete");
+                });
+            }
+    	})
 
-//GESTION DE LA SUPPRESSION DELEMENT
+    }
 
-    // $('.deletePlace').click(function(event) {
 
-    //     $('.confirmPopup').css('display', 'block');
-        
-    //     $('.cancelButton').click(function(e) {
-    //         $('.confirmPopup').css('display', 'none');
-    //     });
+    doDrag();
 
-    //     $('.deleteButton').click(function(e) {
-    //         var emplacement = $(event.target).parent();
-    //         var idEmplacement = emplacement.data('id');
-    //         emplacement.remove();
-    //         $('.confirmPopup').css('display', 'none');
-    //         var deletePlace = 'delete=' + idEmplacement;
-    //         //traitement ajax
-    //         $.ajax({
-    //             url: '../modules/traitementEmplacement.php',
-    //             type: 'GET',
-    //             dataType: 'html',
-    //             data: deletePlace,
-    //         })
-    //         .done(function() {
-    //             // console.log("success");
-    //         })
-    //         .fail(function() {
-    //             // console.log("error");
-    //         })
-    //         .always(function() {
-    //             // console.log("complete");
-    //         });
-    //     });
-    // });
-
-    
-    
-
-    // $('.plan').sortable({
-    //     connectWith: '.trash',
-    //     update: function(event, ui) {
-    //         var order = $(this).sortable('serialize');
-    //     },
-    //     helper: 'clone'
-    // });
-    // $('.trash').droppable({
-    //     // accept: '.emplacement',
-    //     activeClass: 'dropArea',
-    //     hoverClass: 'dropAreaHover',
-    //     drop: function(event, ui) {
-    //         ui.draggable.remove();
-    //     }
-    // });
+    $(document).ajaxComplete(function () {
+        doDrag();
+    });
     
 });

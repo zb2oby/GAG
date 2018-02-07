@@ -9,7 +9,10 @@ jQuery(document).ready(function($) {
 
 
 	doSort();
-
+    doDrop();
+    $(document).ajaxComplete(function () {
+        doDrop();
+    });
 	//par defaut si un element a la classe item on lui permet d'être draggable sur un emplacement du plan
 	if ($('.column').find('.img').hasClass('item')) {
 		doClone();
@@ -83,12 +86,7 @@ $(document).on('mouseup', '.recue .item', function(event) {
        border: 'none'
    });
 });
-// $('.recue').find('.item').mousedown(function(event) {
-   
-// });
-// $('.recue').find('.item').mouseup(function(event) {
- 
-// });
+
 
 
 
@@ -114,18 +112,18 @@ $(document).on('mouseup', '.recue .item', function(event) {
             //     })    
             // },
 
-            stop: function (e, ui) {
-                $('#default-place').css({
-                   visibility: 'hidden',
-                   border: 'none'
-               });
-            }
+            // stop: function (e, ui) {
+            //     $('#default-place').css({
+            //        visibility: 'hidden',
+            //        border: 'none'
+            //    });
+            // }
 
         });
 
-                
+ }               
      
-
+function doDrop() {
         $('.gestionPlan .oeuvre-place').droppable({
             accept: "#items .item",
             activeClass: "ui-state-highlight",
@@ -295,10 +293,14 @@ function deleteElt(target) {
         deleteElt(target);
     });
 
-	$('.deletePlace').click(function(event) {
-		var target = $(event.target);
-		deleteElt(target);
-	});
+    $(document).on('click', '.deletePlace', function(event) {
+       var target = $(event.target);
+        deleteElt(target);
+    });
+	// $('.deletePlace').click(function(event) {
+	// 	var target = $(event.target);
+	// 	deleteElt(target);
+	// });
 
 //>>>>>>>>>>>>>>>>>< POPUP <>>>>>>>>>>>>>>>>>>
 
@@ -337,86 +339,16 @@ $('.creerOeuvre').click(function(event) {
 	$('.popAddCard').css('display', 'none');
 	$('.popAddRecue').css('display', 'none');
     $('.popAddArtiste').css('display', 'none');
-
     $('.popAddOeuvrePrevue').css('display', 'block');
     
-	//ici on ajoutera le display d'un nouveau popup avec un formulaire de creation d'oeuvre
 });
 
 $('.creerOeuvreRecue').click(function(event) {
     $('.popAddCard').css('display', 'none');
     $('.popAddRecue').css('display', 'none');
-    $('.popAddArtiste').css('display', 'none');
-    
+    $('.popAddArtiste').css('display', 'none');   
     $('.popAddOeuvreRecue').css('display', 'block');
 });
-
-//Traitement ajout d'oeuvre depuis le popup d'ajout des listes prevue et recue.
-// $(document).on('submit', '.form-liste', function(event) {
-//     console.log('intercept');
-//     var idExpo = $(event.target).find('#idExpo').val();
-//     var idArtisteExpo = $(event.target).find('#idArtisteExpo').val();
-//     var req = $(event.target).find('#req').val();
-//     var status = $(event.target).find('#status').val();
-
-//     if (typeof idExpo != 'undefined' && typeof idArtisteExpo != 'undefined' && typeof req != 'undefined'  && status != 'undefined') {
-//         var data = 'idExpo=' + idExpo + '&idArtisteExpo=' + idArtisteExpo + '&req=' + req + '&status=' + status;
-
-//     }
-
-//     $.ajax({
-//         url: '../modules/traitementListes.php',
-//         type: 'GET',
-//         dataType: 'html',
-//         data: data
-//     })
-//     .done(function(response) {
-//         console.log("success");
-//         console.log(response.li);
-        //response est ici un array cpntenant les affchage de liste d'oeuvre artiste (0) et du portlet demandé (1)(prevue ou recu)
-        // var liOeuvre = response[0];
-        // console.log(liOeuvre);
-        // var portletOeuvre = response[1];
-        //on cree l'element oeuvre dans la liste d'oeuvre de l'artiste
-        // var arrayPortletArtiste = $('.portlet-artiste');
-        // for (var i = arrayPortletArtiste.length - 1; i >= 0; i--) {
-        //     if ( $(arrayPortletArtiste[i]).data('id') == idArtisteExpo ) {
-        //         $(arrayPortletArtiste[i]).find('.list-oeuvre-artiste').prepend(liOeuvre);
-        //         // //on recupere l'idOeuvre du dernier element cree
-        //         // var idOeuvre = $(arrayPortletArtiste[i]).find('.oeuvreArtiste').data('idoeuvre');
-        //         // console.log(idOeuvre);
-        //         // //on charge le include popOeuvre seuelement pour le dernier element cree avec l'idoeuvre recuepere pour le fonctionnement du include
-        //         // var arrayOeuvre = $('.oeuvreArtiste');
-        //         // if ($(arrayOeuvre[0]).data('idoeuvre') == idOeuvre ){
-        //         //     $(arrayOeuvre[0]).load('../includes/popOeuvre.php?idOeuvre='+idOeuvre+'&idExpo='+idExpo);
-
-        //         // }
-        //     }
-            
-        //}
-        //en fonction du status on ajoute le portlet voulu
-        // if (status == 'prevue') {
-        //     $('ul.prevue').prepend(portletOeuvre);
-        // }else if (status == 'recue') {
-        //     $('ul.recue').prepend(portletOeuvre);
-        // }
-
-//         $('.popAddOeuvrePrevue').hide();
-//         $('.overlay').hide();
-
-
-//     })
-//     .fail(function() {
-//         console.log("error");
-//     })
-//     .always(function() {
-//         console.log("complete");
-//     });
-    
-//     return false;
-// });
-
-
 
 
 

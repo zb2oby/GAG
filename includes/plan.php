@@ -1,7 +1,7 @@
 
-<div class="plan">
+<div class="plan" data-idexpo="<?php echo $_SESSION['idExpo'] ?>">
 	<img src="../img/plan.png" alt="plan">
-	<form action="../modules/traitementEmplacement.php" method="GET">
+	<form class="emplacementForm" action="../modules/traitementEmplacement.php" method="GET">
 		<input type="text" hidden name="idExpo" value="<?php echo $_SESSION['idExpo'] ?>">
 		<input type="hidden" name="req" value="addPlace">
 		<div class="addPlace">
