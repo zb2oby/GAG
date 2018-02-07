@@ -65,4 +65,10 @@ class MessageManager {
         
         return $list;
     }
+
+    public function lastIdMsg() {
+        $q = $this->_db->query("SELECT MAX(idMessage) AS idMessage FROM Message_interne");
+        $data = $q->fetch();
+        return $data['idMessage'];
+    }
 }

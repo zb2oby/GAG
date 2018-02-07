@@ -52,6 +52,8 @@ if (isset($_GET['idArtiste'])) {
 		$manager = new MessageManager($bdd);
 		$message = new Message(['dateMessage'=>$dateMsg, 'message'=>$contenu, 'idUtilisateur'=>$idUser, 'idArtiste'=>$idArtiste]);
 		$manager->addMessageArtiste($message);
+		$lastId = $manager->lastIdMsg();
+		echo $lastId;
 	}
 	//SUPRESSION ARTISTE
 	if (isset($_GET['req'])) {

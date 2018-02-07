@@ -14,7 +14,7 @@ jQuery(document).ready(function($) {
 	
 //affichage duformulaire d'expo depuis bouton + (traitement dans expo.js)
 	$(document).on('click', '.context-addExpo', function(event) {
-		$('.context-add').css('display', 'none');
+		$('.context-add').removeClass('context-add-visible');
 		$('#newExpo').css('display', 'block');
 		$('.overlay').show();
 	});

@@ -66,7 +66,7 @@ jQuery(document).ready(function($) {
 				
 			}
 			$(event.currentTarget).closest('.li-oeuvre-artiste').remove();
-			$('.context-menu').hide();
+			//$('.context-menu').hide();
 			$('.overlay').hide();
 		}
 		//donnee generale
@@ -118,10 +118,11 @@ jQuery(document).ready(function($) {
 			var dateFormat = dateMsg.split('-');
 			var newDate = dateFormat[2]+'/'+dateFormat[1]+'/'+dateFormat[0];
 			var data = 'idOeuvre=' + idOeuvre + '&message=' + message + '&dateMsg=' + dateMsg + '&idUser=' + idUser;
-			$(event.currentTarget).closest('.context-menu').find('.card-msg').prepend('<div class="message"><div class="message-header"> Message de '+nomUser+' Le '+newDate+'<span class="delMsgOeuvre delMsg"><a>supprimer le message</a></span></div><div class="message-content">'+message+'</div></div>');
+			// $(event.currentTarget).closest('.context-menu').find('.card-msg').prepend('<div class="message"><div class="message-header"> Message de '+nomUser+' Le '+newDate+'<span class="delMsgOeuvre delMsg"><a>supprimer le message</a></span></div><div class="message-content">'+message+'</div></div>');
 			nbMsg++;
 			$(event.currentTarget).closest('.card-action').find('.nbMsg').text(nbMsg);
 			$(event.currentTarget).find('#newMsg').val('');
+			var msg = 'ok';
 		}
 		//update nom artiste et collectif
 		if (typeof idArtiste != 'undefined' || typeof idCollectif != 'undefined') {
@@ -159,9 +160,12 @@ jQuery(document).ready(function($) {
 			})
 			.done(function(response) {
 				console.log("success");
+				if (msg == 'ok') {
+					$(event.currentTarget).closest('.context-menu').find('.card-msg').prepend('<div class="message" data-idmessage="'+response+'"><div class="message-header"> Message de '+nomUser+' Le '+newDate+'<span class="delMsgOeuvre delMsg"><a>supprimer le message</a></span></div><div class="message-content">'+message+'</div></div>');
+				}
 				if (html == 'ok') {
 					var idDonneeDeleted = parseFloat(response);
-					$(event.currentTarget).closest('.context-menu').find('.card-data ul').prepend('<li class="metaData">Type de donnée : '+libelleTypeDonnee+' <br>Libellé : '+libelleDonnee+'<br><form data-idOeuvre="'+idOeuvre+'" action="../modules/traitementOeuvre.php" method="GET"><input type="hidden" id="req" name="req" value="deleteMeta"><input type="hidden" id="idDonnee" name="idDonnee" value="'+idDonneeDeleted+'"><button type="submit" class="delData"><i class="ion-ios-trash-outline" title="Supprimer"></i></button></form></li>');
+					$(event.currentTarget).closest('.context-menu').find('.card-data ul').prepend('<li class="metaData">Type de donnée : '+libelleTypeDonnee+' <br>Libellé : '+libelleDonnee+'<br><form class="form-oeuvre" data-idOeuvre="'+idOeuvre+'" action="../modules/traitementOeuvre.php" method="GET"><input type="hidden" id="req" name="req" value="deleteMeta"><input type="hidden" id="idDonnee" name="idDonnee" value="'+idDonneeDeleted+'"><button type="submit" class="delData"><i class="ion-ios-trash-outline" title="Supprimer"></i></button></form></li>');
 					$(event.currentTarget).each(function(){
 					    this.reset();
 					});
@@ -210,7 +214,7 @@ jQuery(document).ready(function($) {
 		var nbMsg = parseInt($(event.target).closest('.card-action').find('.nbMsg').text());
 		nbMsg = nbMsg-1;
 		$(event.target).closest('.message').remove();
-		$(event.target).closest('.card-action').find('.nbMsg').text(nbMsg);
+		$(event.target).closest('.card-action').find('.nbMsg').html(nbMsg);
 		var data = 'idMessage=' + idMessage;
 
 
@@ -229,7 +233,7 @@ jQuery(document).ready(function($) {
 		.always(function() {
 			console.log("complete");
 		});
-		return false;
+		//return false;
 
 	});
 	

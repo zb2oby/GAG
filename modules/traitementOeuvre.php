@@ -69,6 +69,8 @@ if (isset($_GET['idOeuvre'])) {
 		$manager = new MessageManager($bdd);
 		$message = new Message(['dateMessage'=>$dateMsg, 'message'=>$contenu, 'idUtilisateur'=>$idUser, 'idOeuvre'=>$idOeuvre]);
 		$manager->addMessageOeuvre($message);
+		$lastId = $manager->lastIdMsg();
+		echo $lastId;
 	}
 	//SUPPRESSION OEUVRE
 	if (isset($_GET['req']) && $_GET['req'] == 'delete') {
