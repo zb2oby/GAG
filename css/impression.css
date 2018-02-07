@@ -58,6 +58,10 @@
 			display: none;
 		}
 
+		.plan .numEmplacement {
+			visibility: visible;
+		}
+
 		span.titresImpression {
 			display: block;
 			text-align: center;

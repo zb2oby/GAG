@@ -33,7 +33,7 @@
 				$oeuvre = $manager->oeuvre($idOeuvreExposee);
 				$content = '<div data-id="'.$oeuvre->getIdOeuvre().'" class="img item" data-src="'.$oeuvre->getImage().'">'	
 								.'<img src="../img/oeuvres/'.$oeuvre->getImage().'" alt="'.$oeuvre->getImage().'">'
-							.'</div>';
+							.'<div class="numEmplacement">'.$data->getIdEmplacement().'</div></div>';
 			}
 			
 			// $image = $oeuvre->getImage();

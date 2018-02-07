@@ -674,6 +674,10 @@ form.expoForm {
 		height: 100%; 			
 	}
 
+	.numEmplacement {
+		visibility: hidden;
+	}
+
 
 	.emplacement-handle {
 		/*content: '';*/
