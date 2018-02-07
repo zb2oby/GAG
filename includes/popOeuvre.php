@@ -19,6 +19,9 @@ require_once('../class/DonneeEnrichie.class.php');
 
 include('bdd/connectbdd.php');
 
+if (isset($_GET['idSession'])) {
+	$_SESSION['idUser'] = htmlentities($_GET['idSession']);
+}
 
 
 //variable idOeuvre recuperée en ajax via l'ajout d'une nouvelle oeuvre sur la carte artiste

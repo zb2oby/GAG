@@ -13,6 +13,10 @@ require_once('../class/Collectif.class.php');
 require_once('../class/UtilisateurManager.class.php');
 require_once('../class/Utilisateur.class.php');
 
+if (isset($_GET['idSession'])) {
+	$_SESSION['idUser'] = htmlentities($_GET['idSession']);
+}
+
 if (isset($_GET['idCollectif'])) {
 	$idCollectif = $_GET['idCollectif'];
 }

@@ -17,6 +17,10 @@ require_once('../class/DonneeEnrichie.class.php');
 require_once('../class/UtilisateurManager.class.php');
 require_once('../class/Utilisateur.class.php');
 
+if (isset($_GET['idSession'])) {
+	$_SESSION['idUser'] = htmlentities($_GET['idSession']);
+}
+
 if (isset($_GET['idArtiste'])) {
 	$idArtiste = $_GET['idArtiste'];
 }
