@@ -2,6 +2,7 @@
 
 <div class="containerAdmin">
 	<div class="afficheUser">
+		<h3>Liste des utilisateurs</h3>
 		<ul>
 			<?php 
 			$managerUser = new UtilisateurManager($bdd);

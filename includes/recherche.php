@@ -18,7 +18,7 @@
 					<option value="artiste">Artiste (nom/prenom/tel/email)</option>
 					<option value="oeuvre">Oeuvre (titre/long/haut/etat)</option>
 					<option value="collectif">Collectif (libelle/email/tel)</option>
-					<option value="exposition">Exposition (titre/theme/date)</option>
+					<option value="exposition">Exposition (titre/theme/Année/Mois)</option>
 				</select>
 				</div>
 				<div class="inputSaisie">
