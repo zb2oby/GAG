@@ -554,26 +554,6 @@ form.expoForm {
 			margin-right: 10px;
 			
 		} 
-		
-		.adminForm button {
-			margin-top: 10px;
-		}
-
-		#delUser {
-			background-color: transparent;
-			color: #0A2675;
-			
-		}
-		
-		#delUser i {
-			font-size: 2em;
-		}
-
-		#delUser span {
-			display: inline-block;
-			line-height: 2em;
-			margin-left: 10px;
-		}
 
 		.expoForm button {
 			display: inline-block;
@@ -967,12 +947,11 @@ form.expoForm {
 	position: absolute;
 	z-index: 4;
 	top: 40%;
-	left: 50%;
-	margin-left: -200px;
+	left: 40%;
 	padding: 20px;
-	background-color: #fff;
+	background-color: #333;
 	opacity: 0.8;
-	color: #0A2675;
+	color: #fff;
 	text-align: center;
 	font-size: 16px;
 }
@@ -1062,10 +1041,6 @@ form.expoForm {
 		 	display: inline;
 
 		}
-
-		.coll-artiste {
-			text-align: left;
-		}
 	.card-content {
 		display: flex;
 		align-items: flex-start;
@@ -1148,7 +1123,7 @@ form.expoForm {
 			flex-grow: 1;
 			}
 				.card-form .form-oeuvre div, .card-form .form-artiste div, .card-form .form-collectif div {
-					margin-top: 10px;
+					margin-top: 20px;
 				}
 
 	.pop-messagerieOeuvre,.pop-messagerieArtiste, .pop-messagerieCollectif {
@@ -1163,7 +1138,7 @@ form.expoForm {
 		}
 
 			.message {
-				width: 95%;
+				width: 90%;
 				margin: 20px 5px;
 				border-radius: 7px;	
 				background-color: #fff;
@@ -1177,7 +1152,6 @@ form.expoForm {
 					padding: 5px 0;
 					font-weight: bold;
 					background-color: #fff;
-					border-bottom: 1px solid #ccc;
 				}
 
 				.delMsg {

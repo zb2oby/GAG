@@ -11,7 +11,7 @@
 		</div>
 		<div class="searchForm">
 			<form class="search-form" action="#" method="GET" data-user="<?php if (isset($_SESSION['idUser'])){echo $_SESSION['idUser'];} ?>">
-				<div class="selectType">
+				<div class="selectInput">
 				<label for="type">Type de recherche</label>
 				<select name="type" id="type">
 					<option value="" selected></option>
@@ -23,11 +23,12 @@
 				</div>
 				<div class="inputSaisie">
 					<label for="req">Votre recherche</label>
-					<input class="saisie" name="req" id="req" type="text"><button type="submit"><i class="submit ion-android-search" title="Valider"></i></button>
+					<input class="saisie" name="req" id="req" type="text"><button type="submit"><i class="ion-android-search" title="Valider"></i></button>
 				</div>
 			</form>
 		</div>
 		<div class="searchResult">
+			<h3>Résultats de recherche</h3>
 			<ul class="resultListe"></ul>
 		</div>
 		<style>

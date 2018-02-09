@@ -273,10 +273,16 @@ function deleteElt(target) {
     $('.cancelButton').click(function(e) {
         $('.confirmPopup').css('display', 'none');
         $('.context-overlay').hide();
+        if (target.parent().hasClass('emplacement')) {
+            $('.overlay').hide();
+            $('.context-overlay').hide();
+        }
     });
+
     $('.deleteButton').click(function(e) {
 		if (target.parent().hasClass('emplacement')) {
 			deletePlace(target);
+            $('.overlay').hide();
 		}else {
 			deleteCard(target, idExpoSession);
 		}
@@ -296,6 +302,7 @@ function deleteElt(target) {
     $(document).on('click', '.deletePlace', function(event) {
        var target = $(event.target);
         deleteElt(target);
+        $('.overlay').show();
     });
 	// $('.deletePlace').click(function(event) {
 	// 	var target = $(event.target);
@@ -378,6 +385,10 @@ $('.creerOeuvreRecue').click(function(event) {
         //$('.overlay').show();
     });
    
+    $('.cancelButton-global').click(function(event) {
+        $('.confirmPopup').css('display', 'none');
+        $('.overlay').hide();
+    });
 
 	//EXTINCTION DES POPUP
     $(document).on('click', '.closeButton i', function(event) {
@@ -403,7 +414,9 @@ $('.creerOeuvreRecue').click(function(event) {
         $('.pop-modifTeaser').css('display', 'none');
         $('.pop-modifAffiche').css('display', 'none');
         $('.modalAddOeuvre').css('display', 'none');
+        $('.confirmPopup').css('display', 'none');
         $('.overlay').hide();
+        $('.context-overlay').hide();
 
     	
     });

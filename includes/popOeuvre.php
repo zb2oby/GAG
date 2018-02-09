@@ -204,7 +204,7 @@ $id = $oeuvre->getIdOeuvre();
 							$user = $managerUser->infoUtilisateur($idUser);
 							$delMsg = '';
 							if ($idUser == $_SESSION['idUser']) {
-								$delMsg = '<span class="delMsgOeuvre delMsg"><a>supprimer le message</a></span>';
+								$delMsg = '<span class="delMsgOeuvre delMsg"><a>Supprimer le message</a></span>';
 							}
 							echo '<div class="message" data-idMessage="'.$idMessage.'"><div class="message-header"> Message de '.$user->getNom().' Le '.date('d/m/Y', strtotime($message->getDateMessage())).$delMsg.'</div>';
 							echo '<div class="message-content">'.$message->getMessage().'</div></div>';
@@ -273,7 +273,7 @@ $id = $oeuvre->getIdOeuvre();
 		<div class="closeButton-context"><i class="ion-android-close"></i></div>
 		<form class="form-oeuvre" action="../modules/traitementOeuvre.php" data-idOeuvre="<?php echo $oeuvre->getIdOeuvre() ?>" method="POST" enctype="multipart/form-data">
 			<div>
-				<span for="imageOeuvre">Image (JPG GIF JPEG PNG| max. 300Ko) </span><br>
+				<label for="imageOeuvre">Image (JPG GIF JPEG PNG| max. 300Ko) </label><br>
 				<input type="file" id="imageOeuvre" name="imageOeuvre[]" accept=".jpg, .jpeg, .gif, .png"><br>
 				<input type="hidden" id="maxSize" name="MAX_FILE_SIZE" value="500000">
 				<input type="hidden" id="existImage" name="existImage" value="<?php echo $oeuvre->getImage(); ?>">
@@ -287,7 +287,8 @@ $id = $oeuvre->getIdOeuvre();
 	<div class="card-form pop-modifTypeOeuvre popGestionCard">
 		<div class="closeButton-context"><i class="ion-android-close"></i></div>
 		<form class="form-oeuvre" action="../modules/traitementOeuvre.php" data-idOeuvre="<?php echo $oeuvre->getIdOeuvre() ?>" method="GET">
-			<div>
+			<div class="selectInput">
+
 				<label for="idType">Type d'oeuvre</label>
 				<select name="idType" id="idType">
 					<?php 
@@ -312,7 +313,7 @@ $id = $oeuvre->getIdOeuvre();
 	<div class="card-form pop-modifArtColl popGestionCard">
 		<div class="closeButton-context"><i class="ion-android-close"></i></div>
 		<form class="form-oeuvre" action="../modules/traitementOeuvre.php" data-idOeuvre="<?php echo $oeuvre->getIdOeuvre() ?>" method="GET">
-			<div>
+			<div class="selectInput">
 				<label for="idArtiste">Artiste</label>
 				<select name="idArtiste" id="idArtiste">
 					<?php 
@@ -329,7 +330,7 @@ $id = $oeuvre->getIdOeuvre();
 					 ?>
 				</select>
 			</div>
-			<div>
+			<div class="selectInput">
 				<label for="idCollectif">Collectif</label>
 				<select name="idCollectif" id="idCollectif">
 					<option value="" hidden selected></option>
@@ -393,8 +394,8 @@ $id = $oeuvre->getIdOeuvre();
 			
 		<div class="newData">
 		 	<form class="form-oeuvre" action="../modules/traitementOeuvre.php" data-idOeuvre="<?php echo $oeuvre->getIdOeuvre() ?>" method="POST" enctype="multipart/form-data">
-			 	<span>Ajouter un contenu supplémentaire</span>
-			 	<div>
+			 	<span class="title">Ajouter un contenu supplémentaire</span>
+			 	<div class="selectInput">
 					 <label for="typeDonnee">Type de donnée</label>
 					 <select name="typeDonnee" id="typeDonnee">
 					 	<option hidden selected value=""></option>
@@ -412,7 +413,7 @@ $id = $oeuvre->getIdOeuvre();
 					 <input type="text" name="libelleDonnee" id="libelleDonnee">
 				 </div>
 				 <div>
-					 <span for="fichierDonnee">Fichier (JPG GIF JPEG PNG MP3 MP4 WAV MPEG| max. 500Ko) </span><br>
+					 <label for="fichierDonnee">Fichier (JPG GIF JPEG PNG MP3 MP4 WAV MPEG| max. 500Ko) </label><br>
 					<input type="file" id="fichierDonnee" name="fichierDonnee[]" accept=".jpg, .jpeg, .gif, .png, .mp3, .mp4, .wav, .mpeg"><br>
 					<input type="hidden" id="maxSize" name="MAX_FILE_SIZE" value="500000">
 					<input type="hidden" id="idOeuvre" name="idOeuvre" value="<?php echo $oeuvre->getIdOeuvre(); ?>">

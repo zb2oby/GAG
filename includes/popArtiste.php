@@ -57,7 +57,7 @@ $artiste = $managerArtiste->infoArtiste($idArtiste);
 				<h3>ARTISTE</h3>
 				<h4><?php echo '" '.ucfirst($artiste->getNom()).' "' ?></h4>
 			</div> 
-			<div class="cardHeader-bottom">
+			<div class="coll-artiste">
 				
 				<span id="afficheCollectifArtiste">
 					
@@ -277,7 +277,7 @@ $artiste = $managerArtiste->infoArtiste($idArtiste);
 		</div>
 		<div class="newCommunaute">
 			<form class="form-artiste" action="../modules/traitementArtiste.php" data-idArtiste="<?php echo $artiste->getIdArtiste() ?>" method="GET">
-				<div>
+				<div class="selectInput">
 					<label for="idCollectif">Collectif</label>
 					<select name="idCollectif" id="idCollectif">
 						<?php 

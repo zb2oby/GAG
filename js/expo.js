@@ -1,5 +1,20 @@
 jQuery(document).ready(function($) {
 
+$(document).on('click', '.closeButton-expo', function(event) {
+	$('.overlay').hide();
+});
+
+$('.delExpo').click(function(event) {
+	$('.confirmPopup').show();
+	$('.overlay').show();
+	
+	return false;
+	
+});
+$('.deleteExpo').click(function(event) {
+	var idExpo = $('.delExpo').data('idexpo');
+	window.location.href = "../modules/traitementExpo.php?req=deleteExpo&idExpo="+idExpo;
+});
 
 //url = window.location.href
 	//split = url.split('/')
@@ -17,6 +32,7 @@ $(document).on('click', '.action-button', function(event) {
 	$(event.currentTarget).closest('.onglet-content').find('.pop-'+classe+'.popGestionCard').show();
 	
 });
+
 
 
 //GESTION ENVOI FORMULAIRE INFO GENERALES DEPUIS LE FORMULAIRE NEW EXPO CONTENU DANS CALENDRIER ET DANS LA SIDEBAR

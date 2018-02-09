@@ -24,10 +24,9 @@ jQuery(document).ready(function($) {
 	// 	$('.adminForm').find('#idUser').val(dataUser[4]);
 	// });
 
-	$('#delUser').click(function(event) {
-		var del = $('.adminForm').find('#req').val('delUser');
-	});
-	
+
+
+
 
 	$(document).on('submit', '.adminForm', function(event) {
 		//event.preventDefault();
@@ -52,7 +51,7 @@ jQuery(document).ready(function($) {
 			//if (response != 'delete') {
 				if (response != 'del') {
 					var idUser = response;
-					$('.afficheUser ul').prepend('<li><a class="userAdmin" data-nom="'+nom+'" data-prenom="'+prenom+'" data-identifiant="'+identifiant+'" data-id="'+idUser+'" data-role="'+role+'" href="#">'+nom+' '+prenom+' '+libelleRole+'</a></li>');
+					$('.afficheUser ul').prepend('<li><a class="userAdmin" data-nom="'+nom+'" data-prenom="'+prenom+'" data-identifiant="'+identifiant+'" data-id="'+idUser+'" data-role="'+role+'" href="#">NOM : '+nom+' PRENOM : '+prenom+' ROLE : '+libelleRole+'</a></li>');
 					
 				
 					var list = $('.afficheUser ul').find('li a');
@@ -89,4 +88,28 @@ jQuery(document).ready(function($) {
 		
 		return false;
 	});
+
+
+
+	$('#delUser').click(function(event) {
+		
+		$('.confirmPopup').css('display', 'block');
+		$('.overlay').show();
+		
+		return false;
+	});
+	$('.deleteUser').click(function(event) {
+		var del = $('.adminForm').find('#req').val('delUser');
+		$('.adminForm').trigger('submit');
+		$('.confirmPopup').css('display', 'none');
+		$('.overlay').hide();
+	});
+	$('#emptyUser').click(function(event) {
+		$('.adminForm')[0].reset();
+		return false;
+	});
+	
+
+
+	
 });
