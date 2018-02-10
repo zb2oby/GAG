@@ -73,22 +73,9 @@ jQuery(document).ready(function($) {
 		if (typeof titre != 'undefined' || typeof longueur != 'undefined' || typeof hauteur != 'undefined' || typeof etat != 'undefined' || typeof descriptif != 'undefined') {
 			var method = 'GET';
 			var data = 'idOeuvre=' + idOeuvre + '&titre=' + titre + '&longueur=' + longueur + '&hauteur=' + hauteur + '&etat=' + etat + '&descriptif=' + descriptif;
-			var arrayPortlet = $('.portlet-oeuvre');
-			for (var i = arrayPortlet.length - 1; i >= 0; i--) {
-				if ($(arrayPortlet[i]).find('.img').data('id') == idOeuvre) {
-					$(arrayPortlet[i]).find('.titre').html(titre);
+			var gnl = 'ok';
 
-				}
-				
-			}
-			var arrayOeuvre = $('.oeuvreArtiste');
-			for (var i = arrayOeuvre.length - 1; i >= 0; i--) {
-				if ($(arrayOeuvre[i]).data('idoeuvre') == idOeuvre) {
-					$(arrayOeuvre[i]).parent().find('.titreOeuvreArtiste').html(titre);
-				}
-			}
 			
-			$(this).closest('.context-oeuvre').find('.card-header h4').html('"'+titre+'"');
 		}
 		//suppression contenu+
 		if (typeof idDonneeDeleted != 'undefined' || typeof delDonnee != 'undefined') {
@@ -160,6 +147,49 @@ jQuery(document).ready(function($) {
 			})
 			.done(function(response) {
 				console.log("success");
+				//si l'envoie ajax concerne les info generales
+				if (gnl == 'ok') {
+					//si il y a deja des erreur on les supprime avant de les reafficher
+					$('.card-error').hide();
+					//lorsque la reponse n'est pas vide cela signifie qu'il y a des erreur
+					if (response != '') {
+						//on defini la varaible d'erreur a true
+						var error = true;
+						//traitement du retour json
+						var msg = JSON.parse(response);
+						//pour chaque entree du tableau renvoyé en json on l'affiche dans une div error
+						$.each(msg, function(index, el) {
+							if (el != null) {
+								var input = '#'+index;
+								$(event.target).find(input).closest('div').append('<div class="card-error" style="position:absolute;">'+msg[index]+'</div>');
+								
+							}
+							
+						});
+					}
+					//lorsque la reponse est vide la varaible error n'est pas a true
+					if (error != true) {
+						//on peut donc afficher les modification dans le DOM car la base a été mise à jour.
+						var arrayPortlet = $('.portlet-oeuvre');
+						for (var i = arrayPortlet.length - 1; i >= 0; i--) {
+							if ($(arrayPortlet[i]).find('.img').data('id') == idOeuvre) {
+								$(arrayPortlet[i]).find('.titre').html(titre);
+
+							}
+							
+						}
+						var arrayOeuvre = $('.oeuvreArtiste');
+						for (var i = arrayOeuvre.length - 1; i >= 0; i--) {
+							if ($(arrayOeuvre[i]).data('idoeuvre') == idOeuvre) {
+								$(arrayOeuvre[i]).parent().find('.titreOeuvreArtiste').html(titre);
+							}
+						}
+						
+						$(event.target).closest('.context-oeuvre').find('.card-header h4').html('"'+titre+'"');
+					}
+					
+					
+				}
 				if (msg == 'ok') {
 					$(event.currentTarget).closest('.context-menu').find('.card-msg').prepend('<div class="message" data-idmessage="'+response+'"><div class="message-header"> Message de '+nomUser+' Le '+newDate+'<span class="delMsgOeuvre delMsg"><a>supprimer le message</a></span></div><div class="message-content">'+message+'</div></div>');
 				}

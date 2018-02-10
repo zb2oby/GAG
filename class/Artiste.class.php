@@ -29,22 +29,85 @@ class Artiste {
 		$this->_idArtiste = $idArtiste;
 	}
 	public function setNom($nom) {
-		$this->_nom = $nom;
+		$message = [];
+		if (strlen($nom) > 50 ) {
+			$message[] = 'Le nom est trop long : Max 50car';
+			return $message;
+		}elseif (strlen($nom) < 2) {
+			$message[] = 'Le nom est trop court : Min 2car';
+			return $message;
+		}
+		else{
+			$this->_nom = $nom;
+		}
+		
 	}
 	public function setPrenom($prenom) {
-		$this->_prenom = $prenom;
+		$message = [];
+		if (strlen($prenom) > 50 ) {
+			$message[] = 'Le prénom est trop long : Max 50car';
+			return $message;
+		}elseif (strlen($prenom)<2) {
+			$message[] = 'Le nom est trop court : Min 2car';
+			return $message;
+		}
+		else{
+			$this->_prenom = $prenom;
+			
+		}
+		
 	}
 	public function setTel($tel) {
-		$this->_tel = $tel;
+		$message = [];
+		if (!preg_match('#^[0-9]+$#', $tel)) {
+			$message[] = 'Le telephone ne doit comporter que des chiffres';
+			return $message;
+		}
+		elseif (strlen($tel) > 12 || strlen($tel) < 10 ) {
+			$message[] = 'Pas le bon nombre de chiffre : entre 10 et 12';
+			return $message;
+		}
+		else{
+			$this->_tel = $tel;
+		}
+		
 	}
 	public function setImage($image) {
+		$message = [];
+		if (strlen($image) > 100 ) {
+			$message[] = 'Url trop longue';
+			return $message;
+		}
 		$this->_image = $image;
 	}
 	public function setDescriptifFR($descriptifFR) {
-		$this->_descriptifFR = $descriptifFR;
+		$message = [];
+		if (strlen($descriptifFR) > 2000) {
+			$message[] = 'Votre texte est trop long : 2000 caracteres Max';
+			return $message;
+		}elseif (strlen($descriptifFR) < 5 ) {
+			$message[] = 'Votre texte est trop court : 5 caracteres Min';
+			return $message;
+		}
+		else{
+			$this->_descriptifFR = $descriptifFR;
+		}
 	}
 	public function setEmail($email) {
-		$this->_email = $email;
+		$message = [];
+		$atom = '[-a-z0-9!#$%&\'*+\\/=?^_`{|}~]';
+		$domain = '([a-z0-9]([-a-z0-9]*[a-z0-9]+)?)';
+		$regexmail = '/^' . $atom . '+' . '(\.' . $atom . '+)*' . '@' . '(' . $domain . '{1,63}\.)+' .$domain . '{2,63}$/i';
+		if (strlen($email) != 0 && !preg_match($regexmail, $email)) {
+			$message[] = 'Pas le bon format d\'email';
+			return $message;
+		}elseif (strlen($email) > 100 ) {
+			$message[] = 'Email trop long !';
+			return $message;
+		}
+		else{
+			$this->_email = $email;
+		}
 	}
 
 	//GETTERS
@@ -71,4 +134,6 @@ class Artiste {
 		return $this->_email;
 	}
 
+
+	
 }

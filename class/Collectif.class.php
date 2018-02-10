@@ -27,16 +27,62 @@ class Collectif {
 		$this->_idCollectif = $idCollectif;
 	}
 	public function setLibelleCollectif ($libelleCollectif) {
-		$this->_libelleCollectif = $libelleCollectif;
+		$message = [];
+		if (strlen($libelleCollectif) > 50 ) {
+			$message[] = 'Le Libellé est trop long : max 50';
+			return $message;
+		}elseif (strlen($libelleCollectif) < 2 ) {
+			$message[] = 'Le Libellé est trop court : min 2';
+			return $message;
+		}
+		else{
+			$this->_libelleCollectif = $libelleCollectif;
+			
+		}
+		
 	}
 	public function setDescriptifFR ($descriptifFR) {
-		$this->_descriptifFR = $descriptifFR;
+		$message = [];
+		if (strlen($descriptifFR) > 2000) {
+			$message[] = 'Votre texte est trop long : 2000 caracteres Max';
+			return $message;
+		}elseif (strlen($descriptifFR) < 5 ) {
+			$message[] = 'Votre texte est trop court : 5 caracteres Min';
+			return $message;
+		}
+		else{
+			$this->_descriptifFR = $descriptifFR;
+		}
 	}
 	public function setEmail ($email) {
-		$this->_email = $email;
+		$message = [];
+		$atom = '[-a-z0-9!#$%&\'*+\\/=?^_`{|}~]';
+		$domain = '([a-z0-9]([-a-z0-9]*[a-z0-9]+)?)';
+		$regexmail = '/^' . $atom . '+' . '(\.' . $atom . '+)*' . '@' . '(' . $domain . '{1,63}\.)+' .$domain . '{2,63}$/i';
+		if (strlen($email) != 0 && !preg_match($regexmail, $email)) {
+			$message[] = 'Pas le bon format d\'email';
+			return $message;
+		}elseif (strlen($email) > 100 ) {
+			$message[] = 'Email trop long !';
+			return $message;
+		}
+		else{
+			$this->_email = $email;
+		}
 	}
 	public function setTel ($tel) {
-		$this->_tel = $tel;
+		$message = [];
+		if (!preg_match('#^[0-9]+$#', $tel)) {
+			$message[] = 'Le telephone ne doit comporter que des chiffres';
+			return $message;
+		}
+		elseif (strlen($tel) > 12 || strlen($tel) < 10 ) {
+			$message[] = 'Pas le bon nombre de chiffre : entre 10 et 12';
+			return $message;
+		}
+		else{
+			$this->_tel = $tel;
+		}
 	}
 
 	//GETTERS

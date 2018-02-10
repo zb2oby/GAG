@@ -22,17 +22,32 @@ if (isset($_GET['idArtiste'])) {
 	$artiste = $managerArtiste->infoArtiste($idArtiste);
 
 	if (isset($_GET['nom'],$_GET['prenom'],$_GET['tel'],$_GET['email'],$_GET['descriptif'])) {
-		$prenom = $_GET['prenom'];
-		$tel = $_GET['tel'];
-		$email = $_GET['email'];
-		$nom = $_GET['nom'];
-		$descriptif = $_GET['descriptif'];
+		$prenom = htmlentities($_GET['prenom']);
+		$tel = htmlentities($_GET['tel']);
+		$email = htmlentities($_GET['email']);
+		$nom = htmlentities($_GET['nom']);
+		$descriptif = htmlentities($_GET['descriptif']);
 
-		$artiste->setNom($nom);
-		$artiste->setPrenom($prenom);
-		$artiste->setTel($tel);
-		$artiste->setEmail($email);
-		$artiste->setDescriptifFR($descriptif);
+
+		//pour chaque variable on creer une entrée de tableaux avec la valeur retour(message d'erreur) de la methode set de l'objet
+		$msg = [];
+		$msg['nom'] = $artiste->setNom($nom);
+		$msg['prenom'] = $artiste->setPrenom($prenom);
+		$msg['tel'] = $artiste->setTel($tel);
+		$msg['email'] = $artiste->setEmail($email);
+		$msg['descriptif'] = $artiste->setDescriptifFR($descriptif);
+		//on verifie les valeur nulles et on creer un nouveau tablzau avec seulement les valeurs retour des methode qui ne nsont pas nulles.
+		foreach ($msg as $key => $value) {
+			if ($value != null) {
+				$message[$key] = $value;
+			}
+		}
+		//on reteste la validité de ce nouveau tableau et on l'envoie en json pour traitement ajax
+		if (!empty($message) && $message != null) {
+				echo json_encode($message);
+				//comme le tableau est plein c'est qu'il y a erreur donc on ne continue pas le script de mise à jour
+				exit();
+		}
 	}
 	
 	if (isset($_GET['idCollectif'])) {

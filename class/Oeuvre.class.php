@@ -30,25 +30,82 @@ class Oeuvre {
 	//SETTERS
 
 	public function setTitre($titre) {
-		$this->_titre = $titre;
+		$message = [];
+		if (strlen($titre) > 100) {
+			$message[] = 'Le Titre est trop long (100 caracteres Max';
+			return $message;
+		}elseif (strlen($titre) < 1) {
+			$message[] = 'Le Titre est trop court (1 caracteres Min';
+			return $message;
+		}
+		else{
+			$this->_titre = $titre;
+		}
 	}
 	public function setLongueur($longueur) {
-		$this->_longueur = $longueur;
+		$message = [];
+		if (!is_numeric($longueur)) {
+			$message[] = 'La longueur doit être un nombre à virgule';
+			return $message;
+		}
+		elseif (strlen($longueur) > 10) {
+			$message[] = 'Le nombre est trop grand';
+			return $message;
+		}else{
+			$this->_longueur = $longueur;	
+		}
 	}
 	public function setHauteur($hauteur) {
-		$this->_hauteur = $hauteur;
+		$message = [];
+		if (!is_numeric($hauteur)) {
+			$message[] = 'La hauteur doit être un nombre à virgule';
+			return $message;
+		}
+		elseif (strlen($hauteur) > 10) {
+			$message[] = 'Le nombre est trop grand';
+			return $message;
+		}else{
+			$this->_hauteur = $hauteur;	
+		}
 	}
 	public function setEtat($etat) {
-		$this->_etat = $etat;
+		$message = [];
+		if (strlen($etat) > 50 ) {
+			$message[] = 'le descriptif est trop grand';
+			return $message;
+		}else{
+			$this->_etat = $etat;
+		}
+		
 	}
 	public function setImage($image) {
+		$message = [];
+		if (strlen($image) > 25 ) {
+			$message[] = 'Url trop longue';
+			return $message;
+		}
 		$this->_image = $image;
 	}
 	public function setQrcode($qrcode) {
+		$message = [];
+		if (strlen($qrcode) > 25 ) {
+			$message[] = 'Url trop longue';
+			return $message;
+		}
 		$this->_qrcode = $qrcode;
 	}
 	public function setDescriptifFR($descriptifFR) {
-		$this->_descriptifFR = $descriptifFR;
+		$message = [];
+		if (strlen($descriptifFR) > 2000) {
+			$message[] = 'Votre texte est trop long : 2000 caracteres Max';
+			return $message;
+		}elseif (strlen($descriptifFR) < 5 ) {
+			$message[] = 'Votre texte est trop court : 5 caracteres Min';
+			return $message;
+		}
+		else{
+			$this->_descriptifFR = $descriptifFR;
+		}
 	}
 	public function setIdOeuvre($idOeuvre) {
 		$this->_idOeuvre = $idOeuvre;

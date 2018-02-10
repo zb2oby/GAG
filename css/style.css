@@ -1090,6 +1090,18 @@ form.expoForm {
 		.coll-artiste {
 			text-align: left;
 		}
+
+	.card-error {
+		position: absolute;
+		padding: 2px 5px;
+		top: -10px;
+		left: 80px;
+		font-size: 11px;
+		border-radius:2px;
+		background-color: #A5272B;
+		opacity: 0.8;
+		color: #fff;
+	}
 	.card-content {
 		display: flex;
 		align-items: flex-start;
@@ -1172,6 +1184,7 @@ form.expoForm {
 			flex-grow: 1;
 			}
 				.card-form .form-oeuvre div, .card-form .form-artiste div, .card-form .form-collectif div {
+					position: relative;
 					margin-top: 10px;
 				}
 

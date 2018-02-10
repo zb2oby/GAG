@@ -26,23 +26,39 @@ if (isset($_GET['createColl']) && $_GET['createColl'] == 'create') {
 if (isset($_GET['idCollectif'])) {
 	$idCollectif = $_GET['idCollectif'];
 	$collectif = $managerColl->infoCollectif($idCollectif);
-
+	$msg = [];
 	if (isset($_GET['libelle'])) {
 		$libelle = htmlentities($_GET['libelle']);
-		$collectif->setLibelleCollectif($libelle);
+		$msg['libelle'] = $collectif->setLibelleCollectif($libelle);
 	}
 	if (isset($_GET['email'])) {
 		$email = htmlentities($_GET['email']);
-		$collectif->setEmail($email);
+		$msg['email'] = $collectif->setEmail($email);
 	}
 	if (isset($_GET['tel'])) {
 		$tel = htmlentities($_GET['tel']);
-		$collectif->setTel($tel);
+		$msg['tel'] = $collectif->setTel($tel);
 	}
 	if (isset($_GET['descriptif'])) {
 		$descriptif = htmlentities($_GET['descriptif']);
-		$collectif->setDescriptifFR($descriptif);
+		$msg['descriptif'] = $collectif->setDescriptifFR($descriptif);
 	}
+
+	//on verifie les valeur nulles et on creer un nouveau tablzau avec seulement les valeurs retour des methode qui ne nsont pas nulles.
+	foreach ($msg as $key => $value) {
+		if ($value != null) {
+			$message[$key] = $value;
+		}
+	}
+	//on reteste la validité de ce nouveau tableau et on l'envoie en json pour traitement ajax
+	if (!empty($message) && $message != null) {
+			echo json_encode($message);
+			//comme le tableau est plein c'est qu'il y a erreur donc on ne continue pas le script de mise à jour
+			exit();
+	}
+
+
+
 
 	//GESTION DES MESSAGES
 	if (isset($_GET['message'], $_GET['dateMsg'], $_GET['idUser'])) {

@@ -82,7 +82,6 @@ $artiste = $managerArtiste->infoArtiste($idArtiste);
 		</div>
 		<div class="card-content">
 
-
 			<div class="card-col card-form">
 				<div class="col-item card-form">
 					<form class="form-artiste" id="form-artiste<?php echo $artiste->getIdArtiste() ?>" data-idArtiste="<?php echo $artiste->getIdArtiste() ?>" action="../modules/traitementArtiste.php" method="GET">

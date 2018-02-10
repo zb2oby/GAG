@@ -45,8 +45,8 @@ jQuery(document).ready(function($) {
 		//donnée generale
 		if (typeof libelle != 'undefined' || typeof tel != 'undefined' || typeof email != 'undefined' || typeof descriptif != 'undefined') {
 			var method = 'GET';
-			var data = 'idCollectif=' + idCollectif + '&libelle=' + libelle + '&tel=' + tel +'&email=' + email + '&descriptif=' + descriptif;
-			$(this).closest('.context-collectif').find('.card-title h4').html('"'+libelle+'"');			
+			var data = 'idCollectif=' + idCollectif + '&libelle=' + libelle + '&tel=' + tel +'&email=' + email + '&descriptif=' + descriptif;			
+			var gnl = 'ok';
 		}
 
 
@@ -70,7 +70,34 @@ jQuery(document).ready(function($) {
 		})
 		.done(function(response) {
 			console.log("success");
-			console.log(response);
+			//si l'envoie ajax concerne les info generales
+			if (gnl == 'ok') {
+				//si il y a deja des erreur on les supprime avant de les reafficher
+				$('.card-error').hide();
+				//lorsque la reponse n'est pas vide cela signifie qu'il y a des erreur
+				if (response != '') {
+					//on defini la varaible d'erreur a true
+					var error = true;
+					//traitement du retour json
+					var msg = JSON.parse(response);
+					//pour chaque entree du tableau renvoyé en json on l'affiche dans une div error
+					$.each(msg, function(index, el) {
+						if (el != null) {
+							var input = '#'+index;
+							$(event.target).find(input).closest('div').append('<div class="card-error" style="position:absolute;">'+msg[index]+'</div>');
+							
+						}
+						
+					});
+				}
+				//lorsque la reponse est vide la varaible error n'est pas a true
+				if (error != true) {
+					//on peut donc afficher les modification dans le DOM car la base a été mise à jour.
+					$(event.target).closest('.context-collectif').find('.card-title h4').html('"'+libelle+'"');
+				}
+				
+				
+			}
 		})
 		.fail(function() {
 			console.log("error");

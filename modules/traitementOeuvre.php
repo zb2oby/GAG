@@ -45,11 +45,26 @@ if (isset($_GET['idOeuvre'])) {
 		$etat = $_GET['etat'];
 		$descriptif = $_GET['descriptif'];
 
-		$oeuvre->setTitre($titre);
-		$oeuvre->setLongueur($longueur);
-		$oeuvre->setHauteur($hauteur);
-		$oeuvre->setEtat($etat);
-		$oeuvre->setDescriptifFR($descriptif);
+		//pour chaque variable on creer une entrée de tableaux avec la valeur retour(message d'erreur) de la methode set de l'objet
+		$msg = [];
+		$msg['titre'] = $oeuvre->setTitre($titre);
+		$msg['longueur'] = $oeuvre->setLongueur($longueur);
+		$msg['hauteur'] = $oeuvre->setHauteur($hauteur);
+		$msg['etat'] = $oeuvre->setEtat($etat);
+		$msg['descriptif'] = $oeuvre->setDescriptifFR($descriptif);
+
+		//on verifie les valeur nulles et on creer un nouveau tablzau avec seulement les valeurs retour des methode qui ne nsont pas nulles.
+		foreach ($msg as $key => $value) {
+			if ($value != null) {
+				$message[$key] = $value;
+			}
+		}
+		//on reteste la validité de ce nouveau tableau et on l'envoie en json pour traitement ajax
+		if (!empty($message) && $message != null) {
+				echo json_encode($message);
+				//comme le tableau est plein c'est qu'il y a erreur donc on ne continue pas le script de mise à jour
+				exit();
+		}
 	}
 	if (isset($_GET['idTypeOeuvre'])) {
 		$idTypeOeuvre = htmlentities($_GET['idTypeOeuvre']);
