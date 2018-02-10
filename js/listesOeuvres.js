@@ -417,6 +417,8 @@ $('.creerOeuvreRecue').click(function(event) {
         $('.confirmPopup').css('display', 'none');
         $('.overlay').hide();
         $('.context-overlay').hide();
+        $('.popGestionCard').hide();
+        
 
     	
     });

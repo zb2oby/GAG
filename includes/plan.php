@@ -7,9 +7,9 @@
 		<div class="addPlace">
 			<button type="submit" title="Ajouter un Nouvel Emplacement"><i class="ion-plus-circled"></i></button>
 		</div>
-			
+		<div class="trash"><i class="ion-trash-a"></i></div>	
 	</form>
-		<div class="trash"><i class="ion-trash-a"></i></div>
+		
 
 	<?php 
 
