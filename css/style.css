@@ -525,7 +525,7 @@ form.expoForm {
 		}
 
 		
-		.expoForm fieldset {
+		fieldset.expoField {
 			border: none;
 			display: inline-block;
 			vertical-align: top;
@@ -539,11 +539,11 @@ form.expoForm {
 			text-align: center;
 		}
 
-		.expoForm fieldset.expo-cpl {
+		fieldset.expo-cpl {
 			border-left: 3px solid #eee;
 		}
 
-		.expoForm label.labelLn {
+		label.labelLn {
 			width: 15px;
 			margin-right: 3px;
 			margin-top: 10px;

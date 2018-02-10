@@ -20,7 +20,7 @@ if (isset($_SESSION['idExpo'])) {
 
     <form class="expoForm" action="../modules/traitementExpo.php" method="POST">
                     
-    	<fieldset>
+    	<fieldset class="expoField">
             <div>
                 <label for="titre">Titre</label>
                 <input type="text" name="titre" id="titre" value="<?php echo $expo->getTitre() ?>">
@@ -42,7 +42,7 @@ if (isset($_SESSION['idExpo'])) {
                 <textarea name="descriptif" id="descriptif" cols="30" rows="7" value="<?php echo $expo->getDescriptifFR() ?>"><?php echo $expo->getDescriptifFR() ?></textarea>
             </div>
         </fieldset>
-        <fieldset class="expo-cpl">
+        <fieldset class="expo-cpl expoField">
             <div>
                 <label for="couleurExpo">Couleur de l'expo</label>
                 <input type="color" name="couleurExpo" id="couleurExpo" value="<?php echo $expo->getCouleurExpo() ?>">
