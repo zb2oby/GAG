@@ -90,7 +90,8 @@ if (isset($_SESSION['idExpo'])) {
 			    				}
 			    			} 
 	    			}else{
-	    				echo '<h2 class="accueil-titre">GAG GESTION</h2>';
+	    				//echo '<img src="../img/logo.png" alt="logo"><span class="title">Grand Angle Gestion</span>';
+	    				echo '<img class="logo-accueil" src="../img/logo-header.png" alt="logo"><h2 class="accueil-titre">GRAND ANGLE GESTION</h2>';
 	    			}
 	    			
 	    		?>

@@ -39,7 +39,7 @@ function calendrier($m_donne,$a_donne){
 	}
 
 	//Préparation du tableau avec le nom du mois et la liste des jours de la semaine
-	echo "<table border=1 bordercolor=\"#FFFFFF\"><tr><td class=\"fleches\">"
+	echo "<table><tr><td class=\"fleches\">"
 		.mois_precedent($m,$mois[$m],$a)
 		."</td><td class=\"nom_mois\" colspan=\"5\">$mois[$m] $a</td><td class=\"fleches\">"
 		.mois_suivant($m,$a)

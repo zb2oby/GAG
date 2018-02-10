@@ -206,6 +206,7 @@ header {
 	font-size: 16px;
 	height: 130px;
 	background-color: #eee;
+	box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
 }
 	.avatar	{
 		position: relative;
@@ -254,6 +255,21 @@ header {
 
 	.expoInfo {
 	}
+		.logo-accueil {
+			width: 120px;
+			height: 100px;
+		}
+
+		.accueil-titre {
+		  display: inline-block;
+		  vertical-align: top;
+		  text-align: center;
+		  margin-top: 30px;
+		  font-weight: 300;
+		  text-transform: uppercase;
+		  color: #0A2675;
+
+		}
 		.expoInfo h2 {
 			padding-top: 5px;
 			padding-bottom: 5px;
