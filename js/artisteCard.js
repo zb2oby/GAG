@@ -212,6 +212,12 @@ jQuery(document).ready(function($) {
 						//on peut donc afficher les modification dans le DOM car la base a été mise à jour.
 						$(event.target).closest('.portlet-artiste').find('.titre').html(nom+' '+prenom);
 						$(event.target).closest('.context-artiste').find('.card-title h4').html('"'+nom+'"');
+						$('.confirmSet').css('display', 'block');
+						$('.context-overlay').show();
+						setTimeout(function(){
+							$('.confirmSet').css('display', 'none');
+							$('.context-overlay').hide();
+						}, 1500);
 					}
 					
 					
@@ -245,7 +251,8 @@ jQuery(document).ready(function($) {
 					$(event.currentTarget).closest('.portlet').find('.img').html('<img src="../img/artistes/'+response+'">');
 					$(event.currentTarget).closest('.pop-modifImageArtiste').hide();
 					$('.context-overlay').hide();
-				}	
+				}
+				
 
 			}) 
 			.fail(function() {

@@ -94,16 +94,24 @@ jQuery(document).ready(function($) {
 				if (error != true) {
 					//on peut donc afficher les modification dans le DOM car la base a été mise à jour.
 					$(event.target).closest('.context-collectif').find('.card-title h4').html('"'+libelle+'"');
+					$('.confirmSet').css('display', 'block');
+					$('.context-overlay').show();
+					setTimeout(function(){
+						$('.confirmSet').css('display', 'none');
+						$('.context-overlay').hide();
+					}, 1500);
 				}
 				
 				
 			}
+			
 		})
 		.fail(function() {
 			console.log("error");
 		})
 		.always(function() {
 			console.log("complete");
+
 		});
 
 		return false;

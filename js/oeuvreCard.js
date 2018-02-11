@@ -186,6 +186,12 @@ jQuery(document).ready(function($) {
 						}
 						
 						$(event.target).closest('.context-oeuvre').find('.card-header h4').html('"'+titre+'"');
+						$('.confirmSet').css('display', 'block');
+						$('.context-overlay').show();
+						setTimeout(function(){
+							$('.confirmSet').css('display', 'none');
+							$('.context-overlay').hide();
+						}, 1500);
 					}
 					
 					
@@ -226,6 +232,7 @@ jQuery(document).ready(function($) {
 					$(event.currentTarget).closest('.pop-modifImageOeuvre').hide();
 					$('.context-overlay').hide();
 				}
+				
 				
 			}) 
 			.fail(function() {

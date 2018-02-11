@@ -116,7 +116,14 @@ $(document).on('click', '.action-button', function(event) {
 			        		}
 			        		
 			        	}
+			        	$('.confirmSet').css('display', 'block');
+						$('.context-overlay').show();
+						setTimeout(function(){
+							$('.confirmSet').css('display', 'none');
+							$('.context-overlay').hide();
+						}, 1500);
 			        }
+			        
 		        	
 	          
 		        })
@@ -137,6 +144,7 @@ $(document).on('click', '.action-button', function(event) {
 	    	var data = new FormData($form[0]);
 	    	$('.card-error').hide();
 
+
 		    $.ajax({
 		        url: '../modules/traitementExpo.php',
 		        method: 'POST',
@@ -147,6 +155,12 @@ $(document).on('click', '.action-button', function(event) {
 		    	})
 		        .done(function(response) {
 		        	console.log('sucess');
+		        	      $('.confirmSet').css('display', 'block');
+						$('.overlay').show();
+						setTimeout(function(){
+							$('.confirmSet').css('display', 'none');
+							$('.overlay').hide();
+						}, 1500);
 		        	//console.log(response);
 		        	$('.card-error').hide();
 			        if (response.error == 'error') {
@@ -168,13 +182,14 @@ $(document).on('click', '.action-button', function(event) {
 							});
 						}
 					}
+					
 
 			})
 	        .fail(function() {
 	            
 	        })
 	        .always(function() {
-	        
+	  
 	    	});
 		return false;
 	});
