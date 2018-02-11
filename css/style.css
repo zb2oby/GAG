@@ -540,6 +540,7 @@ form.expoForm {
 	background-color: #fff;
 }		
 		.adminForm div, .expoForm div {
+			position: relative;
 			margin-top: 15px;
 		}
 

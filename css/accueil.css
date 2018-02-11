@@ -17,14 +17,18 @@
 }
 #newExpo div {
   margin-top: 10px;
+  position: relative;
 }
 	#newExpo span {
 		color: #0A2675;
 		margin-bottom: 20px;
 	}
 
-#closeNewExpo {
-	padding-top: 4px;
+#CloseNewExpo {
+  position: absolute !important;
+	/*padding-top: 4px;*/
+  top: -22px;
+
 }
 
 /*A BOUGER DANS LE CSS GLOBAL CAR TOUT CECI EST DANS LE HEADER*/

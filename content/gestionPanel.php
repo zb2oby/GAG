@@ -53,6 +53,7 @@ $_SESSION['idExpo'] = $idExpo;
 	        				<img src="" alt="stat1">
 	        			</div>
 	        			<div class="explain">
+	        				<h2>FREQUENTATION</h2>
 	        				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem iure voluptates, exercitationem mollitia placeat quod aliquam nesciunt quasi culpa illum, nulla reiciendis neque consectetur debitis ratione ducimus voluptatem minima error sequi sit! Non dicta, sapiente facere modi voluptates possimus id laborum eius cum rem tempore in sed voluptatum et ducimus magni iusto mollitia fuga suscipit quam alias reprehenderit earum. Excepturi dolorem, nihil perferendis. Accusantium consectetur sequi recusandae, consequatur modi nemo maxime aliquid ratione odit sapiente id, deleniti, at perferendis autem sit distinctio quam placeat! Magni blanditiis nisi, voluptates hic accusamus sit id incidunt cumque rem, eius suscipit saepe mollitia! Suscipit.
 	        			</div>
 	        		</div>
@@ -61,6 +62,7 @@ $_SESSION['idExpo'] = $idExpo;
 	        				<img src="" alt="stat1">
 	        			</div>
 	        			<div class="explain">
+	        				<h2>NOMBRE DE CLIC</h2>
 	        				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus repellat fuga perspiciatis ex ea. Cum laborum consequuntur suscipit eligendi omnis saepe commodi itaque repellendus aperiam iste nam earum, repellat ea, laboriosam est animi soluta sint tempore minima a? Excepturi nesciunt sapiente molestiae, consectetur sequi maxime sit adipisci nulla iste, vitae vero sint hic ipsa magni voluptatum rerum temporibus incidunt vel soluta non quisquam nobis dignissimos. Suscipit dicta veritatis velit quos consequuntur accusantium quaerat? Repellendus sint neque eius enim voluptatem quisquam soluta omnis iusto reiciendis debitis facere necessitatibus excepturi porro consectetur hic modi ullam id minus, perspiciatis consequuntur voluptatibus illo deserunt?
 	        			</div>
 	        		</div>

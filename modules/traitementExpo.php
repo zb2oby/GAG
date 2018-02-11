@@ -7,7 +7,13 @@ $managerExpo = new ExpositionManager($bdd);
 $redirect = false;
 
 
-function enregistrementTeaser(Exposition $expo, $idExpo) {
+function enregistrementTeaser(Exposition $expo, $idExpo, $POST) {
+	if (isset($POST['existTeaser']) && !empty($POST['existTeaser'])) {
+		$nomFichier = $POST['existTeaser'];
+		$expo->setTeaser($nomFichier);
+
+	}
+
 	if (isset($_FILES['teaser']) && ($_FILES['teaser']['name'][0] != NULL)) {
 			$name = $_FILES['teaser']['name'][0];
 			$nomFichier = 'teaser';
@@ -28,6 +34,8 @@ function enregistrementTeaser(Exposition $expo, $idExpo) {
 				$resultat = move_uploaded_file($_FILES['teaser']['tmp_name'][0],$cheminFichier);
 				// if ($resultat) echo "Transfert réussi";
 				$nomFichier = $nomFichier.'.'.$extension_upload;
+			
+				
 				//mise a jour de l'objet
 				$expo->setTeaser($nomFichier);
 				
@@ -36,7 +44,12 @@ function enregistrementTeaser(Exposition $expo, $idExpo) {
 	 	}
 }
 
-function enregistrementAffiche(Exposition $expo, $idExpo) {
+function enregistrementAffiche(Exposition $expo, $idExpo, $POST) {
+	if (isset($POST['existAffiche']) && !empty($POST['existAffiche'])) {
+		$nomFichier = $POST['existAffiche'];
+		$expo->setAffiche($nomFichier);
+	}
+
 	if (isset($_FILES['affiche']) && ($_FILES['affiche']['name'][0] != NULL)) {
 			$name = $_FILES['affiche']['name'][0];
 			$nomFichier = 'affiche';
@@ -56,7 +69,10 @@ function enregistrementAffiche(Exposition $expo, $idExpo) {
 				}
 				$resultat = move_uploaded_file($_FILES['affiche']['tmp_name'][0],$cheminFichier);
 				// if ($resultat) echo "Transfert réussi";
+
 				$nomFichier = $nomFichier.'.'.$extension_upload;
+					
+				
 				//mise a jour de l'objet
 				$expo->setAffiche($nomFichier);
 				
@@ -133,15 +149,16 @@ if (isset($_POST['dateDebut'], $_POST['dateFin'], $_POST['titre'], $_POST['coule
 	$managerExpo = new ExpositionManager($bdd);
 	$exposition = new Exposition(['dateDebut' => $dateDebut, 'dateFin' => $dateFin, 'titre' => $titre, 'couleurExpo' => $couleur]);
 	
-	$exposition->setDateDeb($dateDebut);
-	$exposition->setDateFin($dateFin);
-	$exposition->setTitre($titre);
-	$exposition->setCouleurExpo($couleur);
+	$msg = [];
+	$msg['dateDebut'] = $exposition->setDateDeb($dateDebut);
+	$msg['dateFin'] = $exposition->setDateFin($dateFin);
+	$msg['titre'] = $exposition->setTitre($titre);
+	$msg['couleur'] = $exposition->setCouleurExpo($couleur);
 
 
 	if (isset($_POST['theme'])) {
 		$theme = htmlentities($_POST['theme']);
-		$exposition->setTheme($theme);
+		$msg['theme'] = $exposition->setTheme($theme);
 	}
 
 	if (isset($_POST['horaireO'])) {
@@ -161,8 +178,31 @@ if (isset($_POST['dateDebut'], $_POST['dateFin'], $_POST['titre'], $_POST['coule
 
 	if (isset($_POST['descriptif'])) {
 		$descriptif = htmlentities($_POST['descriptif']);
-		$exposition->setDescriptifFR($descriptif);
+		$msg['descriptif'] = $exposition->setDescriptifFR($descriptif);
 	}
+
+	//on verifie les valeur nulles et on creer un nouveau tablzau avec seulement les valeurs retour des methode qui ne nsont pas nulles.
+	foreach ($msg as $key => $value) {
+		if ($value != null) {
+			$message[$key] = $value;
+		}
+	}
+	//on reteste la validité de ce nouveau tableau et on l'envoie en json pour traitement ajax
+	if (!empty($message) && $message != null) {
+			//comme le talbeau est plein c'est qu'il y a erreur
+			//on renvoie donc le tableau pour ajax et on stop le script
+				$message['error'] = 'error';
+				echo json_encode($message);
+				exit();
+			
+			
+	}
+
+
+
+
+
+
 
 	if (!isset($_POST['req'])) {
 		//ajout en base de la nouvelle expo et recuperation du dernier Id
@@ -173,11 +213,14 @@ if (isset($_POST['dateDebut'], $_POST['dateFin'], $_POST['titre'], $_POST['coule
 		setLangueExpo($managerExpo, $idExpo);
 	}elseif (isset($_POST['req'], $_POST['idExpo']) && $_POST['req'] == 'updateExpo') {
 		$idExpo = htmlentities($_POST['idExpo']);
-		
+		$exposition->setAffiche($_POST['existAffiche']);
+		$exposition->setTeaser($_POST['existTeaser']);
 		setLangueExpo($managerExpo, $idExpo);
 
 		$exposition->setIdExpo($idExpo);
 		$expo = $exposition;
+		// //update de l'entrée en base
+		$managerExpo->updateExposition($expo);
 		$redirect = true;
 	}
 	
@@ -191,10 +234,10 @@ if (isset($_POST['dateDebut'], $_POST['dateFin'], $_POST['titre'], $_POST['coule
 			makeExpoDir($expo, $idExpo);
 			
 
+			//enregistrement du fichier affiche
+			enregistrementTeaser($expo, $idExpo, $_POST);
 
-			enregistrementTeaser($expo, $idExpo);
-
-			enregistrementAffiche($expo, $idExpo);
+			enregistrementAffiche($expo, $idExpo, $_POST);
 
 
 		 		
@@ -215,7 +258,6 @@ if (isset($_POST['dateDebut'], $_POST['dateFin'], $_POST['titre'], $_POST['coule
 	$url = explode('/', $_SERVER['HTTP_REFERER']);
 	$urlParam = $url[count($url)-1];
 	$urlFinal = explode('?', $urlParam);
-
 	if ($urlFinal[0] != 'accueil.php') {
 		header('location: ../content/gestionPanel.php?onglet=expo&expo='.$idExpo);
 	}

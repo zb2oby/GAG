@@ -22,23 +22,23 @@ if (isset($_SESSION['idExpo'])) {
                     
     	<fieldset class="expoField">
             <div>
-                <label for="titre">Titre</label>
+                <label for="titre">Titre(*)</label>
                 <input type="text" name="titre" id="titre" value="<?php echo $expo->getTitre() ?>">
             </div>
             <div>
-                <label for="theme">Theme</label>
+                <label for="theme">Theme(*)</label>
                 <input type="text" name="theme" id="theme" value="<?php echo $expo->getTheme() ?>">
             </div>
             <div>
-            <label for="dateDebut">Date de début</label>
+            <label for="dateDebut">Date de début(*)</label>
             <input type="date" name="dateDebut" id="dateDebut" value="<?php echo $expo->getDateDeb() ?>">
             </div>
             <div>
-                <label for="dateFin">Date de fin</label>
+                <label for="dateFin">Date de fin(*)</label>
                 <input type="date" name="dateFin" id="dateFin" value="<?php echo $expo->getDateFin() ?>">
             </div>
             <div>
-            <label for="descriptif">descriptif</label>
+            <label for="descriptif">descriptif(*)</label>
                 <textarea name="descriptif" id="descriptif" cols="30" rows="7" value="<?php echo $expo->getDescriptifFR() ?>"><?php echo $expo->getDescriptifFR() ?></textarea>
             </div>
         </fieldset>
@@ -96,10 +96,12 @@ if (isset($_SESSION['idExpo'])) {
             </div>
        </fieldset>
         <div class="submit">
+            <input type="hidden" id="existAffiche" name="existAffiche" value="<?php echo $expo->getAffiche(); ?>">
+            <input type="hidden" id="existTeaser" name="existTeaser" value="<?php echo $expo->getTeaser(); ?>">
             <input type="hidden" name="req" value="updateExpo">
             <input type="hidden" name="idExpo" value="<?php echo $idExpo ?>">
     		<button type="submit">Enregistrer les informations</button>
-    		<button><a class="button delExpo" data-idexpo="<?php echo $idExpo ?>" href="../modules/traitementExpo.php?req=deleteExpo&idExpo=<?php echo $idExpo ?>">Supprimer Expo</a></button>
+    		<a class="button delExpo" data-idexpo="<?php echo $idExpo ?>" href="../modules/traitementExpo.php?req=deleteExpo&idExpo=<?php echo $idExpo ?>">Supprimer Expo</a>
             
         </div>
     </form>
@@ -111,6 +113,7 @@ if (isset($_SESSION['idExpo'])) {
             <div>
                 <label for="teaser">Teaser (JPG GIF JPEG PNG| max. 500Ko)</label>
                 <input type="file" name="teaser[]" id="teaser" accept=".jpg, .jpeg, .gif, .png">
+                <input type="hidden" id="existImage" name="existImage" value="<?php echo $expo->getTeaser(); ?>">
                 <input type="hidden" id="maxSize" name="MAX_FILE_SIZE" value="500000">       
             </div>
             <div class="submit">
@@ -128,6 +131,7 @@ if (isset($_SESSION['idExpo'])) {
             <div>
                 <label for="affiche">Affiche (JPG GIF JPEG PNG| max. 500Ko)</label>
                 <input type="file" name="affiche[]" id="affiche" accept=".jpg, .jpeg, .gif, .png">
+                <input type="hidden" id="existAffiche" name="existAffiche" value="<?php echo $expo->getAffiche(); ?>">
                 <input type="hidden" id="maxSize" name="MAX_FILE_SIZE" value="500000">         
             </div>
             <div class="submit">

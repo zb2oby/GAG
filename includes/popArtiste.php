@@ -87,23 +87,23 @@ $artiste = $managerArtiste->infoArtiste($idArtiste);
 					<form class="form-artiste" id="form-artiste<?php echo $artiste->getIdArtiste() ?>" data-idArtiste="<?php echo $artiste->getIdArtiste() ?>" action="../modules/traitementArtiste.php" method="GET">
 						
 						<div>
-							<label for="nom"> Nom</label>
+							<label for="nom"> Nom(*)</label>
 							<input type="text" name="nom" id="nom" value="<?php echo ucfirst($artiste->getNom()) ?>">
 						</div>
 						<div>
-							<label for="prenom">Prenom</label>
+							<label for="prenom">Prenom(*)</label>
 							<input type="text" name="prenom" id="prenom" value="<?php echo ucfirst($artiste->getPrenom()) ?>">
 						</div>
 						<div>
-							<label for="tel">Téléphone</label>
+							<label for="tel">Téléphone(*)</label>
 							<input type="text" name="tel" id="tel" value="<?php echo $artiste->getTel() ?>">
 						</div>
 						<div>
-							<label for="email">E-mail</label>
+							<label for="email">E-mail(*)</label>
 							<input type="email" name="email" id="email" value="<?php echo $artiste->getEmail() ?>">
 						</div>
 						<div>
-							<label for="descriptif">Descriptif</label><br>
+							<label for="descriptif">Descriptif(*)</label><br>
 							<textarea name="descriptif" id="descriptif" cols="40" rows="10" value="<?php echo $artiste->getDescriptifFR() ?>"><?php echo $artiste->getDescriptifFR() ?></textarea>
 						</div>
 						

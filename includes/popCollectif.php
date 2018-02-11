@@ -54,19 +54,19 @@ $collectif = $managerCollectif->infoCollectif($idCollectif);
 					<form class="form-collectif" id="form-collectif<?php echo $collectif->getIdCollectif() ?>" data-idcollectif="<?php echo $collectif->getIdCollectif() ?>" action="../modules/traitementCollectif.php" method="GET">
 						
 						<div>
-							<label for="libelle"> Libelle</label>
+							<label for="libelle"> Libelle(*)</label>
 							<input type="text" name="libelle" id="libelle" value="<?php echo ucfirst($collectif->getLibelleCollectif()) ?>">
 						</div>
 						<div>
-							<label for="tel">Téléphone</label>
+							<label for="tel">Téléphone(*)</label>
 							<input type="text" name="tel" id="tel" value="<?php echo $collectif->getTel() ?>">
 						</div>
 						<div>
-							<label for="email">E-mail</label>
+							<label for="email">E-mail(*)</label>
 							<input type="email" name="email" id="email" value="<?php echo $collectif->getEmail() ?>">
 						</div>
 						<div>
-							<label for="descriptif">Descriptif</label><br>
+							<label for="descriptif">Descriptif(*)</label><br>
 							<textarea name="descriptif" id="descriptif" cols="40" rows="10" value="<?php echo $collectif->getDescriptifFR() ?>"><?php echo $collectif->getDescriptifFR() ?></textarea>
 						</div>
 						

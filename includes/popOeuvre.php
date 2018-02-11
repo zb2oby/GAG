@@ -133,7 +133,7 @@ if (isset($idOeuvreExposee)) {
 					<form class="form-oeuvre" data-idOeuvre="<?php echo $oeuvre->getIdOeuvre() ?>" action="../modules/traitementOeuvre.php" method="GET">
 						
 						<div>
-							<label for="titre">Titre</label>
+							<label for="titre">Titre(*)</label>
 							<input type="text" name="titre" id="titre" value="<?php echo ucfirst($oeuvre->getTitre()) ?>">
 						</div>
 						<div>
@@ -149,7 +149,7 @@ if (isset($idOeuvreExposee)) {
 							<input type="text" name="etat" id="etat" value="<?php echo $oeuvre->getEtat() ?>">
 						</div>
 						<div>
-							<label for="descriptif">Descriptif</label><br>
+							<label for="descriptif">Descriptif(*)</label><br>
 							<textarea name="descriptif" id="descriptif" cols="40" rows="10" value="<?php echo $oeuvre->getDescriptifFR() ?>"><?php echo $oeuvre->getDescriptifFR() ?></textarea>
 						</div>
 						

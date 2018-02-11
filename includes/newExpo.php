@@ -6,19 +6,19 @@
 		<div id="CloseNewExpo" class="closeButton"><i class="ion-android-close"></i></div>
 		<fieldset class="expoField">
 		<div>
-			<label for="dateDebut">Date de début</label>
+			<label for="dateDebut">Date de début(*)</label>
 			<input type="date" name="dateDebut" id="dateDebut">
 		</div>	
 		<div>	
-			<label for="dateFin">Date de fin</label>
+			<label for="dateFin">Date de fin(*)</label>
 			<input type="date" name="dateFin" id="dateFin">
 		</div>	
 		<div>
-			<label for="couleur">Couleur</label>
+			<label for="couleur">Couleur(*)</label>
 			<input type="color" name="couleurExpo" id="couleurExpo">
 		</div>	
 		<div>
-			<label for="titre">Titre</label>
+			<label for="titre">Titre(*)</label>
 			<input type="text" name="titre" id="titre">
 		</div>	
 		<div>
