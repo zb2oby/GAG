@@ -38,7 +38,7 @@ $(document).on('click', '.action-button', function(event) {
 //GESTION ENVOI FORMULAIRE INFO GENERALES DEPUIS LE FORMULAIRE NEW EXPO CONTENU DANS CALENDRIER ET DANS LA SIDEBAR
 
 	$(document).on('submit', '#newExpo', function(event) {
-		if (page == 'accueil.php') {
+		//if (page == 'accueil.php') {
 			var $form = $(this);
 	    	var data = new FormData($form[0]);
 
@@ -122,6 +122,10 @@ $(document).on('click', '.action-button', function(event) {
 							$('.confirmSet').css('display', 'none');
 							$('.context-overlay').hide();
 						}, 1500);
+						if (page != 'accueil.php'){
+							console.log(response.idExpo);
+							document.location.href='../content/gestionPanel.php?onglet=expo&expo='+response.idExpo;
+						}
 			        }
 			        
 		        	
@@ -134,9 +138,9 @@ $(document).on('click', '.action-button', function(event) {
 		        
 		    	});
 			return false;
-		}else {
-			return true;
-		}
+		// }else {
+		// 	return true;
+		// }
 	});
 
 	$(document).on('submit', '.expoForm', function(event) {
