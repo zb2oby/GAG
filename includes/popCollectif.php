@@ -62,7 +62,7 @@ $collectif = $managerCollectif->infoCollectif($idCollectif);
 							<input type="text" name="tel" id="tel" value="<?php echo $collectif->getTel() ?>">
 						</div>
 						<div>
-							<label for="email">E-mail(*)</label>
+							<label for="email">E-mail</label>
 							<input type="email" name="email" id="email" value="<?php echo $collectif->getEmail() ?>">
 						</div>
 						<div>
