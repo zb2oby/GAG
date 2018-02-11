@@ -221,7 +221,7 @@ if (isset($_POST['dateDebut'], $_POST['dateFin'], $_POST['titre'], $_POST['coule
 		$expo = $exposition;
 		// //update de l'entrée en base
 		$managerExpo->updateExposition($expo);
-		$redirect = true;
+		//	$redirect = true;
 	}
 	
 
@@ -255,16 +255,16 @@ if (isset($_POST['dateDebut'], $_POST['dateFin'], $_POST['titre'], $_POST['coule
 
 
 	//si on vient d'ailleur que de l'accueil on se fait rediriger
-	$url = explode('/', $_SERVER['HTTP_REFERER']);
-	$urlParam = $url[count($url)-1];
-	$urlFinal = explode('?', $urlParam);
-	if ($urlFinal[0] != 'accueil.php') {
-		header('location: ../content/gestionPanel.php?onglet=expo&expo='.$idExpo);
-	}
-	//redirection pour l'updateexpo depuis la page de gestion
-	if ($redirect == true) {
-		header('location: ../content/gestionPanel.php?onglet=expo&idExpo='.$idExpo);
-	}
+	// $url = explode('/', $_SERVER['HTTP_REFERER']);
+	// $urlParam = $url[count($url)-1];
+	// $urlFinal = explode('?', $urlParam);
+	// if ($urlFinal[0] != 'accueil.php') {
+	// 	header('location: ../content/gestionPanel.php?onglet=expo&expo='.$idExpo);
+	// }
+	// //redirection pour l'updateexpo depuis la page de gestion
+	// if ($redirect == true) {
+	// 	header('location: ../content/gestionPanel.php?onglet=expo&idExpo='.$idExpo);
+	// }
 
 
 	

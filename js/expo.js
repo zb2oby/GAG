@@ -155,12 +155,7 @@ $(document).on('click', '.action-button', function(event) {
 		    	})
 		        .done(function(response) {
 		        	console.log('sucess');
-		        	      $('.confirmSet').css('display', 'block');
-						$('.overlay').show();
-						setTimeout(function(){
-							$('.confirmSet').css('display', 'none');
-							$('.overlay').hide();
-						}, 1500);
+		        	   
 		        	//console.log(response);
 		        	$('.card-error').hide();
 			        if (response.error == 'error') {
@@ -181,6 +176,15 @@ $(document).on('click', '.action-button', function(event) {
 	
 							});
 						}
+					}else{
+						$('.confirmSet').css('display', 'block');
+						$('.overlay').show();
+						setTimeout(function(){
+							$('.confirmSet').css('display', 'none');
+							$('.overlay').hide();
+						}, 1500);
+						var couleurExpo = $(event.target).find('#couleurExpo').val();
+						$('.link-active').find('span').css('backgroundColor', couleurExpo);
 					}
 					
 
