@@ -51,7 +51,6 @@ $(document).on('click', '.action-button', function(event) {
 		        contentType: false,
 		    	})
 		        .done(function(response) {
-		        	console.log(response);
 		        	$('.card-error').hide();
 			        if (response.error == 'error') {
 			        

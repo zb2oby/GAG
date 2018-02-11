@@ -30,16 +30,16 @@
 
 	<form class="adminItem adminForm" action="#" id="submit-admin" method="GET">
 		<div>
-			<label for="nom">Nom</label>
+			<label for="nom">Nom(*)</label>
 			<input type="text" name="nom" id="nom"><br>
 		</div>
 		<div>
-			<label for="prenom">Prénom</label>
+			<label for="prenom">Prénom(*)</label>
 			<input type="text" name="prenom" id="prenom">
 		</div>
 		
 			<div class="selectInput">
-			<label for="role">Role</label>
+			<label for="role">Role(*)</label>
 			<select name="role" id="role">
 				<option hidden selected value=""></option>
 				<?php 
@@ -57,7 +57,7 @@
 			</div>
 		
 		<div>
-			<label for="identifiant">Identifiant</label>
+			<label for="identifiant">Identifiant(*)</label>
 			<input type="text" name="identifiant" id="identifiant">
 		</div>
 		<div class="submit">

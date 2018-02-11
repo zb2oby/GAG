@@ -598,6 +598,7 @@ form.expoForm {
 
 		#delUser {
 			background-color: transparent;
+			box-shadow: none;
 			color: #0A2675;
 			
 		}

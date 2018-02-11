@@ -4,48 +4,73 @@ require('../class/Utilisateur.class.php');
 require('../class/UtilisateurManager.class.php');
 
 $managerUser = new UtilisateurManager($bdd);
-
-if (isset($_GET['idUser']) && !empty($_GET['idUser'])) {
-	$idUser = htmlentities($_GET['idUser']);
-}else{
-	$mdp = uniqid();
-	$user = new Utilisateur(['nom'=>'', 'prenom' =>'', 'identifiant' => '', 'mot_de_passe' => $mdp, 'idTypeUtilisateur' => 2 ]);
-	$managerUser->addUtilisateur($user);
-	$idUser = $managerUser->lastIdUser();
-	echo $idUser;
-}
-
-
-if (isset($idUser)) {
-
-	$user = $managerUser->infoUtilisateur($idUser);
+$msg = [];
+$user = new Utilisateur(['idUser' => '', 'nom'=>'', 'prenom' =>'', 'identifiant' => '', 'mot_de_passe' => '', 'idTypeUtilisateur' => 2 ]);
 
 	if (isset($_GET['nom'])) {
 		$nom = htmlentities($_GET['nom']);
-		$user->setNom($nom);
+		$msg['nom'] = $user->setNom($nom);
 	}
 	if (isset($_GET['prenom'])) {
 		$prenom = htmlentities($_GET['prenom']);
-		$user->setPrenom($prenom);
+		$msg['prenom'] = $user->setPrenom($prenom);
 	}
 	if (isset($_GET['role'])) {
 		$role = htmlentities($_GET['role']);
-		$user->setIdTypeUtilisateur($role);
+		$msg['role'] = $user->setIdTypeUtilisateur($role);
 	}
 	if (isset($_GET['identifiant'])) {
 		$identifiant = htmlentities($_GET['identifiant']);
-		$user->setIdentifiant($identifiant);
+		$msg['identifiant'] = $user->setIdentifiant($identifiant);
 	}
 
 
-	if (isset($_GET['req']) && $_GET['req'] == 'delUser') {
-		$managerUser->deleteUtilisateur($user);
-		echo 'del';
+	
+	//on verifie les valeur nulles de msg et on creer un nouveau tableau avec seulement les valeurs retour des methode qui ne nsont pas nulles.
+	foreach ($msg as $key => $value) {
+		if ($value != null) {
+			$message[$key] = $value;
+		}
+	}
+	//on reteste la validité de ce nouveau tableau et on l'envoie en json pour traitement ajax
+	if (!empty($message) && $message != null) {
+			$message['error'] = 'error';
+			echo json_encode($message);
+			//comme le tableau est plein c'est qu'il y a erreur donc on ne continue pas le script de mise à jour
+			exit();
+	//si pas d'erreur on traite la suite
 	}else{
-		$managerUser->updateUtilisateur($user);
-	}
+		//si on a liduser on est soit dans un delete soit dans un update
+		if (isset($_GET['idUser']) && !empty($_GET['idUser'])) {
+			$idUser = htmlentities($_GET['idUser']);
+			$user->setIdUtilisateur($idUser);
 			
-}
+			if (isset($_GET['req']) && $_GET['req'] == 'delUser') {
+				$managerUser->deleteUtilisateur($user);
+				$message['del'] = 'del';
+				echo json_encode($message);
+				exit();
+			}else{
+				$baseInfo = $managerUser->infoUtilisateur($idUser);
+				$mdp = $baseInfo->getMot_de_passe();
+				$user->setMot_de_passe($mdp);
+				$managerUser->updateUtilisateur($user);
+			}
+		//si on a pas liduser on est dans un create. et comme pya pas derreur on procede a la creation
+		}else{
+			$mdp = uniqid();
+			$user->setMot_de_passe($mdp);
+			$managerUser->addUtilisateur($user);
+			$idUser = $managerUser->lastIdUser();
+		}
+		//puis in renvoie l'idUser pour le traitement de l'affihage dans le DOM via jquery
+		$message['idUser'] = $idUser;
+		echo json_encode($message);
+	}
+
+	
+			
+//}
 
 
 

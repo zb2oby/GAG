@@ -42,7 +42,7 @@ if (isset($_SESSION['idExpo'])) {
 	 <div class="container">
 		<header>
 			<div class="confirmSet">
-				données enregistrées
+				Enregistrement...
 			</div>
 			<?php 
 				$managerUser = new UtilisateurManager($bdd);

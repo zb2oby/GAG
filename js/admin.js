@@ -48,36 +48,64 @@ jQuery(document).ready(function($) {
 		})
 		.done(function(response) {
 			console.log("success");
-			//if (response != 'delete') {
-				if (response != 'del') {
-					var idUser = response;
-					$('.afficheUser ul').prepend('<li><a class="userAdmin" data-nom="'+nom+'" data-prenom="'+prenom+'" data-identifiant="'+identifiant+'" data-id="'+idUser+'" data-role="'+role+'" href="#">NOM : '+nom+' PRENOM : '+prenom+' ROLE : '+libelleRole+'</a></li>');
+			var msg = JSON.parse(response);
+			$('.card-error').hide();
+			//console.log(msg.error);
+				if (msg.error == 'error') {
+			        
+		        	if (response != '') {
+						//on defini la varaible d'erreur a true
+						var error = true;
+						//pour chaque entree du tableau renvoyé en json on l'affiche dans une div error
+						$.each(msg, function(index, el) {
+							if (el != null) {
+								var input = '#'+index;
+								$(event.target).find(input).closest('div').append('<div class="card-error" style="position:absolute;">'+msg[index]+'</div>');
+								
+							}
+							
+
+						});
+					}
+				}
+				else if(msg.error != 'error'){
+					if (msg.del != 'del') {
+						var idUser = msg.idUser;
+						
 					
-				
-					var list = $('.afficheUser ul').find('li a');
-					
-					for (var i = list.length - 1; i >= 0; i--) {
-						var idUserUpdate = $(list[i]).data('id');
-						console.log(idUserUpdate);
-						var idUser = $('.adminForm').find('#idUser').val();
-						if (idUser == idUserUpdate) {
-							$(list[i]).remove();
+						var list = $('.afficheUser ul').find('li a');
+						
+						for (var i = list.length - 1; i >= 0; i--) {
+							var idUserUpdate = $(list[i]).data('id');
+							//console.log(idUserUpdate);
+							var idUser = $('.adminForm').find('#idUser').val();
+							if (idUser == idUserUpdate) {
+								$(list[i]).remove();
+							}
+						}
+						$('.confirmSet').css('display', 'block');
+						$('.overlay').show();
+						setTimeout(function(){
+							$('.confirmSet').css('display', 'none');
+							$('.overlay').hide();
+						}, 1500);
+						$('.afficheUser ul').prepend('<li><a class="userAdmin" data-nom="'+nom+'" data-prenom="'+prenom+'" data-identifiant="'+identifiant+'" data-id="'+idUser+'" data-role="'+role+'" href="#">NOM : '+nom+' PRENOM : '+prenom+' ROLE : '+libelleRole+'</a></li>');
+					}else if (msg.del == 'del') {
+						var list = $('.afficheUser ul').find('li a');
+						for (var i = list.length - 1; i >= 0; i--) {
+							var idUserUpdate = $(list[i]).data('id');
+							var idUser = $('.adminForm').find('#idUser').val();
+							if (idUser == idUserUpdate) {
+								$(list[i]).remove();
+							}
 						}
 					}
-				}else if (response == 'del') {
-					var list = $('.afficheUser ul').find('li a');
-					for (var i = list.length - 1; i >= 0; i--) {
-						var idUserUpdate = $(list[i]).data('id');
-						var idUser = $('.adminForm').find('#idUser').val();
-						if (idUser == idUserUpdate) {
-							$(list[i]).remove();
-						}
-					}
+					$('.adminForm').find('#req').val('');
+					$('.adminForm')[0].reset();
 				}
 
 				
-				$('.adminForm').find('#req').val('');
-				$('.adminForm')[0].reset();
+				
 		})
 		.fail(function() {
 			console.log("error");

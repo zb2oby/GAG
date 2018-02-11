@@ -26,19 +26,52 @@ class Utilisateur {
 		$this->_idUtilisateur = $idUtilisateur;
 	}
 	public function setNom($nom) {
-		$this->_nom = $nom;
+		$message = [];
+		if (strlen($nom)>5) {
+			$message[] = 'Le nom est trop long : 50 caratères Max';
+			return $message;
+		}elseif (strlen($nom) < 2) {
+			$message[] = 'Le nom est trop court : 2 caractères Min';
+			return $message;
+		}else{
+			$this->_nom = $nom;	
+		}
 	}
 	public function setPrenom($prenom) {
-		$this->_prenom = $prenom;
+		$message = [];
+		if (strlen($prenom)>5) {
+			$message[] = 'Le prénom est trop long : 50 caratères Max';
+			return $message;
+		}elseif (strlen($prenom) < 2) {
+			$message[] = 'Le prénom est trop court : 2 caractères Min';
+			return $message;
+		}else{
+			$this->_prenom = $prenom;
+		}
 	}
 	public function setMot_de_passe($password) {
 		$this->_mot_de_passe = $password;
 	}
 	public function setIdentifiant($identifiant) {
-		$this->_identifiant = $identifiant;
+		$message = [];
+		if (strlen($identifiant)>50) {
+			$message[] = 'L\'identifiant est trop long : 50 caratères Max';
+			return $message;
+		}elseif (strlen($identifiant) < 2) {
+			$message[] = 'L\'identifiant est trop court : 2 caractères Min';
+			return $message;
+		}else{
+			$this->_identifiant = $identifiant;
+		}
 	}
 	public function setIdTypeUtilisateur($idTypeUtilisateur) {
-		$this->_idTypeUtilisateur = $idTypeUtilisateur;
+		$message = [];
+		if (strlen($idTypeUtilisateur)<1) {
+			$message[] = 'Le rôle est obligatoire';
+			return $message;
+		}else{
+			$this->_idTypeUtilisateur = $idTypeUtilisateur;
+		}
 	}
 
 
