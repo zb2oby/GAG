@@ -122,6 +122,15 @@ input {
 	color: #0A2675;
 }
 
+.first-connect {
+    display: block;
+    text-transform: uppercase;
+    font-size: 18px;
+    font-weight: 300;
+    color: #0A2675;
+    text-align: center;
+}
+
 
 .logo {
 

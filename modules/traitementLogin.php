@@ -10,7 +10,7 @@ $managerUser = new UtilisateurManager($bdd);
 
 if (isset($_POST['login'], $_POST['passwd'])) {
 	$login = htmlentities($_POST['login']);
-	$passwd = htmlentities($_POST['passwd']);
+	$passwd = sha1(htmlentities($_POST['passwd']));
 	$user = $managerUser->checkLogin($login, $passwd);
 	if (empty($_POST['passwd']) && empty($_POST['login'])) {
 		echo 'empty';
@@ -24,9 +24,14 @@ if (isset($_POST['login'], $_POST['passwd'])) {
 		echo $message;
 	}
 	else {
-		$_SESSION['idUser'] = $user->getIdUtilisateur();
-		require('../config.php');
-		$redirect = "../content/accueil.php?onglet=calendar";
+		if ($user->getUserState() == 0) {
+			$idUser = $user->getIdUtilisateur();
+			$redirect = "../content/newMdp.php?idUser=".$idUser;
+		}else{
+			$_SESSION['idUser'] = $user->getIdUtilisateur();
+			require('../config.php');
+			$redirect = "../content/accueil.php?onglet=calendar";
+		}
 		echo $redirect;
 		//header('location: ../content/accueil.php?onglet=calendar');
 	}

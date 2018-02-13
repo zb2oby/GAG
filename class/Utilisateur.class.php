@@ -9,6 +9,7 @@ class Utilisateur {
 	private $_prenom;
 	private $_idTypeUtilisateur;
 	private $_email;
+	private $_userState = 0;
 
 	public function hydrate($dataUser) {
 		foreach ($dataUser as $key => $value) {
@@ -93,6 +94,10 @@ class Utilisateur {
 		}
 	}
 
+	public function setUserState($userState) {
+		$this->_userState = $userState;
+	}
+
 
 	public function getIdUtilisateur() {
 		return $this->_idUtilisateur;
@@ -114,6 +119,9 @@ class Utilisateur {
 	}
 	public function getEmail() {
 		return $this->_email;
+	}
+	public function getUserState() {
+		return $this->_userState;
 	}
 
 

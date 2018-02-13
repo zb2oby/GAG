@@ -6,7 +6,7 @@ require('../includes/functions.php');
 
 $managerUser = new UtilisateurManager($bdd);
 $msg = [];
-$user = new Utilisateur(['idUser' => '', 'nom'=>'', 'prenom' =>'', 'identifiant' => '', 'mot_de_passe' => '', 'idTypeUtilisateur' => 2 ]);
+$user = new Utilisateur(['idUser' => '', 'nom'=>'', 'prenom' =>'', 'identifiant' => '', 'mot_de_passe' => '', 'idTypeUtilisateur' => 2, 'email' => '', 'userState' => 0 ]);
 
 	if (isset($_GET['nom'])) {
 		$nom = htmlentities($_GET['nom']);
@@ -65,8 +65,8 @@ $user = new Utilisateur(['idUser' => '', 'nom'=>'', 'prenom' =>'', 'identifiant'
 		}else{
 			$mdp = uniqid();
 			//hashage du mot de passe : 
-			//$mdpHash = sha1($mdp);
-			$user->setMot_de_passe($mdp);
+			$mdpHash = sha1($mdp);
+			$user->setMot_de_passe($mdpHash);
 			$managerUser->addUtilisateur($user);
 			$idUser = $managerUser->lastIdUser();
 			//on envoir le mot de passe par mail au nouvel utilisateur cree

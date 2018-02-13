@@ -13,13 +13,14 @@ class UtilisateurManager {
     }
 
      public function addUtilisateur(Utilisateur $utilisateur) {
-    	$q = $this->_db->prepare('INSERT INTO Utilisateur(nom, mot_de_passe, identifiant, prenom, idTypeUtilisateur, email) VALUES (:nom, :mot_de_passe, :identifiant, :prenom, :idTypeUtilisateur, :email)');
+    	$q = $this->_db->prepare('INSERT INTO Utilisateur(nom, mot_de_passe, identifiant, prenom, idTypeUtilisateur, email, userState) VALUES (:nom, :mot_de_passe, :identifiant, :prenom, :idTypeUtilisateur, :email, :userState)');
         $q->bindValue(':nom', $utilisateur->getNom());
         $q->bindValue(':mot_de_passe', $utilisateur->getMot_de_passe());
         $q->bindValue(':identifiant', $utilisateur->getIdentifiant());
         $q->bindValue(':prenom', $utilisateur->getPrenom());
         $q->bindValue(':idTypeUtilisateur', $utilisateur->getIdTypeUtilisateur());
         $q->bindValue(':email', $utilisateur->getEmail());
+        $q->bindValue(':userState', $utilisateur->getUserState());
 
         $q->execute();
     }
@@ -29,7 +30,7 @@ class UtilisateurManager {
     }
 
     public function updateUtilisateur(Utilisateur $utilisateur) {
-        $q = $this->_db->prepare('UPDATE Utilisateur SET nom = :nom, mot_de_passe = :mot_de_passe, identifiant = :identifiant, prenom = :prenom, idTypeUtilisateur = :idTypeUtilisateur, email = :email WHERE idUtilisateur = :idUtilisateur');
+        $q = $this->_db->prepare('UPDATE Utilisateur SET nom = :nom, mot_de_passe = :mot_de_passe, identifiant = :identifiant, prenom = :prenom, idTypeUtilisateur = :idTypeUtilisateur, email = :email, userState = :userState WHERE idUtilisateur = :idUtilisateur');
         $q->bindValue(':idUtilisateur', $utilisateur->getIdUtilisateur());
         $q->bindValue(':nom', $utilisateur->getNom());
         $q->bindValue(':mot_de_passe', $utilisateur->getMot_de_passe());
@@ -37,6 +38,7 @@ class UtilisateurManager {
         $q->bindValue(':prenom', $utilisateur->getPrenom());
         $q->bindValue(':idTypeUtilisateur', $utilisateur->getIdTypeUtilisateur());
         $q->bindValue(':email', $utilisateur->getEmail());
+        $q->bindValue(':userState', $utilisateur->getUserState());
 
         $q->execute();
     }
@@ -65,7 +67,7 @@ class UtilisateurManager {
     //retourn =e la liste des utilisateurs
     public function listUser() {
         $list = [];
-        $q = $this->_db->query("SELECT idUtilisateur, nom, mot_de_passe, identifiant, prenom, idTypeUtilisateur, email FROM Utilisateur ORDER BY nom");
+        $q = $this->_db->query("SELECT idUtilisateur, nom, mot_de_passe, identifiant, prenom, idTypeUtilisateur, email, userState FROM Utilisateur ORDER BY nom");
         while ($data = $q->fetch()) {
             $list[] = new Utilisateur($data);
         }
