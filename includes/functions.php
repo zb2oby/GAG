@@ -25,6 +25,14 @@ function loader($class) {
 }
 
 
+function sendMdpMail($email, $id, $mdp){
+    $mail = $email;
+    $sujet = 'Vos identifiants';
+    $message_txt = "Bonjour, voici vos identifiants de compte sur GAG gestion : -identifiant : ".$id." Mot de passe : ".$mdp;
+    $message_html = "<html><head></head><body><b>Bonjour</b>,<br> Voici vos identifiants sur le site GAG Gestion<br>Identifiant : ".$id."<br>Mot de passe : ".$mdp."</body></html>";
+    include('../modules/mail.php');
+}
+
 
 
 

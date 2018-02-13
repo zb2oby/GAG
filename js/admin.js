@@ -7,11 +7,13 @@ jQuery(document).ready(function($) {
 		var identifiant = $(event.target).data('identifiant');
 		var idUser = $(event.target).data('id');
 		var role = $(event.target).data('role');
+		var email = $(event.target).data('email');
 		$('.adminForm').find('#nom').val(nom);
 		$('.adminForm').find('#prenom').val(prenom);
 		$('.adminForm').find('#role').val(role);
 		$('.adminForm').find('#identifiant').val(identifiant);
 		$('.adminForm').find('#idUser').val(idUser);
+		$('.adminForm').find('#email').val(email);
 		
 	});
 	// $('.userAdmin').click(function(event) {
@@ -38,8 +40,9 @@ jQuery(document).ready(function($) {
 		var identifiant = $('.adminForm').find('#identifiant').val();
 		var idUser = $('.adminForm').find('#idUser').val();
 		var del = $('.adminForm').find('#req').val();
+		var email = $('.adminForm').find('#email').val();
 		
-		var data = 'idUser=' + idUser + '&nom=' + nom +'&prenom=' + prenom + '&role=' + role + '&identifiant=' + identifiant + '&req=' + del;
+		var data = 'idUser=' + idUser + '&nom=' + nom +'&prenom=' + prenom + '&role=' + role + '&identifiant=' + identifiant + '&req=' + del + '&email=' + email;
 		$.ajax({
 			url: '../modules/traitementAdmin.php',
 			type: 'GET',
@@ -89,7 +92,7 @@ jQuery(document).ready(function($) {
 							$('.confirmSet').css('display', 'none');
 							$('.overlay').hide();
 						}, 1500);
-						$('.afficheUser ul').prepend('<li><a class="userAdmin" data-nom="'+nom+'" data-prenom="'+prenom+'" data-identifiant="'+identifiant+'" data-id="'+idUser+'" data-role="'+role+'" href="#">NOM : '+nom+' PRENOM : '+prenom+' ROLE : '+libelleRole+'</a></li>');
+						$('.afficheUser ul').prepend('<li><a class="userAdmin" data-nom="'+nom+'" data-prenom="'+prenom+'" data-email="'+email+'" data-identifiant="'+identifiant+'" data-id="'+idUser+'" data-role="'+role+'" href="#">NOM : '+nom+' PRENOM : '+prenom+' ROLE : '+libelleRole+'</a></li>');
 					}else if (msg.del == 'del') {
 						var list = $('.afficheUser ul').find('li a');
 						for (var i = list.length - 1; i >= 0; i--) {

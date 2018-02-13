@@ -8,6 +8,7 @@ class Utilisateur {
 	private $_identifiant;
 	private $_prenom;
 	private $_idTypeUtilisateur;
+	private $_email;
 
 	public function hydrate($dataUser) {
 		foreach ($dataUser as $key => $value) {
@@ -27,7 +28,7 @@ class Utilisateur {
 	}
 	public function setNom($nom) {
 		$message = [];
-		if (strlen($nom)>5) {
+		if (strlen($nom)>50) {
 			$message[] = 'Le nom est trop long : 50 caratères Max';
 			return $message;
 		}elseif (strlen($nom) < 2) {
@@ -39,7 +40,7 @@ class Utilisateur {
 	}
 	public function setPrenom($prenom) {
 		$message = [];
-		if (strlen($prenom)>5) {
+		if (strlen($prenom)>50) {
 			$message[] = 'Le prénom est trop long : 50 caratères Max';
 			return $message;
 		}elseif (strlen($prenom) < 2) {
@@ -58,7 +59,7 @@ class Utilisateur {
 			$message[] = 'L\'identifiant est trop long : 50 caratères Max';
 			return $message;
 		}elseif (strlen($identifiant) < 2) {
-			$message[] = 'L\'identifiant est trop court : 2 caractères Min';
+			$message[] = 'L\'identifiant obligatoire (2car Min)';
 			return $message;
 		}else{
 			$this->_identifiant = $identifiant;
@@ -71,6 +72,24 @@ class Utilisateur {
 			return $message;
 		}else{
 			$this->_idTypeUtilisateur = $idTypeUtilisateur;
+		}
+	}
+	public function setEmail($email) {
+		$message = [];
+		$atom = '[-a-z0-9!#$%&\'*+\\/=?^_`{|}~]';
+		$domain = '([a-z0-9]([-a-z0-9]*[a-z0-9]+)?)';
+		$regexmail = '/^' . $atom . '+' . '(\.' . $atom . '+)*' . '@' . '(' . $domain . '{1,63}\.)+' .$domain . '{2,63}$/i';
+		if (strlen($email) != 0 && !preg_match($regexmail, $email)) {
+			$message[] = 'Pas le bon format d\'email';
+			return $message;
+		}elseif (strlen($email) > 100 ) {
+			$message[] = 'Email trop long !';
+			return $message;
+		}elseif (strlen($email) < 8) {
+			$message[] = 'Email obligatoire !';
+			return $message;
+		}else{
+			$this->_email = $email;
 		}
 	}
 
@@ -92,6 +111,9 @@ class Utilisateur {
 	}
 	public function getIdTypeUtilisateur() {
 		return $this->_idTypeUtilisateur;
+	}
+	public function getEmail() {
+		return $this->_email;
 	}
 
 

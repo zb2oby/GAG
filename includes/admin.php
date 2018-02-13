@@ -19,10 +19,11 @@
 				$idTypeRole = $user->getIdTypeUtilisateur();
 				$role = $managerUser->getRole($idTypeRole);
 				$identifiant = $user->getIdentifiant();
+				$email = $user->getEmail();
 				$dataUser = [];	
 				$dataUser = ['nom' => $nom, 'prenom' => $prenom, 'idRole' => $idTypeRole, 'identifiant' => $identifiant];
 				?>
-				<li><a class="userAdmin" data-prenom="<?php echo $prenom; ?>" data-role="<?php echo $idTypeRole; ?>" data-identifiant="<?php echo $identifiant; ?>" data-id="<?php echo $idUser; ?>" data-nom="<?php echo $nom ?>" href="#">NOM : <?php echo $nom.' PRENOM : '.$prenom.' ROLE : '.$role; ?></a></li>
+				<li><a class="userAdmin" data-prenom="<?php echo $prenom; ?>" data-email="<?php echo $email; ?>" data-role="<?php echo $idTypeRole; ?>" data-identifiant="<?php echo $identifiant; ?>" data-id="<?php echo $idUser; ?>" data-nom="<?php echo $nom ?>" href="#">NOM : <?php echo $nom.' PRENOM : '.$prenom.' ROLE : '.$role; ?></a></li>
 			<?php }?>
 		</ul>
 	</div>
@@ -38,7 +39,7 @@
 			<input type="text" name="prenom" id="prenom">
 		</div>
 		
-			<div class="selectInput">
+		<div class="selectInput">
 			<label for="role">Role(*)</label>
 			<select name="role" id="role">
 				<option hidden selected value=""></option>
@@ -54,17 +55,21 @@
 
 				 ?>
 			</select>
-			</div>
+		</div>
 		
 		<div>
 			<label for="identifiant">Identifiant(*)</label>
 			<input type="text" name="identifiant" id="identifiant">
 		</div>
+		<div>
+			<label for="email">email(*)</label>
+			<input type="email" name="email" id="email"><br>
+		</div>
 		<div class="submit">
 			<input type="hidden" name="idUser" id="idUser">
 			<input type="hidden" name="onglet" value="admin">
 			<button type="submit">Enregistrer</button>
-			<button class="button" id="emptyUser">Annuler</button>
+			<button class="button" id="emptyUser">Annuler / Vider</button>
 			<input type="hidden" id="req" name="req">
 			<div class="supprUser">
 			

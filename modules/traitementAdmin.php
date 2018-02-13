@@ -2,6 +2,7 @@
 require('../includes/bdd/connectbdd.php');
 require('../class/Utilisateur.class.php');
 require('../class/UtilisateurManager.class.php');
+require('../includes/functions.php');
 
 $managerUser = new UtilisateurManager($bdd);
 $msg = [];
@@ -22,6 +23,10 @@ $user = new Utilisateur(['idUser' => '', 'nom'=>'', 'prenom' =>'', 'identifiant'
 	if (isset($_GET['identifiant'])) {
 		$identifiant = htmlentities($_GET['identifiant']);
 		$msg['identifiant'] = $user->setIdentifiant($identifiant);
+	}
+	if (isset($_GET['email'])) {
+		$email = htmlentities($_GET['email']);
+		$msg['email'] = $user->setEmail($email);
 	}
 
 
@@ -56,12 +61,20 @@ $user = new Utilisateur(['idUser' => '', 'nom'=>'', 'prenom' =>'', 'identifiant'
 				$user->setMot_de_passe($mdp);
 				$managerUser->updateUtilisateur($user);
 			}
-		//si on a pas liduser on est dans un create. et comme pya pas derreur on procede a la creation
+		//si on a pas liduser on est dans un create. et comme ya pas derreur on procede a la creation
 		}else{
 			$mdp = uniqid();
+			//hashage du mot de passe : 
+			//$mdpHash = sha1($mdp);
 			$user->setMot_de_passe($mdp);
 			$managerUser->addUtilisateur($user);
 			$idUser = $managerUser->lastIdUser();
+			//on envoir le mot de passe par mail au nouvel utilisateur cree
+			$lastUser = $managerUser->infoUtilisateur($idUser);
+			$email = $lastUser->getEmail();
+			$identifiant = $lastUser->getIdentifiant();
+			sendMdpMail($email, $identifiant, $mdp);
+
 		}
 		//puis in renvoie l'idUser pour le traitement de l'affihage dans le DOM via jquery
 		$message['idUser'] = $idUser;

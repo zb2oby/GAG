@@ -561,6 +561,10 @@ form.expoForm {
 			margin-top: 15px;
 		}
 
+		.adminForm label {
+			text-align: left;
+		}
+
 		
 		fieldset.expoField {
 			border: none;
