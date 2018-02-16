@@ -164,11 +164,11 @@ jQuery(document).ready(function($) {
 			var dateFormat = dateMsg.split('-');
 			var newDate = dateFormat[2]+'/'+dateFormat[1]+'/'+dateFormat[0];
 			var data = 'idArtiste=' + idArtiste + '&message=' + message + '&dateMsg=' + dateMsg + '&idUser=' + idUser;
-			// $(event.target).closest('.context-menu').find('.card-msg').prepend('<div class="message" data-idmessage=""><div class="message-header"> Message de '+nomUser+' Le '+newDate+'<span class="delMsgArt delMsg"><a>supprimer le message</a></span></div><div class="message-content">'+message+'</div></div>');
+			$(event.target).closest('.context-menu').find('.card-msg').prepend('<div class="message" data-idmessage=""><div class="message-header"> Message de '+nomUser+' Le '+newDate+'<span class="delMsgArt delMsg"><a>supprimer le message</a></span></div><div class="message-content">'+message+'</div></div>');
 			nbMsg++;
 			$(event.target).closest('.card-action').find('#messagerieArtiste .nbMsg').text(nbMsg);
 			$(event.target).find('#newMsg').val('');
-			var msg = 'ok';
+			var messagerie = 'ok';
 		}
 		//update nom collectif
 		if (typeof idCollectif != 'undefined') {
@@ -223,7 +223,7 @@ jQuery(document).ready(function($) {
 					
 				}
 
-				if (msg == 'ok') {
+				if (messagerie == 'ok') {
 					$(event.target).closest('.context-menu').find('.card-msg').prepend('<div class="message" data-idmessage="'+response+'"><div class="message-header"> Message de '+nomUser+' Le '+newDate+'<span class="delMsgArt delMsg"><a>supprimer le message</a></span></div><div class="message-content">'+message+'</div></div>');
 				}
 				//retour de l'ajout d'oeuvre

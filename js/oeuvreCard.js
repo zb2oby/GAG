@@ -109,7 +109,7 @@ jQuery(document).ready(function($) {
 			nbMsg++;
 			$(event.currentTarget).closest('.card-action').find('#messagerieOeuvre .nbMsg').text(nbMsg);
 			$(event.currentTarget).find('#newMsg').val('');
-			var msg = 'ok';
+			var messagerie = 'ok';
 		}
 		//update nom artiste et collectif
 		if (typeof idArtiste != 'undefined' || typeof idCollectif != 'undefined') {
@@ -196,7 +196,8 @@ jQuery(document).ready(function($) {
 					
 					
 				}
-				if (msg == 'ok') {
+				if (messagerie == 'ok') {
+
 					$(event.currentTarget).closest('.context-menu').find('.card-msg').prepend('<div class="message" data-idmessage="'+response+'"><div class="message-header"> Message de '+nomUser+' Le '+newDate+'<span class="delMsgOeuvre delMsg"><a>supprimer le message</a></span></div><div class="message-content">'+message+'</div></div>');
 				}
 				if (html == 'ok') {

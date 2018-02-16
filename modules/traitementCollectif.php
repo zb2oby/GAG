@@ -68,6 +68,8 @@ if (isset($_GET['idCollectif'])) {
 		$manager = new MessageManager($bdd);
 		$message = new Message(['dateMessage'=>$dateMsg, 'message'=>$contenu, 'idUtilisateur'=>$idUser, 'idCollectif'=>$idCollectif]);
 		$manager->addMessageCollectif($message);
+		$lastId = $manager->lastIdMsg();
+		echo $lastId;
 	}
 	//SUPRESSION COLLECTIF
 	if (isset($_GET['req']) && $_GET['req'] == 'delete') {

@@ -31,7 +31,7 @@ jQuery(document).ready(function($) {
 		var nbMsg = parseInt($(event.target).closest('.card-action').find('.nbMsg').text());
 
 		var delColl = $(event.target).find('#delColl').val();
-		console.log(delColl);
+		//console.log(delColl);
 
 		//suppression du collectif
 		if (delColl == 'delete') {
@@ -56,10 +56,11 @@ jQuery(document).ready(function($) {
 			var dateFormat = dateMsg.split('-');
 			var newDate = dateFormat[2]+'/'+dateFormat[1]+'/'+dateFormat[0];
 			var data = 'idCollectif=' + idCollectif + '&message=' + message + '&dateMsg=' + dateMsg + '&idUser=' + idUser;
-			$(event.target).closest('.context-menu').find('.card-msg').prepend('<div class="message"><div class="message-header"> Message de '+nomUser+' Le '+newDate+'<span class="delMsgColl delMsg"><a>supprimer le message</a></span></div><div class="message-content">'+message+'</div></div>');
+			//$(event.target).closest('.context-menu').find('.card-msg').prepend('<div class="message"><div class="message-header"> Message de '+nomUser+' Le '+newDate+'<span class="delMsgColl delMsg"><a>supprimer le message</a></span></div><div class="message-content">'+message+'</div></div>');
 			nbMsg++;
 			$(event.target).closest('.card-action').find('.nbMsg').text(nbMsg);
 			$(event.target).find('#newMsg').val('');
+			var messagerie = 'ok';
 		}
 
 		$.ajax({
@@ -70,6 +71,9 @@ jQuery(document).ready(function($) {
 		})
 		.done(function(response) {
 			console.log("success");
+			if (messagerie == 'ok') {
+				$(event.target).closest('.context-menu').find('.card-msg').prepend('<div class="message" data-idmessage="'+response+'"><div class="message-header"> Message de '+nomUser+' Le '+newDate+'<span class="delMsgColl delMsg"><a>supprimer le message</a></span></div><div class="message-content">'+message+'</div></div>');
+			}
 			//si l'envoie ajax concerne les info generales
 			if (gnl == 'ok') {
 				//si il y a deja des erreur on les supprime avant de les reafficher
