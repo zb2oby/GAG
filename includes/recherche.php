@@ -23,7 +23,7 @@
 				</div>
 				<div class="inputSaisie">
 					<label for="req">Votre recherche</label>
-					<input class="saisie" name="req" id="req" type="text"><button type="submit"><i class="ion-android-search" title="Valider"></i></button>
+					<input class="saisie" name="req" id="req" type="text"><button type="submit" class="ion-android-search" title="rechercher"><span class="btn-label">Valider</span></button>
 				</div>
 			</form>
 		</div>

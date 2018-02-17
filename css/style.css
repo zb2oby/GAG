@@ -1,14 +1,13 @@
 @font-face{
-    font-family : "Roboto";
-    src : url('../fonts/Roboto/Roboto-Regular.ttf');
+    font-family : "Overpass";
+    src : url('../fonts/Overpass/Overpass-Regular.ttf');
 }
 
 * {
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
-	font-family: Overpass,Helvetica Neue,Helvetica,Arial,sans-serif;
-	/*font-family: 'Roboto', sans-serif;*/
+	font-family: Overpass,Arial,sans-serif;
 }
 
 .impression {
@@ -16,9 +15,6 @@
 	font-size: 12px;
 }
 
-/*.ion-android-close {
-	line-height: 0px !important;
-}*/
 
 h3 {
 	text-align: center;
@@ -39,8 +35,6 @@ li {
 
 body {
 	font-size: 0;
-	font-family: 'Roboto', sans-serif;
-
 }
 
 label {
@@ -68,6 +62,7 @@ select {
     border-radius: 0;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
     -webkit-appearance: none;
+    -moz-appearance: none;
     box-shadow: 0 1px 0 transparent;
     padding: 6px 12px;
     color: #0A2675;
@@ -154,7 +149,7 @@ button, button.button, a.button {
 
 button:hover, button.button:hover, a.button:hover {
 	cursor: pointer;
-	background-color: #ccc;
+	background-color: #eee;
 	color: #0A2675;
 
 }
@@ -650,10 +645,20 @@ form.expoForm {
 		}
 
 			.inputSaisie button[type="submit"] {
-				width: 0;
-				height: 0;
-				padding: 0;
+				/*width: 0;*/
+				/*height: 1px;*/
+				/*padding: 0;*/
+				box-shadow: none;
+				background-color: transparent;
 				font-size: 2em;
+				color: #7c8795;
+
+			}
+			.btn-label{
+				font-size: 0;
+				/*height: 1px;*/
+				/*overflow: hidden;*/
+				/*display: block;*/
 			}
 
 			.inputSaisie i {
