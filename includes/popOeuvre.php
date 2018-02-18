@@ -150,7 +150,7 @@ if (isset($idOeuvreExposee)) {
 						</div>
 						<div>
 							<label for="descriptif">Descriptif(*)</label><br>
-							<textarea name="descriptif" id="descriptif" cols="40" rows="10" value="<?php echo $oeuvre->getDescriptifFR() ?>"><?php echo $oeuvre->getDescriptifFR() ?></textarea>
+							<textarea name="descriptif" id="descriptif" cols="40" rows="8" value="<?php echo $oeuvre->getDescriptifFR() ?>"><?php echo $oeuvre->getDescriptifFR() ?></textarea>
 						</div>
 						
 						<div class="submit">
