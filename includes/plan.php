@@ -41,7 +41,7 @@
 			if (($data->getCoordTop() == 50 || $data->getCoordLeft() == 50) && $data->getIdOeuvreExposee() == 0 ) {
 				$id = 'default-place';
 			}
-			echo '<div id="'.$id.'" class="emplacement" data-id="'.$data->getIdEmplacement().'" style="top:'.$data->getCoordTop().'%; left:'.$data->getCoordLeft().'%;"><div title="Cliquez pour plus d\'options" class="oeuvre-place" data-idemplacement="'.$data->getIdEmplacement().'">'.$content.'</div></div>';
+			echo '<div id="'.$id.'" class="emplacement" data-id="'.$data->getIdEmplacement().'" style="top:'.$data->getCoordTop().'%; left:'.$data->getCoordLeft().'%;"><div class="oeuvre-place" data-idemplacement="'.$data->getIdEmplacement().'">'.$content.'</div></div>';
 		}
 	}
  ?>

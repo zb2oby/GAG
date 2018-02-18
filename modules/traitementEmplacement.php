@@ -27,7 +27,7 @@ if (isset($_GET['idExpo'])) {
 		//on l'ajoute en base : il a desormais un id
 		$manager->addEmplacement($emplacement);
 		//on recupere l'id du dernier enregistrement
-		$idEmplacement = $manager->getLast($emplacement);
+		$idEmplacement = $manager->getLast();
 		
 		//on recupere le tableau des coordonnées de cet emplacement
 		$coord = $manager->getCoord($idEmplacement);
@@ -98,7 +98,7 @@ if (isset($idExpo) && $idExpo != 'undefined') {
 		//on l'ajoute en base : il a desormais un id
 		$manager->addEmplacement($emplacement);
 		//on recupere l'id du dernier enregistrement
-		$idEmplacement = $manager->getLast($emplacement);
+		$idEmplacement = $manager->getLast();
 		
 		//on recupere le tableau des coordonnées de cet emplacement
 		//$coord = $manager->getCoord($idEmplacement);

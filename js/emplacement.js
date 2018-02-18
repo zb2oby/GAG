@@ -32,7 +32,18 @@ jQuery(document).ready(function($) {
                 .done(function(response) {
                     console.log(response);
                     if (response) {
-                        $(event.target).closest('.plan').prepend('<div id="default-place" class="emplacement" data-id="'+response+'" style="top:50%; left:50%;"></div><div title="Cliquez pour plus d\'options" class="oeuvre-place" data-idemplacement="'+response+'"></div></div>');
+                        $('.plan').prepend('<div id="default-place" class="emplacement" data-id="'+response+'" style="top:50%; left:50%;"></div><div class="oeuvre-place" data-idemplacement="'+response+'"></div></div>');
+                    }
+                    //on modifie les coordonnées sur le plan d'impression
+                    var listPlace = $('.imprPlan .emplacement');
+                    for (var i = listPlace.length - 1; i >= 0; i--) {
+                        if ($(listPlace[i]).data('id') == idEmplacement) {
+                            $(listPlace[i]).css({
+                                top: posTop,
+                                left: posLeft
+                            });
+                        }
+                        
                     }
                     // console.log("success");
                 })
@@ -67,6 +78,14 @@ jQuery(document).ready(function($) {
         drop: function(event, ui) {
             var idOeuvreExposee = '';
             var idEmplacement = $(ui.draggable).data('id');
+            //suppression de l'image du plan d'impression
+            var listPlace = $('.imprPlan .emplacement');
+            for (var i = listPlace.length - 1; i >= 0; i--) {
+                if ($(listPlace[i]).data('id') == idEmplacement) {
+                    $(listPlace[i]).remove();
+                }
+                
+            }
                 //mise a jour de l'emplacement :: suppression de l'oeuvre droppé
                 var place = 'delete=' + idEmplacement + '&idExpo=' + idExpo;
                 $.ajax({
@@ -84,8 +103,9 @@ jQuery(document).ready(function($) {
                 .always(function() {
                     console.log("complete");
                 });
-
+            //suppression de l'oeuvre du plan de l'expo
             ui.draggable.remove();
+
         }
     });
 

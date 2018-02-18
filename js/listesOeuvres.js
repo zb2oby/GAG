@@ -132,10 +132,21 @@ jQuery(document).ready(function($) {
                 //on clone l'element draggué a l'interieur de l'emplacement
                 var $item = ui.draggable.clone();
                 $(this).find('#default-place .oeuvre-place').addClass('has-drop').html($item);
-                
+
                 //preparation des variable à envoyer en base.
                  var idOeuvreExposee = $item.data('idoeuvreexposee');
                  var idEmplacement = $('#default-place').data('id');
+                 //on ajoute la div de numero d'meplacement utile pour la numerotation sur l'impression
+                 $(this).find('#default-place .oeuvre-place .img').append('<div class="numEmplacement">'+idEmplacement+'</div>');
+                 //on clone aussi l'élément sur le plan d'impression
+                    var listPlace = $('.imprPlan .emplacement');
+                    for (var i = listPlace.length - 1; i >= 0; i--) {
+                        if ($(listPlace[i]).data('id') == idEmplacement) {
+                            $(listPlace[i]).find('.oeuvre-place').addClass('has-drop').html($item.clone());
+                            $(listPlace[i]).attr('id', '');
+                        }
+                        
+                    }
                  var idExpo = $(event.target).closest('.plan').data('idexpo');
                  //recuperation de la taille a l'instant T de la div "plan"
                 var widthPlan = parseFloat($('.gestionPlan .plan').css('width'));
@@ -148,7 +159,6 @@ jQuery(document).ready(function($) {
                 var coordLeft = (posLeft/widthPlan)*100;
 
                 
-
                 //envoie en base
                  var place = 'idOeuvreExposee=' + idOeuvreExposee + '&idExpo='+idExpo+ '&coordTop=' + coordTop + '&coordLeft=' + coordLeft + '&idEmplacement=' + idEmplacement;
                  $.ajax({
@@ -162,10 +172,13 @@ jQuery(document).ready(function($) {
                     //au retour on recreer un nouvel emplacement par defaut
                     //Supression de l'id defaut
                     $('.emplacement#default-place').attr('id', '');
-                    //creation du nouvel emplacement
+                    //creation du nouvel emplacement par defaut sur les différents plans
                     if (response) {
-                        $(event.target).closest('.plan').prepend('<div id="default-place" class="emplacement" data-id="'+response+'" style="top:50%; left:50%;"><div title="Cliquez pour plus d\'options" class="oeuvre-place" data-idemplacement="'+response+'"></div></div>');
+                        $('.plan').prepend('<div id="default-place" class="emplacement" data-id="'+response+'" style="top:50%; left:50%;"><div class="oeuvre-place" data-idemplacement="'+response+'"></div></div>');
                     }
+                    
+
+
                 })
                 .fail(function() {
                     console.log("error");

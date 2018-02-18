@@ -48,7 +48,7 @@ class EmplacementManager {
         return $coord;
     }
     //retourne la clé primaire du dernier emplacement cree
-    public function getLast(Emplacement $emplacement) {
+    public function getLast() {
     	
     	$q = $this->_db->query("SELECT MAX(idEmplacement) as idEmplacement FROM Emplacement");
     	while ($data = $q->fetch()) {
