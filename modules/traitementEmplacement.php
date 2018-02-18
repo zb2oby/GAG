@@ -87,7 +87,7 @@ if (isset($_SESSION['idExpo'])) {
 if (isset($_GET['idExpo'])) {
 	$idExpo = htmlentities($_GET['idExpo']);
 }
-if (isset($idExpo)) {
+if (isset($idExpo) && $idExpo != 'undefined') {
 
 	//verification si existence d'un emplacement par defaut (coordonnées 50/50)
 	$defaultPlace = $manager->getdefaultPlace($idExpo);

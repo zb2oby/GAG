@@ -74,82 +74,98 @@ jQuery(document).ready(function($) {
 
 //affichage de la place par defaut au clic sur l'image draggable
 //$('#default-place').css('visibility', 'visible');
-$(document).on('mousedown', '.recue .item', function(event) {
-   $('.gestionPlan #default-place').css({
-       visibility: 'visible',
-       border: '1px solid red'
-   });
-});
-$(document).on('mouseup', '.recue .item', function(event) {
-     $('.gestionPlan #default-place').css({
-       visibility: 'hidden',
-       border: 'none'
-   });
-});
-
+// $(document).on('mousedown', '.recue .item', function(event) {
+//    $('.gestionPlan #default-place').css({
+//        visibility: 'visible',
+//        border: '1px solid red'
+//    });
+// });
+// $(document).on('mouseup', '.recue .item', function(event) {
+//      $('.gestionPlan #default-place').css({
+//        visibility: 'hidden',
+//        border: 'none'
+//    });
+// });
 
 
 
 //CLONAGE DE LIMAGE SUR LE PLAN
 	function doClone(){
         
-        $('.item').draggable({
-	        cancel: "a.ui-icon",
-	        revert: true, 
-	        helper: "clone", 
-	        cursor: "move", 
-	        revertDuration: 0,
-            
-            // drag: function (event, ui) {
-            //     $('#default-place').css('visibility', 'visible');
-            //     var planPosLeft = $('.plan').offset().left;
-            //     var eltPosLeft = ui.offset.left - planPosLeft;
-            //     var planPosTop = $('.plan').offset().top;
-            //     var eltPosTop = ui.offset.top - planPosTop;
-            //     $('#default-place').css( {
-            //         left: eltPosLeft,
-            //         top: eltPosTop
-            //     })    
-            // },
-
-            // stop: function (e, ui) {
-            //     $('#default-place').css({
-            //        visibility: 'hidden',
-            //        border: 'none'
-            //    });
-            // }
-
+        $('#items .item').draggable({
+            helper: 'clone',
+            drag: function (event, ui) {
+                //on recupere la position par rapport au document de l'element draggué 
+                var planPosLeft = $('.gestionPlan').offset().left;
+                //console.log('planLeft' + planPosLeft);
+                var eltPosLeft = ui.offset.left - planPosLeft ;
+                //console.log('elt' + eltPosLeft);
+                var planPosTop = $('.gestionPlan').offset().top;
+                //console.log('planTop' + planPosTop);
+                var eltPosTop = ui.offset.top - planPosTop;
+                
+                //on modifie l'emplacement de la drop-area en fonction de l'emplacement de l'element draggué
+                $('.emplacement#default-place').css( {
+                    //visibility: 'visible',
+                    left: eltPosLeft,
+                    top: eltPosTop
+                })    
+            },
+           
         });
 
- }               
-     
-function doDrop() {
-        $('.gestionPlan .oeuvre-place').droppable({
+        
+
+}               
+  
+
+
+    function doDrop() {
+        $('.plan').droppable({
             accept: "#items .item",
             activeClass: "ui-state-highlight",
             drop: function( event, ui ) {
-
-               //on affiche desormais l'emplacement
-               $(event.target).parent().attr('id', '');
-                $(event.target).parent().css('visibility', 'visible');
-                // clone item to retain in original "list"
+                //on rend l'emplacement visible
+                $('#default-place').css({
+                    visibility: 'visible',
+                });
+                //on clone l'element draggué a l'interieur de l'emplacement
                 var $item = ui.draggable.clone();
+                $(this).find('#default-place .oeuvre-place').addClass('has-drop').html($item);
+                
                 //preparation des variable à envoyer en base.
-                var idOeuvreExposee = $item.data('idoeuvreexposee');
-                var idEmplacement = $(event.target).data('idemplacement');
-                var idExpo = 2;
-                //ajout du clone de l'element au DOM
-                $(this).addClass('has-drop').html($item);
-                //mise a jour de l'emplacement avec l'oeuvre droppée
-                var place = 'idOeuvreExposee=' + idOeuvreExposee + '&idEmplacement=' + idEmplacement;
-                $.ajax({
+                 var idOeuvreExposee = $item.data('idoeuvreexposee');
+                 var idEmplacement = $('#default-place').data('id');
+                 var idExpo = $(event.target).closest('.plan').data('idexpo');
+                 //recuperation de la taille a l'instant T de la div "plan"
+                var widthPlan = parseFloat($('.gestionPlan .plan').css('width'));
+                var heightPlan = parseFloat($('.gestionPlan .plan').css('height'));
+                //recuperation des coordonnées à l'instant T de l'emplacement
+                var posTop = parseFloat($('.emplacement#default-place').css('top'));
+                var posLeft = parseFloat($('.emplacement#default-place').css('left'));
+                //transformation des coordonnées en pourcentage de la div plan
+                var coordTop = (posTop/heightPlan)*100;
+                var coordLeft = (posLeft/widthPlan)*100;
+
+                
+
+                //envoie en base
+                 var place = 'idOeuvreExposee=' + idOeuvreExposee + '&idExpo='+idExpo+ '&coordTop=' + coordTop + '&coordLeft=' + coordLeft + '&idEmplacement=' + idEmplacement;
+                 $.ajax({
                     url: '../modules/traitementEmplacement.php',
                     type: 'GET',
                     dataType: 'html',
                     data: place,
                 })
-                .done(function() {
+                .done(function(response) {
                     console.log("success");
+                    //au retour on recreer un nouvel emplacement par defaut
+                    //Supression de l'id defaut
+                    $('.emplacement#default-place').attr('id', '');
+                    //creation du nouvel emplacement
+                    if (response) {
+                        $(event.target).closest('.plan').prepend('<div id="default-place" class="emplacement" data-id="'+response+'" style="top:50%; left:50%;"><div title="Cliquez pour plus d\'options" class="oeuvre-place" data-idemplacement="'+response+'"></div></div>');
+                    }
                 })
                 .fail(function() {
                     console.log("error");
@@ -157,51 +173,14 @@ function doDrop() {
                 .always(function() {
                     console.log("complete");
                 });     
+               
             }
         });
 
-        
 
     };
 
-//SUPPRESSION OEUVRE DU PLAN
-    $('.oeuvre-place').sortable({
-        connectWith: '.trash',
-        update: function(event, ui) {
-            //Run this code whenever an item is dragged and dropped out of this list
-            var order = $(this).sortable('serialize');
-        },
-        helper: 'clone'
-    });
-    $('.trash').droppable({
-        accept: '.oeuvre-place > .img',
-        activeClass: 'dropArea',
-        hoverClass: 'dropAreaHover',
-        drop: function(event, ui) {
-            var idOeuvreExposee = '';
-            var idEmplacement = $(ui.draggable).parent().data('idemplacement');
 
-                //mise a jour de l'emplacement :: suppression de l'oeuvre droppé
-                var place = 'idOeuvreExposee=' + idOeuvreExposee + '&idEmplacement=' + idEmplacement;
-                $.ajax({
-                    url: '../modules/traitementEmplacement.php',
-                    type: 'GET',
-                    dataType: 'html',
-                    data: place,
-                })
-                .done(function() {
-                    console.log("success");
-                })
-                .fail(function() {
-                    console.log("error");
-                })
-                .always(function() {
-                    console.log("complete");
-                });
-
-            ui.draggable.remove();
-        }
-    });
 
 //SUPPRESSION OEUVRE PREVUE OU RECUE ET ARTISTE ET EMPLACEMENTS PLAN
 
@@ -304,10 +283,7 @@ function deleteElt(target) {
         deleteElt(target);
         $('.overlay').show();
     });
-	// $('.deletePlace').click(function(event) {
-	// 	var target = $(event.target);
-	// 	deleteElt(target);
-	// });
+	
 
 //>>>>>>>>>>>>>>>>>< POPUP <>>>>>>>>>>>>>>>>>>
 

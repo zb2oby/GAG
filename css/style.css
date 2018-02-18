@@ -708,10 +708,14 @@ form.expoForm {
 		}
 
 /*<<<<<<<<<<<<<<<<  PLAN >>>>>>>>>>>>>>*/
-
+.gestionPlan {
+	padding-left: 20px;
+	padding-right: 20px;
+}
 .plan {
 	position: relative;
-	width: 90%;
+	/*width: 90%;*/
+	width: 100%;
 	margin: 0px auto;
 	font-size: 16px;
 }
@@ -747,7 +751,7 @@ form.expoForm {
 		visibility: hidden;
 	}
 
-	.emplacement-handle {
+	/*.emplacement-handle {
 		visibility: hidden;
 		position: absolute;
 		top:-18px;
@@ -764,13 +768,13 @@ form.expoForm {
 
 	.emplacement-handle:hover {
 		cursor: move;
-	}
+	}*/
 	
-	.deletePlace {
+	/*.deletePlace {
 		visibility: hidden;
 		position: absolute;
 		top:-18px;
-		right:-38px;
+		right:-18px;
 		width: 20px;
 		height: 20px;
 		border-radius: 20px;
@@ -806,7 +810,7 @@ form.expoForm {
 	.addPlace button:hover {
 		color: #1246D9;
 		cursor: pointer;
-	}
+	}*/
 
 	.trash {
 		position: absolute;
@@ -1560,7 +1564,8 @@ form.expoForm {
 				}
 
 		.plan {
-			width: 97%;
+			/*width: 97%;*/
+			width: 100%;
 		}
 
 		.context-menu {

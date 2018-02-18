@@ -1,45 +1,10 @@
 jQuery(document).ready(function($) {
 
-//GESTION AFFICHAGE LOGO DEPLACEMENT
-    $(document).on('click', '.emplacement', function(event) {
-   
-        //par defaut on cache les logo actifs
-        $('.emplacement-handle, .deletePlace').css('visibility', 'hidden');
-        //on affiche le logo de deplacement si on a cliqué sur une div "emplacement"
-        // if (($(event.target).hasClass('emplacement ui-draggable')) ) {
-
-        if ( ($(event.target).hasClass('oeuvre-place')) ) {
-            
-            //cas d'emplacement vide
-            $(event.target).parent().find('.emplacement-handle').css({
-                visibility: 'visible'
-            });;
-            $(event.target).parent().find('.deletePlace').css({
-                visibility: 'visible'
-            });;
-        }
-        if ( ($(event.target).parent().parent().hasClass('oeuvre-place')) ) {
-            
-            //cas d'emplacement plein
-            $(event.target).parent().parent().parent().find('.emplacement-handle').css({
-                visibility: 'visible'
-            });;
-            $(event.target).parent().parent().parent().find('.deletePlace').css({
-                visibility: 'visible'
-            });;
-        }  
-    })
-
-    $('.container').click(function(event) {
-        if (!$(event.target).hasClass('.emplacement')) {
-            $('.emplacement-handle, .deletePlace').css('visibility', 'hidden');
-        }
-    });
 
 //GESTION NOUVELLES COORDONNEES DES EMPLACEMENTS
     function  doDrag() {
         $('.gestionPlan .emplacement').draggable({
-            handle: '.emplacement-handle',
+            //handle: '.emplacement-handle',
     		containment: '.gestionPlan .plan',
     		stop: function(event,ui) {
                 //recuperation de la taille a l'instant T de la div "plan"
@@ -55,7 +20,7 @@ jQuery(document).ready(function($) {
                 var idEmplacement = $(this).data('id');
                 //on prepare l'idExpo pour la verification de l'existence d'un emplacement par defaut
                 var idExpo = $(event.target).closest('.plan').data('idexpo');
-                console.log(idExpo);
+                //console.log(idExpo);
                 var emplacement = 'idExpo='+idExpo+ '&coordTop=' + coordTop + '&coordLeft=' + coordLeft + '&idEmplacement=' + idEmplacement;
                 //traitement ajax
                 $.ajax({
@@ -67,7 +32,7 @@ jQuery(document).ready(function($) {
                 .done(function(response) {
                     console.log(response);
                     if (response) {
-                        $(event.target).closest('.plan').prepend('<div id="default-place" class="emplacement" data-id="'+response+'" style="top:50%; left:50%;"><div class="emplacement-handle ion-arrow-move" title="Déplacer"></div><div class="deletePlace ion-android-close" title="Supprimer"></div><div title="Cliquez pour plus d\'options" class="oeuvre-place" data-idemplacement="'+response+'"></div></div>');
+                        $(event.target).closest('.plan').prepend('<div id="default-place" class="emplacement" data-id="'+response+'" style="top:50%; left:50%;"></div><div title="Cliquez pour plus d\'options" class="oeuvre-place" data-idemplacement="'+response+'"></div></div>');
                     }
                     // console.log("success");
                 })
@@ -84,6 +49,46 @@ jQuery(document).ready(function($) {
 
 
     doDrag();
+
+
+//SUPPRESSION OEUVRE DU PLAN
+    $('.gestionPlan .emplacement').sortable({
+        connectWith: '.trash',
+        update: function(event, ui) {
+            //Run this code whenever an item is dragged and dropped out of this list
+            var order = $(this).sortable('serialize');
+        },
+        helper: 'clone'
+    });
+    $('.trash').droppable({
+        accept: '.gestionPlan .emplacement',
+        activeClass: 'dropArea',
+        hoverClass: 'dropAreaHover',
+        drop: function(event, ui) {
+            var idOeuvreExposee = '';
+            var idEmplacement = $(ui.draggable).data('id');
+                //mise a jour de l'emplacement :: suppression de l'oeuvre droppé
+                var place = 'delete=' + idEmplacement + '&idExpo=' + idExpo;
+                $.ajax({
+                    url: '../modules/traitementEmplacement.php',
+                    type: 'GET',
+                    dataType: 'html',
+                    data: place,
+                })
+                .done(function() {
+                    console.log("success");
+                })
+                .fail(function() {
+                    console.log("error");
+                })
+                .always(function() {
+                    console.log("complete");
+                });
+
+            ui.draggable.remove();
+        }
+    });
+
 
     $(document).ajaxComplete(function () {
         doDrag();

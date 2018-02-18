@@ -23,6 +23,7 @@ $_SESSION['idExpo'] = $idExpo;
 				<?php include('../includes/listesGestion.php') ?>
 				<div class="gestionPlan">
 					<?php include('../includes/plan.php') ?>
+
 				</div>
 			</div>
 		</div>

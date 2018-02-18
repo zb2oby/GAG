@@ -4,9 +4,9 @@
 	<form class="emplacementForm" action="../modules/traitementEmplacement.php" method="GET">
 		<input type="text" hidden name="idExpo" value="<?php echo $_SESSION['idExpo'] ?>">
 		<input type="hidden" name="req" value="addPlace">
-		<div class="addPlace">
+		<!-- <div class="addPlace">
 			<button type="submit" title="Ajouter un Nouvel Emplacement"><i class="ion-plus-circled"></i></button>
-		</div>
+		</div> -->
 		<div class="trash"><i class="ion-trash-a"></i></div>	
 	</form>
 		
@@ -41,10 +41,9 @@
 			if (($data->getCoordTop() == 50 || $data->getCoordLeft() == 50) && $data->getIdOeuvreExposee() == 0 ) {
 				$id = 'default-place';
 			}
-			echo '<div id="'.$id.'" class="emplacement" data-id="'.$data->getIdEmplacement().'" style="top:'.$data->getCoordTop().'%; left:'.$data->getCoordLeft().'%;"><div class="emplacement-handle ion-arrow-move" title="Déplacer"></div><div class="deletePlace ion-android-close" title="Supprimer"></div><div title="Cliquez pour plus d\'options" class="oeuvre-place" data-idemplacement="'.$data->getIdEmplacement().'">'.$content.'</div></div>';
+			echo '<div id="'.$id.'" class="emplacement" data-id="'.$data->getIdEmplacement().'" style="top:'.$data->getCoordTop().'%; left:'.$data->getCoordLeft().'%;"><div title="Cliquez pour plus d\'options" class="oeuvre-place" data-idemplacement="'.$data->getIdEmplacement().'">'.$content.'</div></div>';
 		}
 	}
  ?>
-
  </div>	
  
