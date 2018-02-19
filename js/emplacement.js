@@ -124,7 +124,7 @@ jQuery(document).ready(function($) {
  
             // ==> ce qu'il se passe : l'idemplacement de la fonction doDrag existe. apres le trash il n'existe plus 
             //MAIS le script repasse tout de meme dans la fonction doDrag() à cause du document.ajaxComplete (seule methode trouvée pour deleguer un draggable au document et ainsi recreer des draggable en boucle)
-            //IL y repasse donc mais avec un id qui n'existe plus d'ou l'erreur PDO qui ne peut pas hydrater d'objet vide
+            //IL y repasse donc (inutilement d'ailleur) mais avec un id qui n'existe plus d'ou l'erreur PDO qui ne peut pas hydrater d'objet vide
             //en generant cette erreur on evite la reexecution de doDrag apres un trash
             console.log('Erreur volontaire : voir commentaires');
             ui.draggable.draggable('destroy');
