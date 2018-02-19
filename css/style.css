@@ -402,7 +402,7 @@ header {
 
 					.context-add span {
 						display: block;
-						padding: 10px;
+						padding: 7px;
 					}
 
 					.context-add span:hover {
@@ -626,6 +626,30 @@ form.expoForm {
 			margin: 10px;
 			padding:5px 15px;
 		}
+
+/*<<<<<<<<<<<<<<<<  Doc >>>>>>>>>>>>>>*/
+.docUtils {
+	width: 100%;
+	min-height: 680px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+	.responsive-object iframe {
+	    position: absolute;
+	    top: 0;
+	    left: 0;
+	    width: 100%;
+	    height: 100%;
+	}
+
+	.responsive-object {
+	  position: relative;
+	  padding-bottom: 67.5%;
+	  height: 0;
+	  margin: 10px 0;
+	  overflow: hidden;
+	}
 
 /*<<<<<<<<<<<<<<<<  Recherche >>>>>>>>>>>>>>*/
 

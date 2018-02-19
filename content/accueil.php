@@ -32,10 +32,27 @@ if (isset($_SESSION['idExpo'])) {
 	        	echo 'onglet-actif';
 	        } ?>" id="admin">
 		<div class="onglet-title">
-			<i class="ion-android-list"></i>Admin	
+			<i class="ion-gear-b"></i>Admin	
 		</div>
 		<div class="onglet-content">
 			<?php include('../includes/admin.php'); ?>
+		</div>
+	</div>
+
+	<div class="onglet <?php if (isset($_GET['onglet']) && $_GET['onglet'] == 'doc') {
+	        	echo 'onglet-actif';
+	        } ?>" id="doc">
+		<div class="onglet-title">
+			<i class="ion-android-list"></i>Doc	
+		</div>
+		<div class="onglet-content">
+			<div class="docUtils responsive-object">
+			<iframe id="MyIFRAME" name="MyIFRAME" 
+			    src="../doc_util/doc_utils.pdf"
+			    scrolling="auto" width="100%" height="100%" frameborder="0">
+			    no iframes supported...
+			</iframe>
+			</div>
 		</div>
 	</div>
 
