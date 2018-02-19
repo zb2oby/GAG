@@ -153,9 +153,8 @@ class OeuvreExposeeManager {
                         .'<div data-idoeuvreexposee="'.$idOeuvreExposee.'" data-id="'.$idOeuvre.'" class="img '.$class.'" data-src="'.$oeuvre->getImage().'">'  
                             .'<img src="../img/oeuvres/'.$oeuvre->getImage().'" alt="'.$oeuvre->getImage().'">'
                         .'</div>'
-                        
+
                     .'</div>'
-                    
                 .'</li>';
 
         }

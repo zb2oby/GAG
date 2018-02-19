@@ -168,7 +168,7 @@ jQuery(document).ready(function($) {
                     data: place,
                 })
                 .done(function(response) {
-                    console.log("success");
+                    //console.log("success");
                     //au retour on recreer un nouvel emplacement par defaut
                     //Supression de l'id defaut
                     $('.emplacement#default-place').attr('id', '');
@@ -181,10 +181,10 @@ jQuery(document).ready(function($) {
 
                 })
                 .fail(function() {
-                    console.log("error");
+                    //console.log("error");
                 })
                 .always(function() {
-                    console.log("complete");
+                    //console.log("complete");
                 });     
                
             }
@@ -234,28 +234,30 @@ function deleteCard(target, idExpo) {
         $('.overlay').hide();
 }
 function deletePlace(target) {
-	var emplacement = target.parent();
-    var idEmplacement = emplacement.data('id');
-    emplacement.remove();
-    $('.confirmPopup').css('display', 'none');
-    $('.overlay').hide();
-    var deletePlace = 'delete=' + idEmplacement;
-    //traitement ajax
-    $.ajax({
-        url: '../modules/traitementEmplacement.php',
-        type: 'GET',
-        dataType: 'html',
-        data: deletePlace,
-    })
-    .done(function() {
-        console.log("success");
-    })
-    .fail(function() {
-        console.log("error");
-    })
-    .always(function() {
-        console.log("complete");
-    });
+	// var emplacement = target.parent();
+ //    var idEmplacement = emplacement.data('id');
+    
+
+ //    emplacement.remove();
+ //    $('.confirmPopup').css('display', 'none');
+ //    $('.overlay').hide();
+ //    var deletePlace = 'delete=' + idEmplacement;
+ //    //traitement ajax
+ //    $.ajax({
+ //        url: '../modules/traitementEmplacement.php',
+ //        type: 'GET',
+ //        dataType: 'html',
+ //        data: deletePlace,
+ //    })
+ //    .done(function() {
+ //        console.log("success");
+ //    })
+ //    .fail(function() {
+ //        console.log("error");
+ //    })
+ //    .always(function() {
+ //        console.log("complete");
+ //    });
 }
 
 
@@ -291,11 +293,11 @@ function deleteElt(target) {
         deleteElt(target);
     });
 
-    $(document).on('click', '.deletePlace', function(event) {
-       var target = $(event.target);
-        deleteElt(target);
-        $('.overlay').show();
-    });
+    // $(document).on('click', '.deletePlace', function(event) {
+    //    var target = $(event.target);
+    //     deleteElt(target);
+    //     $('.overlay').show();
+    // });
 	
 
 //>>>>>>>>>>>>>>>>>< POPUP <>>>>>>>>>>>>>>>>>>

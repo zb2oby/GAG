@@ -3,8 +3,9 @@ jQuery(document).ready(function($) {
 
 //GESTION NOUVELLES COORDONNEES DES EMPLACEMENTS
     function  doDrag() {
+
         $('.gestionPlan .emplacement').draggable({
-            //handle: '.emplacement-handle',
+            //handle: '.oeuvre-place',
     		containment: '.gestionPlan .plan',
     		stop: function(event,ui) {
                 //recuperation de la taille a l'instant T de la div "plan"
@@ -30,7 +31,10 @@ jQuery(document).ready(function($) {
                     data: emplacement,
                 })
                 .done(function(response) {
-                    console.log(response);
+                    if (response != '') {
+                         console.log(response); 
+                    }
+                   
                     if (response) {
                         $('.plan').prepend('<div id="default-place" class="emplacement" data-id="'+response+'" style="top:50%; left:50%;"></div><div class="oeuvre-place" data-idemplacement="'+response+'"></div></div>');
                     }
@@ -54,15 +58,22 @@ jQuery(document).ready(function($) {
                     // console.log("complete");
                 });
             }
-    	})
 
+    	})
+        
+        
     }
 
 
     doDrag();
 
+    $(document).ajaxComplete(function () {
+        doDrag();
+    });
+    
 
-//SUPPRESSION OEUVRE DU PLAN
+
+    //SUPPRESSION OEUVRE DU PLAN
     $('.gestionPlan .emplacement').sortable({
         connectWith: '.trash',
         update: function(event, ui) {
@@ -78,6 +89,7 @@ jQuery(document).ready(function($) {
         drop: function(event, ui) {
             var idOeuvreExposee = '';
             var idEmplacement = $(ui.draggable).data('id');
+            //console.log(idEmplacement);
             //suppression de l'image du plan d'impression
             var listPlace = $('.imprPlan .emplacement');
             for (var i = listPlace.length - 1; i >= 0; i--) {
@@ -87,7 +99,7 @@ jQuery(document).ready(function($) {
                 
             }
                 //mise a jour de l'emplacement :: suppression de l'oeuvre droppé
-                var place = 'delete=' + idEmplacement + '&idExpo=' + idExpo;
+                var place = 'delete=' + idEmplacement; //+ '&idExpo=' + idExpo;
                 $.ajax({
                     url: '../modules/traitementEmplacement.php',
                     type: 'GET',
@@ -95,23 +107,29 @@ jQuery(document).ready(function($) {
                     data: place,
                 })
                 .done(function() {
-                    console.log("success");
+                    //console.log("success");
                 })
                 .fail(function() {
-                    console.log("error");
+                    //console.log("error");
                 })
                 .always(function() {
-                    console.log("complete");
+                    //console.log("complete");
                 });
             //suppression de l'oeuvre du plan de l'expo
             ui.draggable.remove();
 
+
+            //ceci creer une erreur mais en empeche une autre bien plus embetante qui est que lorsque l'element est trashé, 
+            //le doDrag() s'execute avec une erreur pdo
+ 
+            // ==> ce qu'il se passe : l'idemplacement de la fonction doDrag existe. apres le trash il n'existe plus 
+            //MAIS le script repasse tout de meme dans la fonction doDrag() à cause du document.ajaxComplete (seule methode trouvée pour deleguer un draggable au document et ainsi recreer des draggable en boucle)
+            //IL y repasse donc mais avec un id qui n'existe plus d'ou l'erreur PDO qui ne peut pas hydrater d'objet vide
+            //en generant cette erreur on evite la reexecution de doDrag apres un trash
+            console.log('Erreur volontaire : voir commentaires');
+            ui.draggable.draggable('destroy');
+
         }
-    });
-
-
-    $(document).ajaxComplete(function () {
-        doDrag();
     });
     
 });

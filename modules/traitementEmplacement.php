@@ -15,38 +15,39 @@ $manager = new EmplacementManager($bdd);
 
 
 //CREATION DUN NOUVEL EMPLACEMENT SUR DEMANDE (clic sur +)
-if (isset($_GET['idExpo'])) { 
-//=>creation d'une div avec data-id= idEmplacement de la base lié a l'expo ouverte
-	$idExpo = $_GET['idExpo'];
-	if (isset($_GET['req']) && $_GET['req'] == 'addPlace') {
-			# code..
+// if (isset($_GET['idExpo'])) { 
+// //=>creation d'une div avec data-id= idEmplacement de la base lié a l'expo ouverte
+// 	$idExpo = $_GET['idExpo'];
+// 	if (isset($_GET['req']) && $_GET['req'] == 'addPlace') {
+// 			# code..
 		
-		//on creer donc un nouvel objet emplacement a des coordonnée differente de 50/50 pour eviter l'ajout de l'id default-place caché par defaut
-		$emplacement = new Emplacement(['idExpo'=>$idExpo, 'idOeuvreExposee'=>0, 'coordTop'=>51, 'coordLeft'=>51]);
+// 		//on creer donc un nouvel objet emplacement a des coordonnée differente de 50/50 pour eviter l'ajout de l'id default-place caché par defaut
+// 		$emplacement = new Emplacement(['idExpo'=>$idExpo, 'idOeuvreExposee'=>0, 'coordTop'=>51, 'coordLeft'=>51]);
 
-		//on l'ajoute en base : il a desormais un id
-		$manager->addEmplacement($emplacement);
-		//on recupere l'id du dernier enregistrement
-		$idEmplacement = $manager->getLast();
+// 		//on l'ajoute en base : il a desormais un id
+// 		$manager->addEmplacement($emplacement);
+// 		//on recupere l'id du dernier enregistrement
+// 		$idEmplacement = $manager->getLast();
 		
-		//on recupere le tableau des coordonnées de cet emplacement
-		$coord = $manager->getCoord($idEmplacement);
-		//on affiche maintenan la div aux coordonnées presente en base:
-		foreach ($coord as $axe) {
-			echo '<div class="emplacement" data-id="place'.$idEmplacement.'" style="top:'.$axe->getCoordTop().'%; left:'.$axe->getCoordLeft().'%;"></div>';
-		}
+// 		//on recupere le tableau des coordonnées de cet emplacement
+// 		$coord = $manager->getCoord($idEmplacement);
+// 		//on affiche maintenan la div aux coordonnées presente en base:
+// 		foreach ($coord as $axe) {
+// 			echo '<div class="emplacement" data-id="place'.$idEmplacement.'" style="top:'.$axe->getCoordTop().'%; left:'.$axe->getCoordLeft().'%;"></div>';
+// 		}
 
-		header('location: ../content/gestionPanel.php');
-	}
-}
+// 		header('location: ../content/gestionPanel.php');
+// 	}
+// }
 
 
 
 //MISE A JOUR DES COORDONNEES (apres drag and drop jquery : voir emplacement.js) ET DE L'ID OEUVRE APRES DROP DE LIMAGE (voir listeoeuvre.js)
-if (isset($_GET['idEmplacement'])) {
+if (isset($_GET['idEmplacement']) && $_GET['idEmplacement'] != 'undefined' && !empty($_GET['idEmplacement'])) {
 
 	$idEmplacement = htmlentities($_GET['idEmplacement']);
 	$emplacement = $manager->getEmplacement($idEmplacement);
+	//var_dump($emplacement);
 
 	if (isset($_GET['coordTop'])) {
 		$coordTop = htmlentities($_GET['coordTop']);
@@ -61,8 +62,7 @@ if (isset($_GET['idEmplacement'])) {
 
 	if (isset($_GET['idOeuvreExposee'])) {
 		$idOeuvreExposee = htmlentities($_GET['idOeuvreExposee']);
-		$emplacement->setIdOeuvreExposee($idOeuvreExposee);
-		
+		$emplacement->setIdOeuvreExposee($idOeuvreExposee);	
 	}
 
 	$manager->updateEmplacement($emplacement);
@@ -71,6 +71,7 @@ if (isset($_GET['idEmplacement'])) {
 
 //SUPPRESSION EMPLACEMENT
 if (isset($_GET['delete'])) {
+
 	$idEmplacement = htmlentities($_GET['delete']);
 	$emplacement = $manager->getEmplacement($idEmplacement);
 	$manager->deleteEmplacement($emplacement);
@@ -87,7 +88,7 @@ if (isset($_SESSION['idExpo'])) {
 if (isset($_GET['idExpo'])) {
 	$idExpo = htmlentities($_GET['idExpo']);
 }
-if (isset($idExpo) && $idExpo != 'undefined') {
+if (isset($idExpo) && $idExpo != 'undefined' && !empty($_GET['idExpo'])) {
 
 	//verification si existence d'un emplacement par defaut (coordonnées 50/50)
 	$defaultPlace = $manager->getdefaultPlace($idExpo);
@@ -99,14 +100,6 @@ if (isset($idExpo) && $idExpo != 'undefined') {
 		$manager->addEmplacement($emplacement);
 		//on recupere l'id du dernier enregistrement
 		$idEmplacement = $manager->getLast();
-		
-		//on recupere le tableau des coordonnées de cet emplacement
-		//$coord = $manager->getCoord($idEmplacement);
-		//on affiche maintenan la div aux coordonnées presente en base:
-		// foreach ($coord as $axe) {
-		// 	echo '<div class="emplacement" data-id="place'.$idEmplacement.'" style="top:'.$axe->getCoordTop().'%; left:'.$axe->getCoordLeft().'%;"></div>';
-		// }
-	//header("Refresh:0");
 		//retour pour ajax
 		echo $idEmplacement;
 	}

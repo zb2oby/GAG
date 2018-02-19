@@ -3,6 +3,12 @@
     src : url('../fonts/Overpass/Overpass-Regular.ttf');
 }
 
+@font-face {
+	font-family: 'Ionicons';
+	src: url("https://code.ionicframework.com/ionicons/2.0.1/fonts/ionicons.eot?v=2.0.1"); src: url("https://code.ionicframework.com/ionicons/2.0.1/fonts/ionicons.eot?v=2.0.1#iefix") format("embedded-opentype"), url("https://code.ionicframework.com/ionicons/2.0.1/fonts/ionicons.ttf?v=2.0.1") format("truetype"), url("https://code.ionicframework.com/ionicons/2.0.1/fonts/ionicons.woff?v=2.0.1") format("woff"), url("https://code.ionicframework.com/ionicons/2.0.1/fonts/ionicons.svg?v=2.0.1#Ionicons") format("svg"); font-weight: normal; font-style: normal;
+
+}
+
 * {
 	box-sizing: border-box;
 	margin: 0;
@@ -933,6 +939,20 @@ form.expoForm {
 
 				.recue img:hover {
 					border: 2px solid red;
+				}
+
+				.recue .img {
+					position: relative;
+				}
+				.recue .img:after {
+					font-family: "Ionicons";
+        			content: "\f2e3";
+					position: absolute;
+					z-index: 1;
+					left: 45px;
+					top: -10px;
+					color: #0A2675; 
+				
 				}
 
 			.cards li:hover {
