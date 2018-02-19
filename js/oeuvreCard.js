@@ -58,7 +58,7 @@ jQuery(document).ready(function($) {
 				
 			}
 			var arraySelect = $('select#oeuvre option');
-			console.log(arraySelect);
+			//console.log(arraySelect);
 			for (var i = arraySelect.length - 1; i >= 0; i--) {
 				if ($(arraySelect[i]).val() == idOeuvre ) {
 					$(arraySelect[i]).remove();
@@ -146,7 +146,7 @@ jQuery(document).ready(function($) {
 				contentType: false
 			})
 			.done(function(response) {
-				console.log("success");
+				//console.log("success");
 				//si l'envoie ajax concerne les info generales
 				if (gnl == 'ok') {
 					//si il y a deja des erreur on les supprime avant de les reafficher
@@ -237,10 +237,10 @@ jQuery(document).ready(function($) {
 				
 			}) 
 			.fail(function() {
-				console.log("error");
+				//console.log("error");
 			})
 			.always(function() {
-				console.log("complete");
+				//console.log("complete");
 			});
 			
 		return false;
@@ -263,13 +263,13 @@ jQuery(document).ready(function($) {
 			data: data
 		})
 		.done(function() {
-			console.log("success");
+			//console.log("success");
 		})
 		.fail(function() {
-			console.log("error");
+			//console.log("error");
 		})
 		.always(function() {
-			console.log("complete");
+			//console.log("complete");
 		});
 		//return false;
 
