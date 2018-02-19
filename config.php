@@ -1,6 +1,6 @@
 <?php 
 //permet l'affichage de certaine choses en versio nde developpement
-define('DEV', true);
+define('DEV', false);
 
 define('PASS_SALT', 'salt');
 
