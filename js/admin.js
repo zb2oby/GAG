@@ -25,8 +25,28 @@ jQuery(document).ready(function($) {
 	// 	$('.adminForm').find('#identifiant').val(dataUser[3]);
 	// 	$('.adminForm').find('#idUser').val(dataUser[4]);
 	// });
+	
+	//
+	$(document).on('click', '.deleteUser', function(event) {
+		$('.adminForm').trigger('submit');
+		$('.confirmPopup').css('display', 'none');
+		$('.overlay').hide();
+	});
+	
+	//vidage du formulaire sur appuis boutton "annuler/vider"
+	$('#emptyUser').click(function(event) {
+		$('.adminForm')[0].reset();
+		return false;
+	});
 
-
+	//affichage du popup de confirmation de supression utilisateur et hydratation du champs req
+	$('#delUser').click(function(event) {
+		$('.adminForm').find('#req').val('delUser');
+		$('.confirmPopup').css('display', 'block');
+		$('.overlay').show();
+		
+		return false;
+	});
 
 
 
@@ -122,23 +142,7 @@ jQuery(document).ready(function($) {
 
 
 
-	$('#delUser').click(function(event) {
-		
-		$('.confirmPopup').css('display', 'block');
-		$('.overlay').show();
-		
-		return false;
-	});
-	$('.deleteUser').click(function(event) {
-		var del = $('.adminForm').find('#req').val('delUser');
-		$('.adminForm').trigger('submit');
-		$('.confirmPopup').css('display', 'none');
-		$('.overlay').hide();
-	});
-	$('#emptyUser').click(function(event) {
-		$('.adminForm')[0].reset();
-		return false;
-	});
+	
 	
 
 
