@@ -319,6 +319,7 @@ $artiste = $managerArtiste->infoArtiste($idArtiste);
 	<div class="card-form pop-addOeuvre popGestionCard-artiste">
 		<div class="closeButton-context"><i class="ion-android-close"></i></div>
 		<form class="form-artiste" action="../modules/traitementArtiste.php" data-idArtiste="<?php echo $artiste->getIdArtiste() ?>" method="GET">
+			<!-- <input type="hidden" id="idArtiste" name="idArtiste" value="<?php //echo $artiste->getIdArtiste() ?>"> -->
 			<input type="hidden" id="addArtiste" name="reqAdd" value="add">
 			<div class="submit">
 				<button type="submit">Ajouter</button>

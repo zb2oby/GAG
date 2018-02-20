@@ -41,6 +41,7 @@ jQuery(document).ready(function($) {
 			$('.overlay').show();
 			$('.addArt').load('../js/artisteCard.js');
 			$('.addArt').load('../includes/popArtiste.php?idArtiste='+response+'&idUser='+idUser);
+			$('.form-add select').prepend('<option value="'+response+'">Sans Nom</option>');
 		})
 		.fail(function() {
 			console.log("error");

@@ -45,28 +45,28 @@ include('../modules/traitementEmplacement.php');
 		</div>
 </div>
 
-
-<!-- <div class="popAddOeuvrePrevue">
+<!-- permet la creation d'oeuvres a la volée depuis les bouton + des listes si l'oeuvre n'existe pas -->
+<div class="popAddOeuvrePrevue">
 	<form class="form-liste" action="../modules/traitementListes.php" method="GET">
 		<div class="selectInput">
 		<select name="idArtisteExpo" id="idArtisteExpo">
 			<?php 
-				// if (isset($_SESSION['idExpo'])) {
-				// 	$idExpo = htmlentities($_SESSION['idExpo']);
+				if (isset($_SESSION['idExpo'])) {
+					$idExpo = htmlentities($_SESSION['idExpo']);
 
-				// 	$manager = new ArtisteExposeManager($bdd);
+					$manager = new ArtisteExposeManager($bdd);
 
-				// 	$artisteExpose = $manager->listArtisteExpo($idExpo);
-				// 	foreach ($artisteExpose as $artiste) {
-				// 		echo '<option value="'.$artiste->getIdArtiste().'">'.$artiste->getNom().' '.$artiste->getPrenom().'</option>';
-				// 	}
-				// }
+					$artisteExpose = $manager->listArtisteExpo($idExpo);
+					foreach ($artisteExpose as $artiste) {
+						echo '<option value="'.$artiste->getIdArtiste().'">'.$artiste->getNom().' '.$artiste->getPrenom().'</option>';
+					}
+				}
 			?>
 		</select>
 		</div>
 		<input type="hidden" name="req" id="req" value="add">
 		<input type="hidden" name="status" id="status" value="prevue">
-		<input type="hidden" name="idExpo" id="idExpo" value="<?php //if (isset($_SESSION['idExpo'])){echo $_SESSION['idExpo'];} ?>">
+		<input type="hidden" name="idExpo" id="idExpo" value="<?php if (isset($_SESSION['idExpo'])){echo $_SESSION['idExpo'];} ?>">
 		<div class="submit">
 			<button type="submit">Creer Oeuvre</button>
 		</div>
@@ -78,29 +78,29 @@ include('../modules/traitementEmplacement.php');
 		<div class="selectInput">
 		<select name="idArtisteExpo" id="idArtisteExpo">
 			<?php 
-				// if (isset($_SESSION['idExpo'])) {
-				// 	$idExpo = htmlentities($_SESSION['idExpo']);
+				if (isset($_SESSION['idExpo'])) {
+					$idExpo = htmlentities($_SESSION['idExpo']);
 
-				// 	$manager = new ArtisteExposeManager($bdd);
+					$manager = new ArtisteExposeManager($bdd);
 
-				// 	$artisteExpose = $manager->listArtisteExpo($idExpo);
-				// 	foreach ($artisteExpose as $artiste) {
-				// 		echo '<option value="'.$artiste->getIdArtiste().'">'.$artiste->getNom().' '.$artiste->getPrenom().'</option>';
-				// 	}
-				// }
+					$artisteExpose = $manager->listArtisteExpo($idExpo);
+					foreach ($artisteExpose as $artiste) {
+						echo '<option value="'.$artiste->getIdArtiste().'">'.$artiste->getNom().' '.$artiste->getPrenom().'</option>';
+					}
+				}
 			?>
 		</select>
 		</div>
 		<input type="date" name="dateEntree" id="dateEntree">
 		<input type="hidden" name="req" id="req" value="add">
 		<input type="hidden" name="status" id="status" value="recue">
-		<input type="hidden" name="idExpo" id="idExpo" value="<?php //if (isset($_SESSION['idExpo'])){echo $_SESSION['idExpo'];} ?>">
+		<input type="hidden" name="idExpo" id="idExpo" value="<?php if (isset($_SESSION['idExpo'])){echo $_SESSION['idExpo'];} ?>">
 		<div class="submit">
 			<button type="submit">Creer Oeuvre</button>
 		</div>
 	</form>
-</div> -->
-
+</div>
+<!-- fin de creation d'oeuvre depuis les bouton + des listes -->
 <div class="popAddRecue">
 	<div class="closeButton"><i class="ion-android-close"></i></div>
 	<form class="addCardForm" action="../modules/traitementListes.php" method="GET">

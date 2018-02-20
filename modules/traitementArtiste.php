@@ -70,8 +70,9 @@ if (isset($_GET['idArtiste'])) {
 		$lastId = $manager->lastIdMsg();
 		echo $lastId;
 	}
-	//SUPRESSION ARTISTE
+	
 	if (isset($_GET['req'])) {
+		//SUPRESSION ARTISTE
 		if ($_GET['req'] == 'delete') {
 			$managerArtiste->deleteArtiste($artiste);
 			$image = $artiste->getImage();
@@ -79,7 +80,7 @@ if (isset($_GET['idArtiste'])) {
 			if(is_file($chemin)){
 			   unlink($chemin);
 			}
-			//AJOUT DOEUVRE SUR LA CARTE ARTISTE
+		//AJOUT DOEUVRE SUR LA CARTE ARTISTE
 		}elseif ($_GET['req'] == 'add') {
 
 			$managerOeuvre = new OeuvreManager($bdd);
@@ -132,6 +133,7 @@ if (isset($_GET['idArtiste'])) {
 
 
 	$managerArtiste->updateArtiste($artiste);
+
 	
 }
 

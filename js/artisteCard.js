@@ -141,7 +141,7 @@ jQuery(document).ready(function($) {
 		if (typeof idCollectif != 'undefined') {
 			method = 'GET';
 			var data = 'idCollectif=' + idCollectif + '&idArtiste=' + idArtiste;
-			$(event.target).closest('.context-menu').find('.card-communaute ul').prepend('<li class="comInfo" >Collectif '+libelleCollectif+'<form class="form-artiste" data-idArtiste="'+idArtiste+'" action="../modules/traitementArtiste.php" method="GET"><input type="hidden" id="req" name="req" value="deleteColl"><input type="hidden" id="idColl" name="idColl" value="'+idCollectifDeleted+'"><button type="submit" class="delColl"><i class="ion-ios-trash-outline" title="Supprimer"></i></button></form></li>');
+			$(event.target).closest('.context-menu').find('.card-communaute ul').prepend('<li class="comInfo" >Collectif '+libelleCollectif+'<form class="form-artiste" data-idArtiste="'+idArtiste+'" action="../modules/traitementArtiste.php" method="GET"><input type="hidden" id="req" name="req" value="deleteColl"><input type="hidden" id="idColl" name="idColl" value="'+idCollectif+'"><button type="submit" class="delColl"><i class="ion-ios-trash-outline" title="Supprimer"></i></button></form></li>');
 			$(event.target).closest('.context-menu').find('#afficheCollectifArtiste').append('<div id="coll-'+idCollectif+'"> - Collectif '+libelleCollectif+'</div>');
 		}
 		//suppression collectif
@@ -164,7 +164,7 @@ jQuery(document).ready(function($) {
 			var dateFormat = dateMsg.split('-');
 			var newDate = dateFormat[2]+'/'+dateFormat[1]+'/'+dateFormat[0];
 			var data = 'idArtiste=' + idArtiste + '&message=' + message + '&dateMsg=' + dateMsg + '&idUser=' + idUser;
-			$(event.target).closest('.context-menu').find('.card-msg').prepend('<div class="message" data-idmessage=""><div class="message-header"> Message de '+nomUser+' Le '+newDate+'<span class="delMsgArt delMsg"><a>supprimer le message</a></span></div><div class="message-content">'+message+'</div></div>');
+			//$(event.target).closest('.context-menu').find('.card-msg').prepend('<div class="message" data-idmessage=""><div class="message-header"> Message de '+nomUser+' Le '+newDate+'<span class="delMsgArt delMsg"><a>supprimer le message</a></span></div><div class="message-content">'+message+'</div></div>');
 			nbMsg++;
 			$(event.target).closest('.card-action').find('#messagerieArtiste .nbMsg').text(nbMsg);
 			$(event.target).find('#newMsg').val('');
@@ -187,6 +187,13 @@ jQuery(document).ready(function($) {
 			})
 			.done(function(response) {
 				console.log("success");
+				var listOption = $('.form-add select option');
+				for (var i = listOption.length - 1; i >= 0; i--) {
+					if ($(listOption[i]).val() == idArtiste) {
+						$(listOption[i]).text(nom);
+					}
+						
+				}
 				//si l'envoie ajax concerne les info generales
 				if (gnl == 'ok') {
 					//si il y a deja des erreur on les supprime avant de les reafficher
