@@ -12,11 +12,10 @@ class OeuvreExposeeManager {
     }
 
     public function addOeuvreExposee(OeuvreExposee $oeuvreExposee) {
-    	$q = $this->_db->prepare('INSERT INTO OeuvreExposee(dateEntree, dateSortie, nbClic, nbFlash, idOeuvre, idExpo) VALUES (:dateEntree, :dateSortie, :nbClic, :nbFlash, :idOeuvre, :idExpo)');
+    	$q = $this->_db->prepare('INSERT INTO OeuvreExposee(dateEntree, dateSortie, nbVue, idOeuvre, idExpo) VALUES (:dateEntree, :dateSortie, :nbVue, :idOeuvre, :idExpo)');
     	$q->bindValue(':dateEntree', $oeuvreExposee->getDateEntree());
         $q->bindValue(':dateSortie', $oeuvreExposee->getDateSortie());
-        $q->bindValue(':nbClic', $oeuvreExposee->getNbClic());
-        $q->bindValue(':nbFlash', $oeuvreExposee->getNbFlash());
+        $q->bindValue(':nbVue', $oeuvreExposee->getNbVue());
         $q->bindValue(':idOeuvre', $oeuvreExposee->getIdOeuvre());
         $q->bindValue(':idExpo', $oeuvreExposee->getIdExpo());
 
@@ -28,12 +27,11 @@ class OeuvreExposeeManager {
     }
 
     public function updateOeuvreExposee(OeuvreExposee $oeuvreExposee) {
-        $q = $this->_db->prepare('UPDATE OeuvreExposee SET dateEntree = :dateEntree, dateSortie = :dateSortie, nbClic = :nbClic, nbFlash = :nbFlash, idOeuvre = :idOeuvre, idExpo = :idExpo WHERE idOeuvreExposee = :idOeuvreExposee');
+        $q = $this->_db->prepare('UPDATE OeuvreExposee SET dateEntree = :dateEntree, dateSortie = :dateSortie, nbVue = :nbVue, idOeuvre = :idOeuvre, idExpo = :idExpo WHERE idOeuvreExposee = :idOeuvreExposee');
         $q->bindValue(':idOeuvreExposee', $oeuvreExposee->getIdOeuvreExposee());
         $q->bindValue(':dateEntree', $oeuvreExposee->getDateEntree());
         $q->bindValue(':dateSortie', $oeuvreExposee->getDateSortie());
-        $q->bindValue(':nbClic', $oeuvreExposee->getNbClic());
-        $q->bindValue(':nbFlash', $oeuvreExposee->getNbFlash());
+        $q->bindValue(':nbVue', $oeuvreExposee->getNbVue());
         $q->bindValue(':idOeuvre', $oeuvreExposee->getIdOeuvre());
         $q->bindValue(':idExpo', $oeuvreExposee->getIdExpo());
 
