@@ -1,0 +1,142 @@
+
+img{
+	max-width: 70%;
+}
+body {
+	background-color: #eee;
+	height: 16px;
+}
+
+nav{
+	background-color: #999;
+	height: 55px;
+	padding-top: 17px;
+}
+.content{
+	max-width: 80%;
+	margin: 0 auto;
+	background-color: #fff;
+}
+.content header img {
+	display: block;
+	margin: 0 auto;
+	margin-bottom: 75px;
+}
+.content header nav ul {
+	list-style: none;
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: center;
+	font-size: 0;
+}
+
+.content header nav ul li a{
+	color: #00bfff;
+	background-color: #666;
+	padding: 10px 10px;
+	font-size:16px;
+	text-decoration: none;
+}
+
+.content header .langueflag img{
+	position: absolute;
+	right: 10%;
+	top: 25px;
+}
+.global{
+	margin: 75px 100px;
+}
+.presentation {
+	display: inline-block;
+	margin: 20px;
+}
+
+.artiste{
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+
+}
+.nomprenom{
+	display: flex;
+	flex-flow: row wrap;
+	margin-top: 5px;
+	
+}
+.presentation {
+	display: inline-block;
+	margin: 20px;
+}
+
+.oeuvre{
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+
+}
+.artiste{
+	display: flex;
+	flex-flow: row wrap;
+	margin-top: 5px;
+	
+}
+
+.question{
+	text-align: center;
+	margin-top: 100px;
+	font-size: 20px;
+}
+
+.reponse{
+	margin-top: 10px;
+	text-align: center;
+	text-decoration: none;
+}
+.reponse img{
+	width: 120px;
+	height: 80px;
+}
+.reponses{
+	margin-top: 50px;
+}
+@media all and (min-width: 700px) {
+
+
+
+
+	.content header nav ul li a{
+
+		
+
+		padding: 10px 30px;
+	
+
+	}
+
+	.content header .langueflag img{
+		position: absolute;
+		right: 13.5%;
+		top: 50px;
+	}
+
+
+
+}
+@media all and (min-width: 1000px) {
+
+	.content header nav ul li a{
+	
+		padding: 10px 50px;
+		font-size:20px;
+	
+
+	}
+
+	.content header .langueflag img{
+		position: absolute;
+		right: 15%;
+		top: 50px;
+	}
+
+
+}
