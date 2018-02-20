@@ -71,10 +71,17 @@ if (isset($_GET['idOeuvre'])) {
 		$idTypeOeuvre = htmlentities($_GET['idTypeOeuvre']);
 		$oeuvre->setIdTypeOeuvre($idTypeOeuvre);
 	}
-	if (isset($_GET['idArtiste'], $_GET['idCollectif'])) {
+	if (isset($_GET['idArtiste'])) {
 		$idArtiste = htmlentities($_GET['idArtiste']);
-		$idCollectif = htmlentities($_GET['idCollectif']);
 		$oeuvre->setIdArtiste($idArtiste);
+	}	
+	if (isset($_GET['idCollectif'])) {
+		if (empty($_GET['idCollectif'])) {
+			$idCollectif = null;
+		}else{
+			$idCollectif = htmlentities($_GET['idCollectif']);
+		}
+		
 		$oeuvre->setIdCollectif($idCollectif);
 	}
 

@@ -333,7 +333,7 @@ $id = $oeuvre->getIdOeuvre();
 			<div class="selectInput">
 				<label for="idCollectif">Collectif</label>
 				<select name="idCollectif" id="idCollectif">
-					<option value="" hidden selected></option>
+					<option value="" selected></option>
 					<?php 
 						$listCollectif = $managerCollectif->listCollectif();
 						foreach ($listCollectif as $collectif) {

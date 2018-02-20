@@ -39,6 +39,7 @@ $(document).on('click', '.action-button', function(event) {
 
 	$(document).on('submit', '#newExpo', function(event) {
 		//if (page == 'accueil.php') {
+
 			var $form = $(this);
 	    	var data = new FormData($form[0]);
 
@@ -51,6 +52,7 @@ $(document).on('click', '.action-button', function(event) {
 		        contentType: false,
 		    	})
 		        .done(function(response) {
+		        	
 		        	$('.card-error').hide();
 			        if (response.error == 'error') {
 			        
@@ -136,7 +138,9 @@ $(document).on('click', '.action-button', function(event) {
 		        .always(function() {
 		        
 		    	});
+		        $(this)[0].reset();
 			return false;
+
 		// }else {
 		// 	return true;
 		// }
