@@ -61,6 +61,12 @@ jQuery(document).ready(function($) {
 		var idUser = $('.adminForm').find('#idUser').val();
 		var del = $('.adminForm').find('#req').val();
 		var email = $('.adminForm').find('#email').val();
+		$('.confirmSet').css('display', 'block');
+		$('.overlay').show();
+		setTimeout(function(){
+			$('.confirmSet').css('display', 'none');
+			$('.overlay').hide();
+		}, 1500);
 		
 		var data = 'idUser=' + idUser + '&nom=' + nom +'&prenom=' + prenom + '&role=' + role + '&identifiant=' + identifiant + '&req=' + del + '&email=' + email;
 		$.ajax({
@@ -101,17 +107,12 @@ jQuery(document).ready(function($) {
 						for (var i = list.length - 1; i >= 0; i--) {
 							var idUserUpdate = $(list[i]).data('id');
 							//console.log(idUserUpdate);
-							var idUser = $('.adminForm').find('#idUser').val();
-							if (idUser == idUserUpdate) {
+							var idUserList = $('.adminForm').find('#idUser').val();
+							if (idUserList == idUserUpdate) {
 								$(list[i]).remove();
 							}
 						}
-						$('.confirmSet').css('display', 'block');
-						$('.overlay').show();
-						setTimeout(function(){
-							$('.confirmSet').css('display', 'none');
-							$('.overlay').hide();
-						}, 1500);
+						
 						$('.afficheUser ul').prepend('<li><a class="userAdmin" data-nom="'+nom+'" data-prenom="'+prenom+'" data-email="'+email+'" data-identifiant="'+identifiant+'" data-id="'+idUser+'" data-role="'+role+'" href="#">NOM : '+nom+' PRENOM : '+prenom+' ROLE : '+libelleRole+'</a></li>');
 					}else if (msg.del == 'del') {
 						var list = $('.afficheUser ul').find('li a');
