@@ -11,7 +11,7 @@ $slider
     verticalSwiping: true,
     slidesToShow: 3,
     slidesToScroll: 2,
-    initialSlide: 3,
+    //initialSlide: 3,
     prevArrow: $('.prev'),
     nextArrow: $('.next'),
     responsive: [{
@@ -19,7 +19,7 @@ $slider
       settings: {
         vertical:false,
         verticalSwiping: false,
-        initialSlide: 3,
+        //initialSlide: 3,
         slidesToShow: 3,
         slick: true,
       }
