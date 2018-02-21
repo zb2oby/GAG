@@ -72,7 +72,7 @@ class OeuvreExposeeManager {
 
     public function ListOeuvresPrevues($idExpo) {
         $list = [];
-        $q = $this->_db->query("SELECT O.idOeuvre, titre, longueur, hauteur, etat, image, qrcode, descriptifFR, idTypeOeuvre, idArtiste, idCollectif FROM Oeuvre O, OeuvreExposee E WHERE O.idOeuvre = E.idOeuvre AND dateEntree = '0000-00-00' AND idExpo ='".$idExpo."'");
+        $q = $this->_db->query("SELECT O.idOeuvre, titre, longueur, hauteur, etat, image, qrcode, descriptifFR, idTypeOeuvre, idArtiste, idCollectif FROM Oeuvre O, OeuvreExposee E WHERE O.idOeuvre = E.idOeuvre AND dateEntree = '1970-01-01' AND idExpo ='".$idExpo."'");
         while ($data = $q->fetch()) {
             $list[] = new Oeuvre($data);
         }
@@ -83,7 +83,7 @@ class OeuvreExposeeManager {
     //retourne la liste des objets Oeuvre prevue et RECUE pour une exposition
     public function ListOeuvresRecues($idExpo) {
         $list = [];
-        $q = $this->_db->query("SELECT O.idOeuvre, titre, longueur, hauteur, etat, image, qrcode, descriptifFR, idTypeOeuvre, idArtiste, idCollectif FROM Oeuvre O, OeuvreExposee E WHERE O.idOeuvre = E.idOeuvre AND dateEntree <> '0000-00-00' AND idExpo ='".$idExpo."'");
+        $q = $this->_db->query("SELECT O.idOeuvre, titre, longueur, hauteur, etat, image, qrcode, descriptifFR, idTypeOeuvre, idArtiste, idCollectif FROM Oeuvre O, OeuvreExposee E WHERE O.idOeuvre = E.idOeuvre AND dateEntree <> '1970-01-01' AND idExpo ='".$idExpo."'");
         while ($data = $q->fetch()) {
             $list[] = new Oeuvre($data);
         }
@@ -106,7 +106,7 @@ class OeuvreExposeeManager {
         $time = $dateExpo - $now;
         $remain = (floor(($dateExpo - $now)/86400)+1);
         if ($remain > 0 && $remain < 10) {
-            $q = $this->_db->query("SELECT O.idOeuvre, titre, longueur, hauteur, etat, image, qrcode, descriptifFR, idTypeOeuvre, idArtiste, idCollectif FROM Oeuvre O, OeuvreExposee E WHERE O.idOeuvre = E.idOeuvre AND dateEntree = '0000-00-00' AND idExpo ='".$idExpo."'");
+            $q = $this->_db->query("SELECT O.idOeuvre, titre, longueur, hauteur, etat, image, qrcode, descriptifFR, idTypeOeuvre, idArtiste, idCollectif FROM Oeuvre O, OeuvreExposee E WHERE O.idOeuvre = E.idOeuvre AND dateEntree = '1970-01-01' AND idExpo ='".$idExpo."'");
                 $count = $q->rowCount();
                 if ($count > 0 ) {
                     while ($data = $q->fetch()) {

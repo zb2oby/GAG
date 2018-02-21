@@ -38,7 +38,7 @@ if (isset($_GET['update'], $_GET['idOeuvreExposee'])) {
 
 	$oeuvreExposee = $manager->oeuvreExposee($idOeuvreExposee);
 	if ($update == 'annuler') {
-		$today = '0000-00-00';
+		$today = '1970-01-01';
 	}elseif ($update == 'enregistrer') {
 		$today = date('Y-m-d');
 	}
@@ -68,13 +68,13 @@ if (isset($_GET['req'])) {
 		$idExpo = htmlentities($_GET['idExpo']);
 		if (isset($_GET['idOeuvre'])) {
 			$idOeuvre = htmlentities($_GET['idOeuvre']);
-			$dateEntree = '0000-00-00';
+			$dateEntree = '1970-01-01';
 			//cas d'une nouvelle carte recue
 			if (isset($_GET['dateEntree'])) {
 				$dateEntree = htmlentities($_GET['dateEntree']);
 			}
 			# code...ici on receptionne les variable du formulaire popup
-			$newOeuvreExposee = new OeuvreExposee(['idExpo'=>$idExpo, 'idOeuvre'=>$idOeuvre, 'dateEntree'=>$dateEntree, 'dateSortie'=>'0000-00-00', 'nbCLic'=>0, 'nbFlash'=>0]);
+			$newOeuvreExposee = new OeuvreExposee(['idExpo'=>$idExpo, 'idOeuvre'=>$idOeuvre, 'dateEntree'=>$dateEntree, 'dateSortie'=>'1970-01-01', 'nbCLic'=>0, 'nbFlash'=>0]);
 			//creation de la nouvel oeuvreExposee
 			$manager->addOeuvreExposee($newOeuvreExposee);
 			
@@ -139,7 +139,7 @@ if (isset($_GET['req'])) {
 						//preparation du tableau d'oeuvre attendu par la fonction d'affichage
 						//$oeuvres[] = $lastOeuvre;
 						//remplissage du tableau d'oeuvre avec une nouvelle oeuvreExposee
-						$oeuvreExposee = new OeuvreExposee(['idOeuvre'=>$idOeuvre, 'idExpo'=>$idExpo, 'dateEntree'=>'0000-00-00']);
+						$oeuvreExposee = new OeuvreExposee(['idOeuvre'=>$idOeuvre, 'idExpo'=>$idExpo, 'dateEntree'=>'1970-01-01']);
 						//on produit l'affichage du portlet oeuvrePrevue sans classe particuliere
 						//$affichagePortlet = $managerOeuvreExpo->affichageOeuvre($oeuvres, '', $idExpo);
 					}
