@@ -68,13 +68,13 @@ if (isset($_GET['req'])) {
 		$idExpo = htmlentities($_GET['idExpo']);
 		if (isset($_GET['idOeuvre'])) {
 			$idOeuvre = htmlentities($_GET['idOeuvre']);
-			$dateEntree = '';
+			$dateEntree = '0000-00-00';
 			//cas d'une nouvelle carte recue
 			if (isset($_GET['dateEntree'])) {
 				$dateEntree = htmlentities($_GET['dateEntree']);
 			}
 			# code...ici on receptionne les variable du formulaire popup
-			$newOeuvreExposee = new OeuvreExposee(['idExpo'=>$idExpo, 'idOeuvre'=>$idOeuvre, 'dateEntree'=>$dateEntree, 'dateSortie'=>'', 'nbCLic'=>0, 'nbFlash'=>0]);
+			$newOeuvreExposee = new OeuvreExposee(['idExpo'=>$idExpo, 'idOeuvre'=>$idOeuvre, 'dateEntree'=>$dateEntree, 'dateSortie'=>'0000-00-00', 'nbCLic'=>0, 'nbFlash'=>0]);
 			//creation de la nouvel oeuvreExposee
 			$manager->addOeuvreExposee($newOeuvreExposee);
 			
