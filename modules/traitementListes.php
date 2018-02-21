@@ -74,7 +74,7 @@ if (isset($_GET['req'])) {
 				$dateEntree = htmlentities($_GET['dateEntree']);
 			}
 			# code...ici on receptionne les variable du formulaire popup
-			$newOeuvreExposee = new OeuvreExposee(['idExpo'=>$idExpo, 'idOeuvre'=>$idOeuvre, 'dateEntree'=>$dateEntree, 'dateSortie'=>'1970-01-01', 'nbCLic'=>0, 'nbFlash'=>0]);
+			$newOeuvreExposee = new OeuvreExposee(['idExpo'=>$idExpo, 'idOeuvre'=>$idOeuvre, 'dateEntree'=>$dateEntree, 'dateSortie'=>'1970-01-01', 'nbVue'=>0]);
 			//creation de la nouvel oeuvreExposee
 			$manager->addOeuvreExposee($newOeuvreExposee);
 			
