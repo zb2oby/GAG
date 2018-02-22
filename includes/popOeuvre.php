@@ -79,7 +79,7 @@ if (isset($idOeuvreExposee)) {
 					<?php 
 					if (isset($idOeuvreExposee)) {
 						$dateEntree = $oeuvreExposee->getDateEntree();
-						if ($dateEntree != '0000-00-00') {
+						if ($dateEntree != '1970-01-01') {
 							echo 'Date d\'entrée : '.date('d/m/Y', strtotime($dateEntree));
 						}else{
 							$dateEntree = '';
