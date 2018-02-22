@@ -149,6 +149,14 @@ jQuery(document).ready(function($) {
                         }
                         
                     }
+                //on change aussi l'etat de non placé a placé sur la liste dans l'impression
+                var listLignes = $('.impression tr.ligne-oeuvre');
+                for (var i = listLignes.length - 1; i >= 0; i--) {
+                    if ($(listLignes[i]).data('idoeuvreexposee') == idOeuvreExposee) {
+                        $(listLignes[i]).find('td.case-emplacement').html(idEmplacement);
+                    }
+                    
+                }
                  var idExpo = $(event.target).closest('.plan').data('idexpo');
                  //recuperation de la taille a l'instant T de la div "plan"
                 var widthPlan = parseFloat($('.gestionPlan .plan').css('width'));
