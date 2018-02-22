@@ -416,9 +416,10 @@ $('.creerOeuvreRecue').click(function(event) {
     	
     });
     
-    $('.deleteButton').click(function(event) {
-       $('.context-overlay').hide();
+    $(document).on('click', '.deleteButton', function(event) {
+        $('.context-overlay').css('display', 'none');
     });
+    
     
 
 });
