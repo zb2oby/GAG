@@ -67,12 +67,21 @@ if (isset($idOeuvreExposee)) {
 			</div>
 			<div class="col-item card-title">
 				<h3>OEUVRE</h3>
-				<h4><?php echo '" '.ucfirst($oeuvre->getTitre()).' "' ?></h4>
+				<h4><?php 
+					if ($oeuvre->getTitre() != '') {
+						echo '" '.ucfirst($oeuvre->getTitre()).' "' ;
+					}
+					
+					?>	
+				</h4>
 				<span id="afficheType">
 					<?php 
 						$idTypeOeuvre = $oeuvre->getIdTypeOeuvre();
 						$typeOeuvre = $managerOeuvre->typeOeuvre($idTypeOeuvre);
-						echo 'Type : '.$typeOeuvre;
+						if ($typeOeuvre != '') {
+							echo 'Type : '.$typeOeuvre;
+						}
+						
 					?>
 				</span>
 				<span id="afficheDateEntree">
