@@ -94,6 +94,9 @@ if (isset($_GET['idArtiste'])) {
 			$lienQr = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://".$_SERVER['HTTP_HOST'].realpath(dirname(__FILE__).'/..')."/content/vueOeuvreVisiteur.php?oeuvre=".$idOeuvre;
 			QRcode::png($lienQr, '../img/oeuvres/qrCode/'.$nomFichierQr);
 			$lastOeuvre->setQrcode($nomFichierQr);
+			//creation de l'image artiste par defaut
+			copy('../img/oeuvres/default/default.jpg', '../img/oeuvres/oeuvre'.$idOeuvre.'.jpg');
+			$lastOeuvre->setImage('oeuvre'.$idOeuvre.'.jpg');
 			$managerOeuvre->updateOeuvre($lastOeuvre);
 
 
@@ -131,7 +134,7 @@ if (isset($_GET['idArtiste'])) {
 		$managerArtiste->deleteArtiste($artiste);
 	}	
 
-
+	
 	$managerArtiste->updateArtiste($artiste);
 
 	

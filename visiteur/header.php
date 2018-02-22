@@ -6,7 +6,6 @@ require('../includes/bdd/connectbdd.php');
 
 $managerExpo = new ExpositionManager($bdd);
 $exposition = $managerExpo->currentExpo();
-var_dump($exposition);
 $idExpo = $exposition->getIdExpo();
 $_SESSION['idExpo']=$idExpo;
 $listlangueExpo = $managerExpo->getIdLangueExpo($idExpo);

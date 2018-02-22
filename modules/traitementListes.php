@@ -16,8 +16,15 @@ $managerArtiste = new ArtisteManager($bdd);
 if (isset($_GET['idExpo'], $_GET['createArtiste']) && $_GET['createArtiste'] == "create") {
 	$idExpo = htmlentities($_GET['idExpo']);
 	$artiste = new Artiste(['nom' => '', 'prenom' =>'', 'tel'=>'', 'image'=>'', 'descriptifFR'=>'', 'email'=>'']);
+	
 	$managerArtiste->addArtiste($artiste);
 	$lastIdArtiste = $managerArtiste->getLastIdArtiste();
+	$lastArtiste = $managerArtiste->infoArtiste($lastIdArtiste);
+	//creation de l'image artiste par defaut
+	copy('../img/artistes/default/default.jpg', '../img/artistes/artiste'.$lastIdArtiste.'.jpg');
+	$lastArtiste->setImage('artiste'.$lastIdArtiste.'.jpg');
+	$managerArtiste->updateArtiste($lastArtiste);
+	//si on est sur l'onglet gestion on creer l'artiste exposé et on redirige sur l'onglet gestion de l'expo
 	if ($idExpo != 0) {
 		$managerArtisteExpose = new ArtisteExposeManager($bdd);
 		$artisteExpose = new ArtisteExpose(['idArtiste'=>$lastIdArtiste, 'idExpo'=>$idExpo]);
@@ -25,6 +32,7 @@ if (isset($_GET['idExpo'], $_GET['createArtiste']) && $_GET['createArtiste'] == 
 
 		header('location: ../content/gestionPanel.php');
 	}else {
+		//sinon c'est qu'on vien du bouton + du menu nav donc on renvoie l'id pour affichage ajax
 		echo $lastIdArtiste;
 	}
 }

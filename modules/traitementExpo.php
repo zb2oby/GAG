@@ -28,9 +28,13 @@ function enregistrementTeaser(Exposition $expo, $idExpo, $POST) {
 				$cheminFichier = "../img/expositions/expo{$idExpo}/{$nomFichier}.{$extension_upload}";
 				//suppression des eventuels fichiers existants portant le meme nom
 				$file = "../img/expositions/expo{$idExpo}/{$nomFichier}.{$extension_upload}";
-				if (file_exists($file)) {
-					unlink($file);
+				$existFiles = glob("../img/expositions/expo".$idExpo."/".$nomFichier."*");
+				foreach ($existFiles as $file) {
+					if (file_exists($file)) {
+						unlink($file);
+					}
 				}
+				
 				$resultat = move_uploaded_file($_FILES['teaser']['tmp_name'][0],$cheminFichier);
 				// if ($resultat) echo "Transfert réussi";
 				$nomFichier = $nomFichier.'.'.$extension_upload;
@@ -64,8 +68,11 @@ function enregistrementAffiche(Exposition $expo, $idExpo, $POST) {
 				$cheminFichier = "../img/expositions/expo{$idExpo}/{$nomFichier}.{$extension_upload}";
 				//suppression des fichiers existants
 				$file = "../img/expositions/expo{$idExpo}/{$nomFichier}.{$extension_upload}";
-				if (file_exists($file)) {
-					unlink($file);
+				$existFiles = glob("../img/expositions/expo".$idExpo."/".$nomFichier."*");
+				foreach ($existFiles as $file) {
+					if (file_exists($file)) {
+						unlink($file);
+					}
 				}
 				$resultat = move_uploaded_file($_FILES['affiche']['tmp_name'][0],$cheminFichier);
 				// if ($resultat) echo "Transfert réussi";
@@ -119,7 +126,7 @@ if (isset($_POST['req'], $_POST['idExpo']) && $_POST['req'] == 'updateTeaser') {
 
 	makeExpoDir($expo, $idExpo);
 		
-	enregistrementTeaser($expo, $idExpo);
+	enregistrementTeaser($expo, $idExpo, $_POST);
 	 //update de l'entrée en base
 	$managerExpo->updateExposition($expo);
 	header('location: ../content/gestionPanel.php?onglet=expo&idExpo='.$idExpo);
@@ -132,7 +139,7 @@ if (isset($_POST['req'], $_POST['idExpo']) && $_POST['req'] == 'updateAffiche') 
 
 	makeExpoDir($expo, $idExpo);
 
-	enregistrementAffiche($expo, $idExpo);
+	enregistrementAffiche($expo, $idExpo, $_POST);
 	 //update de l'entrée en base
 	$managerExpo->updateExposition($expo);
 	header('location: ../content/gestionPanel.php?onglet=expo&idExpo='.$idExpo);
