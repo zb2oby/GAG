@@ -61,6 +61,8 @@ jQuery(document).ready(function($) {
 		var idUser = $('.adminForm').find('#idUser').val();
 		var del = $('.adminForm').find('#req').val();
 		var email = $('.adminForm').find('#email').val();
+		//affichage message enregistrement (mis avant car le temps d'envoie de mail peut etre long donc vaut mieux afficher le message pour pas que l'utilisateur reclic inutilement)
+		//creer un effet de bord car lorsque les champs conteinnenet des erreur il y a quand meme le message d'enregistrement qui s'affiche
 		$('.confirmSet').css('display', 'block');
 		$('.overlay').show();
 		setTimeout(function(){

@@ -411,9 +411,7 @@ $('.creerOeuvreRecue').click(function(event) {
         $('.overlay').hide();
         $('.context-overlay').hide();
         $('.popGestionCard').hide();
-        
-
-    	
+        $('.popGestionCard-artiste').hide();
     });
     
     $(document).on('click', '.deleteButton', function(event) {
