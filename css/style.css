@@ -130,6 +130,7 @@ textarea {
 	border-radius: 5px;
 	padding: 10px;
 	color: #0A2675;
+	resize: none;
 }
 
 .submit {
