@@ -9,6 +9,7 @@ require '../class/ArtisteExpose.class.php';
 require '../class/ArtisteExposeManager.class.php';
 require '../class/Artiste.class.php';
 require '../class/ArtisteManager.class.php';
+include('../includes/phpqrcode/qrlib.php');
 
 $managerArtiste = new ArtisteManager($bdd);
 //CREATION A LA VOLEE d'un nouvel artiste vide et retour pour affichage ajax
@@ -101,6 +102,18 @@ if (isset($_GET['req'])) {
 			$lastOeuvre = $managerOeuvre->infoOeuvre($idLastOeuvre);
 			$idOeuvre = $lastOeuvre->getIdOeuvre();
 
+			//creation des qrCode et image par defaut 
+
+			//ajout du qrCode(attention present aussi dan traitement artiste)
+			$nomFichierQr = 'oeuvre'.$idLastOeuvre.'.png';
+			//$lienQr = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://".$_SERVER['HTTP_HOST'].realpath(dirname(__FILE__).'/..')."/visiteur/oeuvreselectionner.php?oeuvre=".$id;
+			$lienQr = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://".$_SERVER['HTTP_HOST']."/GAG/visiteur/oeuvreselectionner.php?oeuvre=".$idLastOeuvre;
+			QRcode::png($lienQr, '../img/oeuvres/qrCode/'.$nomFichierQr);
+			$lastOeuvre->setQrcode($nomFichierQr);
+			//creation de l'image oeuvre par defaut
+			copy('../img/oeuvres/default/default.jpg', '../img/oeuvres/oeuvre'.$idLastOeuvre.'.jpg');
+			$lastOeuvre->setImage('oeuvre'.$idLastOeuvre.'.jpg');
+			$managerOeuvre->updateOeuvre($lastOeuvre);
 			// //AFFICHAGES
 			// $Affichages = [];
 			// //preparation de l'affichage de la nouelle oeuvre dans la liste des oeuvre d'une carte artiste.
