@@ -14,9 +14,11 @@ jQuery(document).ready(function($) {
         doDrop();
     });
 	//par defaut si un element a la classe item on lui permet d'être draggable sur un emplacement du plan
-	if ($('.column').find('.img').hasClass('item')) {
-		doClone();
-	}
+    //if ($('.recue.column').find('.img').data('id') != $('.oeuvre-place').find('.img').data('id')) {
+    	if ($('.column').find('.img').hasClass('item')) {
+    		doClone();
+    	}
+    //}
 	//fonction d'update dans la base ue changement d'etat dune carte oeuvre. soit "prevue" soit "recue"
 	function updateSort(update, idOeuvreExposee) {
 		var liste = 'update=' + update + '&idOeuvreExposee=' + idOeuvreExposee;
@@ -414,6 +416,9 @@ $('.creerOeuvreRecue').click(function(event) {
     	
     });
     
+    $('.deleteButton').click(function(event) {
+       $('.context-overlay').hide();
+    });
     
 
 });
