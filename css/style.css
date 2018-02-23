@@ -1258,10 +1258,14 @@ form.expoForm {
 			}
 			ul#list-info {
 				min-height: auto;
-				max-height: 150px;
+				max-height: 100px;
 				overflow: auto;
 				margin-top: 0;
 
+			}
+
+			ul#list-info.list-oeuvre-artiste {
+				max-height: 150px;
 			}
 			#list-info > li {
 				
