@@ -31,7 +31,7 @@ if (isset($_SESSION['idExpo'])) {
 			
 		<div class="stat-oeuvre">
 			<h4><?php if($nomOeuvre != '' || $nomOeuvre != NULL){echo $nomOeuvre;}else{echo 'Sans Nom';}  ?></h4>
-			<img class="imgStat" src="../img/oeuvres/<?php echo $oeuvre->getImage(); ?>" style="width:100px; height:100px;" alt="">
+			<img class="imgStat" src="../img/oeuvres/<?php echo $oeuvre->getImage(); ?>" alt="">
 			<span class="nbVue"><?php if($nbVue != '' || $nbVue != NULL) {echo $nbVue.' Vues';}else{echo 'Aucune Vue';} ?></span>
 		</div>
 	<?php
