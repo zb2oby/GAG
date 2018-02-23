@@ -6,15 +6,22 @@ require('../includes/bdd/connectbdd.php');
 
 $managerExpo = new ExpositionManager($bdd);
 $exposition = $managerExpo->currentExpo();
-var_dump($exposition);
 $idExpo = $exposition->getIdExpo();
 $_SESSION['idExpo']=$idExpo;
 $listlangueExpo = $managerExpo->getIdLangueExpo($idExpo);
 $titre = $exposition->getTitre();
-// $theme = $exposition->getTheme();
+$theme = $exposition->getTheme();
+$horaireO = $exposition->getHoraireO();
+$horaireF = $exposition->getHoraireF();
+$dateDeb = $exposition->getDateDeb();
+$dateFin = $exposition->getDateFin();
 $affiche = $exposition->getAffiche();
 $descriptif = $exposition->getDescriptifFR();
-$i=0;
+/*if(isset($_SESSION['langue'])){
+	$langue=$_SESSION['langue'];
+}*/
+
+
 ?>
 <!doctype html>
 <html>
@@ -27,28 +34,35 @@ $i=0;
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>
-		<div class="header">
-			<div class="titre">
+	<div class="header">
+		<div class="titre">
+			<h1>
 				<?php 
-				echo $titre; 
+				echo ucfirst($titre); 
 				?>
-			</div>
-			<div class="date">
-				<?php 
-				echo date('d/m/Y');
-				?>
-			</div>
-			<!-- <div class="theme"> -->
-				<!-- <?php 				
-				// echo $theme;
-				 ?>		 -->
-			<!-- </div> -->
-			<div class="drapeau">
-				<?php 
-				foreach ($listlangueExpo as $idLangue):
-				echo'<img src="drapeau/drapeau'.$idLangue.'.jpg">';
-					?>
-				<?php endforeach ?>
-			</div>
+			</h1>
 		</div>
+		<div class="date">
+			<?php 
+			echo date('d/m/Y');
+			?>
+		</div>
+		<div class="drapeau">
+			<?php 
+			foreach ($listlangueExpo as $idLangue):
+				?>
+				<form action="traitement.php" method="GET">
+					
 
+					<input type="hidden" name="langue" value="<?php echo $idLangue ; ?>" >
+					<input type="hidden" name="artiste" value="<?php if(isset($_GET['artiste'])){ echo $_GET['artiste']; } ?>">
+					<input type="hidden" name="oeuvre" value="<?php if(isset($_GET['oeuvre'])) { echo $_GET['oeuvre']; } ?>">
+					
+					<button type="submit"><img src="drapeau/drapeau<?php echo $idLangue; ?>.jpg" alt="drapeau"></button>
+					
+				</form>
+			<?php endforeach ?>
+		</div>
+	</div>
+
+	

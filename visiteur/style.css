@@ -1,8 +1,18 @@
-*{
+@font-face{
+	font-family : "Overpass";
+	src : url('../fonts/Overpass/Overpass-Regular.ttf');
+}
+@font-face {
+	font-family: 'Ionicons';
+	src: url("https://code.ionicframework.com/ionicons/2.0.1/fonts/ionicons.eot?v=2.0.1"); src: url("https://code.ionicframework.com/ionicons/2.0.1/fonts/ionicons.eot?v=2.0.1#iefix") format("embedded-opentype"), url("https://code.ionicframework.com/ionicons/2.0.1/fonts/ionicons.ttf?v=2.0.1") format("truetype"), url("https://code.ionicframework.com/ionicons/2.0.1/fonts/ionicons.woff?v=2.0.1") format("woff"), url("https://code.ionicframework.com/ionicons/2.0.1/fonts/ionicons.svg?v=2.0.1#Ionicons") format("svg"); font-weight: normal; font-style: normal;
+
+}
+
+*,*:before,*:after{
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-	font-family: 'Roboto', sans-serif;
+	font-family: Overpass,Arial,sans-serif;
 }
 
 body{
@@ -17,39 +27,50 @@ body{
 	top: 0;
 	left:0;
 	right: 0;
+	padding: 10px;
 	height: 80px;
 	z-index: 2;
 	background-color: #0A2675;
 
 }
-	.titre{
-		font-size: 32px;
-		display: inline-block;
-		color: #fff;
-	}
-	.date{
-		position: absolute;
-		display: inline-block;
-		right: 0;
-		font-size: 26px;
-		margin: 2px 2px 0 0;
-		color: #fff;
-	}
-	.theme{
-	position: absolute;
-	bottom: 0;
-	font-size: 26px;
+h1{
+	font-size: 32px;
+	text-align: center;
+	display: block;
+	text-transform: uppercase;
 	color: #fff;
-	}
-	.drapeau{
+}
+.date{
 	position: absolute;
+	display: inline-block;
+	left: 0;
+	bottom: 0;
+	font-size: 16px;
+	margin: 0 0 3px 5px;
+	color: #fff;
+}
+.drapeau{
+	position: absolute;
+	display: flex;
 	bottom: 0;
 	right:0;
-	}
-	.drapeau img{
-		height: 24px;
-		width: 32px;
-	}
+	margin: 0 2px 2px 0;
+}
+
+button{
+	border:none;
+	cursor: pointer;
+	background-color: transparent;
+	height: 24px;
+	width: 32px;
+	
+	margin: 0px 3px 3px;
+}
+button img{
+	height: 24px;
+	width: 32px;
+	border: 2px solid #ccc;
+}
 
 
 /*-------------------------main-------------------------*/
@@ -63,43 +84,73 @@ body{
 	font-size: 22px;
 
 }
+.bienvenue{
+	margin: 20px 30px 0 30px;
+
+	display: block;
+	text-align: center;
+}
+.description{
+	margin-top: 15px;
+}
 .descriptif{
+
 	background-color: #fff;
 	font-size: 22px;
+	margin-top: 20px;
 }
-	.descriptif img{
-		display:block;
-		width: 75%;
-		max-height: 200px;
-		max-width: 300px;
-		margin: 0 auto;
-	}
-.presentation{
+.descriptif img{
+	display:block;
+	width: 75%;
+	max-height: 200px;
+	max-width: 300px;
+	margin: 0 auto;
+}
+.blockaffiche{
+	margin-top: 20px;
+	margin-left: 25px;
+}
+
+.artiste,.oeuvre{
+	vertical-align: top;
 	display: flex;
 	flex-flow: column;
 	background-color: #fff;
 	font-size: 22px;
-	padding: 15px;
+	padding: 15px;	
 }
-.artiste,.oeuvre{
-	vertical-align: top;
-	margin-bottom: 5px;
+
+
+.artisteimage ,.oeuvreimage{
+	display: block;
+	margin: 0 auto;
+	width: 150px;
+	height: 150px;
 }
-	.artiste img,.oeuvre img{
-		display: block;
-		margin: 0 auto;
-		width: 150px;
-		height: 150px;
-		
-	}
-.block{
+
+.artisteimage img ,.oeuvreimage img{
+	display: block;
+	margin: 0 auto;
+	width: 150px;
+	height: 150px;
+	border-radius: 50%;
+
+
+
+	border:5px solid #ccc;
+	box-shadow: 0px 0px 5px 2px  #ddd;
+}
+.presentation{
+	display: block;
+	margin: 15px;
+}
+
+.blockOeuvre ,.blockArtiste{
 	display: block;
 	text-align: center;
-	margin: 10px 0 10px 0;
+	margin: 20px 0 15px 0;
 
 }
-
-
 .main .selection{
 	text-decoration: none;
 	color: #000;
@@ -116,28 +167,28 @@ body{
 	height: 50px;
 
 }
-	.left{
-		position: absolute;
-		bottom: 0;
-		left:0;
-		right: 50%;
-		text-align: center;
-		height: 50px;
-		font-size: 32px;
-		background-color: #0A2675;
-	}
-	.right{
-		position: absolute;
-		bottom: 0;
-		left:50%;
-		right: 0;
-		text-align: center;
-		font-size: 32px;
-		background-color: #0A2675;
+.left{
+	position: absolute;
+	bottom: 0;
+	left:0;
+	right: 50%;
+	text-align: center;
 	height: 50px;
-		}
+	font-size: 32px;
+	background-color: #0A2675;
+}
+.right{
+	position: absolute;
+	bottom: 0;
+	left:50%;
+	right: 0;
+	text-align: center;
+	font-size: 32px;
+	background-color: #0A2675;
+	height: 50px;
+}
 
-	.center{
+.center{
 	position: absolute;
 	bottom: 0;
 	left: 0;
@@ -146,21 +197,21 @@ body{
 	height: 50px;
 	background-color: #0A2675;
 
-	}
-	.footer  .center i {
-		font-size: 40px;
-	}
-	.footer i{
-		height: 50px;
-	}
-	.footer a{
-		display: inline-block;
-		text-decoration: none;
-		font-size: 24px;
-		width: 100%;
-		padding: 12px 0;
-		color: #fff;
-		}
+}
+.footer  .center i {
+	font-size: 40px;
+}
+.footer i{
+	height: 50px;
+}
+.footer a{
+	display: inline-block;
+	text-decoration: none;
+	font-size: 20px;
+	width: 100%;
+
+	color: #fff;
+}
 
 .footer .center a {
 	padding: 4px 0;

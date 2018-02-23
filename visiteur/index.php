@@ -3,10 +3,17 @@
 
 ?>
 <div class="main">
+
+	<div class="bienvenue">
+		Bienvenue à l'exposition <?php echo ucfirst($titre)?> sur le theme <?php echo ucfirst($theme) ?> ouvert du <?php echo $dateDeb ?> au <?php echo $dateFin ?> de <?php echo $horaireO ?> a <?php echo $horaireF ?>
+
+	</div>
 	<div class="descriptif">
-		<?php echo "<img src='../img/expositions/expo2/".$affiche."' alt='affiche'>" ?>
-		Descriptif :
-		<?php echo $descriptif ?>
+		<?php echo "<img src='../img/expositions/expo".$idExpo."/".$affiche."' alt='affiche'>" ?>
+		<div class="blockaffiche">
+			Descriptif :
+			<?php echo ucfirst($descriptif); ?>
+		</div>
 	</div>
 </div>
 <div class="footer">

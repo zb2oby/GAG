@@ -3,6 +3,11 @@ session_start();
 require('../includes/functions.php');
 spl_autoload_register('loader');
 include('../includes/bdd/connectbdd.php');
+$page="accueil";
+if (isset($_SESSION['langue'])) {
+	$idLangue = $_SESSION['langue'];
+
+}
 ?>
 <!doctype html>
 <html lang="FR">
@@ -28,12 +33,12 @@ include('../includes/bdd/connectbdd.php');
 			<?php 
 			$managerlangue = new ExpositionManager($bdd);
 			$listlangueExpo = $managerlangue->getIdLangueExpo($currentExpo);
-				?><div class="reponse">
-					<?php echo '<a href="accueil.php?langue='.$idLangue.'"><img src="drapeau/drapeau'.$idLangue.'.jpg">';
-					?>
-				</div>
-			<?php endforeach ?>
-		</div>
-		<?php } ?>
-	</body>
-	</html>
+			?><div class="reponse">
+				<?php echo '<a href="'.$_SERVER['PHP_SELF']'".php?langue='.$idLangue.'"><img src="drapeau/drapeau'.$idLangue.'.jpg">';
+				?>
+			</div>
+		<?php endforeach ?>
+	</div>
+	<?php } ?>
+</body>
+</html>
