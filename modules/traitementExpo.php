@@ -119,7 +119,7 @@ if (isset($_POST['req'], $_POST['idExpo']) && $_POST['req'] == 'updateTeaser') {
 
 	makeExpoDir($expo, $idExpo);
 		
-	enregistrementTeaser($expo, $idExpo);
+	enregistrementTeaser($expo, $idExpo, $_POST);
 	 //update de l'entrée en base
 	$managerExpo->updateExposition($expo);
 	header('location: ../content/gestionPanel.php?onglet=expo&idExpo='.$idExpo);
@@ -132,7 +132,7 @@ if (isset($_POST['req'], $_POST['idExpo']) && $_POST['req'] == 'updateAffiche') 
 
 	makeExpoDir($expo, $idExpo);
 
-	enregistrementAffiche($expo, $idExpo);
+	enregistrementAffiche($expo, $idExpo, $_POST);
 	 //update de l'entrée en base
 	$managerExpo->updateExposition($expo);
 	header('location: ../content/gestionPanel.php?onglet=expo&idExpo='.$idExpo);
