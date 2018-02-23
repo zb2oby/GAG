@@ -148,7 +148,7 @@ jQuery(document).ready(function($) {
 		if (typeof idCollectifDeleted != 'undefined' || typeof delColl != 'undefined') {
 			method = 'GET';
 			var data = 'idCollectif=' + idCollectifDeleted + '&req=' + delColl + '&idArtiste=' + idArtiste;
-			$(event.target).closest('.context-menu').find('.cardHeader-bottom #coll-'+idCollectifDeleted).html('');
+			$(event.target).closest('.context-menu').find('.coll-artiste #coll-'+idCollectifDeleted).html('');
 			$(event.target).parent().remove();	
 		}
 		//modification de l'image artiste

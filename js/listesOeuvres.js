@@ -14,9 +14,11 @@ jQuery(document).ready(function($) {
         doDrop();
     });
 	//par defaut si un element a la classe item on lui permet d'être draggable sur un emplacement du plan
-	if ($('.column').find('.img').hasClass('item')) {
-		doClone();
-	}
+    //if ($('.recue.column').find('.img').data('id') != $('.oeuvre-place').find('.img').data('id')) {
+    	if ($('.column').find('.img').hasClass('item')) {
+    		doClone();
+    	}
+    //}
 	//fonction d'update dans la base ue changement d'etat dune carte oeuvre. soit "prevue" soit "recue"
 	function updateSort(update, idOeuvreExposee) {
 		var liste = 'update=' + update + '&idOeuvreExposee=' + idOeuvreExposee;
@@ -147,6 +149,14 @@ jQuery(document).ready(function($) {
                         }
                         
                     }
+                //on change aussi l'etat de non placé a placé sur la liste dans l'impression
+                var listLignes = $('.impression tr.ligne-oeuvre');
+                for (var i = listLignes.length - 1; i >= 0; i--) {
+                    if ($(listLignes[i]).data('idoeuvreexposee') == idOeuvreExposee) {
+                        $(listLignes[i]).find('td.case-emplacement').html(idEmplacement);
+                    }
+                    
+                }
                  var idExpo = $(event.target).closest('.plan').data('idexpo');
                  //recuperation de la taille a l'instant T de la div "plan"
                 var widthPlan = parseFloat($('.gestionPlan .plan').css('width'));
@@ -409,9 +419,11 @@ $('.creerOeuvreRecue').click(function(event) {
         $('.overlay').hide();
         $('.context-overlay').hide();
         $('.popGestionCard').hide();
-        
-
-    	
+        $('.popGestionCard-artiste').hide();
+    });
+    
+    $(document).on('click', '.deleteButton', function(event) {
+        $('.context-overlay').css('display', 'none');
     });
     
     

@@ -24,9 +24,12 @@ if (isset($_GET['req'], $_GET['idArtiste']) && $_GET['req'] == 'add') {
 	$lienQr = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://".$_SERVER['HTTP_HOST']."/GAG/visiteur/oeuvreselectionner.php?oeuvre=".$id;
 	QRcode::png($lienQr, '../img/oeuvres/qrCode/'.$nomFichierQr);
 	$lastOeuvre->setQrcode($nomFichierQr);
+	//creation de l'image oeuvre par defaut
+	copy('../img/oeuvres/default/default.jpg', '../img/oeuvres/oeuvre'.$id.'.jpg');
+	$lastOeuvre->setImage('oeuvre'.$id.'.jpg');
 	$managerOeuvre->updateOeuvre($lastOeuvre);
 
-
+	
 	//retour ajax de lidoeuvre pour affichage popOeuvre
 	echo $id;
 }
@@ -112,6 +115,7 @@ if (isset($_GET['idOeuvre'])) {
 		if (is_dir($cheminMeta)) {
 			rmdir($cheminMeta);
 		}
+		
 	}	
 
 

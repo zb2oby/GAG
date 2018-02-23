@@ -9,14 +9,22 @@ require '../class/ArtisteExpose.class.php';
 require '../class/ArtisteExposeManager.class.php';
 require '../class/Artiste.class.php';
 require '../class/ArtisteManager.class.php';
+include('../includes/phpqrcode/qrlib.php');
 
 $managerArtiste = new ArtisteManager($bdd);
 //CREATION A LA VOLEE d'un nouvel artiste vide et retour pour affichage ajax
 if (isset($_GET['idExpo'], $_GET['createArtiste']) && $_GET['createArtiste'] == "create") {
 	$idExpo = htmlentities($_GET['idExpo']);
 	$artiste = new Artiste(['nom' => '', 'prenom' =>'', 'tel'=>'', 'image'=>'', 'descriptifFR'=>'', 'email'=>'']);
+	
 	$managerArtiste->addArtiste($artiste);
 	$lastIdArtiste = $managerArtiste->getLastIdArtiste();
+	$lastArtiste = $managerArtiste->infoArtiste($lastIdArtiste);
+	//creation de l'image artiste par defaut
+	copy('../img/artistes/default/default.jpg', '../img/artistes/artiste'.$lastIdArtiste.'.jpg');
+	$lastArtiste->setImage('artiste'.$lastIdArtiste.'.jpg');
+	$managerArtiste->updateArtiste($lastArtiste);
+	//si on est sur l'onglet gestion on creer l'artiste exposé et on redirige sur l'onglet gestion de l'expo
 	if ($idExpo != 0) {
 		$managerArtisteExpose = new ArtisteExposeManager($bdd);
 		$artisteExpose = new ArtisteExpose(['idArtiste'=>$lastIdArtiste, 'idExpo'=>$idExpo]);
@@ -24,6 +32,7 @@ if (isset($_GET['idExpo'], $_GET['createArtiste']) && $_GET['createArtiste'] == 
 
 		header('location: ../content/gestionPanel.php');
 	}else {
+		//sinon c'est qu'on vien du bouton + du menu nav donc on renvoie l'id pour affichage ajax
 		echo $lastIdArtiste;
 	}
 }
@@ -101,6 +110,18 @@ if (isset($_GET['req'])) {
 			$lastOeuvre = $managerOeuvre->infoOeuvre($idLastOeuvre);
 			$idOeuvre = $lastOeuvre->getIdOeuvre();
 
+			//creation des qrCode et image par defaut 
+
+			//ajout du qrCode(attention present aussi dan traitement artiste)
+			$nomFichierQr = 'oeuvre'.$idLastOeuvre.'.png';
+			//$lienQr = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://".$_SERVER['HTTP_HOST'].realpath(dirname(__FILE__).'/..')."/visiteur/oeuvreselectionner.php?oeuvre=".$id;
+			$lienQr = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://".$_SERVER['HTTP_HOST']."/GAG/visiteur/oeuvreselectionner.php?oeuvre=".$idLastOeuvre;
+			QRcode::png($lienQr, '../img/oeuvres/qrCode/'.$nomFichierQr);
+			$lastOeuvre->setQrcode($nomFichierQr);
+			//creation de l'image oeuvre par defaut
+			copy('../img/oeuvres/default/default.jpg', '../img/oeuvres/oeuvre'.$idLastOeuvre.'.jpg');
+			$lastOeuvre->setImage('oeuvre'.$idLastOeuvre.'.jpg');
+			$managerOeuvre->updateOeuvre($lastOeuvre);
 			// //AFFICHAGES
 			// $Affichages = [];
 			// //preparation de l'affichage de la nouelle oeuvre dans la liste des oeuvre d'une carte artiste.

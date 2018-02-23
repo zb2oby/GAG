@@ -56,7 +56,7 @@ $managerPlace = new EmplacementManager($bdd);
 					$commentaire = '';
 					//(SI DATE ENTREE EST NULLE ALORS STATUS = PREVU SINON RECU PREVOIR RETARD)
 					$status = 'Entrée : <br>'.date('d-m-Y', strtotime($dateEntree));
-					if ($dateEntree == '0000-00-00' || $dateEntree == NULL) {
+					if ($dateEntree == '1970-01-01' || $dateEntree == NULL) {
 						$status = 'Non-reçue';
 						if (($dateDebut - date('Y-m-d')) < 9 ) {
 							$status = 'RETARD';
@@ -66,11 +66,11 @@ $managerPlace = new EmplacementManager($bdd);
 					$qr = $oeuvre->getQrcode();
 					$nomArtiste = $artiste->getNom();
 
-					echo '<tr class="page-break">'
+					echo '<tr class="page-break ligne-oeuvre" data-idoeuvreexposee="'.$idOeuvreExposee.'">'
 							.'<td>'.$nomOeuvre.'<br><img style="width:50px; height:50px;" src="../img/oeuvres/'.$image.'"></td>'
 							.'<td>'.$nomArtiste.'</td>'
 							.'<td>'.$status.'</td>'
-							.'<td>'.$idEmplacement.'</td>'
+							.'<td class="case-emplacement">'.$idEmplacement.'</td>'
 							.'<td><img style="width:100px; height:100px;" src="../img/oeuvres/qrCode/'.$qr.'"></td>'
 							.'<td>'.$commentaire.'</td>'
 						.'</tr>';
