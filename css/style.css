@@ -295,7 +295,7 @@ header {
 			padding-bottom: 5px;
 		}
 		.expoInfo span {
-			display: block;
+			/*display: block;*/
 		}
 		
 		.printer {
@@ -480,17 +480,52 @@ header {
 }
 	.stat-content {
 		padding-top: 30px;
+		font-size: 16px;
+		text-align: center;
 	}
-		.imgStat {
-			display: inline-block;
-			width: 25%;
-			font-size: 16px;
+		
+	h2.nbVisite {
+		padding: 15px;
+		color: #0A2675;
+	}
+
+	.nbVisite span {
+		
+	}
+
+	.list-stat {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: center;
+		
+	}
+		.stat-oeuvre {
+			vertical-align: middle;
+			box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+			margin: 15px;
+			padding: 15px;
 		}
-			.imgStat img {
+
+			.stat-oeuvre h4 {
+				padding: 5px;
+				color: #0A2675;
+			}
+
+			img.imgStat {
 				width: 100%;
 				height: auto;
+				border-radius: 100%;
+				border: 3px solid #ccc;
 			}
-		.explain {
+			span.nbVue {
+				display: block;
+				padding: 5px;
+				margin-top: 5px;
+				font-size: 1em;
+				color: #0A2675;
+			}
+		./*explain {
 			font-size: 16px;
 			display: inline-block;
 			vertical-align: top;
@@ -498,7 +533,7 @@ header {
 			text-align: left;
 			padding: 15px;
 
-		}
+		}*/
 /*<<<<<<<<<<<<<<<<  EXPO / ADMIN >>>>>>>>>>>>>>*/
 .containerAdmin {
 	display: flex;
