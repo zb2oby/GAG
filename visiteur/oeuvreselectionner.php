@@ -1,7 +1,6 @@
 <?php include('header.php');
 $idOeuvre=$_GET['oeuvre'];
-require '../class/ArtisteManager.class.php';
-require '../class/Artiste.class.php';
+
 
 // if ($newVisiteur){
 // 	nbclic++;

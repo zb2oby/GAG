@@ -21,7 +21,7 @@ function dateDiff($date1, $date2){
 }
 
 function loader($class) {
-    require '../class/'.$class.'.class.php';
+    require '../class/'.ucfirst($class).'.class.php';
 }
 
 
