@@ -1017,6 +1017,10 @@ form.expoForm {
 				
 				}
 
+				.recue span.retard {
+					display: none;
+				}
+
 			.cards li:hover {
 				cursor: pointer;
 			}
