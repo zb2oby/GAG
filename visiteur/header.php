@@ -28,13 +28,14 @@ $descriptif = $exposition->getDescriptifFR();
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- <meta name="apple-mobile-web-app-capable" content="yes"> -->
 	<title>GAG.com</title>
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 	<link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>
-	<div class="header">
+	<div class="header nav-down">
 		<div class="titre">
 			<h1>
 				<?php 
@@ -44,7 +45,9 @@ $descriptif = $exposition->getDescriptifFR();
 		</div>
 		<div class="date">
 			<?php 
-			echo date('d/m/Y');
+			$dateDebut = strtotime($exposition->getDateDeb());
+			$dateFin = strtotime($exposition->getDateFin());
+			echo 'Du '.date('d/m/Y', $dateDebut).' au '.date('d/m/Y', $dateFin);
 			?>
 		</div>
 		<div class="drapeau">

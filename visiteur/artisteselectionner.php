@@ -27,7 +27,7 @@ $artiste = $managerartiste->infoArtiste($idartiste);
 				?>
 			</div>
 			<div class="block">
-				Description :
+				Description :<br>
 				<?php 
 					if ($idLangue != 1) {
 						$traduction = new Traduction();
@@ -41,13 +41,6 @@ $artiste = $managerartiste->infoArtiste($idartiste);
 			</div>
 		</div>
 	</div>
-</div>
-<div class="footer" >
-	<div class="center">
-		<a href="artiste.php"><i class="ion-reply"></i></a>
-	</div>
-</div>
 
-</body>
-</html>
+<?php include 'footer.php'; ?>
 ?>

@@ -54,15 +54,16 @@ foreach ($oeuvreEnrichie as $enrichie) {
 				<?php
 				echo "Titre : ";
 				echo ucfirst($oeuvre->getTitre());
-				?></div>
-				<div class="block">
-					<?php
-					echo "Artiste : ";
-					echo ucfirst($infoArtiste->getNom());
-					echo " ";	
-					echo ucfirst($infoArtiste->getPrenom());
-					?>
-				</div>
+				?>
+			</div>
+			<div class="block">
+				<?php
+				echo "Artiste : ";
+				echo ucfirst($infoArtiste->getNom());
+				echo " ";	
+				echo ucfirst($infoArtiste->getPrenom());
+				?>
+			</div>
 				<!-- <div class="block"> -->
 				<!-- <?php 
 				// echo "Support : ";
@@ -71,27 +72,19 @@ foreach ($oeuvreEnrichie as $enrichie) {
 				// echo $typeOeuvre->typeOeuvre($typeOeuvre);
 				?> -->
 				<!-- </div> -->
-				<div class="block">
-					<?php
-					echo "Dimension : ";
-					echo $oeuvre->getLongueur();
-					echo "x";
-					echo $oeuvre->getHauteur();?>
-				</div>
-				<div class="block">
-					<?php
-					echo "Description : ";
-					echo ucfirst($oeuvre->getDescriptifFR());
-					?>
-				</div>
+			<div class="block">
+				<?php
+				echo "Dimension : ";
+				echo $oeuvre->getLongueur();
+				echo "x";
+				echo $oeuvre->getHauteur();?>
+			</div>
+			<div class="block">
+				<?php
+				echo "Description : <br>";
+				echo ucfirst($oeuvre->getDescriptifFR());
+				?>
 			</div>
 		</div>
 	</div>
-	<div class="footer" >
-		<div class="center">
-			<a href="oeuvre.php"><i class="ion-reply"></i></a>
-		</div>
-	</div>
-
-</body>
-</html>
+<?php include 'footer.php'; ?>

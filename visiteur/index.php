@@ -5,7 +5,8 @@
 <div class="main">
 
 	<div class="bienvenue">
-		Bienvenue à l'exposition <?php echo ucfirst($titre)?> sur le theme <?php echo ucfirst($theme) ?> ouvert du <?php echo $dateDeb ?> au <?php echo $dateFin ?> de <?php echo $horaireO ?> a <?php echo $horaireF ?>
+		Bienvenue à l'exposition <?php echo ucfirst($titre)?> sur le theme <?php echo ucfirst($theme) ?> 
+		
 
 	</div>
 	<div class="descriptif">
@@ -15,16 +16,5 @@
 			<?php echo ucfirst($descriptif); ?>
 		</div>
 	</div>
-</div>
-<div class="footer">
-	<div class="left">
-		<a href="artiste.php"><i class="ion-android-color-palette"></i>Artistes</a>
-	</div>
-	<div class="right">
-		<a href="oeuvre.php"><i class="ion-android-image"></i>Œuvres</a>
-	</div>
-</div>
 
-
-</body>
-</html>
+<?php include 'footer.php'; ?>
