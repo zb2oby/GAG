@@ -17,6 +17,7 @@
 
 body{
 	font-size: 0px;
+	background-color: #eee;
 }
 
 
@@ -93,7 +94,7 @@ button img{
 }
 .bienvenue{
 	padding: 20px;
-	background-color: #fff;
+	background-color: #eee;
 	font-size: 18px;
 	color: #0A2675;
 	display: block;
@@ -109,7 +110,7 @@ button img{
 }
 .descriptif{
 
-	background-color: #fff;
+	background-color: #eee;
 	font-size: 18px;
 	color: #0A2675;
 	padding: 20px;
@@ -140,7 +141,7 @@ button img{
 	flex-grow: 2;
 	flex-direction: column;
 	/*flex-flow: column;*/
-	background-color: #fff;
+	background-color: #eee;
 	font-size: 22px;
 	padding: 20px;	
 	height: 100%;
