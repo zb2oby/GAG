@@ -50,7 +50,6 @@ if (isset($_SESSION['idExpo'])) {
 			<iframe id="MyIFRAME" name="MyIFRAME" 
 			    src="../doc_util/doc_utils.pdf"
 			    scrolling="auto" width="100%" height="100%" frameborder="0">
-			    no iframes supported...
 			</iframe>
 			</div>
 		</div>

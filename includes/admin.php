@@ -6,7 +6,7 @@
         <button class="deleteUser">Supprimer</button>
         <button class="cancelButton-global">Oula tout cela va bien trop vite</button>
     </div>
-	<div class=" adminItem afficheUser">
+	<div class="adminItem afficheUser">
 		<h3>Liste des utilisateurs</h3>
 		<ul>
 			<?php 

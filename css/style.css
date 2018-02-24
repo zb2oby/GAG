@@ -527,7 +527,7 @@ header {
 				font-size: 1em;
 				color: #0A2675;
 			}
-		./*explain {
+		/*.explain {
 			font-size: 16px;
 			display: inline-block;
 			vertical-align: top;
@@ -537,15 +537,19 @@ header {
 
 		}*/
 /*<<<<<<<<<<<<<<<<  EXPO / ADMIN >>>>>>>>>>>>>>*/
+
+
+/*BOUGE TOUT EN baS JE NE CCOMPREND PAS CE QUI ECRASE CE STYLE*/
 .containerAdmin {
 	display: flex;
 	justify-content: center;
-	align-items: center;
-
+	/*align-items: center;*/
 }
+
 
 	.adminItem {
 		margin: 20px;
+		min-height: 510px;
 	}
 
 	#admin .onglet-content, #expo .onglet-content {
@@ -560,12 +564,14 @@ header {
 		flex-basis: 35%;
 		margin-top: 50px;
 		background-color: #fff;
-		min-height: 500px;
+		
 		border-radius: 2px;
     	box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
     	overflow-y: auto;
     	padding: 15px;
 	}
+
+
 
 		.afficheUser li a {
 			text-transform: capitalize;
@@ -581,7 +587,7 @@ header {
 form.adminForm {
 	flex-basis: 35%;
 	margin-top: 50px;
-	min-height: 500px;
+	/*min-height: 500px;*/
 	padding: 15px;
 	border-radius: 2px;
     box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
@@ -664,6 +670,8 @@ form.expoForm {
 			margin: 10px;
 			padding:5px 15px;
 		}
+
+
 
 /*<<<<<<<<<<<<<<<<  Doc >>>>>>>>>>>>>>*/
 .docUtils {
@@ -894,10 +902,12 @@ form.expoForm {
 		.trash i {
 			display: inline-block;
 			font-size: 2em;
-			margin-top: 4px;
+			margin-top: 5px;
 		}
-		.dropArea { 
-			background-color: #fff 
+		.dropArea {
+			color: #fff;
+			/*font-size: 1.5em;*/
+			/*background-color: #fff */
 		}
 		.dropAreaHover { 
 			background-color: #0A2675; 
