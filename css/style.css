@@ -1104,7 +1104,7 @@ form.expoForm {
 }
 
 	
-.confirmPopup {
+.confirmPopup, .confirmPopup-type {
 	display: none;
 	position: absolute;
 	z-index: 4;
@@ -1118,7 +1118,7 @@ form.expoForm {
 	text-align: center;
 	font-size: 16px;
 }
-	.confirmPopup span {
+	.confirmPopup span, .confirmPopup-type span {
 		margin-bottom: 15px;
 		display: block;
 	}

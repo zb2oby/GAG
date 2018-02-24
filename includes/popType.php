@@ -10,7 +10,7 @@ include('bdd/connectbdd.php');
 	<span class="title">GESTION DES TYPES D'OEUVRES</span>
 
 
-	<div class="confirmPopup">
+	<div class="confirmPopup-type">
         <span>Souhaitez vous réellement supprimer l'élément ?</span>
         <button class="deleteType">Supprimer</button>
         <button class="cancelButton-type">Oula tout cela va bien trop vite</button>

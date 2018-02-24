@@ -12,7 +12,7 @@ jQuery(document).ready(function($) {
 	//
 	$(document).on('click', '.deleteType', function(event) {
 		$('.typeForm').trigger('submit');
-		$('.confirmPopup').css('display', 'none');
+		$('.confirmPopup-type').css('display', 'none');
 		//$('.context-overlay').hide();
 	});
 	
@@ -25,20 +25,20 @@ jQuery(document).ready(function($) {
 	//affichage du popup de confirmation de supression utilisateur et hydratation du champs req
 	$(document).on('click', '#delType', function(event) {
 		$('.typeForm').find('#req').val('delType');
-		$('.confirmPopup').css('display', 'block');
+		$('.confirmPopup-type').css('display', 'block');
 		$('.context-overlay').show();
 		
 		return false;
 	});
 
 	$(document).on('click', '.context-type .context-overlay', function(event) {
-		$('.confirmPopup').css('display', 'none');
+		$('.confirmPopup-type').css('display', 'none');
 		$('.context-overlay').hide();
 	});
 	
 
 	$(document).on('click', '.cancelButton-type', function(event) {
-		$('.confirmPopup').css('display', 'none');
+		$('.confirmPopup-type').css('display', 'none');
 		$('.context-overlay').hide();
 	});
 
@@ -101,14 +101,29 @@ jQuery(document).ready(function($) {
 								$(list[i]).remove();
 							}
 						}
+						var listSelect = $('.form-oeuvre').find('#idType');
+						for (var i = listSelect.length - 1; i >= 0; i--) {
+							$(listSelect[i]).append('<option value="'+idType+'">'+libelle+'</option>');
+						}
+						
 						$('.afficheType ul').prepend('<li><a class="typeItem" data-libelle="'+libelle+'" data-id="'+idType+'">LIBELLE : '+libelle+'</a></li>');
 					}else if (msg.del == 'del') {
+						//suppression du type dans le pop de gestion des types
 						var list = $('.afficheType ul').find('li a');
 						for (var i = list.length - 1; i >= 0; i--) {
 							var idTypeUpdate = $(list[i]).data('id');
 							var idType = $('.typeForm').find('#idType').val();
 							if (idType == idTypeUpdate) {
 								$(list[i]).remove();
+							}
+						}
+						//suppression du type dans les select des cartes oeuvre
+						var listOption = $('.form-oeuvre').find('#idType').find('option');
+						for (var i = listOption.length - 1; i >= 0; i--) {
+							var idType = $('.typeForm').find('#idType').val();
+							var idTypeOption = $(listOption[i]).val();
+							if (idType == idTypeOption) {
+								$(listOption[i]).remove();
 							}
 						}
 					}
