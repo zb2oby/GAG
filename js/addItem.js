@@ -22,6 +22,19 @@ jQuery(document).ready(function($) {
 		
 	// });
 
+//traitmeent de l'ajout de type d'oeuvre depuis le bouton + 
+	$(document).on('click', '.context-addType', function(event) {
+
+		$('.context-add').removeClass('context-add-visible');
+		
+		$('.overlay').show();
+		$('.addArt').load('../js/type.js');
+		$('.addArt').load('../includes/popType.php');
+	
+	});
+
+
+
 //traitmeent de l'ajout d'artiste depuis le bouton + 
 	$(document).on('click', '.context-addArtiste', function(event) {
 

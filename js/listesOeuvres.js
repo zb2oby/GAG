@@ -386,11 +386,12 @@ $('.creerOeuvreRecue').click(function(event) {
         //$('.overlay').show();
     });
    
-    $('.cancelButton-global').click(function(event) {
+    $(document).on('click', '.cancelButton-global', function(event) {
         $('.confirmPopup').css('display', 'none');
         $('.overlay').hide();
+        
     });
-
+    
 	//EXTINCTION DES POPUP
     $(document).on('click', '.closeButton i', function(event) {
        $(event.target).parent().parent().css('display', 'none');

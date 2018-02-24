@@ -88,6 +88,31 @@ class OeuvreManager {
       
     }
 
+    //ajoute un type
+    public function addType($libelle) {
+        $q = $this->_db->prepare('INSERT INTO Type_oeuvre(libelleTypeOeuvre) VALUES (:libelle)');
+        $q->bindValue(':libelle', $libelle);
+        $q->execute();
+    }
+    //modifie un type
+    public function updateType($libelle, $id) {
+        $q = $this->_db->prepare('UPDATE Type_oeuvre SET libelleTypeOeuvre = :libelle WHERE idTypeOeuvre = :id');
+        $q->bindValue(':libelle', $libelle);
+        $q->bindValue(':id', $id);
+        $q->execute();
+    }
+    //supprime un type
+    public function delType($id) {
+        $q = $this->_db->exec('DELETE FROM Type_oeuvre WHERE idTypeOeuvre ='.$id);
+    }
+    //recupere le dernier idType creer
+    public function lastIdType() {
+        $q = $this->_db->query("SELECT MAX(idTypeOeuvre) AS idTypeOeuvre FROM Type_oeuvre");
+        $data = $q->fetch();
+        return $data['idTypeOeuvre'];
+    }
+
+
     //recupere l'id de la derniere oeuvre 'entrée en base
     public function getLastIdOeuvre() {
         $q=$this->_db->query("SELECT MAX(idOeuvre) AS idOeuvre FROM Oeuvre");

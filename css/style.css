@@ -388,9 +388,9 @@ header {
 					position: absolute;
 					text-align: left;
 					z-index: -1;
-					top: -35px;
+					top: -45px;
 					left: -100%;
-					width: 200px;
+					width: 210px;
 					font-size: 16px;
 					background-color: rgba(0,0,0,0.7);
 					color: #fff;
@@ -1122,7 +1122,35 @@ form.expoForm {
 		margin-bottom: 15px;
 		display: block;
 	}
+
+.context-type {
+
+}
+	.context-type a{
+		color: #0A2675; 
+	}
+
+	.afficheType {
+		max-height: 250px;
+		overflow: auto;
+	}
+
+	.typeForm {
+		border-top: 3px solid #ccc;
+	}
+
+	.typeForm .submit {
+		min-height: 100px;
+	}
+
+	.typeForm div {
+		padding: 20px;
+	}
+
+
+
 	/*>>>>>>>>>>>>>>>>  INFO CARTES >>>>>>>>>>>>>>>>*/	
+
 .context-overlay {
 	display: none;
 	position: absolute;
@@ -1493,7 +1521,7 @@ form.expoForm {
 
 			.context-add {
 				top: -100%;
-				left: -131px;
+				left: -141px;
 				margin-top: -21px;
 			}
 			.context-add-visible {
@@ -1591,6 +1619,7 @@ form.expoForm {
 
 	
 }
+
 
 
 @media all and (min-width: 1200px) {

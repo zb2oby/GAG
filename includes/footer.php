@@ -21,6 +21,7 @@
 <script src="../js/calendrier.js"></script>
 <script src="../js/expo.js"></script>
 <script src="../js/recherche.js"></script>
+<script src="../js/type.js"></script>
 
 <script src="../js/lib/slick/slick.min.js"></script>
 <script src="../js/lib/slick/slick.js"></script>
