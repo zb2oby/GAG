@@ -28,7 +28,7 @@ jQuery(document).ready(function($) {
 		$('.context-add').removeClass('context-add-visible');
 		
 		$('.overlay').show();
-		$('.addArt').load('../js/type.js');
+		//$('.addArt').load('../js/type.js');
 		$('.addArt').load('../includes/popType.php');
 	
 	});

@@ -46,7 +46,6 @@ if (isset($_SESSION['idExpo'])) {
 			<i class="ion-android-list"></i>Doc	
 		</div>
 		<div class="onglet-content">
-			<?php //header("Content-type: application/pdf"); ?>
 			<div class="docUtils responsive-object">
 			<iframe src = "../js/lib/ViewerJS/#../../../doc_util/doc_utils.pdf" width='100%' height='100%' allowfullscreen webkitallowfullscreen></iframe>
 			</div>
