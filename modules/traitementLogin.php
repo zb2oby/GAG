@@ -36,3 +36,25 @@ if (isset($_POST['login'], $_POST['passwd'])) {
 		//header('location: ../content/accueil.php?onglet=calendar');
 	}
 }
+
+if (isset($_GET['email'])) {
+	$managerUser = new UtilisateurManager($bdd);
+	$email = htmlentities($_GET['email']);
+	//generation d'un nouveau mot de passe
+	$mdp = uniqid();
+	//hashage du nouveau mot de passe : 
+	$mdpHash = sha1($mdp);
+	//recuperation du user correspondant a l'email et enregistrement nouveau mot de passe en base
+	$user = $managerUser->getUserByMail($email);
+	if (!$user) {
+		exit();
+	}else {
+		$user->setMot_de_passe($mdpHash);
+		$user->setUserState(0);
+		$managerUser->updateUtilisateur($user);
+		//envoie du nouveau mot de passe par mail a l'utilisateur
+		$identifiant = $user->getIdentifiant();
+		sendMdpMail($email, $identifiant, $mdp);
+	}
+	
+}

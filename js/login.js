@@ -43,4 +43,49 @@ jQuery(document).ready(function($) {
 		return false;
 		
 	});
+
+
+	$('.forgotten').click(function(event) {
+		$('#login-form').hide();
+		$('.forgotten').hide();
+		$('.return').show();
+		$('#forget-form').show();
+	});
+
+	$(document).on('submit', '#forget-form', function(event) {
+		var email = $(event.target).find("#email").val();
+		console.log(email);
+		var data = 'email=' + email;
+
+		
+
+		$.ajax({
+			url: '../modules/traitementLogin.php',
+			type: 'GET',
+			dataType: 'html',
+			data: data,
+		})
+		.done(function() {
+			console.log("success");
+			$('.confirmSet').css('display', 'block');
+			$('.overlay').show();
+			setTimeout(function(){
+				$('.confirmSet').css('display', 'none');
+				$('.overlay').hide();
+				document.location.href='../content/login.php'; 
+			}, 2000);
+			
+
+		})
+		.fail(function() {
+			console.log("error");
+		})
+		.always(function() {
+			console.log("complete");
+		});
+		
+	});
+
+	return false;
+
 });

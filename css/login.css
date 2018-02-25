@@ -17,6 +17,36 @@ input {
     line-height: 1.42857;
 }
 
+.confirmSet {
+    display: none;
+    position: absolute;
+    z-index: 10;
+    width: 400px;
+    height: 50px;
+    line-height: 50px;
+    left: 50%;
+    top: 50%;
+    margin-left: -200px;
+    margin-top: -25px;
+    background-color: #fff;
+    color:  #0A2675;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    z-index: 2;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 100%;
+    background-color: #333;
+    opacity: 0.7;
+    overflow: auto;
+}
+
 .container {
 	align-items: center;
     display: flex;
@@ -172,4 +202,13 @@ input {
 	cursor: pointer;
 	color: #0A2675;
 	background-color: #ddd;
+}
+
+
+#forget-form {
+    display: none;
+}
+
+.return {
+    display: none;
 }

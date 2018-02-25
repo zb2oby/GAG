@@ -113,5 +113,19 @@ class UtilisateurManager {
         }
     }
 
+    //retourne un objet user a partie de l'email fourni
+    public function getUserByMail($email) {
+        $q = $this->_db->query('SELECT * FROM Utilisateur WHERE email = "'.$email.'"');
+        $count = $q->rowCount();
+        if ($count != 0) {
+            $data = $q->fetch();
+            $user = new Utilisateur($data);
+            return $user;   
+        }else {
+            return false;
+        }
+        
+    }
+
 
 }
