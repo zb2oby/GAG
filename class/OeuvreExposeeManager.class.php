@@ -72,7 +72,7 @@ class OeuvreExposeeManager {
 
     public function ListOeuvresPrevues($idExpo) {
         $list = [];
-        $q = $this->_db->query("SELECT O.idOeuvre, titre, longueur, hauteur, etat, image, qrcode, descriptifFR, idTypeOeuvre, idArtiste, idCollectif FROM Oeuvre O, OeuvreExposee E WHERE O.idOeuvre = E.idOeuvre AND dateEntree = '1970-01-01' AND idExpo ='".$idExpo."'");
+        $q = $this->_db->query("SELECT O.idOeuvre, titre, longueur, hauteur, etat, image, qrcode, descriptifFR, idTypeOeuvre, idArtiste, idCollectif FROM Oeuvre O, OeuvreExposee E WHERE O.idOeuvre = E.idOeuvre AND dateEntree = '1970-01-01' AND idExpo ='".$idExpo."' ORDER BY O.idOeuvre DESC");
         while ($data = $q->fetch()) {
             $list[] = new Oeuvre($data);
         }
@@ -83,7 +83,7 @@ class OeuvreExposeeManager {
     //retourne la liste des objets Oeuvre prevue et RECUE pour une exposition
     public function ListOeuvresRecues($idExpo) {
         $list = [];
-        $q = $this->_db->query("SELECT O.idOeuvre, titre, longueur, hauteur, etat, image, qrcode, descriptifFR, idTypeOeuvre, idArtiste, idCollectif FROM Oeuvre O, OeuvreExposee E WHERE O.idOeuvre = E.idOeuvre AND dateEntree <> '1970-01-01' AND idExpo ='".$idExpo."'");
+        $q = $this->_db->query("SELECT O.idOeuvre, titre, longueur, hauteur, etat, image, qrcode, descriptifFR, idTypeOeuvre, idArtiste, idCollectif FROM Oeuvre O, OeuvreExposee E WHERE O.idOeuvre = E.idOeuvre AND dateEntree <> '1970-01-01' AND idExpo ='".$idExpo."' ORDER BY O.idOeuvre DESC");
         while ($data = $q->fetch()) {
             $list[] = new Oeuvre($data);
         }

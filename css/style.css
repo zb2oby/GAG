@@ -388,7 +388,8 @@ header {
 					position: absolute;
 					text-align: left;
 					z-index: -1;
-					top: -45px;
+					top: -75px;
+					/*top: -45px;*/
 					left: -100%;
 					width: 210px;
 					font-size: 16px;
@@ -890,19 +891,19 @@ form.expoForm {
 
 	.trash {
 		position: absolute;
-		left: 10px;
-		top: 10px;
-		width: 6%;
-		height: 15%;
-		line-height: 15%;
-		border-radius: 100%;
+		left: 0px;
+		top: 0px;
+		width: 22%;
+		height: 22%;
+		/*line-height: 22%;*/
+		/*border-radius: 100%;*/
 		text-align: center;
 		color: #0A2675;
 	}
 		.trash i {
 			display: inline-block;
 			font-size: 2em;
-			margin-top: 5px;
+			margin-top: 9%;
 		}
 		.dropArea {
 			color: #fff;

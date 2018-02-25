@@ -9,7 +9,6 @@
 <script src="../js/lib/jquery.ui.touch-punch.min.js"></script>
 
 
-<script scr="../js/iframe.js"></script>
 <script src="../js/admin.js"></script>
 <script src="../js/onglets.js"></script>
 <script src="../js/listesOeuvres.js"></script>
