@@ -4,6 +4,8 @@ include ('../class/Traduction.class.php');
 if (isset($_SESSION['langue'])) {
 	$idLangue = $_SESSION['langue'];
 
+}else {
+	$idLangue = 1;
 }
 
 $idartiste=$_GET['artiste'];
