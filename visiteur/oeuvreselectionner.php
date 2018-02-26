@@ -6,11 +6,11 @@ if (isset($_SESSION['langue'])) {
 
 }
 
-if ($idVisiteur){
-	$nbVue++;
-	$q=$bdd->query("UPDATE oeuvreexposee set nbVue=".$nbVue." where idOeuvreExposee=".$idOeuvre" ");
-		$data=$q->fetch();
-}
+// if ($idVisiteur){
+// 	$nbVue++;
+// 	$q=$bdd->query("UPDATE oeuvreexposee set nbVue=".$nbVue." where idOeuvreExposee=".$idOeuvre" ");
+// 		$data=$q->fetch();
+// }
 
 $managerOeuvre = new OeuvreManager($bdd);
 $oeuvre = $managerOeuvre->infoOeuvre($idOeuvre);
@@ -88,10 +88,10 @@ foreach ($oeuvreEnrichie as $enrichie) {
 			<?php 
 					if ($idLangue != 1) {
 						$traduction = new Traduction();
-						$texte = $traduction->getTraduction($idLangue, $idartiste, 'idOeuvre');
+						$texte = $traduction->getTraduction($idLangue, $idOeuvre, 'idOeuvre');
 						echo $texte;
 					}else{
-						echo ucfirst($artiste->getDescriptifFR());
+						echo ucfirst($oeuvre->getDescriptifFR());
 					}
 				 ?>
 			</div>
