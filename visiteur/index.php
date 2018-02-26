@@ -3,6 +3,8 @@
 if (isset($_SESSION['langue'])) {
 	$idLangue = $_SESSION['langue'];
 
+}else {
+	$idLangue=1;
 }
 
 ?>
@@ -20,10 +22,10 @@ if (isset($_SESSION['langue'])) {
 				<?php 
 					if ($idLangue != 1) {
 						$traduction = new Traduction();
-						$texte = $traduction->getTraduction($idLangue, $idartiste, 'idExpo');
+						$texte = $traduction->getTraduction($idLangue, $idExpo, 'idExpo');
 						echo $texte;
 					}else{
-						echo ucfirst($artiste->getDescriptifFR());
+						echo ucfirst($exposition->getDescriptifFR());
 					}
 				 ?>
 		</div>
