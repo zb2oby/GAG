@@ -1,11 +1,16 @@
 <?php include('header.php');
 $idOeuvre=$_GET['oeuvre'];
 
+if (isset($_SESSION['langue'])) {
+	$idLangue = $_SESSION['langue'];
 
-// if ($newVisiteur){
-// 	nbclic++;
-// update nbclic into OeuvreExposer
-// }
+}
+
+if ($idVisiteur){
+	$nbVue++;
+	$q=$bdd->query("UPDATE oeuvreexposee set nbVue=".$nbVue." where idOeuvreExposee=".$idOeuvre" ");
+		$data=$q->fetch();
+}
 
 $managerOeuvre = new OeuvreManager($bdd);
 $oeuvre = $managerOeuvre->infoOeuvre($idOeuvre);
@@ -80,10 +85,15 @@ foreach ($oeuvreEnrichie as $enrichie) {
 				echo $oeuvre->getHauteur();?>
 			</div>
 			<div class="block">
-				<?php
-				echo "Description : <br>";
-				echo ucfirst($oeuvre->getDescriptifFR());
-				?>
+			<?php 
+					if ($idLangue != 1) {
+						$traduction = new Traduction();
+						$texte = $traduction->getTraduction($idLangue, $idartiste, 'idOeuvre');
+						echo $texte;
+					}else{
+						echo ucfirst($artiste->getDescriptifFR());
+					}
+				 ?>
 			</div>
 		</div>
 	</div>

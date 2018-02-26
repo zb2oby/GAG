@@ -1,5 +1,9 @@
 <?php include('header.php'); 
 
+if (isset($_SESSION['langue'])) {
+	$idLangue = $_SESSION['langue'];
+
+}
 
 ?>
 <div class="main">
@@ -13,7 +17,15 @@
 		<?php echo "<img src='../img/expositions/expo".$idExpo."/".$affiche."' alt='affiche'>" ?>
 		<div class="blockaffiche">
 			Descriptif :
-			<?php echo ucfirst($descriptif); ?>
+				<?php 
+					if ($idLangue != 1) {
+						$traduction = new Traduction();
+						$texte = $traduction->getTraduction($idLangue, $idartiste, 'idExpo');
+						echo $texte;
+					}else{
+						echo ucfirst($artiste->getDescriptifFR());
+					}
+				 ?>
 		</div>
 	</div>
 
