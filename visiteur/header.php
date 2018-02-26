@@ -6,17 +6,23 @@ require('../includes/bdd/connectbdd.php');
 
 $managerExpo = new ExpositionManager($bdd);
 $exposition = $managerExpo->currentExpo();
-$idExpo = $exposition->getIdExpo();
-$_SESSION['idExpo']=$idExpo;
-$listlangueExpo = $managerExpo->getIdLangueExpo($idExpo);
-$titre = $exposition->getTitre();
-$theme = $exposition->getTheme();
-$horaireO = $exposition->getHoraireO();
-$horaireF = $exposition->getHoraireF();
-$dateDeb = $exposition->getDateDeb();
-$dateFin = $exposition->getDateFin();
-$affiche = $exposition->getAffiche();
-$descriptif = $exposition->getDescriptifFR();
+if (!$exposition) {
+	header('location: error.php');
+	exit();
+}else {
+	$idExpo = $exposition->getIdExpo();
+	$_SESSION['idExpo']=$idExpo;
+	$listlangueExpo = $managerExpo->getIdLangueExpo($idExpo);
+	$titre = $exposition->getTitre();
+	$theme = $exposition->getTheme();
+	$horaireO = $exposition->getHoraireO();
+	$horaireF = $exposition->getHoraireF();
+	$dateDeb = $exposition->getDateDeb();
+	$dateFin = $exposition->getDateFin();
+	$affiche = $exposition->getAffiche();
+	$descriptif = $exposition->getDescriptifFR();
+}
+
 /*if(isset($_SESSION['langue'])){
 	$langue=$_SESSION['langue'];
 }*/

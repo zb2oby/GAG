@@ -74,9 +74,15 @@ class ExpositionManager {
     public function currentExpo() {
         $today = date('Y-m-d');
         $q = $this->_db->query("SELECT * FROM Exposition WHERE dateDeb <='".$today."' AND dateFin >='".$today."'");
-        $data = $q->fetch();
-        $expo = new Exposition($data);
-        return $expo;
+        $count = $q->rowCount();
+        if ($count != 0) {
+            $data = $q->fetch();
+            $expo = new Exposition($data);
+            return $expo;
+        }else {
+            return false;
+        }
+        
     }
 
     //renvoie les info expo d'une expo 
