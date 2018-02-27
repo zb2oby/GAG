@@ -1,9 +1,12 @@
 <?php 
-if (isset($_SERVER['HTTP_REFERER'])) {
-	$previous = $_SERVER['HTTP_REFERER'];
+if (isset($_SESSION['precedent'])) {
+	$previous = $_SESSION['precedent'];
 	$explodePrev = explode('/', $previous);
 	$pagePrev = $explodePrev[count($explodePrev)-1];
 }
+
+
+
 
 
 $current = $_SERVER['PHP_SELF'];
@@ -47,6 +50,7 @@ switch ($page) {
 		break;
 	default:
 		$center = $previous;
+		
 		$icon = 'ion-reply';
 		$text = '';
 		$displayCenter = 'block';
@@ -60,7 +64,7 @@ switch ($page) {
 
 <div class="footer" >
 			<div class="center" style="display:<?php echo $displayCenter; ?>;">
-				<a href="<?php echo $pagePrev; ?>"><i class="<?php echo $icon ?>"></i><?php echo $text; ?></a>
+				<a href="<?php echo $center; ?>"><i class="<?php echo $icon ?>"></i><?php echo $text; ?></a>
 			</div>
 			<div class="left" style="display:<?php echo $display; ?>;">
 				<a href="<?php echo $left; ?>"><i class="<?php echo $iconL; ?>"></i><?php echo $textL; ?></a>
@@ -73,4 +77,5 @@ switch ($page) {
 	<script src="../js/lib/jquery-min-3.2.1.js"></script>
 	<script src="scrollHead.js"></script>
 </body>
+
 </html>

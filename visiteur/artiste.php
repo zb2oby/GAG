@@ -1,5 +1,8 @@
-<?php include('header.php');
-
+<?php 
+include('header.php');
+if (isset($_SESSION['precedent'])) {
+	unset($_SESSION['precedent']);	
+}
 $managerArtisteExpo = new ArtisteExposeManager($bdd);
 $listArtisteExpo = $managerArtisteExpo->listArtisteExpo($idExpo);
 ?>

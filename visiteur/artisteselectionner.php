@@ -1,5 +1,12 @@
-<?php include('header.php');
+<?php 
+include('header.php');
 include ('../class/Traduction.class.php');
+if (isset($_SERVER['HTTP_REFERER'])) {
+	if (!isset($_SESSION['precedent'])) {
+		$previous = $_SERVER['HTTP_REFERER'];
+		$_SESSION['precedent'] = $previous;		
+	}	
+}
 
 if (isset($_SESSION['langue'])) {
 	$idLangue = $_SESSION['langue'];

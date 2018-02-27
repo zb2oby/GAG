@@ -1,4 +1,12 @@
 <?php include('header.php');
+if (isset($_SERVER['HTTP_REFERER'])) {
+	if (!isset($_SESSION['prev'])) {
+		$previous = $_SERVER['HTTP_REFERER'];
+		$_SESSION['prev'] = $previous;		
+	}	
+}
+
+
 $idOeuvre=$_GET['oeuvre'];
 
 if (isset($_SESSION['langue'])) {
