@@ -1087,7 +1087,7 @@ form.expoForm {
 		width: 30px;
 		height: 30px;
 		text-align: center;
-		line-height: 30px;
+		line-height: 32px;
 		font-size: 1.5em;
 		border-radius: 2em;
 		color: #fff;
@@ -1143,8 +1143,12 @@ form.expoForm {
 
 	.afficheType {
 		max-height: 250px;
+		padding: 20px;
 		overflow: auto;
 	}
+		.afficheType li:hover {
+			background-color: #ddd;
+		}
 
 	.typeForm {
 		border-top: 3px solid #ccc;
