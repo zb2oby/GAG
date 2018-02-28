@@ -1,8 +1,8 @@
 <?php include('header.php');
 if (isset($_SERVER['HTTP_REFERER'])) {
-	if (!isset($_SESSION['prev'])) {
+	if (!isset($_SESSION['precedent'])) {
 		$previous = $_SERVER['HTTP_REFERER'];
-		$_SESSION['prev'] = $previous;		
+		$_SESSION['precedent'] = $previous;		
 	}	
 }
 
