@@ -63,15 +63,21 @@ switch ($page) {
 </div>
 
 <div class="footer" >
+			<?php if (isset($displayCenter, $center, $icon, $text)) { ?>
 			<div class="center" style="display:<?php echo $displayCenter; ?>;">
 				<a href="<?php echo $center; ?>"><i class="<?php echo $icon ?>"></i><?php echo $text; ?></a>
 			</div>
+			<?php } ?>
+			<?php if (isset($right, $left, $iconL, $iconR, $textL, $textR, $display)) { ?>
+				
+			
 			<div class="left" style="display:<?php echo $display; ?>;">
 				<a href="<?php echo $left; ?>"><i class="<?php echo $iconL; ?>"></i><?php echo $textL; ?></a>
 			</div>
 			<div class="right" style="display:<?php echo $display; ?>;">
 				<a href="<?php echo $right; ?>"><i class="<?php echo $iconR; ?>"></i><?php echo $textR; ?></a>
 			</div>
+			<?php } ?>
 		</div>
 	</div>
 	<script src="../js/lib/jquery-min-3.2.1.js"></script>
