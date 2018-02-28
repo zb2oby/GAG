@@ -10,23 +10,34 @@ if (!$exposition) {
 	header('location: error.php');
 	exit();
 }else {
+
+	//DEFINITION DES VARIABLES POUR TOUT LE SITE
 	$idExpo = $exposition->getIdExpo();
 	$_SESSION['idExpo']=$idExpo;
-	$listlangueExpo = $managerExpo->getIdLangueExpo($idExpo);
 	$titre = $exposition->getTitre();
 	$theme = $exposition->getTheme();
 	$horaireO = $exposition->getHoraireO();
 	$horaireF = $exposition->getHoraireF();
-	$dateDeb = $exposition->getDateDeb();
-	$dateFin = $exposition->getDateFin();
 	$affiche = $exposition->getAffiche();
 	$descriptif = $exposition->getDescriptifFR();
+	
+	//COMPTEUR DE VISITE
+	if (!isset($_COOKIE['visite'])) {
+		//s'il ne possede pas de cookie alors on le creer
+		$tomorrow = strtotime(date('Y-m-d'))+(24*3600);
+		setcookie('visite', 1, $tomorrow, null, null, false, true);
+		//recuperartion du compte actuel en base
+		$compte = $exposition->getFrequentation();
+		if ($compte == NULL) {
+			$compte = 0;
+		}
+		//incrementation
+		$compte++;
+		//mise a jour du compte
+		$exposition->setFrequentation($compte);
+		$managerExpo->updateExposition($exposition);
+	}
 }
-
-/*if(isset($_SESSION['langue'])){
-	$langue=$_SESSION['langue'];
-}*/
-
 
 ?>
 <!doctype html>
@@ -57,7 +68,8 @@ if (!$exposition) {
 			?>
 		</div>
 		<div class="drapeau">
-			<?php 
+			<?php
+			$listlangueExpo = $managerExpo->getIdLangueExpo($idExpo); 
 			foreach ($listlangueExpo as $idLangue):
 				?>
 				<form action="traitement.php" method="GET">

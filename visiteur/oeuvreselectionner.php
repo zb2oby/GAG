@@ -1,4 +1,7 @@
-<?php include('header.php');
+<?php 
+include('header.php');
+
+//VARIABLE DE SESSION POUR LA NAV
 if (isset($_SERVER['HTTP_REFERER'])) {
 	if (!isset($_SESSION['precedent'])) {
 		$previous = $_SERVER['HTTP_REFERER'];
@@ -6,38 +9,48 @@ if (isset($_SERVER['HTTP_REFERER'])) {
 	}	
 }
 
+if (isset($_GET['oeuvre'])) {
+	$idOeuvre = $_GET['oeuvre'];
 
-$idOeuvre=$_GET['oeuvre'];
+}
 
 if (isset($_SESSION['langue'])) {
 	$idLangue = $_SESSION['langue'];
 
 }
 
-// if ($idVisiteur){
-// 	$nbVue++;
-// 	$q=$bdd->query("UPDATE oeuvreexposee set nbVue=".$nbVue." where idOeuvreExposee=".$idOeuvre" ");
-// 		$data=$q->fetch();
-// }
-
 $managerOeuvre = new OeuvreManager($bdd);
 $oeuvre = $managerOeuvre->infoOeuvre($idOeuvre);
 
 $managerDonneeEnrichie = new DonneeEnrichieManager($bdd);
-$oeuvreEnrichie = $managerDonneeEnrichie->listDonneeOeuvre(3);
+$oeuvreEnrichie = $managerDonneeEnrichie->listDonneeOeuvre($idOeuvre);
+
+//COMPTEUR DE VUES
+//recuperation des information "oeuvreExposee"
+$managerOeuvreExposee = new OeuvreExposeeManager($bdd);
+$idExposee = $managerOeuvreExposee->idExposee($idOeuvre, $idExpo);
+$oeuvreExposee = $managerOeuvreExposee->oeuvreExposee($idExposee);
+//recuperation du nombre de vues actuel
+$vues = $oeuvreExposee->getNbVue();
+if ($vues == NULL) {
+	$vues = 0;
+}
+//incrementation
+$vues++;
+//mise a jour du compte
+$oeuvreExposee->setNbVue($vues);
+$managerOeuvreExposee->updateOeuvreExposee($oeuvreExposee);
+	
 
 
-// $typeOeuvre = $managerOeuvre->typeOeuvre($idTypeOeuvre);
-
-
-echo "idoeuvre = ";
-echo $idOeuvre;
-echo " idartiste = ";
-echo $oeuvre->getIdArtiste();
+// echo "idoeuvre = ";
+// echo $idOeuvre;
+// echo " idartiste = ";
+// echo $oeuvre->getIdArtiste();
 $idartiste = $oeuvre->getIdArtiste();
 
-echo " idcollectif = ";
-echo $oeuvre->getIdCollectif();
+// echo " idcollectif = ";
+// echo $oeuvre->getIdCollectif();
 
 $managerArtiste = new artisteManager($bdd);
 $infoArtiste = $managerArtiste->infoartiste($idartiste);
