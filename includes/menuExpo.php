@@ -10,9 +10,17 @@
 			<div class="multiple-items">
 				<?php 
 				$manager = new ExpositionManager($bdd);
-				$listPrevExpo = $manager->prevExpo();	
-				$listDate = [];
+
+				//recuperation de l'expositin la plus proche de la date du jour
+				$closest = $manager->closestExpo();
+				$idClosest = $closest->getIdExpo();
+				// var_dump($closest);
+				// exit;
+
 				//affichage des expo précédent la date du jour
+				$listPrevExpo = $manager->prevExpo($idClosest);	
+				$listDate = [];
+				
 				foreach ($listPrevExpo as $exposition ) {
 					$key = $exposition->getDateDeb();
 					$value = $exposition->getTitre();
@@ -34,9 +42,24 @@
 					echo '<br/>'.$dateExpo.'<br><span style="display:inline-block; width:100px; height:5px; font-size:16px; background-color:'.$dataExpo['couleur'].';"></span></div></a></li>';
 					
 				}
-				$listNextExpo = $manager->nextExpo(); 
-				$listDate = [];
+
+
+
+				//affichage de l'exposition la plus proche de la date du jour
+				$class = '';
+				if (isset($_SESSION['idExpo'])) {
+					if ($_SESSION['idExpo'] == $closest->getDateDeb()) {
+						$class = "link-active";
+					}
+				}
+				echo '<li class="closest '.$class.'"><a href="../content/gestionPanel.php?expo='.$idClosest.'"><div>'.$closest->getTitre();
+				echo '<br/>'.$closest->getDateDeb().'<br><span style="display:inline-block; width:100px; height:5px; font-size:16px; background-color:'.$closest->getCouleurExpo().';"></span></div></a></li>';
+
+
 				//affichage des expo suivant la date du jour
+				$listNextExpo = $manager->nextExpo($idClosest); 
+				$listDate = [];
+				
 				foreach ($listNextExpo as $exposition ) {
 					$key = $exposition->getDateDeb();
 					$value = $exposition->getTitre();
