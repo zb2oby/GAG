@@ -48,7 +48,7 @@
 				//affichage de l'exposition la plus proche de la date du jour
 				$class = '';
 				if (isset($_SESSION['idExpo'])) {
-					if ($_SESSION['idExpo'] == $closest->getDateDeb()) {
+					if ($_SESSION['idExpo'] == $closest->getidExpo()) {
 						$class = "link-active";
 					}
 				}

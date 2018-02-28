@@ -47,8 +47,15 @@ $(document).ready(function(){
 
   //on affiche le slide le plus proche de la date du jour
   var initial = $('.closest').parent().parent().data('slick-index');
+  var linkActive = $('.link-active').parent().parent().data('slick-index');
+  console.log(linkActive);
+  if (typeof linkActive != 'undefined') {
+    $slider.slick('slickGoTo', linkActive, true);
+  }else{
+    $slider.slick('slickGoTo', initial, true);
+  }
   
-  $slider.slick('slickGoTo', initial);
+  
 
 
 });
