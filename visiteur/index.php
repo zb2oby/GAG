@@ -1,12 +1,5 @@
 <?php include('header.php'); 
 
-if (isset($_SESSION['langue'])) {
-	$idLangue = $_SESSION['langue'];
-
-}else {
-	$idLangue=1;
-}
-
 ?>
 <div class="main">
 

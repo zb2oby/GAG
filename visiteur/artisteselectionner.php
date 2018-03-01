@@ -8,12 +8,6 @@ if (isset($_SERVER['HTTP_REFERER'])) {
 	}	
 }
 
-if (isset($_SESSION['langue'])) {
-	$idLangue = $_SESSION['langue'];
-
-}else {
-	$idLangue = 1;
-}
 
 $idartiste=$_GET['artiste'];
 $managerartiste = new artisteManager($bdd);
