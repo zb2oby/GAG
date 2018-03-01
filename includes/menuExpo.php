@@ -18,31 +18,36 @@
 
 
 					//affichage des expo précédent la date du jour
+
 					$listPrevExpo = $manager->prevExpo($idClosest);	
-					$listDate = [];
+					if ($listPrevExpo != false) {
+							
+						$listDate = [];
 					
-					foreach ($listPrevExpo as $exposition ) {
-						$key = $exposition->getDateDeb();
-						$value = $exposition->getTitre();
-						$couleurExpo = $exposition->getCouleurExpo();
-						$idExpoParam = $exposition->getIdExpo();
-						$listDate[$key] = ['titre' => $value, 'couleur' => $couleurExpo, 'id' => $idExpoParam];
+						foreach ($listPrevExpo as $exposition ) {
+							$key = $exposition->getDateDeb();
+							$value = $exposition->getTitre();
+							$couleurExpo = $exposition->getCouleurExpo();
+							$idExpoParam = $exposition->getIdExpo();
+							$listDate[$key] = ['titre' => $value, 'couleur' => $couleurExpo, 'id' => $idExpoParam];
+
+						}
+					
+						ksort($listDate);
+						foreach ($listDate as $dateExpo => $dataExpo ) {
+							$class = '';
+							if (isset($_SESSION['idExpo'])) {
+								if ($_SESSION['idExpo'] == $dataExpo['id']) {
+									$class = "link-active";
+								}
+							}
+							echo '<li class="'.$class.'"><a href="../content/gestionPanel.php?expo='.$dataExpo['id'].'"><div>'.$dataExpo['titre'];
+							echo '<br/>'.$dateExpo.'<br><span style="display:inline-block; width:100px; height:5px; font-size:16px; background-color:'.$dataExpo['couleur'].';"></span></div></a></li>';
+							
+						}
 
 					}
 				
-					ksort($listDate);
-					foreach ($listDate as $dateExpo => $dataExpo ) {
-						$class = '';
-						if (isset($_SESSION['idExpo'])) {
-							if ($_SESSION['idExpo'] == $dataExpo['id']) {
-								$class = "link-active";
-							}
-						}
-						echo '<li class="'.$class.'"><a href="../content/gestionPanel.php?expo='.$dataExpo['id'].'"><div>'.$dataExpo['titre'];
-						echo '<br/>'.$dateExpo.'<br><span style="display:inline-block; width:100px; height:5px; font-size:16px; background-color:'.$dataExpo['couleur'].';"></span></div></a></li>';
-						
-					}
-
 
 
 					//affichage de l'exposition la plus proche de la date du jour
@@ -57,30 +62,36 @@
 
 
 					//affichage des expo suivant la date du jour
-					$listNextExpo = $manager->nextExpo($idClosest); 
-					$listDate = [];
-					
-					foreach ($listNextExpo as $exposition ) {
-						$key = $exposition->getDateDeb();
-						$value = $exposition->getTitre();
-						$couleurExpo = $exposition->getCouleurExpo();
-						$idExpoParam = $exposition->getIdExpo();
-						$listDate[$key] = ['titre' => $value, 'couleur' => $couleurExpo, 'id' => $idExpoParam];
 
-					}
-				
-					ksort($listDate);
-					foreach ($listDate as $dateExpo => $dataExpo ) {
-						$class = '';
-						if (isset($_SESSION['idExpo'])) {
-							if ($_SESSION['idExpo'] == $dataExpo['id']) {
-								$class = "link-active";
-							}
-						}
-						echo '<li class="'.$class.'"><a href="../content/gestionPanel.php?expo='.$dataExpo['id'].'"><div>'.$dataExpo['titre'];
-						echo '<br/>'.$dateExpo.'<br><span style="display:inline-block; width:100px; height:5px; font-size:16px; background-color:'.$dataExpo['couleur'].';"></span></div></a></li>';
+					$listNextExpo = $manager->nextExpo($idClosest); 
+					if ($listNextExpo != false) {
 						
-					}	
+						$listDate = [];
+					
+						foreach ($listNextExpo as $exposition ) {
+							$key = $exposition->getDateDeb();
+							$value = $exposition->getTitre();
+							$couleurExpo = $exposition->getCouleurExpo();
+							$idExpoParam = $exposition->getIdExpo();
+							$listDate[$key] = ['titre' => $value, 'couleur' => $couleurExpo, 'id' => $idExpoParam];
+
+						}
+					
+						ksort($listDate);
+						foreach ($listDate as $dateExpo => $dataExpo ) {
+							$class = '';
+							if (isset($_SESSION['idExpo'])) {
+								if ($_SESSION['idExpo'] == $dataExpo['id']) {
+									$class = "link-active";
+								}
+							}
+							echo '<li class="'.$class.'"><a href="../content/gestionPanel.php?expo='.$dataExpo['id'].'"><div>'.$dataExpo['titre'];
+							echo '<br/>'.$dateExpo.'<br><span style="display:inline-block; width:100px; height:5px; font-size:16px; background-color:'.$dataExpo['couleur'].';"></span></div></a></li>';
+							
+						}	
+					}
+					
+					
 
 
 

@@ -11,14 +11,14 @@ if (isset($_SESSION['langue'])) {
 <div class="main">
 
 	<div class="bienvenue">
-		Bienvenue à l'exposition <?php echo ucfirst($titre)?> sur le theme <?php echo ucfirst($theme) ?> 
+		Bienvenue à l'exposition <?php echo ucfirst($titre)?>
+		<h4>Thème : </h4><?php echo ucfirst($theme) ?> 
 		
 
 	</div>
 	<div class="descriptif">
 		<?php echo "<img src='../img/expositions/expo".$idExpo."/".$affiche."' alt='affiche'>" ?>
 		<div class="blockaffiche">
-			Descriptif :
 				<?php 
 					if ($idLangue != 1) {
 						$traduction = new Traduction();

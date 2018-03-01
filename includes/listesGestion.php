@@ -185,7 +185,7 @@ include('../modules/traitementEmplacement.php');
 		<h4>Artistes exposé(e)s</h4>
 		<div class="iconCard"><i class="addCardArtiste ion-android-add"></i></div>
 		<div class="contain-cards">
-			<ul>
+			<ul class="list-gestion">
 				<?php 
 					if (isset($_SESSION['idExpo'])) {
 						$idExpo = htmlentities($_SESSION['idExpo']);
@@ -226,7 +226,7 @@ include('../modules/traitementEmplacement.php');
 		<h4>Oeuvres prévues</h4>
 		<div class="iconCard"><i class="addCard ion-android-add"></i></div>
 		<div class="contain-cards">
-			<ul class="prevue column">
+			<ul class="prevue column list-gestion">
 				<?php 
 					if (isset($_SESSION['idExpo'])) {
 						$idExpo = htmlentities($_SESSION['idExpo']);
@@ -251,7 +251,7 @@ include('../modules/traitementEmplacement.php');
 		<h4>Oeuvres reçues</h4>
 		<div class="iconCard"><i class="addCardRecue ion-android-add"></i></div>
 		<div class="contain-cards" id="items">
-			<ul class="recue column">
+			<ul class="recue column list-gestion">
 				<?php
 					if (isset($_SESSION['idExpo'])) {
 						$idExpo = htmlentities($_SESSION['idExpo']);

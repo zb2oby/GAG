@@ -6,6 +6,9 @@ require('../includes/bdd/connectbdd.php');
 
 $managerExpo = new ExpositionManager($bdd);
 $exposition = $managerExpo->currentExpo();
+//pour les test : 
+$exposition = $managerExpo->infoExpo(125);
+//fin de pour les test
 if (!$exposition) {
 	header('location: error.php');
 	exit();

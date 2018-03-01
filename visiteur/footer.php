@@ -82,6 +82,7 @@ switch ($page) {
 	</div>
 	<script src="../js/lib/jquery-min-3.2.1.js"></script>
 	<script src="scrollHead.js"></script>
+	<script src="more.js"></script>
 </body>
 
 </html>

@@ -174,10 +174,10 @@ span.title {
 	z-index: -1;
 	bottom: 0;
 	top: 0px;
-	left: 15%;
+	left: 13%;
 	right: 0;
 	display: inline-block;
-	width: 85%;
+	width: 87%;
 	font-size: 16px;
 	overflow-x: hidden;
 	overflow-y: auto;
@@ -318,7 +318,7 @@ header {
 		bottom: 0;
 		vertical-align: top;
 		font-size: 16px;
-		width: 15%;
+		width: 13%;
 		background-color: #444;
 		color: #fff;
 		text-align: center;
@@ -330,7 +330,7 @@ header {
 		.homeLogo {
 			display: block;
 			font-size: 4em;
-			padding-bottom: 30px;
+			/*padding-bottom: 30px;*/
 		}
 		.homeLogo i:hover {
 			cursor:pointer;
@@ -377,7 +377,8 @@ header {
 				position: relative;
 				display: block;
 				font-size: 4em;
-				padding-top: 40px;
+				margin-top: -10px;
+				/*padding-top: 40px;*/
 
 			}
 			.addLogo i:hover {
@@ -388,7 +389,7 @@ header {
 					position: absolute;
 					text-align: left;
 					z-index: -1;
-					top: -75px;
+					top: -90px;
 					/*top: -45px;*/
 					left: -100%;
 					width: 210px;
@@ -463,6 +464,7 @@ header {
 		width: 100%;
 		display: none;
 		font-size: 0;
+		text-align: center;
 
 
 	}
@@ -1501,6 +1503,19 @@ form.expoForm {
 		.onglet-content {
 			text-align: center;
 		}
+
+		/*	.list {
+				min-height: 500px;
+			}
+				.contain-cards {
+					min-height: 450px;
+				}*/
+				.contain-cards ul.list-gestion {
+					min-height: 0;
+					max-height: 400px;
+				}
+
+
 	
 	.sideBar * {
 		margin: 0;
@@ -1637,7 +1652,7 @@ form.expoForm {
 
 
 
-@media all and (min-width: 1200px) {
+@media all and (min-width: 1290px) {
 	
 	.container {
 		width: 90%;
