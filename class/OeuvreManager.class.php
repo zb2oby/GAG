@@ -131,8 +131,5 @@ class OeuvreManager {
         return $list;
     }
 
-    
-
-
 
 }
