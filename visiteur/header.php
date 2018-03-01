@@ -72,7 +72,6 @@ if (!$exposition) {
 			$dateDebut = strtotime($exposition->getDateDeb());
 			$dateFin = strtotime($exposition->getDateFin());
 			echo 'Du '.date('d/m/Y', $dateDebut).' au '.date('d/m/Y', $dateFin);
-			echo $idLangue;
 			?>
 		</div>
 	</div>
