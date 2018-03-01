@@ -86,8 +86,20 @@ foreach ($oeuvreEnrichie as $enrichie) {
 			<?php 
 					if ($idLangue != 1) {
 						$traduction = new Traduction();
-						$texte = $traduction->getTraduction($idLangue, $idOeuvre, 'idOeuvre');
-						echo $texte;
+						$desc = $traduction->getTraduction($idLangue, $idOeuvre, 'idOeuvre');
+						if (strlen($desc)>300) 
+						{
+						  $more = substr($desc, 306);
+						  $desc=substr($desc, 0, 310);
+
+						  $dernier_mot=strrpos($desc," ");
+						  $desc=substr($desc,0,$dernier_mot);
+						  $desc.='<a class="readmore" href="#" > Lire la suite <i class="ion-arrow-right-c"></i></a>';
+						}
+						echo $desc;
+						?>
+						<p class="more"><?php if(isset($more)){ echo $more; } ?></p>
+						<?php
 					}else{
 						$desc = ucfirst($oeuvre->getDescriptifFR());
 						if (strlen($desc)>300) 
@@ -101,7 +113,7 @@ foreach ($oeuvreEnrichie as $enrichie) {
 						}
 						echo $desc;
 						?>
-						<p class="more"><?php echo $more ?></p>
+						<p class="more"><?php if(isset($more)){ echo $more; } ?></p>
 						<?php
 					}
 				 ?>

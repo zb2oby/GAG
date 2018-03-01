@@ -30,17 +30,41 @@ $artiste = $managerartiste->infoArtiste($idartiste);
 				?>
 			</div>
 			<div class="block">
-				Description :<br>
-				<?php 
+				<h4>Description : </h4>
+			<?php 
 					if ($idLangue != 1) {
 						$traduction = new Traduction();
-						$texte = $traduction->getTraduction($idLangue, $idartiste, 'idArtiste');
-						echo $texte;
+						$desc = $traduction->getTraduction($idLangue, $idartiste, 'idArtiste');
+						if (strlen($desc)>300) 
+						{
+						  $more = substr($desc, 306);
+						  $desc=substr($desc, 0, 310);
+
+						  $dernier_mot=strrpos($desc," ");
+						  $desc=substr($desc,0,$dernier_mot);
+						  $desc.='<a class="readmore" href="#" > Lire la suite <i class="ion-arrow-right-c"></i></a>';
+						}
+						echo $desc;
+						?>
+						<p class="more"><?php if(isset($more)){ echo $more; } ?></p>
+						<?php
 					}else{
-						echo ucfirst($artiste->getDescriptifFR());
+						$desc = ucfirst($artiste->getDescriptifFR());
+						if (strlen($desc)>300) 
+						{
+						  $more = substr($desc, 306);
+						  $desc=substr($desc, 0, 310);
+
+						  $dernier_mot=strrpos($desc," ");
+						  $desc=substr($desc,0,$dernier_mot);
+						  $desc.='<a class="readmore" href="#" > Lire la suite <i class="ion-arrow-right-c"></i></a>';
+						}
+						echo $desc;
+						?>
+						<p class="more"><?php if(isset($more)){ echo $more; } ?></p>
+						<?php
 					}
 				 ?>
-
 			</div>
 		</div>
 	</div>
