@@ -72,32 +72,36 @@ if (!$exposition) {
 			$dateDebut = strtotime($exposition->getDateDeb());
 			$dateFin = strtotime($exposition->getDateFin());
 			echo 'Du '.date('d/m/Y', $dateDebut).' au '.date('d/m/Y', $dateFin);
+			echo $idLangue;
 			?>
 		</div>
 	</div>
 	<ul class="drapeau">
-		
+
 		<li class="toggleSubMenu"><a href=""><img id="langueSelectionner" src="drapeau/drapeau<?php echo $idLangue; ?>.jpg" alt="drapeau"></a>
 			<ul class="subMenu">
 				<?php
 				$listlangueExpo = $managerExpo->getIdLangueExpo($idExpo); 
-				$idLangue--;
+				$idLangue--; // permet d'afficher le bon drapeau 
 				unset($listlangueExpo[$idLangue]); 
-				foreach ($listlangueExpo as $idLangue):
+				$idLangue++;// retablissement des vrai valeur
+				foreach ($listlangueExpo as $idLangueExpo):
 					?>
 					<form action="traitement.php" method="GET">
 
-						<input type="hidden" name="langue" value="<?php echo $idLangue ; ?>" >
+						<input type="hidden" name="langue" value="<?php echo $idLangueExpo ; ?>" >
 						<input type="hidden" name="artiste" value="<?php if(isset($_GET['artiste'])){ echo $_GET['artiste']; } ?>">
 						<input type="hidden" name="oeuvre" value="<?php if(isset($_GET['oeuvre'])) { echo $_GET['oeuvre']; } ?>">
 
-						<button type="submit"><img src="drapeau/drapeau<?php echo $idLangue; ?>.jpg" alt="drapeau"></button>
+						<button type="submit"><img src="drapeau/drapeau<?php echo $idLangueExpo; ?>.jpg" alt="drapeau"></button>
 
 					</form>
 				<?php endforeach ?>
+
+				
 			</ul>
 		</li>
 	</ul>
-	
+
 
 	
