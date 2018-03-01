@@ -34,7 +34,7 @@ class ArtisteExposeManager {
 
     public function listArtisteExpo($idExpo) {
         $list = [];
-        $q = $this->_db->query("SELECT A.idArtiste, nom, prenom, tel, image, descriptifFR, email FROM Artiste A, ArtisteExpose E WHERE A.idArtiste = E.idArtiste AND idExpo ='".$idExpo."' ORDER BY A.idArtiste DESC");
+        $q = $this->_db->query("SELECT A.idArtiste, nom, prenom, tel, image, descriptifFR, email FROM Artiste A, ArtisteExpose E WHERE A.idArtiste = E.idArtiste AND idExpo ='".$idExpo."' ORDER BY nom");
         while ($data = $q->fetch()) {
             $list[] = new Artiste($data);
         }

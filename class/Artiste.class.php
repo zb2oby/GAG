@@ -3,7 +3,7 @@
 class Artiste {
 
 	private $_idArtiste;
-	private $_nom = 'sans nom';
+	private $_nom = '01 sans nom';
 	private $_prenom;
 	private $_tel;
 	private $_image;

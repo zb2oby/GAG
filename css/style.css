@@ -91,6 +91,12 @@ select {
 
 }
 
+.popAddOeuvrePrevue .selectInput:after {
+	top: 17px;
+}
+.popAddOeuvreRecue .selectInput:after {
+	top: 17px;
+}
 
 input {
 	width: 100%;
@@ -1326,13 +1332,16 @@ form.expoForm {
 				.list-oeuvre-artiste .li-oeuvre-artiste {
 					margin-bottom: 10px;
 					border-bottom: 2px solid #ccc;
-					padding-bottom: 10px;
+					/*padding-bottom: 10px;*/
 					background-color: #fff;
 				}
-					li.li-oeuvre-artiste:hover {
-						background-color: #ccc;
-						cursor: pointer;
-					}
+
+				li.li-oeuvre-artiste:hover {
+					background-color: #ccc;
+					cursor: pointer;
+				}
+
+
 				.oeuvreArtiste {
 					float: right;
 					vertical-align: top;

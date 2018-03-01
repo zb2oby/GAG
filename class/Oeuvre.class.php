@@ -2,7 +2,7 @@
 
 class Oeuvre {
 	
-	private $_titre;
+	private $_titre = '01 Sans titre';
 	private $_longueur;
 	private $_hauteur;
 	private $_etat;

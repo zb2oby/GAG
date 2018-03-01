@@ -219,6 +219,39 @@ jQuery(document).ready(function($) {
 						//on peut donc afficher les modification dans le DOM car la base a été mise à jour.
 						$(event.target).closest('.portlet-artiste').find('.titre').html(nom+' '+prenom);
 						$(event.target).closest('.context-artiste').find('.card-title h4').html('"'+nom+'"');
+						//mise a jour de l'artiste dans le select des bouton + des listes
+						var listOption = $('.popAddArtiste select option');
+						for (var i = listOption.length - 1; i >= 0; i--) {
+							if ($(listOption[i]).val() == idArtiste) {
+								$(listOption[i]).html(nom);
+							}
+							
+						}
+						//mise a jour de l'artiste dans le select des creation d'oeuvre Prevue depuis bouton + des listes d'oeuvre
+						var listOption = $('.popAddOeuvrePrevue select option');
+						for (var i = listOption.length - 1; i >= 0; i--) {
+							if ($(listOption[i]).val() == idArtiste) {
+								$(listOption[i]).html(nom);
+							}
+							
+						}
+						//mise a jour de l'artiste dans le select des creation d'oeuvre Recue depuis bouton + des listes d'oeuvre
+						var listOption = $('.popAddOeuvreRecue select option');
+						for (var i = listOption.length - 1; i >= 0; i--) {
+							if ($(listOption[i]).val() == idArtiste) {
+								$(listOption[i]).html(nom);
+							}
+							
+						}
+						//mise a jour de l'artiste dans le select des creation d'oeuvre depuis bouton + du menu principal
+						var listOption = $('.form-add select option');
+						for (var i = listOption.length - 1; i >= 0; i--) {
+							if ($(listOption[i]).val() == idArtiste) {
+								$(listOption[i]).html(nom);
+							}
+							
+						}
+						//message d'enregistrement
 						$('.confirmSet').css('display', 'block');
 						$('.context-overlay').show();
 						setTimeout(function(){

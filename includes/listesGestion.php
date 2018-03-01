@@ -47,6 +47,7 @@ include('../modules/traitementEmplacement.php');
 
 <!-- permet la creation d'oeuvres a la volée depuis les bouton + des listes si l'oeuvre n'existe pas -->
 <div class="popAddOeuvrePrevue">
+	<div class="closeButton"><i class="ion-android-close"></i></div>
 	<form class="form-liste" action="../modules/traitementListes.php" method="GET">
 		<div class="selectInput">
 		<select name="idArtisteExpo" id="idArtisteExpo">
@@ -74,6 +75,7 @@ include('../modules/traitementEmplacement.php');
 </div>
 
 <div class="popAddOeuvreRecue">
+	<div class="closeButton"><i class="ion-android-close"></i></div>
 	<form class="form-liste" action="../modules/traitementListes.php" method="GET">
 		<div class="selectInput">
 		<select name="idArtisteExpo" id="idArtisteExpo">

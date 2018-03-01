@@ -187,6 +187,22 @@ jQuery(document).ready(function($) {
 						}
 						
 						$(event.target).closest('.context-oeuvre').find('.card-header h4').html('"'+titre+'"');
+						//mise a jour de l'oeuvre dans le select d'ajout d'oeuvre Prevue
+						var listOption = $('.popAddCard select option');
+						for (var i = listOption.length - 1; i >= 0; i--) {
+							if ($(listOption[i]).val() == idOeuvre) {
+								$(listOption[i]).html(titre);
+							}
+							
+						}
+						//mise a jour de l'oeuvre dans le select d'ajout d'oeuvre recue
+						var listOption = $('.popAddRecue select option');
+						for (var i = listOption.length - 1; i >= 0; i--) {
+							if ($(listOption[i]).val() == idOeuvre) {
+								$(listOption[i]).html(titre);
+							}
+							
+						}
 						$('.confirmSet').css('display', 'block');
 						$('.context-overlay').show();
 						setTimeout(function(){

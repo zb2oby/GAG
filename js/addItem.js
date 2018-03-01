@@ -54,7 +54,16 @@ jQuery(document).ready(function($) {
 			$('.overlay').show();
 			$('.addArt').load('../js/artisteCard.js');
 			$('.addArt').load('../includes/popArtiste.php?idArtiste='+response+'&idUser='+idUser);
-			$('.form-add select').prepend('<option value="'+response+'">Sans Nom</option>');
+			$('.form-add select').prepend('<option value="'+response+'">Artiste Sans Nom</option>');
+			//ajout de l'artiste dans le select du boutons + de la liste artiste
+			$('.popAddArtiste select').append('<option value="'+response+'">Artiste Sans Nom</option>');
+			
+			//ajout de l'artiste dans le select des creation d'oeuvre depuis bouton + des listes d'oeuvre
+			$('.popAddOeuvrePrevue select').append('<option value="'+response+'">Artiste Sans Nom</option>');
+			
+			//ajout de l'artiste dans le select des creation d'oeuvre depuis bouton + des listes d'oeuvre
+			$('.popAddOeuvreRecue select').append('<option value="'+response+'">Artiste Sans Nom</option>');
+			
 		})
 		.fail(function() {
 			console.log("error");
@@ -78,6 +87,7 @@ jQuery(document).ready(function($) {
 		$('.modalAddOeuvre').css('display', 'none');
 		var idArtiste = parseFloat($(event.target).find('#idArtiste').val());
 		var data = 'req=add&idArtiste='+idArtiste;
+		var nomOeuvre = 
 		$.ajax({
 			url: '../modules/traitementOeuvre.php',
 			type: 'GET',
@@ -91,6 +101,16 @@ jQuery(document).ready(function($) {
 			$('.overlay').show();
 			$('.addArt').load('../js/artisteCard.js');
 			$('.addArt').load('../includes/popArtiste.php?idLastOeuvre='+idLastOeuvre+'&idArtiste='+idArtiste+'&idUser='+idUser);
+
+			//ajout de l'oeuvre dans les select d'ajout d'oeuvre Prevue et Recue si l'Artiste est présent dans la liste des artistes de l'expo
+			var listArtistePresent = $('.artistes .portlet');
+			for (var i = listArtistePresent.length - 1; i >= 0; i--) {
+				if ($(listArtistePresent[i]).data('id') == idArtiste) {
+					$('.popAddCard select').append('<option value="'+idLastOeuvre+'">Oeuvre sans titre</option>');
+					$('.popAddRecue select').append('<option value="'+idLastOeuvre+'">Oeuvre sans titre</option>');
+				}
+				
+			}
 		
 		})
 		.fail(function() {

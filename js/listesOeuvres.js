@@ -8,6 +8,7 @@ jQuery(document).ready(function($) {
 
 
 
+
 	doSort();
     doDrop();
     $(document).ajaxComplete(function () {
@@ -29,13 +30,13 @@ jQuery(document).ready(function($) {
             data: liste,
         })
         .done(function() {
-            console.log("success");
+            //console.log("success");
         })
         .fail(function() {
-            console.log("error");
+            //console.log("error");
         })
         .always(function() {
-            console.log("complete");
+            //console.log("complete");
         });
 	}
 	//fonction qui rend sortable un element
@@ -64,6 +65,15 @@ jQuery(document).ready(function($) {
                     $(ui.item).find('.img').addClass('item');
                     updateSort('enregistrer', idOeuvreExposee);
                     doClone();
+                }
+                //s'il n'y a plus de carte en retard dans la liste prevue on supprime le message retard dans le header du site
+                var listRetard = $('.prevue .retard');
+                if (listRetard.length == 0 ) {
+                    $('header .retard').hide();
+                }else {
+                    var nbRetard = listRetard.length;
+                    $('header .retard').html('<i class="ion-alert-circled" style="color:red; font-size:2em; position:absolute; left:-30px; top:-10px;"></i>Il y a '+nbRetard+' Oeuvre(s) en retard !');
+                    $('header .retard').show();
                 }
                
             }

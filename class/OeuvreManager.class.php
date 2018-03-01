@@ -52,7 +52,7 @@ class OeuvreManager {
     //renvoie la liste des objets Oeuvre disponibles pour une expo en fonction des artistes presents pour cette expo.
     public function listOeuvreExpo($idExpo) {
         $list = [];
-        $q = $this->_db->query("SELECT O.idOeuvre, titre, longueur, hauteur, etat, image, qrcode, descriptifFR, idTypeOeuvre, O.idArtiste, idCollectif FROM Oeuvre O, ArtisteExpose A WHERE O.idArtiste = A.idArtiste AND idExpo ='".$idExpo."'");
+        $q = $this->_db->query("SELECT O.idOeuvre, titre, longueur, hauteur, etat, image, qrcode, descriptifFR, idTypeOeuvre, O.idArtiste, idCollectif FROM Oeuvre O, ArtisteExpose A WHERE O.idArtiste = A.idArtiste AND idExpo ='".$idExpo."' ORDER BY titre");
         while ($data = $q->fetch()) {
             $list[] = new Oeuvre($data);
         }
