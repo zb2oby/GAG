@@ -41,9 +41,7 @@ a:visited {
 	transition: top 0.2s ease-in-out;
 }
 
-.nav-up {
-    top: -60px;
-}
+
 h1{
 	font-size: 24px;
 	letter-spacing: 5px;
@@ -84,6 +82,11 @@ h1{
 	right:5px;
 	margin: 0 2px 2px 0;
 	z-index: 5;
+	transition: top 0.2s ease-in-out;
+}
+
+.nav-up {
+    top: -60px;
 }
 button{
 

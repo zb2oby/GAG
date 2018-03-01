@@ -78,7 +78,7 @@ if (!$exposition) {
 			?>
 		</div>
 	</div>
-	<ul class="drapeau">
+	<ul class="drapeau nav-down">
 
 		<li class="toggleSubMenu"><a href=""><img id="langueSelectionner" src="drapeau/drapeau<?php echo $idLangue; ?>.jpg" alt="drapeau"></a>
 			<ul class="subMenu">
