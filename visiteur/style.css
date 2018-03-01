@@ -61,28 +61,8 @@ h1{
 	margin: 0 0 3px 5px;
 	color: #fff;
 }
-.drapeau{
-	position: absolute;
-	display: flex;
-	bottom: 0;
-	right:0;
-	margin: 0 2px 2px 0;
-}
 
-button{
-	border:none;
-	cursor: pointer;
-	background-color: transparent;
-	height: 24px;
-	width: 32px;
-	
-	margin: 0px 3px 3px;
-}
-button img{
-	height: 24px;
-	width: 32px;
-	border: 2px solid #ccc;
-}
+
 
 
 /*-------------------------main-------------------------*/
@@ -97,6 +77,43 @@ button img{
 	background-color: #eee;
 
 }
+.drapeau{
+	position: fixed;
+	display: flex;
+	top: 20px;
+	right:5px;
+	margin: 0 2px 2px 0;
+	z-index: 5;
+}
+button{
+
+	border:none;
+	cursor: pointer;
+	background-color: transparent;
+	height: 24px;
+	width: 32px;
+	margin: 0px 3px 3px;
+}
+button img{
+	height: 24px;
+	width: 32px;
+	border: 2px solid #ccc;
+}
+.drapeau li a{
+	border:none;
+	cursor: pointer;
+	background-color: transparent;
+	height: 24px;
+	width: 32px;
+	
+}
+#langueSelectionner{
+	height: 24px;
+	width: 32px;
+	border: 2px solid #ccc;
+	margin: 0px 3px 3px;
+}
+
 .bienvenue{
 	padding: 20px;
 	background-color: #eee;
