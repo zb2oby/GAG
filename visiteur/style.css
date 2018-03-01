@@ -157,6 +157,7 @@ button img{
 	font-size: 18px;
 	color: #0A2675;
 	padding: 20px;
+	margin-bottom: 60px;
 	height: 100%;
 }
 .descriptif img{
@@ -177,6 +178,7 @@ button img{
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
+	margin-bottom: 60px;
 }
 
 .artiste,.oeuvre{
@@ -190,6 +192,7 @@ button img{
 	font-size: 22px;
 	padding: 20px;	
 	height: 100%;
+	margin-bottom: 60px;
 }
 .oeuvre .oeuvre-descriptif {
 	text-align: left;

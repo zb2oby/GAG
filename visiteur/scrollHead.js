@@ -32,6 +32,7 @@ function hasScrolled() {
         // Scroll Down
         $('.header').removeClass('nav-down').addClass('nav-up');
         $('.drapeau').removeClass('nav-down').addClass('nav-up');
+        $(".drapeau ul.subMenu").slideUp("normal");
     } else {
         // Scroll Up
         if(st + $(window).height() < $(document).height()) {
