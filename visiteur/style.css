@@ -20,12 +20,7 @@ body{
 	background-color: #eee;
 }
 
-a {
-	text-decoration: none;
-}
-a:visited {
-	color: #0A2640;
-}
+
 
 /*-------------------------------header---------------------*/
 .header{
@@ -118,7 +113,6 @@ button img{
 	text-align: center;
 }
 .description{
-	position: relative;
 	display: flex;
 	width: 100%;
 	text-align: center;
@@ -126,23 +120,6 @@ button img{
 	justify-content: space-between;
 	margin-top: 30px;
 }
-
-	a.readmore {
-		display: inline-block;
-		text-decoration: none;
-		background-color: #0A2675;
-		color: #fff;
-		/*margin-top: 7px;*/
-		margin-left: 5px;
-		padding: 5px 10px;
-		border-radius: 2px;
-		line-height: 24px;
-	}
-
-	.more {
-		display: none;
-	}
-
 .descriptif{
 
 	background-color: #eee;
@@ -181,9 +158,8 @@ button img{
 	padding: 20px;	
 	height: 100%;
 }
-.oeuvre .oeuvre-descriptif {
-	text-align: left;
-}
+
+
 /*.artisteimage ,.oeuvreimage{
 	display: block;
 	margin: 0 auto;
@@ -214,31 +190,6 @@ button img{
 	box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
 }
 
-.oeuvre-title {
-	color: #0A2675;
-	padding: 10px;
-	margin-bottom: 10px;
-}
-
-.meta {
-	padding: 20px;
-	margin: 20px 0;
-	border-top: 2px solid #ccc;
-}
-.meta-intro {
-	position: absolute;
-	width: 100%;
-	left: 0;
-	top: -20px;
-	padding: 10px;
-	background-color: #fff;
-	text-align: center;
-}
-.meta-title {
-	text-align: center;
-	margin-bottom: 10px;
-}
-
 .block ,.block{
 	/*display: block;*/
 	/*text-align: center;*/
@@ -246,14 +197,6 @@ button img{
 	/*margin: 20px 0 0px 0;*/
 	color: #0A2675;
 
-}
-
-.meta .block:first-child {
-	margin-top: 20px;
-}
-.oeuvre .block {
-	text-align: left;
-	margin: 15px;
 }
 .main .selection{
 	text-decoration: none;

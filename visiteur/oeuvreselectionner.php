@@ -43,8 +43,14 @@ $managerOeuvreExposee->updateOeuvreExposee($oeuvreExposee);
 	
 
 
+// echo "idoeuvre = ";
+// echo $idOeuvre;
+// echo " idartiste = ";
+// echo $oeuvre->getIdArtiste();
 $idartiste = $oeuvre->getIdArtiste();
 
+// echo " idcollectif = ";
+// echo $oeuvre->getIdCollectif();
 
 $managerArtiste = new artisteManager($bdd);
 $infoArtiste = $managerArtiste->infoartiste($idartiste);
@@ -56,106 +62,60 @@ foreach ($oeuvreEnrichie as $enrichie) {
 	$url=$enrichie->getUrlFichier();
 }	
 
+// $managerTypeDonneeEnrichie = new DonneeEnrichieManager($bdd);
+// $libelle= $managerDonneeEnrichie->libelleTypeDonnee($typeDonnee);
+
+// echo " libelle = ";
+// echo $libelle;
+// echo " url du fichier :";
+// echo $url;
 ?>
 <div class="main">
 	<div class="oeuvre">
 		<div class="oeuvreimage">
-			<h2 class="oeuvre-title"><?php echo ucfirst($oeuvre->getTitre());?></h2>
-				
 			<img src="../img/oeuvres/<?php echo $oeuvre->getImage();?>" alt="image">
 		</div>
 		<div class="description">
-			<div class="block">
-				<h3 class="meta-intro">Informations générales</h3>
-			</div>
-			<div class="block">
-				<h4>Artiste : </h4>
+			<div class="block first">
 				<?php
-				echo ucfirst($infoArtiste->getNom()).' '.ucfirst($infoArtiste->getPrenom());
+				echo "Titre : ";
+				echo ucfirst($oeuvre->getTitre());
 				?>
 			</div>
 			<div class="block">
-				<h4>Dimensions : </h4>
-				Longueur X Hauteur<br>
 				<?php
-				echo intval($oeuvre->getLongueur()).' Cm X '.intval($oeuvre->getHauteur()).' Cm';
-				 ?>
+				echo "Artiste : ";
+				echo ucfirst($infoArtiste->getNom());
+				echo " ";	
+				echo ucfirst($infoArtiste->getPrenom());
+				?>
 			</div>
-			<div class="block oeuvre-descriptif">
-				<h4>Description : </h4>
+				<!-- <div class="block"> -->
+				<!-- <?php 
+				// echo "Support : ";
+				// $typeOeuvre=$oeuvre->getIdTypeOeuvre();
+				// echo $typeOeuvre;
+				// echo $typeOeuvre->typeOeuvre($typeOeuvre);
+				?> -->
+				<!-- </div> -->
+			<div class="block">
+				<?php
+				echo "Dimension : ";
+				echo $oeuvre->getLongueur();
+				echo "x";
+				echo $oeuvre->getHauteur();?>
+			</div>
+			<div class="block">
 			<?php 
 					if ($idLangue != 1) {
 						$traduction = new Traduction();
 						$texte = $traduction->getTraduction($idLangue, $idOeuvre, 'idOeuvre');
 						echo $texte;
 					}else{
-						$desc = ucfirst($oeuvre->getDescriptifFR());
-						if (strlen($desc)>300) 
-						{
-						  $more = substr($desc, 306);
-						  $desc=substr($desc, 0, 310);
-
-						  $dernier_mot=strrpos($desc," ");
-						  $desc=substr($desc,0,$dernier_mot);
-						  $desc.='<a class="readmore" href="#" > Lire la suite <i class="ion-arrow-right-c"></i></a>';
-						}
-						echo $desc;
-						?>
-						<p class="more"><?php echo $more ?></p>
-						<?php
+						echo ucfirst($oeuvre->getDescriptifFR());
 					}
 				 ?>
 			</div>
-		</div>
-		<div class="description">
-			<div class="block">
-				<h3 class="meta-intro">Visualisez du contenu supplémentaire !</h3>
-			</div>
-			<?php 
-				$managerDonnee = new DonneeEnrichieManager($bdd);
-				$listDonnee = $managerDonnee->listDonneeOeuvre($idOeuvre);
-				foreach ($listDonnee as $donnee) {
-					$typeDonnee = $donnee->getIdTypeDonneEnrichie();
-					$meta = $donnee->getUrlFichier();
-					$url = '../meta/oeuvre'.$idOeuvre.'/'.$meta;
-					$title = $donnee->getLibelleDonneeEnrichie();
-					$libelleType = $managerDonnee->libelleTypeDonnee($typeDonnee);
-					switch ($typeDonnee) {
-						case 1:
-							//données video
-							?>
-							<div class="meta block">
-								<h4 class="meta-title"><?php echo $libelleType.' : '.$title; ?></h4>
-								<video src="<?php echo $url; ?>" controls width="100%">Veuillez mettre à jour votre navigateur !</video>
-							</div>
-							<?php
-							break;
-						case 2:
-							//données sonore
-							?>
-							<div class="meta block">
-								<h4 class="meta-title"><?php echo $libelleType.' : '.$title; ?></h4>
-								<audio src="<?php echo $url; ?>" controls>Veuillez mettre à jour votre navigateur !</audio>
-							</div>
-							<?php
-							break;
-						case 3:
-							//données image
-							?>
-							<div class="meta block">
-								<h4 class="meta-title"><?php echo $libelleType.' : '.$title; ?></h4>
-								<img src="<?php echo $url; ?>" alt="" width="100%" height="auto">
-							</div>
-							<?php
-							break;
-						
-						default:
-							
-							break;
-					}
-				}
-			 ?>
-			
 		</div>
 	</div>
 <?php include 'footer.php'; ?>

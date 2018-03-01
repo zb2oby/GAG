@@ -1147,9 +1147,9 @@ form.expoForm {
 		overflow: auto;
 	}
 		.afficheType li:hover {
-			background-color: #ddd;
-		}
-
+ 			background-color: #ddd;
+ 		}
+ 		
 	.typeForm {
 		border-top: 3px solid #ccc;
 	}
