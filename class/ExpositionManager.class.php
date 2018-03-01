@@ -97,11 +97,17 @@ class ExpositionManager {
     public function prevExpo($idClosest){
         $list = [];
         $q = $this->_db->query("SELECT idExpo, titre, horaireO, horaireF, theme, descriptifFR, frequentation, dateDeb, dateFin, teaser, affiche, couleurExpo FROM Exposition where dateDeb < now() AND idExpo NOT IN (".$idClosest.") ORDER BY datedeb desc limit 5");
-        while ( $data = $q->fetch()) {
+        $count = $q->rowCount();
+        if ($count != 0) {
+           while ( $data = $q->fetch()) {
             $expo = new Exposition($data);
-            $list[] = $expo;
+                $list[] = $expo;
+            }
+            return $list;
+        }else{
+            return false;
         }
-        return $list;
+        
 
 
     }
@@ -109,11 +115,17 @@ class ExpositionManager {
     public function nextExpo($idClosest){
     $list = [];
     $q = $this->_db->query("SELECT idExpo, titre, horaireO, horaireF, theme, descriptifFR, frequentation, dateDeb, dateFin, teaser, affiche, couleurExpo FROM Exposition where dateDeb > now() AND idExpo NOT IN (".$idClosest.") ORDER BY datedeb asc limit 5");
-    while ( $data = $q->fetch()) {
+    $count = $q->rowCount();
+    if ($count != 0) {
+        while ( $data = $q->fetch()) {
         $expo = new Exposition($data);
         $list[] = $expo;
+        }
+        return $list;
+    }else {
+        return false;
     }
-    return $list;
+    
 
 
     }
@@ -121,9 +133,15 @@ class ExpositionManager {
     public function closestExpo() {
         $today = date('Y-m-d');
         $q = $this->_db->query("SELECT idExpo, titre, horaireO, horaireF, theme, descriptifFR, frequentation, dateDeb, dateFin, teaser, affiche, couleurExpo FROM Exposition ORDER BY abs(UNIX_TIMESTAMP('".$today."')-UNIX_TIMESTAMP(dateDeb)) LIMIT 1");
-        $data = $q->fetch();
-        $expo = new Exposition($data);
-        return $expo;
+        $count = $q->rowCount();
+        if ($count != 0) {
+            $data = $q->fetch();
+            $expo = new Exposition($data);
+            return $expo;
+        }else {
+            return false;
+        }
+        
     }
     // select dateDeb, abs(UNIX_TIMESTAMP('2018-02-28')-UNIX_TIMESTAMP(dateDeb)) AS minTime from Exposition order by minTime ASC limit 1
 

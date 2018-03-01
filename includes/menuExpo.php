@@ -13,74 +13,83 @@
 
 				//recuperation de l'expositin la plus proche de la date du jour
 				$closest = $manager->closestExpo();
-				$idClosest = $closest->getIdExpo();
-				// var_dump($closest);
-				// exit;
+				if ($closest != false) {
+					$idClosest = $closest->getIdExpo();
 
-				//affichage des expo précédent la date du jour
-				$listPrevExpo = $manager->prevExpo($idClosest);	
-				$listDate = [];
+
+					//affichage des expo précédent la date du jour
+					$listPrevExpo = $manager->prevExpo($idClosest);	
+					$listDate = [];
+					
+					foreach ($listPrevExpo as $exposition ) {
+						$key = $exposition->getDateDeb();
+						$value = $exposition->getTitre();
+						$couleurExpo = $exposition->getCouleurExpo();
+						$idExpoParam = $exposition->getIdExpo();
+						$listDate[$key] = ['titre' => $value, 'couleur' => $couleurExpo, 'id' => $idExpoParam];
+
+					}
 				
-				foreach ($listPrevExpo as $exposition ) {
-					$key = $exposition->getDateDeb();
-					$value = $exposition->getTitre();
-					$couleurExpo = $exposition->getCouleurExpo();
-					$idExpoParam = $exposition->getIdExpo();
-					$listDate[$key] = ['titre' => $value, 'couleur' => $couleurExpo, 'id' => $idExpoParam];
+					ksort($listDate);
+					foreach ($listDate as $dateExpo => $dataExpo ) {
+						$class = '';
+						if (isset($_SESSION['idExpo'])) {
+							if ($_SESSION['idExpo'] == $dataExpo['id']) {
+								$class = "link-active";
+							}
+						}
+						echo '<li class="'.$class.'"><a href="../content/gestionPanel.php?expo='.$dataExpo['id'].'"><div>'.$dataExpo['titre'];
+						echo '<br/>'.$dateExpo.'<br><span style="display:inline-block; width:100px; height:5px; font-size:16px; background-color:'.$dataExpo['couleur'].';"></span></div></a></li>';
+						
+					}
 
-				}
-			
-				ksort($listDate);
-				foreach ($listDate as $dateExpo => $dataExpo ) {
+
+
+					//affichage de l'exposition la plus proche de la date du jour
 					$class = '';
 					if (isset($_SESSION['idExpo'])) {
-						if ($_SESSION['idExpo'] == $dataExpo['id']) {
+						if ($_SESSION['idExpo'] == $closest->getidExpo()) {
 							$class = "link-active";
 						}
 					}
-					echo '<li class="'.$class.'"><a href="../content/gestionPanel.php?expo='.$dataExpo['id'].'"><div>'.$dataExpo['titre'];
-					echo '<br/>'.$dateExpo.'<br><span style="display:inline-block; width:100px; height:5px; font-size:16px; background-color:'.$dataExpo['couleur'].';"></span></div></a></li>';
+					echo '<li class="closest '.$class.'"><a href="../content/gestionPanel.php?expo='.$idClosest.'"><div>'.$closest->getTitre();
+					echo '<br/>'.$closest->getDateDeb().'<br><span style="display:inline-block; width:100px; height:5px; font-size:16px; background-color:'.$closest->getCouleurExpo().';"></span></div></a></li>';
+
+
+					//affichage des expo suivant la date du jour
+					$listNextExpo = $manager->nextExpo($idClosest); 
+					$listDate = [];
 					
-				}
+					foreach ($listNextExpo as $exposition ) {
+						$key = $exposition->getDateDeb();
+						$value = $exposition->getTitre();
+						$couleurExpo = $exposition->getCouleurExpo();
+						$idExpoParam = $exposition->getIdExpo();
+						$listDate[$key] = ['titre' => $value, 'couleur' => $couleurExpo, 'id' => $idExpoParam];
 
-
-
-				//affichage de l'exposition la plus proche de la date du jour
-				$class = '';
-				if (isset($_SESSION['idExpo'])) {
-					if ($_SESSION['idExpo'] == $closest->getidExpo()) {
-						$class = "link-active";
 					}
-				}
-				echo '<li class="closest '.$class.'"><a href="../content/gestionPanel.php?expo='.$idClosest.'"><div>'.$closest->getTitre();
-				echo '<br/>'.$closest->getDateDeb().'<br><span style="display:inline-block; width:100px; height:5px; font-size:16px; background-color:'.$closest->getCouleurExpo().';"></span></div></a></li>';
-
-
-				//affichage des expo suivant la date du jour
-				$listNextExpo = $manager->nextExpo($idClosest); 
-				$listDate = [];
 				
-				foreach ($listNextExpo as $exposition ) {
-					$key = $exposition->getDateDeb();
-					$value = $exposition->getTitre();
-					$couleurExpo = $exposition->getCouleurExpo();
-					$idExpoParam = $exposition->getIdExpo();
-					$listDate[$key] = ['titre' => $value, 'couleur' => $couleurExpo, 'id' => $idExpoParam];
+					ksort($listDate);
+					foreach ($listDate as $dateExpo => $dataExpo ) {
+						$class = '';
+						if (isset($_SESSION['idExpo'])) {
+							if ($_SESSION['idExpo'] == $dataExpo['id']) {
+								$class = "link-active";
+							}
+						}
+						echo '<li class="'.$class.'"><a href="../content/gestionPanel.php?expo='.$dataExpo['id'].'"><div>'.$dataExpo['titre'];
+						echo '<br/>'.$dateExpo.'<br><span style="display:inline-block; width:100px; height:5px; font-size:16px; background-color:'.$dataExpo['couleur'].';"></span></div></a></li>';
+						
+					}	
+
+
+
+
 
 				}
-			
-				ksort($listDate);
-				foreach ($listDate as $dateExpo => $dataExpo ) {
-					$class = '';
-					if (isset($_SESSION['idExpo'])) {
-						if ($_SESSION['idExpo'] == $dataExpo['id']) {
-							$class = "link-active";
-						}
-					}
-					echo '<li class="'.$class.'"><a href="../content/gestionPanel.php?expo='.$dataExpo['id'].'"><div>'.$dataExpo['titre'];
-					echo '<br/>'.$dateExpo.'<br><span style="display:inline-block; width:100px; height:5px; font-size:16px; background-color:'.$dataExpo['couleur'].';"></span></div></a></li>';
-					
-				}	
+				
+
+				
 				?>
 			</div>		
 			<div class="next"><i class="flecheVert ion-ios-arrow-down"></i></div>
