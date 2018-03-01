@@ -83,7 +83,7 @@ if (!$exposition) {
 				$listlangueExpo = $managerExpo->getIdLangueExpo($idExpo); 
 				$idLangue--; // permet d'afficher le bon drapeau 
 				unset($listlangueExpo[$idLangue]); 
-				$idLangue++;// retablissement des vrai valeur
+				$idLangue++; // retablissement des vrai valeur
 				foreach ($listlangueExpo as $idLangueExpo):
 					?>
 					<form action="traitement.php" method="GET">
@@ -93,11 +93,8 @@ if (!$exposition) {
 						<input type="hidden" name="oeuvre" value="<?php if(isset($_GET['oeuvre'])) { echo $_GET['oeuvre']; } ?>">
 
 						<button type="submit"><img src="drapeau/drapeau<?php echo $idLangueExpo; ?>.jpg" alt="drapeau"></button>
-
 					</form>
 				<?php endforeach ?>
-
-				
 			</ul>
 		</li>
 	</ul>
