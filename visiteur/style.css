@@ -251,6 +251,10 @@ button img{
 	text-align: center;
 	margin-bottom: 10px;
 }
+.meta iframe {
+	width: 100%;
+	text-align: center;
+}
 
 .block ,.block{
 	/*display: block;*/

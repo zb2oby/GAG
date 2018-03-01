@@ -417,6 +417,10 @@ $id = $oeuvre->getIdOeuvre();
 					 	 ?>
 					 </select>
 				 </div>
+				 <div class="lien-externe">
+				 	<label for="lien">Votre lien</label>
+				 	<input type="text" name="lien" id="lien">
+				 </div>
 				 <div>
 					 <label for="libelleDonnnee">Libélle Donnée</label>
 					 <input type="text" name="libelleDonnee" id="libelleDonnee">

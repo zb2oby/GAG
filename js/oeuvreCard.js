@@ -1,5 +1,17 @@
 jQuery(document).ready(function($) {
 
+	//si on selectionne lien externe comme type de meta donnée pour une oeuvre on affiche le champ
+	$('.pop-metaData select').change(function(event) {
+		$('.lien-externe').hide();
+		$( ".pop-metaData select option:selected" ).each(function() {
+	      if ($(this).val() == 4) {
+	      	$('.lien-externe').show();
+	      }
+	    });
+	});
+	
+	
+
 	$(document).on('submit', '.form-oeuvre', function(event) {
 		//varaibles communes
 		var method = '';

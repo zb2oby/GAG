@@ -160,6 +160,16 @@ foreach ($oeuvreEnrichie as $enrichie) {
 							</div>
 							<?php
 							break;
+						case 4:
+							//données lien externe
+							$url = $donnee->getUrlFichier();
+							?>
+							<div class="meta block">
+								<h4 class="meta-title"><?php echo $libelleType.' : '.$title; ?></h4>
+								<iframe width="100%" src="<?php echo $url; ?>" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+							</div>
+							<?php
+							break;
 						
 						default:
 							

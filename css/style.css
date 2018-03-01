@@ -1422,6 +1422,11 @@ form.expoForm {
 		height: auto;
 		width: 400px;
 	}
+
+		.lien-externe {
+			display: none;
+		}
+		
 	.pop-modifColl {
 		margin-top: -250px;
 		height: auto;
