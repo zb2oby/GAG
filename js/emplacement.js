@@ -1,24 +1,29 @@
 jQuery(document).ready(function($) {
 
     //$(document).on('click', '.oeuvre-place', function(event) {
-    $('.oeuvre-place').click(function(event) {
+    $('.emplacement').click(function(event) {
         event.stopPropagation();
-        console.log($('.overlay'));
-       $('body .overlay').show();
-        var idOeuvre = $(event.currentTarget).find('.img').data('id');
-        var contextOeuvre = $('.context-oeuvre');
-        for (var i = contextOeuvre.length - 1; i >= 0; i--) {
-            var idCardOeuvre = $(contextOeuvre[i]).find('.form-oeuvre').data('idoeuvre');
-            if (idCardOeuvre == idOeuvre) {
-                $(contextOeuvre[i]).closest('.context-artiste').css({
-                    display: 'block',
-                });
-                $(contextOeuvre[i]).css({
-                    display: 'block',
-                    top: 0
-                });
+        if ($(this).hasClass('noclick')) {
+            $(this).removeClass('noclick');
+        }else{
+            //event.preventDefault();
+            //console.log($('.overlay'));
+           $('body .overlay').show();
+            var idOeuvre = $(event.currentTarget).find('.img').data('id');
+            var contextOeuvre = $('.context-oeuvre');
+            for (var i = contextOeuvre.length - 1; i >= 0; i--) {
+                var idCardOeuvre = $(contextOeuvre[i]).find('.form-oeuvre').data('idoeuvre');
+                if (idCardOeuvre == idOeuvre) {
+                    $(contextOeuvre[i]).closest('.context-artiste').css({
+                        display: 'block',
+                    });
+                    $(contextOeuvre[i]).css({
+                        display: 'block',
+                        top: 0
+                    });
+                }
+                
             }
-            
         }
     });
 
@@ -28,6 +33,9 @@ jQuery(document).ready(function($) {
         $('.gestionPlan .emplacement').draggable({
             //handle: '.oeuvre-place',
     		containment: '.gestionPlan .plan',
+            start: function(event, ui) {
+                $(this).addClass('noclick');
+            },
     		stop: function(event,ui) {
                 //recuperation de la taille a l'instant T de la div "plan"
                 var widthPlan = parseFloat($('.gestionPlan .plan').css('width'));
@@ -52,9 +60,9 @@ jQuery(document).ready(function($) {
                     data: emplacement,
                 })
                 .done(function(response) {
-                    if (response != '') {
-                         console.log(response); 
-                    }
+                    // if (response != '') {
+                    //      console.log(response); 
+                    // }
                    
                     if (response) {
                         $('.plan').prepend('<div id="default-place" class="emplacement" data-id="'+response+'" style="top:50%; left:50%;"></div><div class="oeuvre-place" data-idemplacement="'+response+'"></div></div>');
