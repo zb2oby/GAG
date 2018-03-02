@@ -417,15 +417,15 @@ $id = $oeuvre->getIdOeuvre();
 					 	 ?>
 					 </select>
 				 </div>
-				 <div class="lien-externe">
-				 	<label for="lien">Votre lien</label>
-				 	<input type="text" name="lien" id="lien">
-				 </div>
 				 <div>
 					 <label for="libelleDonnnee">Libélle Donnée</label>
 					 <input type="text" name="libelleDonnee" id="libelleDonnee">
 				 </div>
-				 <div>
+				 <div class="lien-externe">
+				 	<label for="lien">Votre lien</label>
+				 	<input type="text" name="lien" id="lien">
+				 </div>
+				 <div class="fichierMeta">
 					 <label for="fichierDonnee">Fichier (JPG GIF JPEG PNG MP3 MP4 WAV MPEG| max. 500Ko) </label><br>
 					<input type="file" id="fichierDonnee" name="fichierDonnee[]" accept=".jpg, .jpeg, .gif, .png, .mp3, .mp4, .wav, .mpeg"><br>
 					<input type="hidden" id="maxSize" name="MAX_FILE_SIZE" value="500000">

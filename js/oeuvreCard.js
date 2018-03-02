@@ -3,9 +3,11 @@ jQuery(document).ready(function($) {
 	//si on selectionne lien externe comme type de meta donnée pour une oeuvre on affiche le champ
 	$('.pop-metaData select').change(function(event) {
 		$('.lien-externe').hide();
+		$('.fichierMeta').show();
 		$( ".pop-metaData select option:selected" ).each(function() {
 	      if ($(this).val() == 4) {
 	      	$('.lien-externe').show();
+	      	$('.fichierMeta').hide();
 	      }
 	    });
 	});
