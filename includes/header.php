@@ -86,7 +86,7 @@ if (isset($_SESSION['idExpo'])) {
 		    						# code...
 		    					
 		    			?>
-		    					<span class="retard" style="position: relative; color:red; margin-left: 80px;"><i class="ion-alert-circled" style="color:red; font-size:2em; position:absolute; left:-30px; top:-10px;"></i>Il y a <?php echo count($listNonRecue); ?> Oeuvre(s) En retard ! </span>
+		    					<span class="retard" style="position: relative; color:red; margin-left: 80px;"><i class="ion-alert-circled" style="color:red; font-size:2em; position:absolute; left:-30px; top:-10px;"></i>Il y a <?php echo count($listNonRecue); ?> Oeuvre(s) en retard ! </span>
 						
 			    	
 			    	<?php 

@@ -1,5 +1,26 @@
 jQuery(document).ready(function($) {
 
+    //$(document).on('click', '.oeuvre-place', function(event) {
+    $('.oeuvre-place').click(function(event) {
+        event.stopPropagation();
+        console.log($('.overlay'));
+       $('body .overlay').show();
+        var idOeuvre = $(event.currentTarget).find('.img').data('id');
+        var contextOeuvre = $('.context-oeuvre');
+        for (var i = contextOeuvre.length - 1; i >= 0; i--) {
+            var idCardOeuvre = $(contextOeuvre[i]).find('.form-oeuvre').data('idoeuvre');
+            if (idCardOeuvre == idOeuvre) {
+                $(contextOeuvre[i]).closest('.context-artiste').css({
+                    display: 'block',
+                });
+                $(contextOeuvre[i]).css({
+                    display: 'block',
+                    top: 0
+                });
+            }
+            
+        }
+    });
 
 //GESTION NOUVELLES COORDONNEES DES EMPLACEMENTS
     function  doDrag() {
