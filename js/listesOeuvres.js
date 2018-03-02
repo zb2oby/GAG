@@ -7,7 +7,47 @@ jQuery(document).ready(function($) {
     }
 
 
+    //Au chargement si l'oeuvre est deja présente dans prévue ou recue on la retire des select d'ajout d'oeuvre
+    var listOeuvre = $('.portlet-oeuvre .img');
+    var listOptionPrevue = $('.popAddCard option');
+    var listOptionRecue = $('.popAddRecue option');
+    for (var i = listOeuvre.length - 1; i >= 0; i--) {
 
+        var idOeuvre = $(listOeuvre[i]).data('id');
+         
+        for (var j = listOptionPrevue.length - 1; j >= 0; j--) {
+            var idPrevue = parseInt($(listOptionPrevue[j]).val());
+            if (idPrevue == idOeuvre) {
+                $(listOptionPrevue[j]).remove();
+            }
+            
+        }
+        for (var j = listOptionRecue.length - 1; j >= 0; j--) {
+            var idRecue = parseInt($(listOptionRecue[j]).val());
+            if (idRecue == idOeuvre) {
+                $(listOptionRecue[j]).remove();
+            }
+            
+        }
+        
+    }
+    
+    //Au chargement si l'artiste est deja présent dans la liste on le retire du select d'ajout d'artiste
+    var listArtiste = $('.portlet-artiste');
+    var listOptionArtiste = $('.popAddArtiste option');
+    for (var i = listArtiste.length - 1; i >= 0; i--) {
+
+        var idArtiste = $(listArtiste[i]).data('id');
+         
+        for (var j = listOptionArtiste.length - 1; j >= 0; j--) {
+            var idArtisteListe = parseInt($(listOptionArtiste[j]).val());
+            if (idArtisteListe == idArtiste) {
+                $(listOptionArtiste[j]).remove();
+            }
+            
+        }
+        
+    }
 
 	doSort();
     doDrop();
@@ -222,16 +262,43 @@ function deleteCard(target, idExpo) {
         var idArtiste = target.data('id');
         var place = 'idArtiste=' + idArtiste + '&req=delete' +'&idExpo=' + idExpo;
         target.remove();
+
+        //lorsqu'ion retire unartiste des listes il reapparait dans le select d'ajout d'artiste
+        var nomArtiste = $(target).find('.titre').text();
+        $('.popAddArtiste select').prepend('<option value="'+idArtiste+'">'+nomArtiste+'</option>');
+        ////lorsqu'ion retire un artiste des listes il disparait dans les select de creation d'oeuvre prevue ou recue
+        var listAddRecue = $('.popAddOeuvreRecue select option');
+        for (var i = listAddRecue.length - 1; i >= 0; i--) {
+            if ($(listAddRecue[i]).val() == idArtiste ) {
+                $(listAddRecue[i]).remove();
+            }
+            
+        }
+        var listAddPrevue = $('.popAddOeuvrePrevue select option');
+        for (var i = listAddPrevue.length - 1; i >= 0; i--) {
+            if ($(listAddPrevue[i]).val() == idArtiste ) {
+                $(listAddPrevue[i]).remove();
+            }
+            
+        }
     }else{
 	   var idOeuvreExposee = target.find('.context-oeuvre').data('idoeuvreexposee');
 	   var place = 'idOeuvreExposee=' + idOeuvreExposee + '&req=delete';
        var arrayPortlet = $('.portlet-oeuvre');
        for (var i = arrayPortlet.length - 1; i >= 0; i--) {
             if ($(arrayPortlet[i]).data('id') == idOeuvreExposee) {
-                arrayPortlet[i].remove();   
+                arrayPortlet[i].remove();
+
+                //lorsqu'ion retire une oeuvre des listes elle reapparait dans les select d'ajout d'oeuvre prevue et recue
+                var idOeuvre = $(arrayPortlet[i]).find('.img').data('id');
+                var nomOeuvre = $(arrayPortlet[i]).find('.nomOeuvre-portlet').text();
+                $('.popAddCard select').prepend('<option value="'+idOeuvre+'">'+nomOeuvre+'</option>');
+                $('.popAddRecue select').prepend('<option value="'+idOeuvre+'">'+nomOeuvre+'</option>');  
             }
+            
            
        }
+
     }
         $.ajax({
             url: '../modules/traitementListes.php',
@@ -240,13 +307,13 @@ function deleteCard(target, idExpo) {
             data: place,
         })
         .done(function() {
-            console.log("success");
+            //console.log("success");
         })
         .fail(function() {
-            console.log("error");
+            //console.log("error");
         })
         .always(function() {
-            console.log("complete");
+            //console.log("complete");
         });
         
         $('.confirmPopup').css('display', 'none');

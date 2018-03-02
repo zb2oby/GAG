@@ -138,7 +138,7 @@ class OeuvreExposeeManager {
             $idOeuvre = $oeuvre->getIdOeuvre();
             echo '<li class="portlet portlet-oeuvre" data-id="'.$idOeuvreExposee.'">'
                     .'<div class="portlet-content">'
-                        .'<div class="titre">'.ucfirst($oeuvre->getTitre());
+                        .'<div class="titre"><span class="nomOeuvre-portlet">'.ucfirst($oeuvre->getTitre()).'</span>';
                             $listRetard = $this->ListOeuvresRetard($idExpo, $dateDeb);
                             if ($listRetard != false) {
                                 foreach ($listRetard as $oeuvreRetard) {
