@@ -192,7 +192,7 @@ class ExpositionManager {
      //retourne une liste de resultat en fonction d'une recherche demandée
     public function getSearch($saisie) {
         $list = [];
-        $q = $this->_db->query("SELECT * FROM Exposition WHERE titre LIKE '%".$saisie."%' OR theme LIKE '%".$saisie."%' OR MONTH(dateDeb) LIKE '%".$saisie."%' OR YEAR(dateDeb) LIKE '%".$saisie."%'");
+        $q = $this->_db->query("SELECT * FROM Exposition WHERE titre LIKE '%".$saisie."%' OR theme LIKE '%".$saisie."%' OR MONTH(dateDeb) LIKE '%".$saisie."%' OR YEAR(dateDeb) LIKE '%".$saisie."%' ORDER BY titre DESC");
         while ($data = $q->fetch()) {
             $list[] = $data;
         }

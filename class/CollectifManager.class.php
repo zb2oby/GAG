@@ -80,7 +80,7 @@ class CollectifManager {
     //retourne une liste de resultat en fonction d'une recherche demandée
     public function getSearch($saisie) {
         $list = [];
-        $q = $this->_db->query("SELECT * FROM Collectif WHERE libelleCollectif LIKE '%".$saisie."%' OR email LIKE '%".$saisie."%' OR tel LIKE '%".$saisie."%'");
+        $q = $this->_db->query("SELECT * FROM Collectif WHERE libelleCollectif LIKE '%".$saisie."%' OR email LIKE '%".$saisie."%' OR tel LIKE '%".$saisie."%' ORDER BY libelleCollectif DESC");
         while ($data = $q->fetch()) {
             $list[] = $data;
         }
