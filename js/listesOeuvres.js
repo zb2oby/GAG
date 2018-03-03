@@ -166,7 +166,7 @@
             handle: ".portlet-content",
             cancel: ".portlet-toggle",
             placeholder: "portlet-placeholder ui-corner-all",
-            delay: 325,
+            delay: 250,
             stop: function(event,ui) {
                 var provenance = $(event.target);
                 var destination = $(ui.item).parent();

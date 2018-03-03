@@ -10,6 +10,7 @@ $managerExpo = new ExpositionManager($bdd);
 if (isset($_GET['idGestionExpo'])) {
  	$idExpo = htmlentities($_GET['idGestionExpo']);
  	$_SESSION['idExpo'] = $idExpo;
+ 	$_SESSION['gestionnaire'] = 'collaborateur';
 	$exposition = $managerExpo->infoExpo($idExpo);
 
 }
@@ -45,21 +46,25 @@ if (!$exposition) {
 	}
 
 	//COMPTEUR DE VISITE
-	if (!isset($_COOKIE['visite'])) {
-		//s'il ne possede pas de cookie alors on le creer
-		$tomorrow = strtotime(date('Y-m-d'))+(24*3599);
-		setcookie('visite', 1, $tomorrow, null, null, false, true);
-		//recuperartion du compte actuel en base
-		$compte = $exposition->getFrequentation();
-		if ($compte == NULL) {
-			$compte = 0;
+	//activé seulement si le visiteur n'eest pas un gestionnaire du site
+	if (!isset($_SESSION['gestionnaire'])) {
+			if (!isset($_COOKIE['visite'])) {
+			//s'il ne possede pas de cookie alors on le creer
+			$tomorrow = strtotime(date('Y-m-d'))+(24*3599);
+			setcookie('visite', 1, $tomorrow, null, null, false, true);
+			//recuperartion du compte actuel en base
+			$compte = $exposition->getFrequentation();
+			if ($compte == NULL) {
+				$compte = 0;
+			}
+			//incrementation
+			$compte++;
+			//mise a jour du compte
+			$exposition->setFrequentation($compte);
+			$managerExpo->updateExposition($exposition);
 		}
-		//incrementation
-		$compte++;
-		//mise a jour du compte
-		$exposition->setFrequentation($compte);
-		$managerExpo->updateExposition($exposition);
 	}
+	
 }
 
 ?>
