@@ -49,16 +49,65 @@ jQuery(document).ready(function($) {
         
     }
 
+
+
+    function disableDrag() {
+        //EMPECHER UN ELEMENT PLACE SUR LE PLAN DETRE A NOUVEAU DRAGGABLE
+        //recuperation des listes delement recue et placés
+        var listOeuvrePlacee = $('.gestionPlan .oeuvre-place .img');
+        var listOeuvreRecue = $('.column.recue .img');
+        var arrayIdPlace = new Array();
+        var arrayIdRecue = new Array();
+        //remplissage des tableaux d'ID
+        for (var i = listOeuvrePlacee.length - 1; i >= 0; i--) {
+           arrayIdPlace[i] = $(listOeuvrePlacee[i]).data('id');
+        }
+        for (var i = listOeuvreRecue.length - 1; i >= 0; i--) {
+           arrayIdRecue[i] = $(listOeuvreRecue[i]).data('id');
+        }
+         //comparaison des deux tableaux d'id
+         $.arrayIntersect = function(a, b)
+        {
+            return $.grep(a, function(i)
+            {
+                var arrayDragNo = $.inArray(i, b) > -1;
+                return arrayDragNo;
+            });
+        };
+
+        //suppression de la classe item pour les element dont l'id esr présent dans le tableaux de comparaison
+        for (var i = listOeuvreRecue.length - 1; i >= 0; i--) {
+           var idRecue = $(listOeuvreRecue[i]).data('id');
+           var stopDrag = $.arrayIntersect(arrayIdRecue, arrayIdPlace);
+           for (var j = stopDrag.length - 1; j >= 0; j--) {
+               
+                if (idRecue == stopDrag[j]) {
+                    $(listOeuvreRecue[i]).removeClass('item');
+                    $(listOeuvreRecue[i]).addClass('already');
+                    $(listOeuvreRecue[i]).attr('title', 'Déjà placée');
+                    $(listOeuvreRecue[i]).draggable({ disabled: true });
+                }
+           }
+           
+        }
+    }
+
+
+
 	doSort();
     doDrop();
+    disableDrag();
     $(document).ajaxComplete(function () {
         doDrop();
+        disableDrag();
     });
-	//par defaut si un element a la classe item on lui permet d'être draggable sur un emplacement du plan
-    //if ($('.recue.column').find('.img').data('id') != $('.oeuvre-place').find('.img').data('id')) {
-    	if ($('.column').find('.img').hasClass('item')) {
-    		doClone();
-    	}
+	
+
+
+    //par defaut si un element a la classe item on lui permet d'être draggable sur un emplacement du plan
+	if ($('.column').find('.img').hasClass('item')) {
+		doClone();
+	}
     //}
 	//fonction d'update dans la base ue changement d'etat dune carte oeuvre. soit "prevue" soit "recue"
 	function updateSort(update, idOeuvreExposee) {
@@ -142,8 +191,8 @@ jQuery(document).ready(function($) {
 
 
 //CLONAGE DE LIMAGE SUR LE PLAN
-	function doClone(){
-        
+	function doClone(item){
+        //$('#items .item')
         $('#items .item').draggable({
             helper: 'clone',
             drag: function (event, ui) {
@@ -247,7 +296,7 @@ jQuery(document).ready(function($) {
                     //console.log("complete");
                 });     
                
-            }
+            },
         });
 
 

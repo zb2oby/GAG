@@ -127,6 +127,18 @@ jQuery(document).ready(function($) {
                 }
                 
             }
+
+            //on remet la classe item sur lelement dans la liste recue 
+            var listRecue = $('.column.recue .img');
+            for (var i = listRecue.length - 1; i >= 0; i--) {
+                if ($(ui.draggable).find('.img').data('id') == $(listRecue[i]).data('id')) {
+                    $(listRecue[i]).removeClass('already');
+                    $(listRecue[i]).addClass('item');
+                    $(listRecue[i]).draggable({disabled: false});
+                }
+                
+            }
+
                 //mise a jour de l'emplacement :: suppression de l'oeuvre droppé
                 var place = 'delete=' + idEmplacement; //+ '&idExpo=' + idExpo;
                 $.ajax({
@@ -157,6 +169,9 @@ jQuery(document).ready(function($) {
             //en generant cette erreur on evite la reexecution de doDrag apres un trash
             console.log('Erreur volontaire : voir commentaires');
             ui.draggable.draggable('destroy');
+
+            //CECI SEMBLE FONCTIONNER MAIS RESORT L'ERREUR PDO ===========>>> A CREUSER
+            //ui.draggable.draggable({ disabled: true });
 
         }
     });

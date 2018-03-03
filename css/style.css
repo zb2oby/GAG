@@ -1018,14 +1018,14 @@ form.expoForm {
 					height: 50px;
 				}
 
-				.recue img:hover {
-					border: 2px solid red;
+				.recue .item.img:hover {
+					border: 2px solid #58C020;
 				}
 
 				.recue .img {
 					position: relative;
 				}
-				.recue .img:after {
+				.recue .item.img:after {
 					font-family: "Ionicons";
         			content: "\f2e3";
 					position: absolute;
@@ -1035,6 +1035,20 @@ form.expoForm {
 					color: #0A2675; 
 				
 				}
+				.recue .already.img:after {
+					font-family: "Ionicons";
+        			content: "\f375";
+					position: absolute;
+					z-index: 1;
+					left: 45px;
+					top: -10px;
+					color: #0A2675; 
+				}
+
+				.recue .already.img:hover {
+					border: 2px solid red;
+				}
+
 
 				.recue span.retard {
 					display: none;
@@ -1525,7 +1539,7 @@ form.expoForm {
 					min-height: 450px;
 				}*/
 				.contain-cards ul.list-gestion {
-					min-height: 0;
+					min-height: 50px;
 					max-height: 400px;
 				}
 
