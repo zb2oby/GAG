@@ -130,11 +130,14 @@ if (isset($_SESSION['idExpo'])) {
 			    			else {
 			    				echo '<span>Inauguration dans : </span>'.(floor(($dateExpo - $now)/86400)+1).' Jours';
 			    			}
-			    		}
+			    		
 			    			
 			    		?> 
 			    	</li>
-			    	
+			    	<li>
+			    		<a class="button frontLink" href="../visiteur/index.php?idGestionExpo=<?php echo $_SESSION['idExpo']; ?>">Site Visiteur</a>
+			    	</li>
+			    <?php  } ?>
 	    		</ul>
 	    	</div>
 	    

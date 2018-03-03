@@ -1,4 +1,33 @@
-jQuery(document).ready(function($) {
+
+
+    function doClone(){
+        $('#items .item').draggable({
+            helper: 'clone',
+            drag: function (event, ui) {
+                //on recupere la position par rapport au document de l'element draggué 
+                var planPosLeft = $('.gestionPlan').offset().left;
+                //console.log('planLeft' + planPosLeft);
+                var eltPosLeft = ui.offset.left - planPosLeft ;
+                //console.log('elt' + eltPosLeft);
+                var planPosTop = $('.gestionPlan').offset().top;
+                //console.log('planTop' + planPosTop);
+                var eltPosTop = ui.offset.top - planPosTop;
+                
+                //on modifie l'emplacement de la drop-area en fonction de l'emplacement de l'element draggué
+                $('.emplacement#default-place').css( {
+                    //visibility: 'visible',
+                    left: eltPosLeft,
+                    top: eltPosTop
+                })    
+            },
+           
+        });
+    }   
+  
+
+
+
+ jQuery(document).ready( function($) {
 
     //s'il n'y a pas de carte de présente (portlet) sur l'expo n'afficher que la liste artiste
     if ($('.portlet').length == 0) {
@@ -137,6 +166,7 @@ jQuery(document).ready(function($) {
             handle: ".portlet-content",
             cancel: ".portlet-toggle",
             placeholder: "portlet-placeholder ui-corner-all",
+            delay: 325,
             stop: function(event,ui) {
                 var provenance = $(event.target);
                 var destination = $(ui.item).parent();
@@ -191,33 +221,33 @@ jQuery(document).ready(function($) {
 
 
 //CLONAGE DE LIMAGE SUR LE PLAN
-	function doClone(){
-        //$('#items .item')
-        $('#items .item').draggable({
-            helper: 'clone',
-            drag: function (event, ui) {
-                //on recupere la position par rapport au document de l'element draggué 
-                var planPosLeft = $('.gestionPlan').offset().left;
-                //console.log('planLeft' + planPosLeft);
-                var eltPosLeft = ui.offset.left - planPosLeft ;
-                //console.log('elt' + eltPosLeft);
-                var planPosTop = $('.gestionPlan').offset().top;
-                //console.log('planTop' + planPosTop);
-                var eltPosTop = ui.offset.top - planPosTop;
+	// function doClone(){
+ //        //$('#items .item')
+ //        $('#items .item').draggable({
+ //            helper: 'clone',
+ //            drag: function (event, ui) {
+ //                //on recupere la position par rapport au document de l'element draggué 
+ //                var planPosLeft = $('.gestionPlan').offset().left;
+ //                //console.log('planLeft' + planPosLeft);
+ //                var eltPosLeft = ui.offset.left - planPosLeft ;
+ //                //console.log('elt' + eltPosLeft);
+ //                var planPosTop = $('.gestionPlan').offset().top;
+ //                //console.log('planTop' + planPosTop);
+ //                var eltPosTop = ui.offset.top - planPosTop;
                 
-                //on modifie l'emplacement de la drop-area en fonction de l'emplacement de l'element draggué
-                $('.emplacement#default-place').css( {
-                    //visibility: 'visible',
-                    left: eltPosLeft,
-                    top: eltPosTop
-                })    
-            },
+ //                //on modifie l'emplacement de la drop-area en fonction de l'emplacement de l'element draggué
+ //                $('.emplacement#default-place').css( {
+ //                    //visibility: 'visible',
+ //                    left: eltPosLeft,
+ //                    top: eltPosTop
+ //                })    
+ //            },
            
-        });
+ //        });
 
         
 
-    }               
+ //    }               
   
 
 
@@ -527,9 +557,7 @@ $('.creerOeuvreRecue').click(function(event) {
         $('.overlay').hide();
         event.stopPropagation();
     });
-	// $('.closeButton i').click(function(event) {
-		
-	// });
+	
 
 	$('.overlay').click(function(event) {
         $('.context-menu').css('display', 'none');

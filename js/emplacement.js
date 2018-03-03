@@ -102,30 +102,30 @@ jQuery(document).ready(function($) {
 
     //SUPPRESSION OEUVRE DU PLAN
     //même fonction que dans listeOeuvre...pas genial 
-    function doClone(){
-        //$('#items .item')
-        $('#items .item').draggable({
-            helper: 'clone',
-            drag: function (event, ui) {
-                //on recupere la position par rapport au document de l'element draggué 
-                var planPosLeft = $('.gestionPlan').offset().left;
-                //console.log('planLeft' + planPosLeft);
-                var eltPosLeft = ui.offset.left - planPosLeft ;
-                //console.log('elt' + eltPosLeft);
-                var planPosTop = $('.gestionPlan').offset().top;
-                //console.log('planTop' + planPosTop);
-                var eltPosTop = ui.offset.top - planPosTop;
+    // function doClone(){
+    //     //$('#items .item')
+    //     $('#items .item').draggable({
+    //         helper: 'clone',
+    //         drag: function (event, ui) {
+    //             //on recupere la position par rapport au document de l'element draggué 
+    //             var planPosLeft = $('.gestionPlan').offset().left;
+    //             //console.log('planLeft' + planPosLeft);
+    //             var eltPosLeft = ui.offset.left - planPosLeft ;
+    //             //console.log('elt' + eltPosLeft);
+    //             var planPosTop = $('.gestionPlan').offset().top;
+    //             //console.log('planTop' + planPosTop);
+    //             var eltPosTop = ui.offset.top - planPosTop;
                 
-                //on modifie l'emplacement de la drop-area en fonction de l'emplacement de l'element draggué
-                $('.emplacement#default-place').css( {
-                    //visibility: 'visible',
-                    left: eltPosLeft,
-                    top: eltPosTop
-                })    
-            },
+    //             //on modifie l'emplacement de la drop-area en fonction de l'emplacement de l'element draggué
+    //             $('.emplacement#default-place').css( {
+    //                 //visibility: 'visible',
+    //                 left: eltPosLeft,
+    //                 top: eltPosTop
+    //             })    
+    //         },
            
-        });
-    }          
+    //     });
+    // }          
     $('.gestionPlan .emplacement').sortable({
         connectWith: '.trash',
         update: function(event, ui) {

@@ -273,8 +273,13 @@ header {
 	}
 
 		.timeLine ul li {
-			padding: 10px;
+			padding: 2px;
+			/*padding: 10px;*/
 		}
+		.timeLine a.frontLink {
+			/*color: black;*/
+		}
+
 		.timeLine ul li span {
 			width: 250px;
 		}

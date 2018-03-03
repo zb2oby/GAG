@@ -5,13 +5,26 @@ spl_autoload_register('loader');
 require('../includes/bdd/connectbdd.php');
 
 $managerExpo = new ExpositionManager($bdd);
-$exposition = $managerExpo->currentExpo();
-//pour les test : 
-$exposition = $managerExpo->infoExpo(125);
-//fin de pour les test
+
+//permet la visualisation en avance par les gestionnaires:
+if (isset($_GET['idGestionExpo'])) {
+ 	$idExpo = htmlentities($_GET['idGestionExpo']);
+ 	$_SESSION['idExpo'] = $idExpo;
+	$exposition = $managerExpo->infoExpo($idExpo);
+
+}
+//si la sessio n'existe pas on cherche une exposition courrante
+if (!isset($_SESSION['idExpo'])) {
+	$exposition = $managerExpo->currentExpo();
+}else{
+//sinon on creer un objet expo avec l'id présent en session
+	$exposition = $managerExpo->infoExpo($_SESSION['idExpo']);
+}	
+//s'il n'y a pas de session ni d'expo courrante alors on renvoie une erreur
 if (!$exposition) {
 	header('location: error.php');
 	exit();
+//sinon on traite la suite
 }else {
 
 	//DEFINITION DES VARIABLES POUR TOUT LE SITE
@@ -34,7 +47,7 @@ if (!$exposition) {
 	//COMPTEUR DE VISITE
 	if (!isset($_COOKIE['visite'])) {
 		//s'il ne possede pas de cookie alors on le creer
-		$tomorrow = strtotime(date('Y-m-d'))+(24*3600);
+		$tomorrow = strtotime(date('Y-m-d'))+(24*3599);
 		setcookie('visite', 1, $tomorrow, null, null, false, true);
 		//recuperartion du compte actuel en base
 		$compte = $exposition->getFrequentation();
