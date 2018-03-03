@@ -810,6 +810,13 @@ form.expoForm {
 		height: auto;
 	}
 
+	.plan .img img {
+
+		/*max-width: 17px;*/
+		max-height: 22px;
+	}
+
+
 	#default-place {
 		visibility: hidden;
 	}
@@ -817,7 +824,9 @@ form.expoForm {
 	.emplacement {
 		position: absolute;
 		width: 2.3232%;
-		height: 6.6%;
+		height: 6%;
+		/*max-width: 15px;
+		max-height: 15px;*/
 		/*border: 1px solid black;*/
 		background-color: #0A2675;
 		
@@ -833,6 +842,7 @@ form.expoForm {
 	}
 
 	.numEmplacement {
+		font-size: 0;
 		visibility: hidden;
 	}
 
