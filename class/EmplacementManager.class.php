@@ -36,7 +36,16 @@ class EmplacementManager {
         $q->execute();
     }
 
-
+    //retourne un true ou false en fonction de l'existence de l'emplacement dans la base
+    public function existPlace($idEmplacement) {
+        $q = $this->_db->query("SELECT * FROM Emplacement WHERE idEmplacement = '".$idEmplacement."'");
+        $count = $q->rowCount();
+        if ($count != 0 ) {
+            return true;
+        }else {
+            return false;
+        }
+    }
     //retourne un tableau des coordonnées top et left de l'emplacement voulu
     public function getCoord($idEmplacement) {
     	$coord = [];

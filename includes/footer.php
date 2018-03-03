@@ -11,8 +11,8 @@
 
 <script src="../js/admin.js"></script>
 <script src="../js/onglets.js"></script>
-<script src="../js/emplacement.js"></script>
 <script src="../js/listesOeuvres.js"></script>
+<script src="../js/emplacement.js"></script>
 <script src="../js/oeuvreCard.js"></script>
 <script src="../js/artisteCard.js"></script>
 <script src="../js/collectifCard.js"></script>

@@ -191,7 +191,7 @@ jQuery(document).ready(function($) {
 
 
 //CLONAGE DE LIMAGE SUR LE PLAN
-	function doClone(item){
+	function doClone(){
         //$('#items .item')
         $('#items .item').draggable({
             helper: 'clone',
@@ -217,7 +217,7 @@ jQuery(document).ready(function($) {
 
         
 
-}               
+    }               
   
 
 

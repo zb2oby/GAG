@@ -60,9 +60,7 @@ jQuery(document).ready(function($) {
                     data: emplacement,
                 })
                 .done(function(response) {
-                    // if (response != '') {
-                    //      console.log(response); 
-                    // }
+                    
                    
                     if (response) {
                         $('.plan').prepend('<div id="default-place" class="emplacement" data-id="'+response+'" style="top:50%; left:50%;"></div><div class="oeuvre-place" data-idemplacement="'+response+'"></div></div>');
@@ -103,6 +101,31 @@ jQuery(document).ready(function($) {
 
 
     //SUPPRESSION OEUVRE DU PLAN
+    //même fonction que dans listeOeuvre...pas genial 
+    function doClone(){
+        //$('#items .item')
+        $('#items .item').draggable({
+            helper: 'clone',
+            drag: function (event, ui) {
+                //on recupere la position par rapport au document de l'element draggué 
+                var planPosLeft = $('.gestionPlan').offset().left;
+                //console.log('planLeft' + planPosLeft);
+                var eltPosLeft = ui.offset.left - planPosLeft ;
+                //console.log('elt' + eltPosLeft);
+                var planPosTop = $('.gestionPlan').offset().top;
+                //console.log('planTop' + planPosTop);
+                var eltPosTop = ui.offset.top - planPosTop;
+                
+                //on modifie l'emplacement de la drop-area en fonction de l'emplacement de l'element draggué
+                $('.emplacement#default-place').css( {
+                    //visibility: 'visible',
+                    left: eltPosLeft,
+                    top: eltPosTop
+                })    
+            },
+           
+        });
+    }          
     $('.gestionPlan .emplacement').sortable({
         connectWith: '.trash',
         update: function(event, ui) {
@@ -117,12 +140,11 @@ jQuery(document).ready(function($) {
         hoverClass: 'dropAreaHover',
         drop: function(event, ui) {
             var idOeuvreExposee = '';
-            var idEmplacement = $(ui.draggable).data('id');
-            //console.log(idEmplacement);
+            var idEmplacementTrash = $(ui.draggable).data('id');
             //suppression de l'image du plan d'impression
             var listPlace = $('.imprPlan .emplacement');
             for (var i = listPlace.length - 1; i >= 0; i--) {
-                if ($(listPlace[i]).data('id') == idEmplacement) {
+                if ($(listPlace[i]).data('id') == idEmplacementTrash) {
                     $(listPlace[i]).remove();
                 }
                 
@@ -134,13 +156,14 @@ jQuery(document).ready(function($) {
                 if ($(ui.draggable).find('.img').data('id') == $(listRecue[i]).data('id')) {
                     $(listRecue[i]).removeClass('already');
                     $(listRecue[i]).addClass('item');
-                    $(listRecue[i]).draggable({disabled: false});
+                    $(listRecue[i]).draggable({disabled: false, helper: 'clone'});
+                    doClone();
                 }
                 
             }
 
                 //mise a jour de l'emplacement :: suppression de l'oeuvre droppé
-                var place = 'delete=' + idEmplacement; //+ '&idExpo=' + idExpo;
+                var place = 'delete=' + idEmplacementTrash; //+ '&idExpo=' + idExpo;
                 $.ajax({
                     url: '../modules/traitementEmplacement.php',
                     type: 'GET',
@@ -149,6 +172,7 @@ jQuery(document).ready(function($) {
                 })
                 .done(function() {
                     //console.log("success");
+                    //necessiterais ici la creation d'un nouvel emplacement par defaut
                 })
                 .fail(function() {
                     //console.log("error");
@@ -163,15 +187,15 @@ jQuery(document).ready(function($) {
             //ceci creer une erreur mais en empeche une autre bien plus embetante qui est que lorsque l'element est trashé, 
             //le doDrag() s'execute avec une erreur pdo
  
-            // ==> ce qu'il se passe : l'idemplacement de la fonction doDrag existe. apres le trash il n'existe plus 
+            // ==> ce qu'il se passe : l'idemplacement de la fonction doDrag existe. apres le trash il existe encore dans le dom mais plus dans la base.. 
             //MAIS le script repasse tout de meme dans la fonction doDrag() à cause du document.ajaxComplete (seule methode trouvée pour deleguer un draggable au document et ainsi recreer des draggable en boucle)
             //IL y repasse donc (inutilement d'ailleur) mais avec un id qui n'existe plus d'ou l'erreur PDO qui ne peut pas hydrater d'objet vide
             //en generant cette erreur on evite la reexecution de doDrag apres un trash
-            console.log('Erreur volontaire : voir commentaires');
-            ui.draggable.draggable('destroy');
+            //console.log('Erreur volontaire : voir commentaires');
+            //ui.draggable.draggable('destroy');
 
             //CECI SEMBLE FONCTIONNER MAIS RESORT L'ERREUR PDO ===========>>> A CREUSER
-            //ui.draggable.draggable({ disabled: true });
+            ui.draggable.draggable({ disabled: true });
 
         }
     });

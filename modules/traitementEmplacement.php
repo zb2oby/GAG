@@ -46,26 +46,32 @@ $manager = new EmplacementManager($bdd);
 if (isset($_GET['idEmplacement']) && $_GET['idEmplacement'] != 'undefined' && !empty($_GET['idEmplacement'])) {
 
 	$idEmplacement = htmlentities($_GET['idEmplacement']);
-	$emplacement = $manager->getEmplacement($idEmplacement);
-	//var_dump($emplacement);
+	//verification de l'existence de l'emplacement (reglerais le probleme du fichier emplacement.js)
+	$existPlace = $manager->existPlace($idEmplacement);
+	if ($existPlace) {
+	
+		$emplacement = $manager->getEmplacement($idEmplacement);
+		//var_dump($emplacement);
 
-	if (isset($_GET['coordTop'])) {
-		$coordTop = htmlentities($_GET['coordTop']);
-		$emplacement->setCoordTop($coordTop);
-		
-	}
-	if (isset($_GET['coordLeft'])) {
-		$coordLeft = htmlentities($_GET['coordLeft']);
-		$emplacement->setCoordLeft($coordLeft);
-		
-	}
+		if (isset($_GET['coordTop'])) {
+			$coordTop = htmlentities($_GET['coordTop']);
+			$emplacement->setCoordTop($coordTop);
+			
+		}
+		if (isset($_GET['coordLeft'])) {
+			$coordLeft = htmlentities($_GET['coordLeft']);
+			$emplacement->setCoordLeft($coordLeft);
+			
+		}
 
-	if (isset($_GET['idOeuvreExposee'])) {
-		$idOeuvreExposee = htmlentities($_GET['idOeuvreExposee']);
-		$emplacement->setIdOeuvreExposee($idOeuvreExposee);	
-	}
+		if (isset($_GET['idOeuvreExposee'])) {
+			$idOeuvreExposee = htmlentities($_GET['idOeuvreExposee']);
+			$emplacement->setIdOeuvreExposee($idOeuvreExposee);	
+		}
 
-	$manager->updateEmplacement($emplacement);
+		$manager->updateEmplacement($emplacement);
+
+	}
 
 }
 
