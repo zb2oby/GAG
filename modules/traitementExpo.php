@@ -15,16 +15,17 @@ function enregistrementTeaser(Exposition $expo, $idExpo, $POST) {
 	}
 
 	if (isset($_FILES['teaser']) && ($_FILES['teaser']['name'][0] != NULL)) {
-			$name = $_FILES['teaser']['name'][0];
-			$nomFichier = 'teaser';
-			if (htmlentities(isset($_POST['MAX_FILE_SIZE'])) && $_POST['MAX_FILE_SIZE'] == '500000') {
-				$maxsize = (int)$_POST['MAX_FILE_SIZE'];
-				if ($_FILES['teaser']['error'][0] > 0) $erreur = "Erreur lors du transfert";
-				if ($_FILES['teaser']['size'][0] > $maxsize) {$erreur = "Le fichier est trop gros";}
-				
-				$extensions_valides = array( 'jpg' , 'jpeg' , 'gif' , 'png');
-				$extension_upload = strtolower(  substr(  strrchr($name, '.')  ,1)  );
-				// if ( in_array($extension_upload,$extensions_valides) ) echo "Extension correcte";
+		$name = $_FILES['teaser']['name'][0];
+		$nomFichier = 'teaser';
+		if (htmlentities(isset($_POST['MAX_FILE_SIZE'])) && $_POST['MAX_FILE_SIZE'] == '500000') {
+			$maxsize = (int)$_POST['MAX_FILE_SIZE'];
+			$erreur = false;
+			if ($_FILES['teaser']['error'][0] > 0) $erreur = "Erreur lors du transfert";
+			if ($_FILES['teaser']['size'][0] > $maxsize) {$erreur = "Le fichier est trop gros";}
+			
+			$extensions_valides = array( 'jpg' , 'jpeg' , 'gif' , 'png');
+			$extension_upload = strtolower(  substr(  strrchr($name, '.')  ,1)  );
+			if ( in_array($extension_upload,$extensions_valides) && !$erreur) {
 				$cheminFichier = "../img/expositions/expo{$idExpo}/{$nomFichier}.{$extension_upload}";
 				//suppression des eventuels fichiers existants portant le meme nom
 				$file = "../img/expositions/expo{$idExpo}/{$nomFichier}.{$extension_upload}";
@@ -42,10 +43,14 @@ function enregistrementTeaser(Exposition $expo, $idExpo, $POST) {
 				
 				//mise a jour de l'objet
 				$expo->setTeaser($nomFichier);
-				
-		 	}
-		
+			}	
 	 	}
+		
+	}else {
+		//enregistrement teaser par defaut
+		copy('../img/expositions/default/defaultTeaser.jpg', '../img/expositions/expo'.$idExpo.'/teaser.jpg');
+		$expo->setTeaser('teaser.jpg');
+	}
 }
 
 function enregistrementAffiche(Exposition $expo, $idExpo, $POST) {
@@ -55,16 +60,16 @@ function enregistrementAffiche(Exposition $expo, $idExpo, $POST) {
 	}
 
 	if (isset($_FILES['affiche']) && ($_FILES['affiche']['name'][0] != NULL)) {
-			$name = $_FILES['affiche']['name'][0];
-			$nomFichier = 'affiche';
-			if (htmlentities(isset($_POST['MAX_FILE_SIZE'])) && $_POST['MAX_FILE_SIZE'] == '500000') {
-				$maxsize = (int)$_POST['MAX_FILE_SIZE'];
-				if ($_FILES['affiche']['error'][0] > 0) $erreur = "Erreur lors du transfert";
-				if ($_FILES['affiche']['size'][0] > $maxsize) {$erreur = "Le fichier est trop gros";}
-				
-				$extensions_valides = array( 'jpg' , 'jpeg' , 'gif' , 'png');
-				$extension_upload = strtolower(  substr(  strrchr($name, '.')  ,1)  );
-				// if ( in_array($extension_upload,$extensions_valides) ) echo "Extension correcte";
+		$name = $_FILES['affiche']['name'][0];
+		$nomFichier = 'affiche';
+		if (htmlentities(isset($_POST['MAX_FILE_SIZE'])) && $_POST['MAX_FILE_SIZE'] == '500000') {
+			$maxsize = (int)$_POST['MAX_FILE_SIZE'];
+			if ($_FILES['affiche']['error'][0] > 0) $erreur = "Erreur lors du transfert";
+			if ($_FILES['affiche']['size'][0] > $maxsize) {$erreur = "Le fichier est trop gros";}
+			
+			$extensions_valides = array( 'jpg' , 'jpeg' , 'gif' , 'png');
+			$extension_upload = strtolower(  substr(  strrchr($name, '.')  ,1)  );
+			if ( in_array($extension_upload,$extensions_valides) ) {
 				$cheminFichier = "../img/expositions/expo{$idExpo}/{$nomFichier}.{$extension_upload}";
 				//suppression des fichiers existants
 				$file = "../img/expositions/expo{$idExpo}/{$nomFichier}.{$extension_upload}";
@@ -82,10 +87,14 @@ function enregistrementAffiche(Exposition $expo, $idExpo, $POST) {
 				
 				//mise a jour de l'objet
 				$expo->setAffiche($nomFichier);
-				
-		 	}
-		
+			}
 	 	}
+		
+	}else{
+		//enregistrement affiche paer defaut
+		copy('../img/expositions/default/defaultAffiche.jpg', '../img/expositions/expo'.$idExpo.'/affiche.jpg');
+		$expo->setAffiche('affiche.jpg');
+	}
 }
 
 function makeExpoDir (Exposition $expo, $idExpo) {
@@ -114,6 +123,12 @@ if (isset($_GET['req'], $_GET['idExpo']) && $_GET['req'] == 'deleteExpo') {
 	$managerExpo->deleteExposition($expo);
 	$dossier = '../img/expositions/expo'.$idExpo;
 	if(is_dir($dossier)){
+		if (is_file($dossier.'/teaser.jpg')) {
+			unlink($dossier.'/teaser.jpg');
+		}
+		if (is_file($dossier.'/affiche.jpg')) {
+			unlink($dossier.'/affiche.jpg');
+		}
 	   rmdir($dossier);
 	}
 	header('location: ../content/accueil.php?onglet=calendar');
@@ -212,6 +227,13 @@ if (isset($_POST['dateDebut'], $_POST['dateFin'], $_POST['titre'], $_POST['coule
 
 
 	if (!isset($_POST['req'])) {
+		//creation du dossier expo si existe pas
+		//creation des fichier affiche et teaser par defaut
+		// $dossier = '../img/expositions/expo'.$idExpo;
+		// if(!is_dir($dossier)){
+		//    mkdir($dossier);
+		// }
+		
 		//ajout en base de la nouvelle expo et recuperation du dernier Id
 		$managerExpo->addExposition($exposition);
 		$lastIdExpo = $managerExpo->lastIdExpo();
@@ -241,11 +263,10 @@ if (isset($_POST['dateDebut'], $_POST['dateFin'], $_POST['titre'], $_POST['coule
 			makeExpoDir($expo, $idExpo);
 			
 
-			//enregistrement du fichier affiche
+			//enregistrement du fichier affiche et teaser
 			enregistrementTeaser($expo, $idExpo, $_POST);
 
 			enregistrementAffiche($expo, $idExpo, $_POST);
-
 
 		 		
 		 	//update de l'entrée en base

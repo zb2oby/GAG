@@ -160,28 +160,29 @@ if (isset($_POST['idOeuvre'])) {
 		
 		if (htmlentities(isset($_POST['MAX_FILE_SIZE'])) && $_POST['MAX_FILE_SIZE'] == '500000') {
 			$maxsize = (int)$_POST['MAX_FILE_SIZE'];
+			$erreur = false;
 			if ($_FILES['imageOeuvre']['error'][0] > 0) $erreur = "Erreur lors du transfert";
 			if ($_FILES['imageOeuvre']['size'][0] > $maxsize) {$erreur = "Le fichier est trop gros";}
 			
 			$extensions_valides = array( 'jpg' , 'jpeg' , 'gif' , 'png' );
 			$extension_upload = strtolower(  substr(  strrchr($name, '.')  ,1)  );
-			//if ( in_array($extension_upload,$extensions_valides) ) echo "Extension correcte";
-			$cheminFichier = "../img/oeuvres/oeuvre{$idOeuvre}.{$extension_upload}";
-			//suppression des fichiers existants
-			$files = glob("../img/oeuvres/oeuvre{$idOeuvre}.*");
-			foreach ($files as $file) {
-			  unlink($file);
+			if ( in_array($extension_upload,$extensions_valides) && !$erreur ) {
+				$cheminFichier = "../img/oeuvres/oeuvre{$idOeuvre}.{$extension_upload}";
+				//suppression des fichiers existants
+				$files = glob("../img/oeuvres/oeuvre{$idOeuvre}.*");
+				foreach ($files as $file) {
+				  unlink($file);
+				}
+				$resultat = move_uploaded_file($_FILES['imageOeuvre']['tmp_name'][0],$cheminFichier);
+				//if ($resultat) echo "Transfert réussi";
+				$nomFichier = 'oeuvre'.$idOeuvre.'.'.$extension_upload;
+				//mie a jour de la base
+				$oeuvre->setImage($nomFichier);
+				$managerOeuvre->updateOeuvre($oeuvre);
+				
+				echo $nomFichier;
+				//header('location: ../content/gestionPanel.php');
 			}
-			$resultat = move_uploaded_file($_FILES['imageOeuvre']['tmp_name'][0],$cheminFichier);
-			//if ($resultat) echo "Transfert réussi";
-			$nomFichier = 'oeuvre'.$idOeuvre.'.'.$extension_upload;
-			//mie a jour de la base
-			$oeuvre->setImage($nomFichier);
-			$managerOeuvre->updateOeuvre($oeuvre);
-			
-			echo $nomFichier;
-			//header('location: ../content/gestionPanel.php');
-			
 	 	}
 		
 	 }
@@ -221,21 +222,23 @@ if (isset($_POST['idOeuvre'])) {
 			
 			if (htmlentities(isset($_POST['MAX_FILE_SIZE'])) && $_POST['MAX_FILE_SIZE'] == '500000') {
 				$maxsize = (int)$_POST['MAX_FILE_SIZE'];
+				$erreur = false;
 				if ($_FILES['fichierDonnee']['error'][0] > 0) $erreur = "Erreur lors du transfert";
 				if ($_FILES['fichierDonnee']['size'][0] > $maxsize) {$erreur = "Le fichier est trop gros";}
 				
 				$extensions_valides = array( 'jpg' , 'jpeg' , 'gif' , 'png', 'mp3', 'mp4', 'wav', 'mpeg');
 				$extension_upload = strtolower(  substr(  strrchr($name, '.')  ,1)  );
-				// if ( in_array($extension_upload,$extensions_valides) ) echo "Extension correcte";
-				$cheminFichier = "../meta/oeuvre{$idOeuvre}/{$nomFichier}.{$extension_upload}";
-				//suppression des fichiers existants
-				$file = "../meta/oeuvre{$idOeuvre}/{$nomFichier}.{$extension_upload}";
-				if (file_exists($file)) {
-					unlink($file);
+				if ( in_array($extension_upload,$extensions_valides) && !$erreur ) {
+					$cheminFichier = "../meta/oeuvre{$idOeuvre}/{$nomFichier}.{$extension_upload}";
+					//suppression des fichiers existants
+					$file = "../meta/oeuvre{$idOeuvre}/{$nomFichier}.{$extension_upload}";
+					if (file_exists($file)) {
+						unlink($file);
+					}
+					$resultat = move_uploaded_file($_FILES['fichierDonnee']['tmp_name'][0],$cheminFichier);
+					// if ($resultat) echo "Transfert réussi";
+					$nomFichier = $nomFichier.'.'.$extension_upload;
 				}
-				$resultat = move_uploaded_file($_FILES['fichierDonnee']['tmp_name'][0],$cheminFichier);
-				// if ($resultat) echo "Transfert réussi";
-				$nomFichier = $nomFichier.'.'.$extension_upload;
 			}
 			
 		}
