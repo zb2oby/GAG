@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Jeu 01 Mars 2018 à 14:31
+-- Généré le :  Lun 05 Mars 2018 à 11:21
 -- Version du serveur :  5.5.57-0+deb8u1
--- Version de PHP :  7.0.27-1~dotdeb+8.1
+-- Version de PHP :  7.1.13-1+0~20180105151310.14+jessie~1.gbp1086fa
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -77,7 +77,6 @@ INSERT INTO `ArtisteExpose` (`idArtiste`, `idExpo`) VALUES
 (70, 125),
 (71, 125),
 (72, 125),
-(73, 125),
 (74, 125),
 (75, 125),
 (76, 125),
@@ -85,9 +84,9 @@ INSERT INTO `ArtisteExpose` (`idArtiste`, `idExpo`) VALUES
 (78, 125),
 (79, 125),
 (80, 125),
-(81, 125),
 (82, 125),
-(83, 125);
+(83, 125),
+(81, 128);
 
 -- --------------------------------------------------------
 
@@ -140,11 +139,21 @@ CREATE TABLE IF NOT EXISTS `Communaute` (
 
 CREATE TABLE IF NOT EXISTS `Donnee_enrichie` (
 `idDonneeEnrichie` int(11) NOT NULL,
-  `urlFichier` varchar(25) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `urlFichier` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
   `libelleDonneeEnrichie` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `idTypeDonneEnrichie` int(11) DEFAULT NULL,
   `idOeuvre` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Contenu de la table `Donnee_enrichie`
+--
+
+INSERT INTO `Donnee_enrichie` (`idDonneeEnrichie`, `urlFichier`, `libelleDonneeEnrichie`, `idTypeDonneEnrichie`, `idOeuvre`) VALUES
+(1, 'https://www.youtube.com/embed/Tk5DmOFery4', 'Les fleurs Violettes', 4, 43),
+(6, 'http://www.angeliqueguillemet-art.com/wp-content/uploads/2018/01/arbre-dautomne-BD-280x200.jpg', 'Arbre', 4, 43),
+(7, 'https://i.pinimg.com/736x/3b/58/f9/3b58f9373cb290051eb2f54f029dbb7c--wedding-sweets-wedding-cake.jpg', 'Bulle de pens&eacute;e', 4, 60),
+(8, 'https://www.youtube.com/embed/NZlfxWMr7nc', 'Endormez vous', 4, 48);
 
 -- --------------------------------------------------------
 
@@ -158,7 +167,7 @@ CREATE TABLE IF NOT EXISTS `Emplacement` (
   `coordTop` float DEFAULT NULL,
   `idExpo` int(11) DEFAULT NULL,
   `idOeuvreExposee` int(11) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=466 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=564 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Contenu de la table `Emplacement`
@@ -166,29 +175,29 @@ CREATE TABLE IF NOT EXISTS `Emplacement` (
 
 INSERT INTO `Emplacement` (`idEmplacement`, `coordLeft`, `coordTop`, `idExpo`, `idOeuvreExposee`) VALUES
 (441, 65.6675, 22.6767, 125, 119),
-(442, 41.4421, 36.7493, 125, 118),
+(442, 41.5549, 36.7466, 125, 118),
 (443, 65.9943, 58.3131, 125, 117),
 (444, 75.5851, 88.6846, 125, 116),
-(445, 79.1137, 53.1098, 125, 115),
-(447, 83.99, 0.255438, 125, 109),
+(447, 81.1109, 5.09819, 125, 109),
 (448, 46.1229, 55.8977, 125, 108),
-(449, 77.604, 43.4588, 125, 120),
 (450, 35.6526, 46.0784, 125, 121),
 (451, 1.32549, 29.7335, 125, 122),
-(452, 81.418, 44.4343, 125, 123),
-(453, 62.2328, 33.3281, 125, 124),
-(454, 62.0016, 14.0472, 125, 125),
+(453, 59.8322, 35.265, 125, 124),
+(454, 59.0855, 9.21415, 125, 125),
 (455, 37.7329, 88.2353, 125, 126),
 (456, 21.8993, 88.2353, 125, 127),
-(457, 0.98057, 61.7647, 125, 128),
 (458, 12.5379, 88.5569, 125, 130),
 (459, 89.6254, 88.8889, 125, 131),
-(460, 22.9395, 56.2092, 125, 132),
 (461, 19.4723, 60.7843, 125, 133),
 (462, 23.0551, 65.6863, 125, 134),
-(463, 43.9739, 1.96078, 125, 135),
-(464, 96.4443, 69.6078, 125, 136),
-(465, 50, 50, 125, 0);
+(463, 42.0582, 3.22885, 125, 135),
+(465, 73.4539, 9.96979, 125, 120),
+(466, 95.3328, 15.0407, 125, 110),
+(553, 33.5577, 45.9559, 128, 140),
+(556, 70.5264, 51.1029, 128, 142),
+(559, 73.9108, 51.1029, 128, 141),
+(560, 50, 50, 128, 0),
+(563, 50, 50, 125, 0);
 
 -- --------------------------------------------------------
 
@@ -216,10 +225,10 @@ CREATE TABLE IF NOT EXISTS `Exposition` (
 --
 
 INSERT INTO `Exposition` (`idExpo`, `titre`, `horaireO`, `horaireF`, `theme`, `descriptifFR`, `frequentation`, `dateDeb`, `dateFin`, `teaser`, `affiche`, `couleurExpo`) VALUES
-(125, 'Ultraviolet', '09:00:00', '19:30:00', 'Le violet &agrave; l''honneur', 'Souvent associ&eacute; &agrave; l&rsquo;univers f&eacute;minin, le violet est une couleur qui &eacute;voque le r&ecirc;ve et la d&eacute;licatesse. Conseill&eacute; pour agr&eacute;menter des pi&egrave;ces de r&eacute;flexion (bureaux, biblioth&egrave;ques...), il permettrait &eacute;galement d&rsquo;am&eacute;liorer notre concentration. \r\n\r\nConcentrez-vous donc, pour d&eacute;couvrir notre s&eacute;lection &quot;Ultraviolet&quot; pleine de douceur et de s&eacute;r&eacute;nit&eacute; ! ', NULL, '2018-03-07', '2018-03-14', 'teaser.jpg', 'affiche.jpg', '#a832e2'),
-(126, 'Nouveaux/Anciens', '00:00:00', '00:00:00', 'La bataille', 'blablablabla', NULL, '2018-03-17', '2018-03-24', NULL, NULL, '#5e75d2'),
+(125, 'Ultraviolet', '09:00:00', '19:30:00', 'Le violet &agrave; l''honneur', 'Souvent associ&eacute; &agrave; l&rsquo;univers f&eacute;minin, le violet est une couleur qui &eacute;voque le r&ecirc;ve et la d&eacute;licatesse. Conseill&eacute; pour agr&eacute;menter des pi&egrave;ces de r&eacute;flexion (bureaux, biblioth&egrave;ques...), il permettrait &eacute;galement d&rsquo;am&eacute;liorer notre concentration. \r\n\r\nConcentrez-vous donc, pour d&eacute;couvrir notre s&eacute;lection &quot;Ultraviolet&quot; pleine de douceur et de s&eacute;r&eacute;nit&eacute; ! ', 4, '2018-03-07', '2018-03-14', 'teaser.jpg', 'affiche.jpg', '#a832e2'),
+(126, 'Mes Marais Salants', '00:00:00', '00:00:00', 'Couleurs de Terre', 'blablablabla', 2, '2018-03-17', '2018-03-24', '', '', '#5e75d2'),
 (127, 'Les murs', '00:00:00', '00:00:00', 'Ont des oreilles', 'hahaha', NULL, '2018-03-27', '2018-03-31', NULL, NULL, '#55b05c'),
-(128, 'Avant premiere', '00:00:00', '00:00:00', 'Cin&eacute;ma', 'et tout et tout', NULL, '2018-02-20', '2018-02-27', NULL, NULL, '#cd2f2f');
+(128, 'Avant premiere', '00:00:00', '00:00:00', 'Cin&eacute;ma', 'et tout et tout', NULL, '2018-02-20', '2018-02-27', 'teaser.png', '', '#cd2f2f');
 
 -- --------------------------------------------------------
 
@@ -260,7 +269,9 @@ CREATE TABLE IF NOT EXISTS `Langue_expo` (
 
 INSERT INTO `Langue_expo` (`idExpo`, `idLangue`) VALUES
 (125, 1),
+(128, 1),
 (125, 2),
+(128, 2),
 (125, 5);
 
 -- --------------------------------------------------------
@@ -278,7 +289,7 @@ CREATE TABLE IF NOT EXISTS `Message_interne` (
   `idArtiste` int(11) DEFAULT NULL,
   `idExpo` int(11) DEFAULT NULL,
   `idCollectif` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=122 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -298,7 +309,7 @@ CREATE TABLE IF NOT EXISTS `Oeuvre` (
   `idTypeOeuvre` int(11) DEFAULT NULL,
   `idArtiste` int(11) DEFAULT NULL,
   `idCollectif` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Contenu de la table `Oeuvre`
@@ -338,7 +349,8 @@ INSERT INTO `Oeuvre` (`idOeuvre`, `titre`, `longueur`, `hauteur`, `etat`, `image
 (61, 'Par la fenêtre', '45.00', '30.00', 'bon', 'oeuvre61.jpg', 'oeuvre61.png', 'Cette oeuvre est une photographie numérique qui traite des sensations.', 6, 83, NULL),
 (62, 'Tourbillon', '32.00', '24.00', 'bon', 'oeuvre62.jpg', 'oeuvre62.png', 'Cette oeuvre est un mélange d''encre et de feutres.', 4, 83, NULL),
 (63, 'Larmes', '32.00', '24.00', 'bon', 'oeuvre63.jpg', 'oeuvre63.png', 'Cette oeuvre est un mélange d''encre et de feutre.', 4, 83, NULL),
-(64, 'blue', '60.00', '40.00', 'bon', 'oeuvre64.jpg', 'oeuvre64.png', 'Cette œuvre est une photographie numérique créée pour un concours intitulé "Purple".', 6, 83, NULL);
+(64, 'blue', '60.00', '40.00', 'bon', 'oeuvre64.jpg', 'oeuvre64.png', 'Cette œuvre est une photographie numérique créée pour un concours intitulé "Purple".', 6, 83, NULL),
+(65, 'Oeuvre d''essai', '50.00', '50.00', 'bon', 'oeuvre65.jpg', 'oeuvre65.png', 'Ceci est un esssai', NULL, 80, NULL);
 
 -- --------------------------------------------------------
 
@@ -353,41 +365,45 @@ CREATE TABLE IF NOT EXISTS `OeuvreExposee` (
   `nbVue` int(11) DEFAULT '0',
   `idOeuvre` int(11) NOT NULL,
   `idExpo` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=137 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=146 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Contenu de la table `OeuvreExposee`
 --
 
 INSERT INTO `OeuvreExposee` (`idOeuvreExposee`, `dateEntree`, `dateSortie`, `nbVue`, `idOeuvre`, `idExpo`) VALUES
-(108, '2018-03-01', '1970-01-01', 2, 25, 125),
+(108, '2018-03-01', '1970-01-01', 5, 25, 125),
 (109, '2018-03-01', '1970-01-01', 2, 27, 125),
 (110, '2018-03-01', '1970-01-01', 0, 28, 125),
 (111, '1970-01-01', '1970-01-01', 0, 30, 125),
 (112, '1970-01-01', '1970-01-01', 0, 32, 125),
-(113, '1970-01-01', '1970-01-01', 0, 34, 125),
 (114, '1970-01-01', '1970-01-01', 0, 35, 125),
-(115, '2018-03-01', '1970-01-01', 1, 37, 125),
-(116, '2018-03-01', '1970-01-01', 0, 39, 125),
-(117, '2018-03-01', '1970-01-01', 0, 40, 125),
+(116, '2018-03-01', '1970-01-01', 1, 39, 125),
+(117, '2018-03-01', '1970-01-01', 1, 40, 125),
 (118, '2018-03-01', '1970-01-01', 2, 41, 125),
 (119, '2018-03-01', '1970-01-01', 0, 42, 125),
-(120, '2018-03-01', '1970-01-01', 0, 43, 125),
+(120, '2018-03-01', '1970-01-01', 49, 43, 125),
 (121, '2018-03-01', '1970-01-01', 0, 44, 125),
 (122, '2018-03-01', '1970-01-01', 0, 45, 125),
-(123, '2018-03-01', '1970-01-01', 0, 46, 125),
 (124, '2018-03-01', '1970-01-01', 0, 47, 125),
-(125, '2018-03-01', '1970-01-01', 0, 48, 125),
-(126, '2018-03-01', '1970-01-01', 0, 49, 125),
+(125, '2018-03-01', '1970-01-01', 2, 48, 125),
+(126, '2018-03-01', '1970-01-01', 1, 49, 125),
 (127, '2018-03-01', '1970-01-01', 0, 50, 125),
 (128, '2018-03-01', '1970-01-01', 0, 51, 125),
 (130, '2018-03-01', '1970-01-01', 0, 58, 125),
 (131, '2018-03-01', '1970-01-01', 0, 59, 125),
-(132, '2018-03-01', '1970-01-01', 0, 60, 125),
-(133, '2018-03-01', '1970-01-01', 0, 61, 125),
+(132, '2018-03-01', '1970-01-01', 6, 60, 125),
+(133, '2018-03-01', '1970-01-01', 1, 61, 125),
 (134, '2018-03-01', '1970-01-01', 0, 62, 125),
-(135, '2018-03-01', '1970-01-01', 1, 63, 125),
-(136, '2018-03-01', '1970-01-01', 1, 64, 125);
+(135, '2018-03-01', '1970-01-01', 2, 63, 125),
+(136, '2018-03-01', '1970-01-01', 7, 64, 125),
+(139, '1970-01-01', '1970-01-01', 0, 34, 125),
+(140, '2018-03-02', '1970-01-01', 0, 56, 128),
+(141, '2018-03-03', '1970-01-01', 0, 52, 128),
+(142, '2018-03-02', '1970-01-01', 0, 55, 128),
+(143, '2018-03-03', '1970-01-01', 0, 54, 128),
+(144, '2018-03-03', '1970-01-01', 0, 53, 128),
+(145, '2018-03-03', '1970-01-01', 0, 57, 128);
 
 -- --------------------------------------------------------
 
@@ -518,7 +534,7 @@ INSERT INTO `Traduction` (`idTraduction`, `texteTraduit`, `idArtiste`, `idCollec
 CREATE TABLE IF NOT EXISTS `Type_donnee_enrichie` (
 `idTypeDonneEnrichie` int(11) NOT NULL,
   `libelleTypeDonneEnrichie` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Contenu de la table `Type_donnee_enrichie`
@@ -527,7 +543,8 @@ CREATE TABLE IF NOT EXISTS `Type_donnee_enrichie` (
 INSERT INTO `Type_donnee_enrichie` (`idTypeDonneEnrichie`, `libelleTypeDonneEnrichie`) VALUES
 (1, 'Video'),
 (2, 'Sonore'),
-(3, 'Image');
+(3, 'Image'),
+(4, 'Lien externe');
 
 -- --------------------------------------------------------
 
@@ -586,7 +603,7 @@ CREATE TABLE IF NOT EXISTS `Utilisateur` (
   `idTypeUtilisateur` int(11) DEFAULT NULL,
   `email` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `userState` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Contenu de la table `Utilisateur`
@@ -725,12 +742,12 @@ MODIFY `idCollectif` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=52;
 -- AUTO_INCREMENT pour la table `Donnee_enrichie`
 --
 ALTER TABLE `Donnee_enrichie`
-MODIFY `idDonneeEnrichie` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
+MODIFY `idDonneeEnrichie` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT pour la table `Emplacement`
 --
 ALTER TABLE `Emplacement`
-MODIFY `idEmplacement` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=466;
+MODIFY `idEmplacement` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=564;
 --
 -- AUTO_INCREMENT pour la table `Exposition`
 --
@@ -745,17 +762,17 @@ MODIFY `idLangue` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 -- AUTO_INCREMENT pour la table `Message_interne`
 --
 ALTER TABLE `Message_interne`
-MODIFY `idMessage` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=122;
+MODIFY `idMessage` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `Oeuvre`
 --
 ALTER TABLE `Oeuvre`
-MODIFY `idOeuvre` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=65;
+MODIFY `idOeuvre` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=66;
 --
 -- AUTO_INCREMENT pour la table `OeuvreExposee`
 --
 ALTER TABLE `OeuvreExposee`
-MODIFY `idOeuvreExposee` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=137;
+MODIFY `idOeuvreExposee` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=146;
 --
 -- AUTO_INCREMENT pour la table `Traduction`
 --
@@ -765,7 +782,7 @@ MODIFY `idTraduction` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=106;
 -- AUTO_INCREMENT pour la table `Type_donnee_enrichie`
 --
 ALTER TABLE `Type_donnee_enrichie`
-MODIFY `idTypeDonneEnrichie` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+MODIFY `idTypeDonneEnrichie` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT pour la table `Type_oeuvre`
 --
@@ -780,7 +797,7 @@ MODIFY `idTypeUtilisateur` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 -- AUTO_INCREMENT pour la table `Utilisateur`
 --
 ALTER TABLE `Utilisateur`
-MODIFY `idUtilisateur` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+MODIFY `idUtilisateur` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- Contraintes pour les tables exportées
 --

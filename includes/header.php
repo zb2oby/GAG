@@ -18,7 +18,8 @@ include('bdd/connectbdd.php');
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Grand Angle Gestion</title>
-        <link rel="stylesheet" href="../css/ionicons.min.css">
+        <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+        <!-- <link rel="stylesheet" href="../css/ionicons.min.css"> -->
 		<link rel="stylesheet" type="text/css" href="../css/lib/slick/slick.css"/>
 		<link rel="stylesheet" type="text/css" href="../css/impression.css" media="print"/>
 		<link rel="stylesheet" type="text/css" href="../css/lib/slick/slick-theme.css"/>
